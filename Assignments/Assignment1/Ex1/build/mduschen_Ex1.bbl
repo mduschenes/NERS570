@@ -1,0 +1,35 @@
+\begin{thebibliography}{1}
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+\providecommand{\bibinfo}[2]{#2}
+\providecommand{\eprint}[2][]{\url{ePrint:#2}}
+
+\bibitem{West2001}
+\bibinfo{author}{West, D.}
+\newblock \emph{\bibinfo{title}{{Introduction to Graph Theory}}}
+  (\bibinfo{publisher}{Pearson Education}, \bibinfo{address}{New York},
+  \bibinfo{year}{2001}), \bibinfo{edition}{2} edn.
+
+\bibitem{Newman2010}
+\bibinfo{author}{Newman, M. E.~J.}
+\newblock \emph{\bibinfo{title}{{Networks}}} (\bibinfo{publisher}{Oxford
+  University Press}, \bibinfo{year}{2010}).
+
+\bibitem{Banerjee2019}
+\bibinfo{author}{Banerjee, R.}, \bibinfo{author}{Sagiyama, K.},
+  \bibinfo{author}{Teichert, G.} \& \bibinfo{author}{Garikipati, K.}
+\newblock \bibinfo{title}{{A graph theoretic framework for representation,
+  exploration and analysis on computed states of physical systems}}.
+\newblock \emph{\bibinfo{journal}{Comput. Methods Appl. Mech. Eng.}}
+  \textbf{\bibinfo{volume}{351}}, \bibinfo{pages}{501--530}
+  (\bibinfo{year}{2019}).
+
+\bibitem{Chung1996}
+\bibinfo{author}{Chung, F.}
+\newblock \emph{\bibinfo{title}{{Spectral Graph Theory}}},
+  vol.~\bibinfo{volume}{92} of \emph{\bibinfo{series}{CBMS Regional Conference
+  Series in Mathematics}} (\bibinfo{publisher}{American Mathematical Society},
+  \bibinfo{address}{Providence, Rhode Island}, \bibinfo{year}{1996}).
+
+\end{thebibliography}
