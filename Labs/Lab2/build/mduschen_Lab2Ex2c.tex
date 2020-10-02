@@ -1,0 +1,83 @@
+\documentclass[12pt]{article}{}
+
+\newcommand{\doctitle}{Lab 2}
+\newcommand{\docauthor}{Matthew Duschenes}
+\newcommand{\docaffil}{Department of Applied Physics, University of Michigan}
+\newcommand{\docheader}{NERS 570 \ - \docauthor}
+\newcommand{\docfooter}{\docaffil}
+\newcommand{\bibname}{BibliographyMatthewDuschenes}
+
+\newcommand{\porder}[1][m]{#1}
+\newcommand{\p}[1][x]{p_{\porder}(#1)}
+\newcommand{\f}[1][(x)]{f#1}
+
+\include{\jobname_packages}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+\singlespacing
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Exercise 2 c) (i)}
+
+Given a polynomial $\p$ of order $\porder$ to a true function $\f$, which is assumed to be $\porder+1$ differentiable, the interpolation error can be found from the following analysis.
+
+Assume that we have $n+1$ data points $\{(x_i,y_i)\}$ such that $y_i \approx \f[(x_i)] \equiv \f[]_i$, and $x_i \in \Omega$. We must find the polynomial $\p$ such that $\p[x_i] = y_i$. Typically the system is over determined, meaning $n>m$, and there are more data points than terms in the polynomial. In this case, a least squares fitting of a polynomial, through the $\porder$-order Vandermonde matrix $X \in \reals^{n+1 \times p+1}$ for the data, yields polynomial coefficients $\tilde{\gamma}$:
+\begin{align}
+	y \approx \tilde{y} = X\tilde{\gamma}.
+\end{align}
+This fit $\tilde{y}$ is imperfect for $n>m$, and does not perfectly fit to the $n+1$ data points, or the true function $\f$, but provides the least squares error for the residual of $r = y-\tilde{y}$. Typically this can be solved via a pseudo-inverse, or other iterative methods:
+\begin{align}
+	\tilde{\gamma} = (X^TX)^{-1}X^Ty.
+\end{align}
+
+To determine the interpolation error, it is instead assumed that $n=m$, and there are $m+1$ data points for the $m$ order polynomial. The error
+\begin{align}
+	e_m(x) = f(x) - p_m(x)
+\end{align}
+has the form given the data
+\begin{align}
+	e_m(x;X) =& \frac{f^{(m+1)}(\xi)}{(m+1)!}w_X(x), \intertext{where the function over the data}
+	w_X(x) =& \prod_i(x-x_i),\intertext{and $\xi(x)$ is a root such that} e_m^{(m+1)}(\xi) -& \frac{(m+1)!}{w_X(x)}e_m(x)=0.
+\end{align}
+The maximum norm error $|e(x)|$ then corresponds to finding the maxima of $w_X$, given the data. The root $\xi$ depends on the interval and the specific function used; and for the maximum norm, not any root, but $$ \xi = \textrm{argmax}_{x\in \Omega} |f^{(m+1)}(x)|.$$
+
+We will look at the cases of $m=1,2$, given equally spaced data in one dimensional data:
+\begin{align}
+	\Omega =& [a,b],\\
+	x_i =& a + ih, \\
+	h =& \frac{b-a}{m}.
+\end{align}
+We will also look at a function that is a $k$ order polynomial with true coefficients $\beta$:
+\begin{align}
+	f = X\beta,
+\end{align}
+where X here is the $k$-order Vandermonde matrix. In this case, the polynomial function will have coefficients:
+
+\begin{align}
+	\beta = \{&7.33\times 10^{1}, 3.785 \times 10^{-1},  -1.229\times 10^{-3},2.949\times 10^{-6},\\-&4.247\times 10^{-9},3.12\times 10^{-12},-9.076\times 10^{-16}\}. 
+\end{align}
+
+\subsection{m=1}
+For $m=1$, it can be seen that $$x_i = \{a,b\},$$ $w_X$ is maximum at $$x = \frac{b-a}{2} = m\frac{h}{2}.$$ $\xi$ can be found through numerical approximation, and only considering the maximum of $f^{(2)}(x)$ over $\Omega$, there is a bound of $$ f^{(2)}(\xi) < C_2.$$ Therefore the maximal error is:
+\begin{align}
+	|e(x)|_{\infty} \leq \frac{1}{2}C_2\frac{1}{4}m^2h^2
+\end{align}
+
+\subsection{m=2}
+For $m=2$, it can be seen that $$x_i = \{a,\frac{a+b}{2},b\},$$ and the $w_X$ is a maximum at $$x = \frac{b-a}{2} = \frac{a+b}{2} - \frac{1}{\sqrt{3}}m\frac{h}{2}.$$ $\xi$, from $f^{(3)}(x)$ can be found through numerical approximation,, and only considering the maximum of $f^{(3)}(x)$ over $\Omega$, there is a bound of $$ f^{(3)}(\xi) < C_3.$$ Therefore the maximal error is:
+\begin{align}
+	|e(x)|_{\infty} \leq \frac{1}{2}C_3\frac{1}{18}m^3h^3.
+\end{align}
+
+
+
+\section*{Exercise 2 c) (ii)}
+Given that the points are equally spaced, allows for the $w(x)$ to fluctuate, and doesn't necessarily yield minimal $|e(x)| \sim |w(x)|$, the data points should be chosen such that they minimize this $w(x)$ function. From the literature, it appears that switching to Chebyshev points, and rewriting the expressions in a Chebyshev basis, as opposed to this more Lagrange approach, will allow for better optimization of the interpolation error. The points should potentially be chosen based on the function $f(x)$ that is being fit as well, since there may be more complex regions of the function's domain that required more sampling for better fitting and to reduce the interpolation error. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \newpage
+% \bibliography{\jobname}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

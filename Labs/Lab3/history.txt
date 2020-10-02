@@ -1,0 +1,88 @@
+  585  history | tail -n100 | less
+  586  module avail
+  587  module spider
+  588  module load gcc
+  589  module avail
+  590  module load openmpi
+  591  module list
+  592  module purge
+  593  which gcc
+  594  module load gcc
+  595  which gcc
+  596  echo $PATH
+  597  echo $GCC_ROOT 
+  598  module swap gcc/9.2.0 gcc/8.2.0
+  599  module list
+  600  module purge
+  601  module list
+  602  module load openmpi
+  603  module load gcc
+  604  module load openmpi
+  605  module avail
+  606  module load phdf5
+  607  module load openblas
+  608  module load lapack
+  609  module list
+  610  module save laparallel
+  611  module savelist
+  612  module purge
+  613  module restore laparallel 
+  614  module list
+  615  squeue -s $USER
+  616  squeue -u $USER
+  617  squeue -u ryansand
+  618  my_accounts
+  619  squeue -A engin1 | wc -l
+  620  squeue | wc -l
+  621  squeue | head -n10
+  622  cd ../../../Labs/Lab3/
+  623  srun --pty --account=ners570f20_class /bin/bash
+  624  type which
+  625  type module
+  626  ls
+  627  ls ~/
+  628  ls ../../Lectures/Lecture5/git_example/
+  629  vim job.slurm
+  630  sbatch job.slurm 
+  631  vim job.slurm
+  632  sbatch job.slurm 
+  633  squeue
+  634  squeue -u $USER
+  635  ls
+  636  cat slurm-12860692.out 
+  637  squeue -A ners570f20_class
+  638  watch -n1 "squeue -A ners570f20_class"
+  639  watch -n1 "squeue -A ners570f20_class" >> watch.txt &
+  640  cat watch.txt 
+  641  ls
+  642  vim job.slurm 
+  643  sbatch job.slurm 
+  644  ls
+  645  tail -f job.stdout 
+  646  vim job.slurm 
+  647  export MODULEPATH=$MODULEPATH:/gpfs/accounts/ners570f20_class_root/ners570f20_class/shared_data/modules
+  648  echo $MODULEPATH
+  649  vim ~/.bashrc 
+  650  module show ners570-env 
+  651  module load ners570-env 
+  652  echo $PROJACCNT 
+  653  vim ~/.bashrc 
+  654  source ~/.bashrc 
+  655  watch -n1 "squeue -A ners570f20_class" >> watch.txt &
+  656  tail -f  watch.txt 
+  657  sbatch job.slurm 
+  658  watch -n1 "squeue -A ners570f20_class" >> watch.txt &
+  659  tail -f  watch.txt 
+  660  cat watch.txt 
+  661  ls
+  662  cat job.stdout 
+  663  history | tai -n200
+  664  history | tail -n200
+  665  history | less -n200
+  666  history | less
+  667  history | tail -n 73
+  668  history | tail -n 73 > history.txt
+  669  vim history.txt 
+  670  history | tail -n 83 > history.txt
+  671  vim history.txt 
+  672  history | tail -n 88 > history.txt

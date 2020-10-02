@@ -1,0 +1,383 @@
+% Packages
+
+% Document Properties
+\providecommand{\doctitle}{PHYS XXX COURSE TITLE}
+\providecommand{\docauthor}{\textbf{Matthew Duschenes} 90285449}
+\providecommand{\docaffil}{Department of Applied Physics, University of Michigan}
+\providecommand{\docemail}{mduschen@umich.edu}
+\providecommand{\docaddress}{Ann Arbor, MI}
+\providecommand{\docheader}{\docauthor}
+\providecommand{\docfooter}{\docaffil}
+\providecommand{\bibname}{BibliographyMatthewDuschenes}
+
+% Preamble Commands
+\usepackage{xparse}
+\newcommand{\newcommandx}{\NewDocumentCommand}
+
+% Margins
+\usepackage[margin=0.75in,marginparsep=0pt,paperwidth=216mm,paperheight=279mm]{geometry}
+
+% Headers
+\usepackage{fancyhdr}
+\geometry{headheight=15pt}
+\renewcommand{\headrulewidth}{0.4pt}% default is 0.4pt
+\renewcommand{\footrulewidth}{0.4pt}% default is 0pt
+\geometry{headheight=15pt}
+\geometry{headsep=10pt}
+\setlength{\skip\footins}{10pt} % gap between text and footer
+\fancyhf{}
+\fancyhead[R]{\docheader}
+\fancyfoot[LE,RO]{\thepage}
+\fancyfoot[LO,RE]{\docfooter}
+
+% \makeatletter
+% \if@twoside
+% \fancyfoot[LE,RO]{\thepage}
+% \fancyfoot[LO,RE]{\docfooter}
+% \else
+% \fancyfoot[R]{\thepage}
+% \fancyfoot[L]{\docfooter}
+% \fi
+% \makeatother
+% \fancyhead[R]{\docheader}
+
+
+% Title
+\usepackage{titling}
+\usepackage[affil-it]{authblk}
+\usepackage[nodayofweek]{datetime}
+\usepackage[super]{nth}
+
+\newdateformat{monthdayyear}{%
+  \monthname[\THEMONTH]~\THEDAY,~ \THEYEAR}
+\newdateformat{mydate}{\monthname[\THEMONTH] \nth[\THEDAY], \THEYEAR}
+
+
+% Make Title
+\pagestyle{fancy}
+\newcommandx{\docauthorINFO}{ O{} O{\docauthor} O{\docaffil} O{\docaddress} O{\docemail}}{\author[#1]{#2} \affil[#1]{#3, #4, #5}} %% {Author #}{Author}{University}{Dept.}{Adress}{email@email}
+\renewcommand*{\Authfont}{\bfseries}
+\renewcommand*{\Affilfont}{\normalfont\itshape}
+\pretitle{\begin{center}\vskip -50pt}%
+\title{\Large \bfseries \doctitle}
+\posttitle{\end{center}}
+\preauthor{\begin{center} \vskip -20pt}
+% \docauthorINFO
+\author{}
+% \affil{\docaffil}
+\postauthor{\end{center} \vskip -20pt}
+\predate{\begin{center} \vskip 0pt}
+\date{\small{\today}}
+\postdate{\end{center} \vskip -20pt}% -42.5pt
+
+
+% Fonts
+\usepackage[british]{babel}
+% \usepackage{mathptmx}
+\usepackage{times}
+\usepackage{microtype}
+\usepackage[singlespacing]{setspace}
+\usepackage{indentfirst}
+\edef\restoreparindent{\parindent=\the\parindent\relax}
+\usepackage{parskip}
+\setlength{\parskip}{6pt}%
+\restoreparindent
+
+
+% Sections
+\renewcommand{\labelenumii}{\roman{enumii})}
+\renewcommand\thesection{\Roman{section}.}
+\renewcommand\thesubsection{\alph{subsection}.}
+\newcommand{\tightspace}[1][15]{\vskip -#1pt}
+\usepackage[compact]{titlesec}
+% \titleformat*{\section}{\normalsize\bfseries}
+% \titleformat*{\subsection}{\normalsize\bfseries}
+% \titleformat*{\section}{\large\bfseries}
+% \titlespacing*{\section}{0pt}{-0.5\baselineskip}{-0.5\baselineskip}
+% \titleformat*{\subsection}{\normalsize\bfseries}
+% \titlespacing*{\subsection}{0pt}{-0.5\baselineskip}{-0.5\baselineskip}
+% \titleformat*{\subsubsection}{\normalsize\bfseries}
+% \titlespacing*{\subsubsection}{0pt}{-2\baselineskip}{-1\baselineskip}
+% \titleformat*{\paragraph}{\normalsize\bfseries}
+% \titlespacing*{\paragraph}{0pt}{-1\baselineskip}{-0.5\baselineskip}
+% \titleformat*{\subparagraph}{\normalsize\bfseries}
+% \titlespacing*{\subparagraph}{0pt}{-2\baselineskip}{-1\baselineskip}
+%
+\makeatletter
+\newcommand{\ps@obstract}{%
+  \renewcommand{\@oddhead}{}%
+  \renewcommand{\@evenhead}{\@oddhead}%
+  \renewcommand{\@oddfoot}{}%
+  \renewcommand{\@evenfoot}{\@oddfoot}%
+}
+\makeatother
+
+
+\usepackage[toc,page,title,titletoc]{appendix}
+\let\appendixpagenameorig\appendixpagename
+\renewcommand\appendixpagename{\Large\bfseries\appendixpagenameorig}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 
+% \newpage
+% \onehalfspacing
+% \begin{appendices}
+% \crefalias{section}{appsec}
+% \setcounter{equation}{0}
+% \renewcommand\thesection{\Alph{section}.}
+% \renewcommand\theequation{\getcurrentref{section}.\arabic{equation}}
+
+
+% Math
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{physics}
+
+% Figures
+\usepackage{wrapfig}
+% \usepackage{float}
+\usepackage{grffile}
+\usepackage{graphicx}
+% \usepackage{subfig}
+\graphicspath{figures}
+
+
+
+
+% References
+% \usepackage{hyperref}
+% \hypersetup{
+%     colorlinks=true,
+%     linkcolor=black,
+%     citecolor=black,
+%     urlcolor=black}
+\usepackage{url}
+\Urlmuskip=0mu plus 1mu
+\urlstyle{same}
+\usepackage[capitalize]{cleveref}
+\crefname{appsec}{Appendix}{Appendices}
+% \usepackage{cite}
+
+% \usepackage[square,numbers]{natbib}
+\usepackage[super,comma]{natbib}
+\bibliographystyle{naturemag_ext}%h-physrev
+\usepackage{bibentry}
+% \renewcommand{\bibsection}{\large Bibliography}
+\renewcommand{\bibnumfmt}[1]{#1.}
+
+
+
+% \usepackage[style=nature,sorting=none,url=false,doi=false,isbn=false,giveninits=true]{biblatex}
+\usepackage{csquotes}
+\usepackage{xpatch}
+\usepackage{filecontents}
+% \usepackage{dblfnote}
+% \usepackage{ifoddpage}% get correct page number
+
+
+% Seperate bibliogrpahy
+% \newwrite\bibstuff
+% \newcommand{\strf}[1]{\string#1^^J}
+
+% \AtEndDocument{%
+%   \immediate\openout\bibstuff=\bibname.tex
+%   \immediate\write\bibstuff{%
+%   \strf{\documentclass[12pt]{article}}%
+%   \strf{\usepackage[british]{babel}}%
+%   \strf{\usepackage{times}}%
+%   \strf{\usepackage{microtype}}%
+%   \strf{\usepackage[margin=0.75in,marginparsep=0pt,paperwidth=216mm,paperheight=279mm]{geometry}}
+%   \strf{\geometry{headheight=15pt}}
+%   \strf{\usepackage{xparse}}
+%   \strf{\usepackage[singlespacing]{setspace}}
+%   \strf{\usepackage{fancyhdr}}
+%   \strf{\renewcommand{\noexpand\headrulewidth}{0.4pt}}% default is 0.4pt
+%   \strf{\renewcommand{\noexpand\footrulewidth}{0.4pt}}% default is 0pt
+%   \strf{\geometry{headheight=15pt}}
+%   \strf{\geometry{headsep=10pt}}
+%   \strf{\setlength{\skip\footins}{20pt}} % gap between text and footer
+%   \strf{\fancyhf{}}
+%   \strf{\fancyhead[R]{Bibliography - \docauthor}}
+%   \strf{\fancyfoot[LE,RO]{\noexpand\thepage}}
+%   \strf{\fancyfoot[LO,RE]{\docfooter}}
+%   \strf{\usepackage{titling}}
+%   \strf{\pretitle{\noexpand\begin{center}\vskip -50pt}}
+%   \strf{\title{\noexpand\large Bibliography}}
+%   \strf{\posttitle{\noexpand\end{center}}}
+%   \strf{\preauthor{\noexpand\begin{center} \vskip -20pt}}
+%   \strf{\author{}}
+%   \strf{\postauthor{\noexpand\end{center} \vskip -20pt}}
+%   \strf{\predate{\noexpand\begin{center} \vskip -20pt}}
+%   \strf{\date{}}
+%   \strf{\postdate{\noexpand\end{center} \vskip -40pt}}
+%   \strf{\usepackage[super,comma]{natbib}}
+%   % \strf{\bibliographystyle{h-physrev}}
+%   % \strf{\usepackage{titlesec}}
+%   % \strf{\noexpand\titleformat*{\noexpand\section}{\normalsize}}
+%   \strf{\renewcommand{\noexpand\bibsection}{\relax}}
+%   \strf{\renewcommand{\noexpand\bibnumfmt}[1]{\string#1.}}
+%   \strf{\usepackage{hyperref}}
+%   \strf{\hypersetup{colorlinks=true,linkcolor=black,citecolor=black,urlcolor=black}}
+%   \strf{\usepackage{url}}
+%   \strf{\urlstyle{same}}
+%   \strf{\begin{document}}
+%     \strf{\maketitle}
+%     \strf{\thispagestyle{fancy}}
+%     \strf{\InputIfFileExists{\jobname.bbl}{}{}}
+%     \strf{\thispagestyle{fancy}}
+%     \strf{\end{document}}
+%   }
+%   \immediate\closeout\bibstuff
+%   \immediate\write18{pdflatex \bibname.tex} % Compilation
+% }
+
+
+% Floats
+% \usepackage{listings}
+\usepackage{floatrow}
+\usepackage{grffile}
+\usepackage[justification=justified]{caption}
+\usepackage{subcaption}
+% \captionsetup[listing]{position=top}
+% \usepackage{floatrow}
+\usepackage{etoolbox}
+\setlength{\textfloatsep}{12pt plus 1.0pt minus 2.0pt}
+\usepackage{multicol}
+\usepackage[shortlabels]{enumitem}
+% \setlist{noitemsep}
+
+
+% Code
+\usepackage{minted}
+\renewcommand\listingscaption{Algorithm}
+\floatsetup[listing]{style=Plaintop}    
+
+\crefname{listing}{Alg.}{Algorithms}
+\newminted{python}{frame=lines,framerule=2pt,float=ht}
+\setminted{breaklines,frame=single,framesep=2pt,breakindent=10pt,breakafter={,},breaksymbolleft=}
+
+
+\newcommand{\code}[4]{
+\begin{listing}[ht]
+    \caption{#3}
+    \inputminted{#1}{#2}
+    \label{code:#4}
+\end{listing}
+}
+
+ % Commands
+\newcommand{\reals}{\mathbb{R}}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+
+
+
+
+
+% % \lstinputlisting[language=Python]{BitXorMatrix.m}
+% \renewcommand\lstlistingname{Algorithm}
+% \renewcommand\lstlistlistingname{Algorithms}
+% \def\lstlistingautorefname{Alg.}
+
+% \lstdefinestyle{Python}{
+%     language        = Python,
+%     frame           = lines, 
+%     breaklines = true,
+%     basicstyle      = \footnotesize,
+%     keywordstyle    = \color{blue},
+%     stringstyle     = \color{green},
+%     commentstyle    = \color{gray}\ttfamily
+% }
+
+
+
+
+% \DeclareFieldFormat{pages}{#1}
+% \DefineBibliographyStrings{english}{andothers={et~al\adddot}}
+% \DeclareNameAlias{default}{last-first} 
+% \DeclareFieldFormat{hyperurl}{\iffieldundef{url}{}{\href{\thefield{url}}}{#1}}
+
+% \makeatletter
+% \let\oldfootcite=\footcite
+% \RenewDocumentCommand{\footcite}{oom}{\checkoddpage
+%   \@ifundefined{citepage@#3}{}%
+%   {\ifnum\csname citepage@#3\endcsname<\oddpage@page\relax
+%       \global\expandafter\let\csname repeatcite@#3\endcsname=\relax
+%   \fi}%
+%   \@ifundefined{repeatcite@#3}%
+%   {\oldfootcite{#3}%\optargs{#1}{#2}{#3}{\oldfootcite}%
+%     \expandafter\xdef\csname repeatcite@#3\endcsname{\thefootnote}%
+%     \expandafter\xdef\csname citepage@#3\endcsname{\arabic{page}}}%
+%   {\footnotemark[\csname repeatcite@#3\endcsname]}}
+% \makeatother
+
+% \renewbibmacro*{cite}{%
+%   \printtext{\printtext[hyperurl]{%
+%   	\iffieldundef{shorthand}
+%     {\ifthenelse{
+%        \ifnameundef{labelname}\OR\iffieldundef{labelyear}}
+%        {\usebibmacro{cite:label} \setunit{\addspace}}%
+%        {\printnames{labelname} \setunit{\addcomma\space}}%
+%        {\ifentrytype{article}{\usebibmacro{journal}\setunit{\space}%
+%        		\iffieldundef{volume}{}{\textbf{\printfield{volume}}} \setunit{\addcomma\space}%
+%        		\iffieldundef{pages}{}{\printfield{pages}\setunit{\space}}}{\printlist{publisher}\setunit{\space}}}%
+%        % {\ifentrytype{book,unpublished,incollection}{\usebibmacro{publisher}\setunit{\space}}{}}%
+%        \ifentrytype{book,incollection,unpublished}{\printlist{publisher}\setunit{\space}}{}%
+%        {\printtext{(}\usebibmacro{citeyear}\printtext{)}}%
+%     }
+%     	{\usebibmacro{cite:shorthand}}
+%     }}}
+
+
+
+
+
+% Unused Packages
+
+% \usepackage{tocbibind}
+% \usepackage{tocloft}
+% \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+
+% Input Arguments Commands
+% \addto\captionsbritish{\renewcommand{\contentsname}{Table of Contents}}
+%
+% \def\ReadCommandLineArg#1 {%
+%   \def\CommandLineArg{#1}%
+%   \input{\jobname}}
+% \unless\ifdefined\CommandLineArg
+% \endinput\expandafter\expandafter\expandafter\ReadCommandLineArg\fi
+%
+
+
+% \newcommand{\cmdname}[1]{\csname #1\endcsname}
+% \newcommand{\cmdID}[1]{#1}
+% \newcommand{\cmdNULL}[1]{}
+% \newcommand{\cmdcheck}[2]{\ifdefined#1 #2{#1} \fi}
+
+
+% \makeatletter
+% \newcommand{\argdelim}{\bgroup}
+% \newcommandx{\argparser}{O{\relax} m}{#1{#2\checknextarg}}
+% \newcommand{\checknextarg}{\@ifnextchar\argdelim{\nextarg}}
+% \newcommand{\nextarg}[1]{#1\@ifnextchar\argdelim{\nextarg}}
+% \makeatother
+
+% \usepackage{filecontents,listofitems}
+
+% \catcode`[=\active %
+% \def[#1]{\csname #1\endcsname{}}%
+% \catcode`[=12 %
+
+% \newcommand\inputparameters[2]{%
+%   \setsepchar{,}%
+%   \readlist*\mydata{#2}%
+%   \foreachitem\myvardef\in\mydata{%
+%     \setsepchar{=}%
+%     \readlist*\myvar{\myvardef}%
+%     \expandafter\edef\csname\myvar[1]\endcsname{\myvar[2]}%
+%   }%
+%   \catcode`[=\active %
+%   \input{#1}%
+%   \catcode`[=12 %
+% }

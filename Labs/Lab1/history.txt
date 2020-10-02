@@ -1,0 +1,179 @@
+    1  gem install rmate
+    2  gem update rmate
+    3  chmod a+x ~/bin/rmate 
+    4  export PATH="$PATH:$HOME/bin"
+    5  ls
+    6  cd Private/MECH505/Assignment2a/Code/
+    7  ls
+    8  rmate FEM1.h 
+    9  rmate --help
+   10  nano ~/.rmat.rc
+   11  nano ~/.rmate.rc
+   12  rmate FEM1.h 
+   13  exit
+   14  sudo wget -O /usr/local/bin/rsub https://raw.github.com/aurora/rmate/master/rmate
+   15  sudo wget -O /usr/local/bin/rsub https://raw.github.com/aurora/rmate/master/rmate 
+   16  wget -O /usr/local/bin/rsub https://raw.github.com/aurora/rmate/master/rmate 
+   17  nano ~/.bashrc 
+   18  gem install rmate
+   19  chmod a+x ~/bin/rmate 
+   20  export PATH="$PATH:$HOME/bin"
+   21  cd Private/MECH505/Assignment2a/Code/
+   22  rmate FEM1.h 
+   23  exit
+   24  gem install rmate
+   25  nano  ~/.bashrc
+   26  source .bashrc
+   27  cd Private/MECH505/Assignment2a/Code/
+   28  rmate FEM1.h 
+   29  rmate -H textmate-host FEM1.h 
+   30  rmate --host textmate-host FEM1.h 
+   31  rmate FEM1.h 
+   32  nano ~/.rmate.rc 
+   33  pwd
+   34  rmate FEM1.h 
+   35  ls
+   36  make run
+   37  module load deal.II
+   38  nano FEM1.h 
+   39  make run
+   40  ls
+   41  nano CA1_Order1_Problem1.vtk 
+   42  make run
+   43  nano CA1_Order1_Problem1.vtk 
+   44  rmate FEM1.h 
+   45  exit
+   46  source .bashrc 
+   47  module load deal.II
+   48  cd Private/MECH505/Assignment2a/Code/
+   49  rmate FEM1.h 
+   50  exit
+   51  source .bashrc
+   52  cd Private/MECH505/Assignment2a/Code/
+   53  rmate FEM1.h 
+   54  rsub FEM1.h 
+   55  rmate FEM1.h 
+   56  exit
+   57  vncviewer localhost:5951
+   58  quit
+   59  exit
+   60  ls
+   61  cat stop
+   62  cat typescript
+   63  :q
+   64  cat typescript 
+   65  who
+   66  ls
+   67  rm stop
+   68  mv typesrcipt cmd.log
+   69  mv typescript cmd.log
+   70  vim cmd.log 
+   71  top h
+   72  top
+   73  top l
+   74  top -l
+   75  top
+   76  df
+   77  df -h
+   78  du
+   79  ls
+   80  ls -lh
+   81  ls -lh -y
+   82  ls -lh -t
+   83  cp ~/.bashrc
+   84  cp ~/.bashrc ./
+   85  ls
+   86  cd Private/NERS570/
+   87  ls]
+   88  ls
+   89  mkdir Labs
+   90  mkdir Labs/Lab1
+   91  cd Labs/
+   92  cd Lab1/
+   93  pwd
+   94  cp ~/.bashrc ./
+   95  ls
+   96  cp /afs/umich.edu/user/b/k/bkochuna/Public/.bashrc ./
+   97  cp ~/Private/NERS570/Labs/Lab1/.bashrc ~/
+   98  source ~/.bashrc
+   99  df
+  100  lw
+  101  ls
+  102  cd -
+  103  cd Private/NERS570/Labs/Lab1/
+  104  ls
+  105  ls -a
+  106  chmod ugo+rwx .bashrc 
+  107  chmod o-rwx .bashrc 
+  108  ls
+  109  ls -a
+  110  ls -la
+  111  chmod go-rwx .bashrc 
+  112  chmod u-x .bashrc 
+  113  ls -la
+  114  ll
+  115  which
+  116  which ll
+  117  ls -l
+  118  ls -c
+  119  ls -n
+  120  ls
+  121  which which
+  122  history
+  123  cat .bashrc 
+  124  history >> history.txt
+  125  ls
+  126  cat history.txt 
+  127  head  -n15 .bashrc 
+  128  tail  -n15 .bashrc 
+  129  head  -n15 .bashrc 
+  130  less .bashrc
+  131  more .bashrc
+  132  grep alias .bashrc 
+  133  find . -name "*bashrc"
+  134  find ../ -name "*bashrc"
+  135  less .bashrc 
+  136  grep prompt .bashrc 
+  137  grep -c prompt .bashrc 
+  138  grep -n prompt .bashrc 
+  139  find ../ -name "*bashrc" -type f
+  140  find ../ -name "*bashrc" -type d
+  141  cd ../../
+  142  ls
+  143  find . -type f -name "*.c"
+  144  find . -type f -name "*.out"
+  145  grep WRITE -r ./
+  146  which grep
+  147  grep -c WRITE -r ./
+  148  grep -n WRITE -r ./
+  149  grep -in WRITE -r ./
+  150  grep -v WRITE -r ./
+  151  grep -v WRITE -r ./test/
+  152  ls
+  153  cd Labs/Lab1/
+  154  date >> date.txt
+  155  ls
+  156  cat date.txt 
+  157  date >> date.txt
+  158* 
+  159  date >> date.txt && cat date.txt
+  160  _file=data.txt && date >> $_file && cat $_file
+  161  rm data/
+  162  rm data.txt 
+  163  _file=date.txt && date >> $_file && cat $_file
+  164  ls -c
+  165  ls | wc -l
+  166  grep -v WRITE -r ./test/ | wc -l
+  167  _file=history.txt && touch $_file && history >> $_file
+  168  less $_file
+  169  sed "s:Fri:Mon:g" date.txt 
+  170  sed -e "s:Fri:Mon:g" -e "s:Sep 4:Sep 7:g" date.txt 
+  171  sed -e "s:Fri:Mon:g" -e "s:Sep\ 4:Sep\ 7:g" date.txt 
+  172  sed -e "s:Fri:Mon:g" -e "s:Sep\s4:Sep\s7:g" date.txt 
+  173  sed -e "s:Fri:Mon:g" -e "s:Sep\s\s4:Sep\s\s7:g" date.txt 
+  174  sed -e "s:Fri:Mon:g" -e "s:Sep  4:Sep  7:g" date.txt 
+  175  echo "Yes" > &1 | sed "s:Yes:No:g
+  176  echo "Yes" > &1 | sed "s:Yes:No:g"
+  177  echo "Yes" >&1 | sed "s:Yes:No:g"
+  178  echo "Yes" >&2 | sed "s:Yes:No:g"
+  179  history > history.txt
