@@ -1,39 +1,39 @@
-CC 		:= gcc
+CC 		:= gpp
 MKDIR 	:= mkdir -p
 RMDIR 	:= rm -rf
 ROOT 	:= .
 FILE	:= 
+EXT		:= cpp
+EXTO	:= o
+EXTEXE	:= out
 SRC 	:= $(ROOT)
 OBJ 	:= $(ROOT)
 BIN		:= $(ROOT)
 INCLUDE := $(ROOT)
-SRCS    := $(wildcard $(SRC)/$(FILE)*.c)
-OBJS    := $(patsubst $(SRC)/%.c,$(OBJ)/%.o,$(SRCS))
-EXES    := $(patsubst $(SRC)/%.c,$(OBJ)/%.out,$(SRCS))
+SRCS    := $(wildcard $(SRC)/$(FILE)*.$(EXT))
+OBJS    := $(patsubst $(SRC)/%.$(EXT),$(OBJ)/%.$(EXTO),$(SRCS))
+EXES    := $(patsubst $(SRC)/%.$(EXT),$(OBJ)/%.$(EXTEXE),$(SRCS))
 
 CFLAGS  :=
-#DEPS = hellomake.h
+DEPS 	:= blas.h
 
-#%.o: %.c $(DEPS)
-#	$(CC) -c -o $@ $< $(CFLAGS)
-#
-#	.PHONY: all run clean
-#
-#	$(BIN)/%.out : $(OBJS) | $(BIN)
-#		$(CC) -o $@ $< $(CFLAGS)
-#
-#		$(OBJ)/%.o: $(SRC)/%.c | $(OBJ)
-#			$(CC) -c -o $@ $< $(CFLAGS)
-#
-#			$(ROOT) :
-#				$(MKDIR) $@
-#
-#				all : $(EXES)
-#
-#				run : $(EXES)
-#					./$<
-#
-#					clean :
-#						$(RMDIR) $(OBJS)
-#							$(RMDIR) $(EXES)
+.PHONY: all run clean
+
+$(BIN)/%.$(EXTEXE) : $(OBJS) | $(BIN)
+	$(CC) -o $@ $< $(CFLAGS)
+
+$(OBJ)/%.o: $(SRC)/%.c $(DEPS) | $(OBJ)
+	$(CC) -c -o $@ $< $(CFLAGS)
+
+$(ROOT) :
+	$(MKDIR) $@
+
+all : $(EXES)
+
+run : $(EXES)
+	./$<
+
+clean :
+	$(RMDIR) $(OBJS)
+#	$(RMDIR) $(EXES)
 
