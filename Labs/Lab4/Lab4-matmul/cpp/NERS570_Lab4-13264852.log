@@ -1,0 +1,27 @@
+g++    -c -o matmul.o matmul.cpp
+g++ -o matmul.out matmul.o -lblas
+./matmul.out 20
+ Performing matrix-matrix multipliciation for SIZE=20
+
+ mydgemm took 0.000000e+00 seconds!
+
+BLAS dgemm took 0.000000e+00 seconds!
+rm matmul.o
+./matmul.out 100
+ Performing matrix-matrix multipliciation for SIZE=100
+
+ mydgemm took 0.000000e+00 seconds!
+
+BLAS dgemm took 0.000000e+00 seconds!
+./matmul.out 500
+ Performing matrix-matrix multipliciation for SIZE=500
+
+ mydgemm took 7.800000e-01 seconds!
+
+BLAS dgemm took 8.000000e-02 seconds!
+./matmul.out 1000
+ Performing matrix-matrix multipliciation for SIZE=1000
+
+ mydgemm took 1.021000e+01 seconds!
+
+BLAS dgemm took 6.400000e-01 seconds!

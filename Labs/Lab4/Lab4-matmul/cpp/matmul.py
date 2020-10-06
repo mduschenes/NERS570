@@ -57,7 +57,7 @@ print('N = %d'%(N))
 arrs = {}
 keys = ['A','B','C']
 for k in keys:
-	arrs[k] = generate_random_matrix(N,N,quiet=False,label=k)
+	arrs[k] = generate_random_matrix(N,N,quiet=True,label=k)
 
 
 
@@ -67,7 +67,7 @@ params = {'alpha':1.0,'beta':0.0}
 
 dgemm(**arrs,**params)
 
-print_matrix(arrs['C'],'New C')
+#print_matrix(arrs['C'],'New C')
 
 
 
