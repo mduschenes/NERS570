@@ -1,5 +1,5 @@
 CC 	:= gcc
-CCF	:= gfortrain
+CCF	:= gfortran
 MKDIR 	:= mkdir -p
 RMDIR 	:= rm -rf
 ROOT 	:= .
