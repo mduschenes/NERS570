@@ -15,7 +15,8 @@ OBJS    := $(patsubst $(SRC)/%.$(EXT),$(OBJ)/%.$(EXTO),$(SRCS))
 EXES    := $(patsubst $(SRC)/%.$(EXT),$(OBJ)/%.$(EXTEXE),$(SRCS))
 
 #CFLAGS  := -lblas
-CFLAGS  := -lopenblas
+#CFLAGS  := -lopenblas
+CFLAGS  := -lmkl
 DEPS 	:= blas.h
 
 .PHONY: all run clean

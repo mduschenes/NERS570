@@ -1,0 +1,31 @@
+openblas
+ Performing matrix-matrix multipliciation for SIZE=20
+
+ mydgemm took 0.000000e+00 seconds!
+
+BLAS dgemm took 0.000000e+00 seconds!
+ Performing matrix-matrix multipliciation for SIZE=100
+
+ mydgemm took 0.000000e+00 seconds!
+
+BLAS dgemm took 0.000000e+00 seconds!
+ Performing matrix-matrix multipliciation for SIZE=500
+
+ mydgemm took 1.500000e-01 seconds!
+
+BLAS dgemm took 1.000000e-02 seconds!
+ Performing matrix-matrix multipliciation for SIZE=1000
+
+ mydgemm took 2.620000e+00 seconds!
+
+BLAS dgemm took 6.000000e-02 seconds!
+ Performing matrix-matrix multipliciation for SIZE=2000
+
+ mydgemm took 3.633000e+01 seconds!
+
+BLAS dgemm took 3.700000e-01 seconds!
+ Performing matrix-matrix multipliciation for SIZE=4000
+
+ mydgemm took 3.523000e+02 seconds!
+
+BLAS dgemm took 2.370000e+00 seconds!

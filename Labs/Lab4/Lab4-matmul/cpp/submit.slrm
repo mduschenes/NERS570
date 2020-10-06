@@ -9,14 +9,30 @@
 #SBATCH --ntasks-per-node=1
 #SBATCH --mem-per-cpu=4000m 
 #SBATCH --time=10:00:00
-#SBATCH --output=./%x-%j.log
+#SBATCH --output=./logs/%x-%j.log
 
 #make run $n
 
-echo openBLAS
+run=0
+file=matmul
+ext=py
+lib=mkl_intel_ilp64  #openblas
+LFLAGS="-L${MKLROOT}/lib/intel64 -Wl,--no-as-needed -lmkl_intel_ilp64"
+CCFLAGS="-O2"
+if [[ "${ext}" == "out" ]]
+then
+	echo g++ -o ${file}.out ${file}.cpp -l${lib} ${LFLAGS} ${CCFLAGS}
+	g++ -o ${file}.out ${file}.cpp -l${lib} ${LFLAGS} ${CCFLAGS}
+fi
+
+echo $lib
 
 for n in 20 100 500 1000 2000 4000;
 do
-	./matmul.out $n
-#	./matmul.py $n
+	if [[ "${run}" == "1" ]]
+	then
+		./${file}.${ext} $n
+	else
+		echo $n
+	fi		I
 done
