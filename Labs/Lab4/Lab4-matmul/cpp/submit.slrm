@@ -13,26 +13,29 @@
 
 #make run $n
 
-run=0
+submit=0
 file=matmul
-ext=py
+ext=out
 lib=mkl_intel_ilp64  #openblas
 LFLAGS="-L${MKLROOT}/lib/intel64 -Wl,--no-as-needed -lmkl_intel_ilp64"
 CCFLAGS="-O2"
 if [[ "${ext}" == "out" ]]
 then
+	echo $lib
 	echo g++ -o ${file}.out ${file}.cpp -l${lib} ${LFLAGS} ${CCFLAGS}
 	g++ -o ${file}.out ${file}.cpp -l${lib} ${LFLAGS} ${CCFLAGS}
+else
+	echo python
 fi
 
-echo $lib
 
 for n in 20 100 500 1000 2000 4000;
 do
-	if [[ "${run}" == "1" ]]
+	echo Running $n
+	if [ "${submit}" == 1 ]
 	then
 		./${file}.${ext} $n
 	else
-		echo $n
-	fi		I
+		echo No Submit
+	fi
 done
