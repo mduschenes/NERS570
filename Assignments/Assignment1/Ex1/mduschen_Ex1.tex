@@ -8,10 +8,6 @@
 \newcommand{\docfooter}{\docaffil}
 
 
-% Preamble Commands
-\usepackage{xparse}
-\newcommand{\newcommandx}{\NewDocumentCommand}
-
 % Margins
 \usepackage[margin=0.75in,marginparsep=0pt,paperwidth=216mm,paperheight=279mm]{geometry}
 
@@ -42,27 +38,24 @@
 
 % Title
 \usepackage{titling}
-\usepackage[affil-it]{authblk}
+% \usepackage[affil-it]{authblk}
 \usepackage[nodayofweek]{datetime}
 \usepackage[super]{nth}
 
-\newdateformat{monthdayyear}{%
-  \monthname[\THEMONTH]~\THEDAY,~ \THEYEAR}
-\newdateformat{mydate}{\monthname[\THEMONTH] \nth[\THEDAY], \THEYEAR}
+% \newdateformat{monthdayyear}{%
+%   \monthname[\THEMONTH]~\THEDAY,~ \THEYEAR}
+% \newdateformat{mydate}{\monthname[\THEMONTH] \nth[\THEDAY], \THEYEAR}
 
 
 % Make Title
 \pagestyle{fancy}
-\newcommandx{\docauthorINFO}{ O{} O{\docauthor} O{\docaffil} O{\docaddress} O{\docemail}}{\author[#1]{#2} \affil[#1]{#3, #4, #5}} %% {Author #}{Author}{University}{Dept.}{Adress}{email@email}
-\renewcommand*{\Authfont}{\bfseries}
-\renewcommand*{\Affilfont}{\normalfont\itshape}
+% \renewcommand*{\Authfont}{\bfseries}
+% \renewcommand*{\Affilfont}{\normalfont\itshape}
 \pretitle{\begin{center}\vskip -50pt}%
 \title{\large \doctitle}
 \posttitle{\end{center}}
 \preauthor{\begin{center} \vskip -20pt}
-% \docauthorINFO
 \author{}
-% \affil{\docaffil}
 \postauthor{\end{center} \vskip -20pt}
 \predate{\begin{center} \vskip -20pt}
 \date{}%\small{\today}}
@@ -70,143 +63,16 @@
 
 
 % Fonts
-\usepackage[british]{babel}
-% \usepackage{mathptmx}
-\usepackage{times}
-\usepackage{microtype}
 \usepackage[singlespacing]{setspace}
-\usepackage{indentfirst}
-\edef\restoreparindent{\parindent=\the\parindent\relax}
-\usepackage{parskip}
-\setlength{\parskip}{6pt}%
-\restoreparindent
 
-
-% Sections
-\renewcommand{\labelenumii}{\roman{enumii})}
-\renewcommand\thesection{\Roman{section}.}
-\renewcommand\thesubsection{\alph{subsection}.}
-\newcommand{\tightspace}[1][15]{\vskip -#1pt}
-\usepackage[compact]{titlesec}
-% \titleformat*{\section}{\normalsize\bfseries}
-% \titleformat*{\subsection}{\normalsize\bfseries}
-% \titleformat*{\section}{\large\bfseries}
-% \titlespacing*{\section}{0pt}{-0.5\baselineskip}{-0.5\baselineskip}
-% \titleformat*{\subsection}{\normalsize\bfseries}
-% \titlespacing*{\subsection}{0pt}{-0.5\baselineskip}{-0.5\baselineskip}
-% \titleformat*{\subsubsection}{\normalsize\bfseries}
-% \titlespacing*{\subsubsection}{0pt}{-2\baselineskip}{-1\baselineskip}
-% \titleformat*{\paragraph}{\normalsize\bfseries}
-% \titlespacing*{\paragraph}{0pt}{-1\baselineskip}{-0.5\baselineskip}
-% \titleformat*{\subparagraph}{\normalsize\bfseries}
-% \titlespacing*{\subparagraph}{0pt}{-2\baselineskip}{-1\baselineskip}
-%
-\makeatletter
-\newcommand{\ps@obstract}{%
-  \renewcommand{\@oddhead}{}%
-  \renewcommand{\@evenhead}{\@oddhead}%
-  \renewcommand{\@oddfoot}{}%
-  \renewcommand{\@evenfoot}{\@oddfoot}%
-}
-\makeatother
-
-
-\usepackage[toc,page,title,titletoc]{appendix}
-\let\appendixpagenameorig\appendixpagename
-\renewcommand\appendixpagename{\Large\bfseries\appendixpagenameorig}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  
-% \newpage
-% \onehalfspacing
-% \begin{appendices}
-% \crefalias{section}{appsec}
-% \setcounter{equation}{0}
-% \renewcommand\thesection{\Alph{section}.}
-% \renewcommand\theequation{\getcurrentref{section}.\arabic{equation}}
-
-
 % Math
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{physics}
 
-% Figures
-\usepackage{wrapfig}
-% \usepackage{float}
-\usepackage{grffile}
-\usepackage{graphicx}
-% \usepackage{subfig}
-\graphicspath{figures}
 
 
-
-
-% References
-% \usepackage{hyperref}
-% \hypersetup{
-%     colorlinks=true,
-%     linkcolor=black,
-%     citecolor=black,
-%     urlcolor=black}
-\usepackage{url}
-\Urlmuskip=0mu plus 1mu
-\urlstyle{same}
-\usepackage[capitalize]{cleveref}
-\crefname{appsec}{Appendix}{Appendices}
-% \usepackage{cite}
-
-% \usepackage[square,numbers]{natbib}
-\usepackage[super,comma]{natbib}
-\bibliographystyle{naturemag_ext}%h-physrev
-\usepackage{bibentry}
-% \renewcommand{\bibsection}{\large Bibliography}
-\renewcommand{\bibnumfmt}[1]{#1.}
-
-
-
-% \usepackage[style=nature,sorting=none,url=false,doi=false,isbn=false,giveninits=true]{biblatex}
-\usepackage{csquotes}
-\usepackage{xpatch}
-\usepackage{filecontents}
-% \usepackage{dblfnote}
-% \usepackage{ifoddpage}% get correct page number
-
-
-
-
-% Floats
-% \usepackage{listings}
-\usepackage{floatrow}
-\usepackage{grffile}
-\usepackage[justification=justified]{caption}
-\usepackage{subcaption}
-% \captionsetup[listing]{position=top}
-% \usepackage{floatrow}
-\usepackage{etoolbox}
-\setlength{\textfloatsep}{12pt plus 1.0pt minus 2.0pt}
-\usepackage{multicol}
-\usepackage[shortlabels]{enumitem}
-% \setlist{noitemsep}
-
-
-% Code
-\usepackage{minted}
-\renewcommand\listingscaption{Algorithm}
-\floatsetup[listing]{style=Plaintop}    
-
-\crefname{listing}{Alg.}{Algorithms}
-\newminted{python}{frame=lines,framerule=2pt,float=ht}
-\setminted{breaklines,frame=single,framesep=2pt,breakindent=10pt,breakafter={,},breaksymbolleft=}
-
-
-\newcommand{\code}[4]{
-\begin{listing}[ht]
-    \caption{#3}
-    \inputminted{#1}{#2}
-    \label{code:#4}
-\end{listing}
-}
 
  % Commands
 \newcommand{\reals}{\mathbb{R}}
@@ -215,44 +81,6 @@
 
 
 
-
-
-
-\usepackage{pgffor}
-\usepackage{ifthen}
-\usepackage{totcount}
-\renewcommand{\refname}{REFERENCES}
-
-
-
-% \newtotcounter{Nargs}
-% \newtotcounter{i}
-
-% \def\numargs#1{%
-%   \setcounter{Nargs}{0}%
-%   \foreach \x in #1{%
-%     \stepcounter{Nargs}%
-%   }%
-%   \the\value{Nargs}%
-% }  
-
-% \newcommand*{\derivative}[3][0]{%
-%   \def\N{\numargs{{#3}}}%
-%   \frac{\partial^{\ifnum1=0\N {} \else \N \fi} #2}{%
-%   \foreach \x in {#3} {\partial \x}}
-% }
-
-% % \newcommand*{\derivativeN}[3][0]{%
-% %   \def\M{1}%
-% %   \def\N{\numargs{{#3}}}%
-% %   \frac{\partial^{\ifnum#1=0 {\ifnum\N=\M \relax {} \else \N \fi} \else {\ifnum#1=1 {} \else #1 \fi} \fi} #2}{%
-% %   \setcounter{i}{0}%
-% %   \foreach \x in {#3}{%
-% %     \stepcounter{i}%
-% %     {\ifnum#1>0 { \ifnum\totvalue{i}>0 {} \else \partial \x ^{\ifnum#1=1 {} \else #1 \fi} \fi} \else \partial \x \fi }%
-% %     }%
-% %     }
-% % }
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -298,7 +126,7 @@ These matrices yield the most fascinating graph matrix, the Laplacian $L \in \re
 \end{equation}
 and in the case of undirected graphs, is symmetric and $L=MM^T$.
 
-The graph Laplacian is a discrete equivalent of the Laplacian differential operator \cite{Chung1996}. This can most easily be seen by reasoning that for any vector $x \in \reals^n$, by definition of the adjacency and degree matrices being related to the total number of edges at a vertex, and knowing the degree sum form in \cref{eq:degreesum}, the inner product of $x$ with respect to $L$ yields a second order finite difference formula:
+The graph Laplacian is a discrete equivalent of the Laplacian differential operator \cite{Chung1996}. This can most easily be seen by reasoning that for any vector $x \in \reals^n$, by definition of the adjacency and degree matrices being related to the total number of edges at a vertex, and knowing the degree sum form in Equation \ref{eq:degreesum}, the inner product of $x$ with respect to $L$ yields a second order finite difference formula:
 \begin{equation}
   x^TLx = \sum_{e=(i,j)\in E} (x_i-x_j)^2.
 \end{equation}
@@ -315,7 +143,7 @@ Given these various matrices and properties of their eigenspaces related to the 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
-% \bibliographystyle{nat}
-\bibliography{\jobname}
+\bibliographystyle{unsrt}
+\bibliography{mduschen_Ex1.bib}
 
 \end{document}
