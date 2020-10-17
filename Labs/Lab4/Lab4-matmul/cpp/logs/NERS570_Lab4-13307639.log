@@ -1,0 +1,19 @@
+python
+Running 20
+N = 20
+Time: 0.00007 s
+Running 100
+N = 100
+Time: 0.00028 s
+Running 500
+N = 500
+Time: 0.00827 s
+Running 1000
+N = 1000
+Time: 0.05243 s
+Running 2000
+N = 2000
+Time: 0.37128 s
+Running 4000
+N = 4000
+Time: 3.08973 s

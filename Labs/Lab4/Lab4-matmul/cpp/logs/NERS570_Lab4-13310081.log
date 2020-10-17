@@ -1,0 +1,32 @@
+openblas
+g++ -o matmul.out matmul.cpp -lopenblas -O2
+Running 20
+ Performing matrix-matrix multipliciation for SIZE=20
+
+ mydgemm took 0.000000e+00 seconds!
+
+BLAS dgemm took 0.000000e+00 seconds!
+Running 100
+ Performing matrix-matrix multipliciation for SIZE=100
+
+ mydgemm took 0.000000e+00 seconds!
+
+BLAS dgemm took 0.000000e+00 seconds!
+Running 500
+ Performing matrix-matrix multipliciation for SIZE=500
+
+ mydgemm took 2.200000e-01 seconds!
+
+BLAS dgemm took 1.000000e-02 seconds!
+Running 1000
+ Performing matrix-matrix multipliciation for SIZE=1000
+
+ mydgemm took 8.570000e+00 seconds!
+
+BLAS dgemm took 6.000000e-02 seconds!
+Running 2000
+ Performing matrix-matrix multipliciation for SIZE=2000
+
+ mydgemm took 8.043000e+01 seconds!
+
+BLAS dgemm took 3.700000e-01 seconds!
