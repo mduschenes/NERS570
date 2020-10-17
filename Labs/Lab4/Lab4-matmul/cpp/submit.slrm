@@ -13,17 +13,22 @@
 
 #make run $n
 
-submit=0
+submit=${1:-1}
 file=matmul
 ext=out
 lib=mkl_intel_ilp64  #openblas
-LFLAGS="-L${MKLROOT}/lib/intel64 -Wl,--no-as-needed -lmkl_intel_ilp64"
-CCFLAGS="-O2"
+#lib=openblas
+LFLAGS="-L${MKLROOT}/lib/intel64 -Wl,--no-as-needed -lmkl_intel_ilp64 -lmkl_sequential -lmkl_core -lm"
+#LFLAGS=""
+CCFLAGS="-O2 -I${MKLROOT}/include"
+#CCFLAGS="-O2"
 if [[ "${ext}" == "out" ]]
 then
 	echo $lib
 	echo g++ -o ${file}.out ${file}.cpp -l${lib} ${LFLAGS} ${CCFLAGS}
-	g++ -o ${file}.out ${file}.cpp -l${lib} ${LFLAGS} ${CCFLAGS}
+	#g++ -o ${file}.out ${file}.cpp -l${lib} ${LFLAGS} ${CCFLAGS}
+	g++ -o ${file}.out ${file}.cpp -L$HOME/intel/mkl/lib/intel64/ -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lm
+
 else
 	echo python
 fi
