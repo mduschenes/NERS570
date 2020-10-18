@@ -49,8 +49,8 @@ def get_argument(key,array):
 	return
 
 # Simulation Type
-_args = ['simulation','source','exe']
-_defaults = ['release','time mpiexec -n 2 ./','ex15']
+_args = ['simulation','presource','source','exe']
+_defaults = ['release','time mpiexec -n 2 ','./','ex15']
 args = dict(zip(_args,_defaults))
 args.update(dict(zip(_args,sys.argv[1:])))
 
@@ -74,14 +74,14 @@ _simulations_keys = ['debug','release','condition']
 _simulations_defaults = {'ksp_type':['cg'],'n m':[8],
 	        'ksp_gmres_restart':[""],'pc_type':['none'],
 		}
-_subsimulations_defaults = {'ksp_type':{'gmres':'ksp_gmres_restart'},
-			    'pc_type': {'ilu':'mat_type','icc':'mat_type'}
+_subsimulations_defaults = {'ksp_type':{'gmres':['ksp_gmres_restart']},
+			    'pc_type': {'ilu':['mat_type'],'icc':['mat_type']}
 			   }
 
 _keys = {k: ["ksp_type","n m",'pc_type'] for k in _simulations_keys}
 _keys['condition'].extend(['ksp_monitor_singular_value'])
 
-_simulations = {k: _simulations_defaults for k in _simulations_keys}
+_simulations = {k: copy.deepcopy(_simulations_defaults) for k in _simulations_keys}
 _simulations['release'].update({
 			       'ksp_type':['cg','bcgs','gmres'],
 			       'n m':[8,32,128,256,512,1024],
@@ -95,28 +95,29 @@ _simulations['condition'].update({
 			       'pc_type':['none','jacobi','sor','ilu','icc','gamg'],
 			       'ksp_gmres_restart':[""],
 	        	       'ksp_monitor_singular_value':[''],
-			       'mat_type':['seqaij'],
+			       'mat_type':[],
 				})
-_subsimulations={k:_subsimulations_defaults for k in _simulations_keys}
+_subsimulations={k:copy.deepcopy(_subsimulations_defaults) for k in _simulations_keys}
 
 keys = _keys[args['simulation']]
-simulations=_simulations[args['simulation']]
+simulations = _simulations[args['simulation']]
+subsimulations = _subsimulations[args['simulation']]
 
+#print(keys)
 for key in keys:
 
 	flag=key
 	values=simulations[flag]
 	set_flag(key,flag,flags)
 	set_parameter(key,values,parameters)
-	if key == "ksp_type":
-		value="gmres"
-		flag="ksp_gmres_restart"
-		values=simulations[flag]
-		set_flag([key,value],flag,subflags)
-		set_parameter([key,value],values,subparameters)
+	for value in subsimulations.get(key,[]):
+		for flag in subsimulations[key][value]:
+			values=simulations[flag]
+			set_flag([key,value],flag,subflags)
+			set_parameter([key,value],values,subparameters)
 
-
-
+#print(subflags)
+#print(subparameters)
 # Arguments
 arguments = []
 values = [list(values) for values in itertools.product(*[parameters[key] for key in keys],repeat=1)]
@@ -136,12 +137,14 @@ for key in subparameters:
 		for s in subparameters[key][value]:
 			set_argument(subflags[key][value],s,subarguments[key][_value])
 
-
+#print(arguments)
+#print(subarguments)
 for argument in arguments[:]:
 	_arguments = [subarguments[key][value]
 			for key in subarguments 
 			for value in subarguments[key] 
-			if argument[keys.index(key)]==value]
+			if ((argument[keys.index(key)+sum([k.count(delimeters['IFS']) for k in keys[:keys.index(key)]])]==value) and (subarguments.get(key,{}).get(value) not in [[],None]))]
+	print(argument,_arguments)
 	if _arguments == []:
 		continue
 	i = arguments.index(argument)
@@ -157,7 +160,7 @@ for argument in arguments[:]:
 writer = lambda f,s: f.write("%s\n"%(s))
 shebang='#!/bin/bash'
 logging=["{","} 2>&1 | tee %s"%(files['output'])]
-commands = [*[(lambda *arguments,s=s:' '.join(['%s%s%s'%(s,args['source'],args['exe']),*arguments])) for s in ['echo ','']],
+commands = [*[(lambda *arguments,s=s:' '.join(['%s%s%s%s'%(s,args['presource'] if not any([s in arguments for s in ['-pc_type ilu','-pc_type icc']]) else 'time ',args['source'],args['exe']),*arguments])) for s in ['echo ','']],
             *[(lambda *arguments,s=s: '%s'%(s)) for s in ['sleep 1','echo ','']]
            ]
 with open(files['run'],'w') as f:
