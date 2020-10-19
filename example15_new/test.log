@@ -1,0 +1,7 @@
+time mpiexec -n 2 ./ex15 -ksp_type gmres -n 1024 -m 1024 -pc_type none -ksp_gmres_restart 1024
+Norm of error 0.0528249 iterations 2195
+
+real	14m38.520s
+user	28m51.962s
+sys	0m20.571s
+
