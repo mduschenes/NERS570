@@ -32,7 +32,7 @@ def set_flag(key,value,array):
 def set_parameter(key,value,array):
 	if not isinstance(value,(tuple,list)):
 		value=[value]
-	value = [str(v) for v in value]
+	value = [str(v) if not callable(v) else v for v in value]
 	set_value(key,value,array)
 	return
 
@@ -41,12 +41,35 @@ def set_argument(key,value,array):
 	if value in [delimeters["IFS"]]:
 		return
 	for k in key.split(delimeters["IFS"]):
-		val="%s%s%s"%(k,delimeters["set"],value)
+		if isinstance(value,str):
+			val="%s%s%s"%(k,delimeters['set'],value)
+		else:
+			print('val',value)
+			val= lambda *args,key=k,_value=value,**kwargs: _value(key,*args,**kwargs) 
 		array.append(val)
 	return
 
 def get_argument(key,array):
-	return
+	return array[key]
+
+def get_iterations(flag,args):
+	print('get_iters',flag,args)
+	keys=['%s%s%s'%(delimeters['flag'],s,delimeters['set']) for s in ['n','m']]
+	values=[]
+	for a in args:
+		for k in keys:
+			if k in a:
+				values.append(a.replace(k,''))
+	if values == []:
+		return ''
+
+
+	values=list(set(values))
+	value = str(min(values))
+	arg ='%s%s%s'%(flag,delimeters['set'],value)
+	print(flag,value)
+	return arg
+
 
 # Simulation Type
 _args = ['simulation','presource','source','exe']
@@ -72,10 +95,10 @@ subparameters={}
 
 _simulations_keys = ['debug','release','condition']
 _simulations_defaults = {'ksp_type':['cg'],'n m':[8],
-	        'ksp_gmres_restart':[""],'pc_type':['none'],
+	                     'ksp_gmres_restart':[get_iterations],'pc_type':['none'],
 		}
 _subsimulations_defaults = {'ksp_type':{'gmres':['ksp_gmres_restart']},
-			    'pc_type': {'ilu':['mat_type'],'icc':['mat_type']}
+			    # 'pc_type': {'ilu':['mat_type'],'icc':['mat_type']}
 			   }
 
 _keys = {k: ["ksp_type","n m",'pc_type'] for k in _simulations_keys}
@@ -85,7 +108,7 @@ _simulations = {k: copy.deepcopy(_simulations_defaults) for k in _simulations_ke
 _simulations['release'].update({
 			       'ksp_type':['cg','bcgs','gmres'],
 			       'n m':[8,32,128,256,512,1024],
-			       'ksp_gmres_restart':["",30,200],
+			       'ksp_gmres_restart':[get_iterations,30,200],
 	        	       'ksp_monitor_singular_value':[''],
 				})
 
@@ -93,7 +116,7 @@ _simulations['condition'].update({
 			       'ksp_type':['cg','gmres'],
 			       'n m':[8,32,128,256,512,1024],
 			       'pc_type':['none','jacobi','sor','ilu','icc','gamg'],
-			       'ksp_gmres_restart':[""],
+			       'ksp_gmres_restart':[get_iterations],
 	        	       'ksp_monitor_singular_value':[''],
 			       'mat_type':[],
 				})
@@ -138,13 +161,13 @@ for key in subparameters:
 			set_argument(subflags[key][value],s,subarguments[key][_value])
 
 #print(arguments)
-#print(subarguments)
+print('subs',subarguments)
 for argument in arguments[:]:
-	_arguments = [subarguments[key][value]
+	_arguments = [[s(argument) if callable(s) else s for s in subarguments[key][value]]
 			for key in subarguments 
 			for value in subarguments[key] 
 			if ((argument[keys.index(key)+sum([k.count(delimeters['IFS']) for k in keys[:keys.index(key)]])]==value) and (subarguments.get(key,{}).get(value) not in [[],None]))]
-	print(argument,_arguments)
+	print('ARG',argument,_arguments)
 	if _arguments == []:
 		continue
 	i = arguments.index(argument)

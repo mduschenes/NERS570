@@ -1,0 +1,185 @@
+\documentclass[12pt,letterpaper]{article}
+
+
+\newcommand{\doctitle}{Lab 5: PETSc and Krylov Methods}
+\newcommand{\docauthor}{Matthew Duschenes}
+\newcommand{\docaffil}{Department of Applied Physics, University of Michigan}
+\newcommand{\docheader}{NERS 570 \ - Lab 5 - \docauthor}
+\newcommand{\docfooter}{\docaffil}
+
+
+% Margins
+\usepackage[margin=0.75in,marginparsep=0pt,paperwidth=216mm,paperheight=279mm]{geometry}
+
+% Headers
+\usepackage{fancyhdr}
+\geometry{headheight=15pt}
+\renewcommand{\headrulewidth}{0.4pt}% default is 0.4pt
+\renewcommand{\footrulewidth}{0.4pt}% default is 0pt
+\geometry{headheight=15pt}
+\geometry{headsep=10pt}
+\setlength{\skip\footins}{10pt} % gap between text and footer
+\fancyhf{}
+\fancyhead[R]{\docheader}
+\fancyfoot[LE,RO]{\thepage}
+\fancyfoot[LO,RE]{\docfooter}
+
+% \makeatletter
+% \if@twoside
+% \fancyfoot[LE,RO]{\thepage}
+% \fancyfoot[LO,RE]{\docfooter}
+% \else
+% \fancyfoot[R]{\thepage}
+% \fancyfoot[L]{\docfooter}
+% \fi
+% \makeatother
+% \fancyhead[R]{\docheader}
+
+
+% Title
+\usepackage{titling}
+% \usepackage[affil-it]{authblk}
+\usepackage[nodayofweek]{datetime}
+\usepackage[super]{nth}
+
+% \newdateformat{monthdayyear}{%
+%   \monthname[\THEMONTH]~\THEDAY,~ \THEYEAR}
+% \newdateformat{mydate}{\monthname[\THEMONTH] \nth[\THEDAY], \THEYEAR}
+
+
+% Make Title
+\pagestyle{fancy}
+% \renewcommand*{\Authfont}{\bfseries}
+% \renewcommand*{\Affilfont}{\normalfont\itshape}
+\pretitle{\begin{center}\vskip -50pt}%
+\title{\large \doctitle}
+\posttitle{\end{center}}
+\preauthor{\begin{center} \vskip -20pt}
+\author{}
+\postauthor{\end{center} \vskip -20pt}
+\predate{\begin{center} \vskip -20pt}
+\date{}%\small{\today}}
+\postdate{\end{center} \vskip -20pt}% -42.5pt
+
+
+% Fonts
+\usepackage[singlespacing]{setspace}
+
+ 
+% Math
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{physics}
+
+
+
+
+ % Commands
+\newcommand{\reals}{\mathbb{R}}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\newcommand{\exe}{PETSc }
+\newcommand{\cmd}[1]{$$\textrm{\textbf{#1}}$$}
+\newcommand{\dir}{\textit{petsc }}
+\newcommand{\program}{\textit{ex15}}
+\newcommand{\programreg}{ex15}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+\singlespacing
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{\exe Installation}
+For the \exe installation, please refer to the \textit{install.sh} script in the appendix. Unless noted, the installation, and \dir folder is in PETSC\_ROOT=\textit{gpfs/accounts/ners570f20\_class\_root/ners570f30\_class/\$USER}. Logging is used for each step, as per the install script.
+\begin{enumerate}
+  \item To download \exe with git: \cmd{git clone -b release https://gitlab.com/petsc/petsc.git}
+  \item To load modules: \cmd{module load gcc openmpi openblas lapack python3.6-anaconda}
+  \item To configure \exe with release mode, in the class user directory, with openblas, and optimization and debugging compiler options:
+  \cmd{--with-debugging=0 --prefix=\$PETSC\_ROOT --with-openblas=1}
+  \cmd{--with-openblas-dir=\$OPENBLAS\_ROOT}
+  \cmd{-COPTFLAGS=-g -O3 -CXXOPTFLAGS=-g -O3 -FOPTFLAGS=-g -O3}
+  \item To configure \exe to have the examples and tutorials, the base configuration appears to be adequate.
+  \item To run the tests, in the \dir directory,
+  \cmd{make test}
+  The test results were as follows, and only a small number of tests failed, primarily seeming to do with a \textit{window\_sync-flavor} module that is likely not installed for this configuration:
+  \begin{verbatim}
+  Summary
+# -------------
+# FAILED diff-vec_is_sf_tutorials-ex1_7+sf_window_sync-fence_sf_window_flavor-
+dynamic  
+vec_is_sf_tutorials-ex1_7+sf_window_sync-active_sf_window_flavor-dynamic
+vec_is_sf_tutorials-ex1_7+sf_window_sync-lock_sf_window_flavor-dynamic 
+diff-vec_is_sf_tutorials-ex1_2+sf_window_sync-fence_sf_window_flavor-create 
+diff-vec_is_sf_tutorials-ex1_2+sf_window_sync-fence_sf_window_flavor-dynamic 
+diff-vec_is_sf_tutorials-ex1_2+sf_window_sync-active_sf_window_flavor-create 
+vec_is_sf_tutorials-ex1_2+sf_window_sync-active_sf_window_flavor-dynamic 
+diff-vec_is_sf_tutorials-ex1_2+sf_window_sync-lock_sf_window_flavor-create 
+diff-vec_is_sf_tutorials-ex1_2+sf_window_sync-lock_sf_window_flavor-dynamic 
+diff-vec_is_sf_tests-ex4_2_window+sf_window_sync-fence_sf_window_flavor-dynamic
+vec_is_sf_tests-ex4_2_window+sf_window_sync-active_sf_window_flavor-dynamic 
+vec_is_sf_tests-ex4_2_window+sf_window_sync-lock_sf_window_flavor-dynamic 
+diff-vec_is_sf_tutorials-ex1_3+sf_window_sync-fence_sf_window_flavor-dynamic 
+... 
+# success 7271/9161 tests (79.4%)
+# failed 54/9161 tests (0.6%)
+# todo 225/9161 tests (2.5%)
+# skip 1611/9161 tests (17.6%)
+#
+# Wall clock time for tests: 2797 sec
+# Approximate CPU time (not incl. build time): 9637.589999999878 sec
+#
+# To rerun failed tests: 
+#     /usr/bin/gmake -f gmakefile test test-fail=1
+#
+# Timing summary (actual test time / total CPU time): 
+#   ksp_ksp_tutorials-ex56_2: 926.77 sec / 1267.83 sec
+#   ksp_ksp_tutorials-ex70_fetidp_lumped: 83.10 sec / 345.95 sec
+#   ksp_ksp_tutorials-ex43_3: 70.63 sec / 91.58 sec
+#   ksp_ksp_tutorials-ex70_fetidp_saddlepoint_lumped: 68.00 sec / 276.56 sec
+#   mat_tests-ex33_2: 66.24 sec / 89.44 sec
+\end{verbatim}
+  % \newpage
+  \item To install the \exe build, it is ensured that the environmental variables are first set, PETSC\_DIR=\$PETSC\_ROOT, and PETSC\_ARCH="". Then, in the the \textit{make all} command is issued, based on the final output of the \textit{configure} command
+  \cmd{make PETSC\_DIR=\$PETSC\_ROOT/petsc PETSC\_ARCH=arch-linux-c-opt all}
+  \item To view the source code, the \program documenation is viewed on the petsc website.
+  \item To find and compile the example tutorials, the \textit{KSP} Krylov solver examples can be found in:
+  \cmd{\$PETSC\_DIR/petsc/src/ksp/ksp/tutorials}
+  The specific program of interest can be made as:
+  \cmd{make clean \&\& make \programreg.ext}
+  where ext is either \textit{c} or \textit{f90} for the C or Fortran languages.
+\end{enumerate}
+
+
+\section{Comparison of Krylov Methods}
+To generate the \exe runtime statistics for the various Krylov methods, including the number of iterations, run time, and final residual error norm, the following process was followed, with scripts in the appendix.  The various combinations of executable arguments, including the \textit{ksp\_type}, whether to use \textit{ksp\_gmres_restart}, the matrix size \textit{m,n}, and the use of no preconditioners \textit{pc\_type}, are generated using \textit{run.py}, which generates a bash script of the commands \textit{run.sh}. A job script \textit{job.slurm} is then used to run the commands on compute nodes. 
+
+The following results of the Krylov statistics for \program are shown in Table \ref{tab:Ex2}
+
+\begin{table}[htb!]
+    \centering
+    \caption{Summary of statistics of Krylov methods: iterations (runtime [s]) for various matrix sizes for \program. The GMRES methods have either no restart, or restart with 30 or 200 restart vectors}
+    \label{tab:Ex2}
+    \begin{tabular}{|c|c|c|c|c|c|} \hline
+        Matrix Size & CG & BiCGSTAB & GMRES (0)
+        Matrix & Symbol & Dimensions &  Description            \\ \hline
+        Adjacency & $A_{ij}$ & $n \times n$ & Number of edges between vertices $i$ and $j$. \\ \hline
+        Degree & $D_{ij}$ & $n\times n$ & Number of neighbouring connections to other vertices at vertex $i$. \\ \hline
+        Incidence & $M_{ij}$ & $n \times m$ & Whether a vertex $i$ is part of edge $j$. \\ \hline
+        Laplacian & $L_{ij}$ & $n \times n$ & Smoothness of graph and connectivity. \\ \hline
+    \end{tabular}
+\end{table}
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \newpage
+% \bibliographystyle{unsrt}
+% \bibliography{mduschen_Ex1.bib}
+
+\end{document}
