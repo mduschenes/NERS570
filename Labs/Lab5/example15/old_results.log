@@ -1,0 +1,61 @@
+0
+error
+results.log
+iterations
+results.log
+real
+results.log
+
+1
+error
+results.log
+iterations
+results.log
+real
+results.log
+
+2
+error
+results.log
+iterations
+results.log
+real
+results.log
+
+3
+error
+results.log
+iterations
+results.log
+real
+results.log
+
+4
+error
+results.log
+iterations
+results.log
+real
+results.log
+
+
+real, 
+0:0.236,0:0.233,0:0.259,0:0.420,0:2.154,0:19.491
+error , 
+8.19236e-15,7.85785e-06,0.00184755,0.0105512,1.52766,204.188
+iterations , 
+10,119,1341,4501,10000,10000
+real, 
+0:0.249,0:0.234,0:0.473,0:3.900,0:41.506,2:59.370
+error , 
+8.19236e-15,7.85785e-06,0.00184755,0.0105512,1.52766,204.188
+iterations , 
+10,119,1341,4501,10000,10000
+real, 
+0:0.233,0:0.237,0:0.479,0:3.849,0:41.450,2:58.340
+error , 
+8.19236e-15,1.05063e-06,3.78025e-05,0.00336469,0.0569681,0.335223
+iterations , 
+10,58,216,753,2489,8888
+real, 
+0:0.233,0:0.235,0:0.426,0:3.634,0:47.668,11:49.005

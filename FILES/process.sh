@@ -9,7 +9,7 @@ flags="-A${length} -E"
 # indices=(8 32 128 256 512 1024)
 
 names=(cg bcgs gmres_0 gmres_30 gmres_200)
-indices=("ksp_type cg " "ksp_type bcgs " "ksp_type gmres .* \-ksp_gmres_restart (^30|^200|8|32|128|512|1024)$" "ksp_type gmres .* \-ksp_gmres_restart 30$" "ksp_type gmres .* \-ksp_gmres_restart 200$")
+indices=("ksp_type cg " "ksp_type bcgs " "ksp_type gmres .* \-ksp_gmres_restart (^30|^200|8|32|128|256|512|1024)$" "ksp_type gmres .* \-ksp_gmres_restart 30$" "ksp_type gmres .* \-ksp_gmres_restart 200$")
 patterns_header=('\-m' '\-m' '\-m' '\-m' '\-m') 
 
 {

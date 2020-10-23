@@ -1,0 +1,211 @@
+Restoring modules from user's petsc-build
+time mpiexec -n 2 ./ex15 -ksp_type cg -n 8 -m 8 -pc_type none
+Norm of error 1.19575e-15 iterations 10
+
+real	0m0.380s
+user	0m0.083s
+sys	0m0.165s
+
+time mpiexec -n 2 ./ex15 -ksp_type cg -n 32 -m 32 -pc_type none
+Norm of error 6.04802e-07 iterations 58
+
+real	0m0.224s
+user	0m0.087s
+sys	0m0.157s
+
+time mpiexec -n 2 ./ex15 -ksp_type cg -n 128 -m 128 -pc_type none
+Norm of error 8.1102e-06 iterations 218
+
+real	0m0.236s
+user	0m0.113s
+sys	0m0.164s
+
+time mpiexec -n 2 ./ex15 -ksp_type cg -n 256 -m 256 -pc_type none
+Norm of error 3.43635e-05 iterations 427
+
+real	0m0.340s
+user	0m0.322s
+sys	0m0.160s
+
+time mpiexec -n 2 ./ex15 -ksp_type cg -n 512 -m 512 -pc_type none
+Norm of error 0.000138048 iterations 838
+
+real	0m1.540s
+user	0m2.693s
+sys	0m0.179s
+
+time mpiexec -n 2 ./ex15 -ksp_type cg -n 1024 -m 1024 -pc_type none
+Norm of error 0.000619998 iterations 1637
+
+real	0m12.505s
+user	0m24.406s
+sys	0m0.337s
+
+time mpiexec -n 2 ./ex15 -ksp_type bcgs -n 8 -m 8 -pc_type none
+Norm of error 1.04738e-15 iterations 10
+
+real	0m0.282s
+user	0m0.080s
+sys	0m0.175s
+
+time mpiexec -n 2 ./ex15 -ksp_type bcgs -n 32 -m 32 -pc_type none
+Norm of error 3.36494e-06 iterations 44
+
+real	0m0.220s
+user	0m0.082s
+sys	0m0.161s
+
+time mpiexec -n 2 ./ex15 -ksp_type bcgs -n 128 -m 128 -pc_type none
+Norm of error 0.000980007 iterations 169
+
+real	0m0.241s
+user	0m0.110s
+sys	0m0.177s
+
+time mpiexec -n 2 ./ex15 -ksp_type bcgs -n 256 -m 256 -pc_type none
+Norm of error 0.00664359 iterations 313
+
+real	0m0.399s
+user	0m0.440s
+sys	0m0.161s
+
+time mpiexec -n 2 ./ex15 -ksp_type bcgs -n 512 -m 512 -pc_type none
+Norm of error 0.0456163 iterations 602
+
+real	0m2.171s
+user	0m3.931s
+sys	0m0.199s
+
+time mpiexec -n 2 ./ex15 -ksp_type bcgs -n 1024 -m 1024 -pc_type none
+Norm of error 0.0554986 iterations 1310
+
+real	0m19.024s
+user	0m37.392s
+sys	0m0.361s
+
+time mpiexec -n 2 ./ex15 -ksp_type gmres -n 8 -m 8 -pc_type none -ksp_gmres_restart 8
+Norm of error 4.58704e-07 iterations 26
+
+real	0m0.222s
+user	0m0.083s
+sys	0m0.160s
+
+time mpiexec -n 2 ./ex15 -ksp_type gmres -n 8 -m 8 -pc_type none -ksp_gmres_restart 30
+Norm of error 8.19236e-15 iterations 10
+
+real	0m0.218s
+user	0m0.081s
+sys	0m0.163s
+
+time mpiexec -n 2 ./ex15 -ksp_type gmres -n 8 -m 8 -pc_type none -ksp_gmres_restart 200
+Norm of error 8.19236e-15 iterations 10
+
+real	0m0.217s
+user	0m0.091s
+sys	0m0.151s
+
+time mpiexec -n 2 ./ex15 -ksp_type gmres -n 32 -m 32 -pc_type none -ksp_gmres_restart 32
+Norm of error 3.96713e-05 iterations 118
+
+real	0m0.218s
+user	0m0.077s
+sys	0m0.168s
+
+time mpiexec -n 2 ./ex15 -ksp_type gmres -n 32 -m 32 -pc_type none -ksp_gmres_restart 30
+Norm of error 7.85785e-06 iterations 119
+
+real	0m0.219s
+user	0m0.087s
+sys	0m0.160s
+
+time mpiexec -n 2 ./ex15 -ksp_type gmres -n 32 -m 32 -pc_type none -ksp_gmres_restart 200
+Norm of error 1.05063e-06 iterations 58
+
+real	0m0.217s
+user	0m0.083s
+sys	0m0.160s
+
+time mpiexec -n 2 ./ex15 -ksp_type gmres -n 128 -m 128 -pc_type none -ksp_gmres_restart 128
+Norm of error 0.000816721 iterations 379
+
+real	0m0.449s
+user	0m0.529s
+sys	0m0.174s
+
+time mpiexec -n 2 ./ex15 -ksp_type gmres -n 128 -m 128 -pc_type none -ksp_gmres_restart 30
+Norm of error 0.00184755 iterations 1341
+
+real	0m0.459s
+user	0m0.540s
+sys	0m0.174s
+
+time mpiexec -n 2 ./ex15 -ksp_type gmres -n 128 -m 128 -pc_type none -ksp_gmres_restart 200
+Norm of error 3.78025e-05 iterations 216
+
+real	0m0.428s
+user	0m0.466s
+sys	0m0.182s
+
+time mpiexec -n 2 ./ex15 -ksp_type gmres -n 256 -m 256 -pc_type none -ksp_gmres_restart 256
+Norm of error 0.00940311 iterations 652
+
+real	0m3.789s
+user	0m7.086s
+sys	0m0.260s
+
+time mpiexec -n 2 ./ex15 -ksp_type gmres -n 256 -m 256 -pc_type none -ksp_gmres_restart 30
+Norm of error 0.0105512 iterations 4501
+
+real	0m4.124s
+user	0m7.827s
+sys	0m0.198s
+
+time mpiexec -n 2 ./ex15 -ksp_type gmres -n 256 -m 256 -pc_type none -ksp_gmres_restart 200
+Norm of error 0.00336469 iterations 753
+
+real	0m3.611s
+user	0m6.758s
+sys	0m0.244s
+
+time mpiexec -n 2 ./ex15 -ksp_type gmres -n 512 -m 512 -pc_type none -ksp_gmres_restart 512
+Norm of error 0.0232598 iterations 1164
+
+real	0m50.240s
+user	1m38.768s
+sys	0m1.269s
+
+time mpiexec -n 2 ./ex15 -ksp_type gmres -n 512 -m 512 -pc_type none -ksp_gmres_restart 30
+Norm of error 1.52766 iterations 10000
+
+real	0m41.419s
+user	1m22.053s
+sys	0m0.367s
+
+time mpiexec -n 2 ./ex15 -ksp_type gmres -n 512 -m 512 -pc_type none -ksp_gmres_restart 200
+Norm of error 0.0569681 iterations 2489
+
+real	0m47.586s
+user	1m33.895s
+sys	0m0.848s
+
+time mpiexec -n 2 ./ex15 -ksp_type gmres -n 1024 -m 1024 -pc_type none -ksp_gmres_restart 1024
+Norm of error 0.0528249 iterations 2195
+
+real	13m49.508s
+user	27m15.656s
+sys	0m19.161s
+
+time mpiexec -n 2 ./ex15 -ksp_type gmres -n 1024 -m 1024 -pc_type none -ksp_gmres_restart 30
+Norm of error 204.188 iterations 10000
+
+real	3m3.881s
+user	6m5.027s
+sys	0m1.565s
+
+time mpiexec -n 2 ./ex15 -ksp_type gmres -n 1024 -m 1024 -pc_type none -ksp_gmres_restart 200
+Norm of error 0.335223 iterations 8888
+
+real	12m19.275s
+user	24m28.302s
+sys	0m6.569s
+

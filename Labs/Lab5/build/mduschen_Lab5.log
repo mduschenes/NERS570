@@ -1,0 +1,1320 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.10.6)  19 OCT 2020 18:19
+entering extended mode
+ \write18 enabled.
+ %&-line parsing enabled.
+**mduschen_Lab5
+(./mduschen_Lab5.tex
+LaTeX2e <2020-10-01>
+L3 programming layer <2020-10-05> xparse <2020-03-03>
+(/usr/local/texlive/2020/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2020/04/10 v1.4m Standard LaTeX document class
+(/usr/local/texlive/2020/texmf-dist/tex/latex/base/size12.clo
+File: size12.clo 2020/04/10 v1.4m Standard LaTeX file (size option)
+)
+\c@part=\count175
+\c@section=\count176
+\c@subsection=\count177
+\c@subsubsection=\count178
+\c@paragraph=\count179
+\c@subparagraph=\count180
+\c@figure=\count181
+\c@table=\count182
+\abovecaptionskip=\skip47
+\belowcaptionskip=\skip48
+\bibindent=\dimen138
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks15
+)
+(/usr/local/texlive/2020/texmf-dist/tex/generic/iftex/ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+
+(/usr/local/texlive/2020/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2020/03/06 v1.0d TeX engine tests
+))
+\Gm@cnth=\count183
+\Gm@cntv=\count184
+\c@Gm@tempcnt=\count185
+\Gm@bindingoffset=\dimen139
+\Gm@wd@mp=\dimen140
+\Gm@odd@mp=\dimen141
+\Gm@even@mp=\dimen142
+\Gm@layoutwidth=\dimen143
+\Gm@layoutheight=\dimen144
+\Gm@layouthoffset=\dimen145
+\Gm@layoutvoffset=\dimen146
+\Gm@dimlist=\toks16
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+Package: fancyhdr 2019/01/31 v3.10 Extensive control of page headers and footer
+s
+\f@nch@headwidth=\skip49
+\f@nch@O@elh=\skip50
+\f@nch@O@erh=\skip51
+\f@nch@O@olh=\skip52
+\f@nch@O@orh=\skip53
+\f@nch@O@elf=\skip54
+\f@nch@O@erf=\skip55
+\f@nch@O@olf=\skip56
+\f@nch@O@orf=\skip57
+)
+
+Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
+less on input line 24.
+
+
+Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
+less on input line 25.
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/titling/titling.sty
+Package: titling 2009/09/04 v2.1d maketitle typesetting
+\thanksmarkwidth=\skip58
+\thanksmargin=\skip59
+\droptitle=\skip60
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/datetime/datetime.sty
+Package: datetime 2015/03/20 v2.60 Date Time Package
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count186
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/fmtcount/fmtcount.sty
+Package: fmtcount 2020/01/30 v3.07
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
+
+(/usr/local/texlive/2020/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/local/texlive/2020/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+\XKV@toks=\toks17
+\XKV@tempa@toks=\toks18
+)
+\XKV@depth=\count187
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+(/usr/local/texlive/2020/texmf-dist/tex/latex/fmtcount/fcprefix.sty
+Package: fcprefix 2012/09/28
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/fmtcount/fcnumparser.sty
+Package: fcnumparser 2017/06/15
+\fc@digit@counter=\count188
+))
+(/usr/local/texlive/2020/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks19
+\ex@=\dimen147
+)
+\c@padzeroesN=\count189
+\fc@tmpcatcode=\count190
+\@DT@modctr=\count191
+\@ordinalctr=\count192
+\@orgargctr=\count193
+\@strctr=\count194
+\@tmpstrctr=\count195
+\@DT@loopN=\count196
+\@DT@X=\count197
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/datetime/datetime-defaults.sty
+Package: datetime-defaults 2013/09/10
+)
+\@day=\count198
+\@month=\count199
+\@year=\count266
+\c@HOUR=\count267
+\c@HOURXII=\count268
+\c@MINUTE=\count269
+\c@TOHOUR=\count270
+\c@TOMINUTE=\count271
+\c@SECOND=\count272
+\currenthour=\count273
+\currentminute=\count274
+\currentsecond=\count275
+Package datetime Info: No datetime.cfg file found, using default settings on in
+put line 308.
+\@dtctr=\count276
+\dayofyear=\count277
+\dayofweek=\count278
+LaTeX Info: Redefining \today on input line 736.
+\dt@a=\toks20
+\dt@b=\toks21
+)
+(/usr/local/texlive/2020/texmf-dist/tex/generic/nth/nth.sty
+Package: nth 2002/02/27
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/setspace/setspace.sty
+Package: setspace 2011/12/19 v6.7a set line spacing
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2020/09/09 v1.2b Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2020/08/30 v1.4c Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 105.
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen148
+\Gin@req@width=\dimen149
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2020/09/23 v2.17i AMS math features
+\@mathmargin=\skip61
+
+For additional information on amsmath, use the `?' option.
+(/usr/local/texlive/2020/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01 AMS text
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen150
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2016/03/08 v2.02 operator names
+)
+\inf@bad=\count279
+LaTeX Info: Redefining \frac on input line 234.
+\uproot@=\count280
+\leftroot@=\count281
+LaTeX Info: Redefining \overline on input line 399.
+\classnum@=\count282
+\DOTSCASE@=\count283
+LaTeX Info: Redefining \ldots on input line 496.
+LaTeX Info: Redefining \dots on input line 499.
+LaTeX Info: Redefining \cdots on input line 620.
+\Mathstrutbox@=\box47
+\strutbox@=\box48
+\big@size=\dimen151
+LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
+\macc@depth=\count284
+\c@MaxMatrixCols=\count285
+\dotsspace@=\muskip16
+\c@parentequation=\count286
+\dspbrk@lvl=\count287
+\tag@help=\toks22
+\row@=\count288
+\column@=\count289
+\maxfields@=\count290
+\andhelp@=\toks23
+\eqnshift@=\dimen152
+\alignsep@=\dimen153
+\tagshift@=\dimen154
+\tagwidth@=\dimen155
+\totwidth@=\dimen156
+\lineht@=\dimen157
+\@envbody=\toks24
+\multlinegap=\skip62
+\multlinetaggap=\skip63
+\mathdisplay@stack=\toks25
+LaTeX Info: Redefining \[ on input line 2923.
+LaTeX Info: Redefining \] on input line 2924.
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+(/usr/local/texlive/2020/texmf-dist/tex/latex/physics/physics.sty
+Package: physics 
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+(/usr/local/texlive/2020/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2020-10-05 L3 programming layer (loader) 
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2020-09-24 L3 backend support: PDF output (pdfTeX)
+\l__kernel_color_stack_int=\count291
+\l__pdf_internal_box=\box49
+))
+Package: xparse 2020-10-05 L3 Experimental document command parser
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/l3packages/xparse/xparse-generic.
+tex))) (/usr/local/texlive/2020/texmf-dist/tex/latex/tools/verbatim.sty
+Package: verbatim 2020-07-07 v1.5u LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks26
+\verbatim@line=\toks27
+\verbatim@in@stream=\read2
+)
+(./mduschen_Lab5.aux)
+\openout1 = `mduschen_Lab5.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: custom
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(54.2025pt, 506.17451pt, 54.2025pt)
+* v-part:(T,H,B)=(54.2025pt, 685.42688pt, 54.2025pt)
+* \paperwidth=614.57951pt
+* \paperheight=793.83188pt
+* \textwidth=506.17451pt
+* \textheight=685.42688pt
+* \oddsidemargin=-18.06749pt
+* \evensidemargin=-18.06749pt
+* \topmargin=-43.06749pt
+* \headheight=15.0pt
+* \headsep=10.0pt
+* \topskip=12.0pt
+* \footskip=30.0pt
+* \marginparwidth=44.0pt
+* \marginparsep=0.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/fmtcount/fc-english.def
+File: fc-english.def 2016/01/12
+)
+(/usr/local/texlive/2020/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count292
+\scratchdimen=\dimen158
+\scratchbox=\box50
+\nofMPsegments=\count293
+\nofMParguments=\count294
+\everyMPshowfont=\toks28
+\MPscratchCnt=\count295
+\MPscratchDim=\dimen159
+\MPnumerator=\count296
+\makeMPintoPDFobject=\count297
+\everyMPtoPDFconversion=\toks29
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+LaTeX Font Info:    Trying to load font information for U+msa on input line 101
+.
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 101
+.
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+Overfull \hbox (4.85042pt too wide) in paragraph at lines 114--114
+ []\OT1/cmtt/m/n/12 # FAILED diff-vec_is_sf_tutorials-ex1_7+sf_window_sync-fenc
+e_sf_window_flavor-[] 
+ []
+
+
+Overfull \hbox (11.02542pt too wide) in paragraph at lines 124--124
+ []\OT1/cmtt/m/n/12 diff-vec_is_sf_tests-ex4_2_window+sf_window_sync-fence_sf_w
+indow_flavor-dynamic[] 
+ []
+
+[1{/usr/local/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+
+]
+[2]
+<results_nocondition.pdf, id=16, 462.52798pt x 346.89601pt>
+File: results_nocondition.pdf Graphic file (type pdf)
+<use results_nocondition.pdf>
+Package pdftex.def Info: results_nocondition.pdf  used on input line 184.
+(pdftex.def)             Requested size: 303.7078pt x 227.79286pt.
+
+
+LaTeX Warning: Reference `tab:Ex3a' on page 3 undefined on input line 197.
+
+
+LaTeX Warning: Reference `fig:Ex3ab' on page 3 undefined on input line 197.
+
+[3 <./results_nocondition.pdf>]
+Overfull \hbox (34.76112pt too wide) in paragraph at lines 204--213
+ [][] 
+ []
+
+<results_gmres.pdf, id=66, 462.52798pt x 346.89601pt>
+File: results_gmres.pdf Graphic file (type pdf)
+<use results_gmres.pdf>
+Package pdftex.def Info: results_gmres.pdf  used on input line 219.
+(pdftex.def)             Requested size: 303.7078pt x 227.79286pt.
+[4 <./results_gmres.pdf>]
+<results_cg.pdf, id=127, 462.52798pt x 346.89601pt>
+File: results_cg.pdf Graphic file (type pdf)
+<use results_cg.pdf>
+Package pdftex.def Info: results_cg.pdf  used on input line 253.
+(pdftex.def)             Requested size: 303.7078pt x 227.79286pt.
+ [5 <./results_cg.pdf>]
+<results_fittedmodel.pdf, id=189, 462.52798pt x 346.89601pt>
+File: results_fittedmodel.pdf Graphic file (type pdf)
+<use results_fittedmodel.pdf>
+Package pdftex.def Info: results_fittedmodel.pdf  used on input line 318.
+(pdftex.def)             Requested size: 303.7078pt x 227.79286pt.
+ [6]
+File: "FILES/install.sh"  (verbatim)
+ [7 <./results_fittedmodel.pdf>] [8]
+Overfull \hbox (562.10101pt too wide) in paragraph at lines 331--331
+[]\OT1/cmtt/m/n/12 flags=("--with-debugging=0" "--prefix=${build_dir}" "--with-
+openblas=1" "--with-openblas-dir=${OPENBLAS_ROOT}" "-COPTFLAGS=-g -O3" "-CXXOPT
+FLAGS=-g -O3" "-FOPTFLAGS=-g -O3")[] 
+ []
+
+[9]
+File: "FILES/run.py"  (verbatim)
+
+Overfull \hbox (117.5008pt too wide) in paragraph at lines 337--337
+[]\OT1/cmtt/m/n/12 value=delimeters["IFS"].join(["%s%s"%(delimeters["flag"],v) 
+for v in value.split(delimeters["IFS"])])[] 
+ []
+
+[10] [11]
+Overfull \hbox (6.35074pt too wide) in paragraph at lines 337--337
+[]\OT1/cmtt/m/n/12 _simulations = {k: copy.deepcopy(_simulations_defaults) for 
+k in _simulations_keys}[] 
+ []
+
+
+Overfull \hbox (24.87575pt too wide) in paragraph at lines 337--337
+[]\OT1/cmtt/m/n/12 _subsimulations={k:copy.deepcopy(_subsimulations_defaults) f
+or k in _simulations_keys}[] 
+ []
+
+[12]
+Overfull \hbox (111.32579pt too wide) in paragraph at lines 337--337
+[]\OT1/cmtt/m/n/12 values = [list(values) for values in itertools.product(*[par
+ameters[key] for key in keys],repeat=1)][] 
+ []
+
+
+Overfull \hbox (6.35074pt too wide) in paragraph at lines 337--337
+[]\OT1/cmtt/m/n/12 _arguments = [[s(argument) if callable(s) else s for s in su
+barguments[key][value]][] 
+ []
+
+
+Overfull \hbox (512.70099pt too wide) in paragraph at lines 337--337
+[]\OT1/cmtt/m/n/12 if ((argument[keys.index(key)+sum([k.count(delimeters['IFS']
+) for k in keys[:keys.index(key)]])]==value) and (subarguments.get(key,{}).get(
+value) not in [[],None]))][] 
+ []
+
+
+Overfull \hbox (895.55118pt too wide) in paragraph at lines 337--337
+[]\OT1/cmtt/m/n/12 commands = [*[(lambda *arguments,s=s:' '.join(['%s%s%s%s'%(s
+,args['presource'] if not any([s in arguments for s in ['-pc_type ilu','-pc_typ
+e icc']]) else 'time ',args['source'],args['exe']),*arguments])) for s in ['ech
+o ','']],[] 
+ []
+
+[13] [14]
+File: "FILES/job.slurm"  (verbatim)
+ [15]
+File: "FILES/process.sh"  (verbatim)
+
+Overfull \hbox (753.52611pt too wide) in paragraph at lines 349--349
+[]\OT1/cmtt/m/n/12 indices=("ksp_type cg " "ksp_type bcgs " "ksp_type gmres .* 
+\-ksp_gmres_restart (^30|^200|8|32|128|256|512|1024)$" "ksp_type gmres .* \-ksp
+_gmres_restart 30$" "ksp_type gmres .* \-ksp_gmres_restart 200$")[] 
+ []
+
+
+Overfull \hbox (247.17586pt too wide) in paragraph at lines 349--349
+[]\OT1/cmtt/m/n/12 header="$(grep "${initial}" ${file} | sed -e "s%.*${pattern_
+header}[ ]*\([^ ]*\).*%\1%" | tr "\n" ","| sed -e "s/,$/\n/")"[] 
+ []
+
+
+Overfull \hbox (839.97615pt too wide) in paragraph at lines 349--349
+[]\OT1/cmtt/m/n/12 result="$(grep ${flags} "${initial}" ${file} | grep ${patter
+n} | sed -e "s%.*${pattern}[ ]*\([^ ]*\).*%\1%g" -e "s%[[:space:]]%%g" -e "s%\(
+[0-9]*\)m\([0-9]*\)\.\([0-9]*\)s%\1:\2.\3%"  | tr "\n" ","| sed -e "s/,$/\n/")"
+[] 
+ []
+
+[16]
+File: "FILES/plot.py"  (verbatim)
+
+Overfull \hbox (123.6758pt too wide) in paragraph at lines 355--355
+[]\OT1/cmtt/m/n/12 ax.plot(x,y,**{k: props.pop(k) for k in ['label','marker','l
+inestyle','color','alpha'] if k in props})[] 
+ []
+
+
+Overfull \hbox (247.17586pt too wide) in paragraph at lines 355--355
+[]\OT1/cmtt/m/n/12 functions = {'time':[lambda x: ((60*int(str(x).split(':')[0]
+)+float(str(x).split(':')[1])) if ':' in str(x) else int(x))]}[] 
+ []
+
+[17]
+Overfull \hbox (308.92589pt too wide) in paragraph at lines 355--355
+[]\OT1/cmtt/m/n/12 get_labels = lambda df,string,boolean=lambda string,label: s
+tring in label: [label for label in df.columns if boolean(string,label)][] 
+ []
+
+
+Overfull \hbox (123.6758pt too wide) in paragraph at lines 355--355
+[]\OT1/cmtt/m/n/12 _props = lambda **kwargs: {'set_xlabel':'n','set_ylabel':'%s
+'%(kwargs['set_ylabel']),'set_title':None,[] 
+ []
+
+[18] [19]
+File: "FILES/run.sh"  (verbatim)
+
+Overfull \hbox (74.27577pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time mpiexec -n 2 ./ex15 -ksp_type cg -n 8 -m 8 -pc_typ
+e none -ksp_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (43.40076pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time mpiexec -n 2 ./ex15 -ksp_type cg -n 8 -m 8 -pc_type non
+e -ksp_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (86.62578pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time mpiexec -n 2 ./ex15 -ksp_type cg -n 8 -m 8 -pc_typ
+e jacobi -ksp_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (55.75076pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time mpiexec -n 2 ./ex15 -ksp_type cg -n 8 -m 8 -pc_type jac
+obi -ksp_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (68.10077pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time mpiexec -n 2 ./ex15 -ksp_type cg -n 8 -m 8 -pc_typ
+e sor -ksp_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (37.22575pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time mpiexec -n 2 ./ex15 -ksp_type cg -n 8 -m 8 -pc_type sor
+ -ksp_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (74.27577pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time mpiexec -n 2 ./ex15 -ksp_type cg -n 8 -m 8 -pc_typ
+e gamg -ksp_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (43.40076pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time mpiexec -n 2 ./ex15 -ksp_type cg -n 8 -m 8 -pc_type gam
+g -ksp_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (86.62578pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time mpiexec -n 2 ./ex15 -ksp_type cg -n 32 -m 32 -pc_t
+ype none -ksp_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (55.75076pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time mpiexec -n 2 ./ex15 -ksp_type cg -n 32 -m 32 -pc_type n
+one -ksp_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (98.97578pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time mpiexec -n 2 ./ex15 -ksp_type cg -n 32 -m 32 -pc_t
+ype jacobi -ksp_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (68.10077pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time mpiexec -n 2 ./ex15 -ksp_type cg -n 32 -m 32 -pc_type j
+acobi -ksp_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (80.45078pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time mpiexec -n 2 ./ex15 -ksp_type cg -n 32 -m 32 -pc_t
+ype sor -ksp_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (49.57576pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time mpiexec -n 2 ./ex15 -ksp_type cg -n 32 -m 32 -pc_type s
+or -ksp_monitor_singular_value[] 
+ []
+
+[20]
+Overfull \hbox (0.17574pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time ./ex15 -ksp_type cg -n 32 -m 32 -pc_type ilu -ksp_
+monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (0.17574pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time ./ex15 -ksp_type cg -n 32 -m 32 -pc_type icc -ksp_
+monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (86.62578pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time mpiexec -n 2 ./ex15 -ksp_type cg -n 32 -m 32 -pc_t
+ype gamg -ksp_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (55.75076pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time mpiexec -n 2 ./ex15 -ksp_type cg -n 32 -m 32 -pc_type g
+amg -ksp_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (98.97578pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time mpiexec -n 2 ./ex15 -ksp_type cg -n 128 -m 128 -pc
+_type none -ksp_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (68.10077pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time mpiexec -n 2 ./ex15 -ksp_type cg -n 128 -m 128 -pc_type
+ none -ksp_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (111.32579pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time mpiexec -n 2 ./ex15 -ksp_type cg -n 128 -m 128 -pc
+_type jacobi -ksp_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (80.45078pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time mpiexec -n 2 ./ex15 -ksp_type cg -n 128 -m 128 -pc_type
+ jacobi -ksp_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (92.80078pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time mpiexec -n 2 ./ex15 -ksp_type cg -n 128 -m 128 -pc
+_type sor -ksp_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (61.92577pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time mpiexec -n 2 ./ex15 -ksp_type cg -n 128 -m 128 -pc_type
+ sor -ksp_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (12.52574pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time ./ex15 -ksp_type cg -n 128 -m 128 -pc_type ilu -ks
+p_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (12.52574pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time ./ex15 -ksp_type cg -n 128 -m 128 -pc_type icc -ks
+p_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (98.97578pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time mpiexec -n 2 ./ex15 -ksp_type cg -n 128 -m 128 -pc
+_type gamg -ksp_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (68.10077pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time mpiexec -n 2 ./ex15 -ksp_type cg -n 128 -m 128 -pc_type
+ gamg -ksp_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (98.97578pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time mpiexec -n 2 ./ex15 -ksp_type cg -n 256 -m 256 -pc
+_type none -ksp_monitor_singular_value[] 
+ []
+
+[21]
+Overfull \hbox (68.10077pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time mpiexec -n 2 ./ex15 -ksp_type cg -n 256 -m 256 -pc_type
+ none -ksp_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (111.32579pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time mpiexec -n 2 ./ex15 -ksp_type cg -n 256 -m 256 -pc
+_type jacobi -ksp_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (80.45078pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time mpiexec -n 2 ./ex15 -ksp_type cg -n 256 -m 256 -pc_type
+ jacobi -ksp_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (92.80078pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time mpiexec -n 2 ./ex15 -ksp_type cg -n 256 -m 256 -pc
+_type sor -ksp_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (61.92577pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time mpiexec -n 2 ./ex15 -ksp_type cg -n 256 -m 256 -pc_type
+ sor -ksp_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (12.52574pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time ./ex15 -ksp_type cg -n 256 -m 256 -pc_type ilu -ks
+p_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (12.52574pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time ./ex15 -ksp_type cg -n 256 -m 256 -pc_type icc -ks
+p_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (98.97578pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time mpiexec -n 2 ./ex15 -ksp_type cg -n 256 -m 256 -pc
+_type gamg -ksp_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (68.10077pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time mpiexec -n 2 ./ex15 -ksp_type cg -n 256 -m 256 -pc_type
+ gamg -ksp_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (98.97578pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time mpiexec -n 2 ./ex15 -ksp_type cg -n 512 -m 512 -pc
+_type none -ksp_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (68.10077pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time mpiexec -n 2 ./ex15 -ksp_type cg -n 512 -m 512 -pc_type
+ none -ksp_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (111.32579pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time mpiexec -n 2 ./ex15 -ksp_type cg -n 512 -m 512 -pc
+_type jacobi -ksp_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (80.45078pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time mpiexec -n 2 ./ex15 -ksp_type cg -n 512 -m 512 -pc_type
+ jacobi -ksp_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (92.80078pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time mpiexec -n 2 ./ex15 -ksp_type cg -n 512 -m 512 -pc
+_type sor -ksp_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (61.92577pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time mpiexec -n 2 ./ex15 -ksp_type cg -n 512 -m 512 -pc_type
+ sor -ksp_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (12.52574pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time ./ex15 -ksp_type cg -n 512 -m 512 -pc_type ilu -ks
+p_monitor_singular_value[] 
+ []
+
+[22]
+Overfull \hbox (12.52574pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time ./ex15 -ksp_type cg -n 512 -m 512 -pc_type icc -ks
+p_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (98.97578pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time mpiexec -n 2 ./ex15 -ksp_type cg -n 512 -m 512 -pc
+_type gamg -ksp_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (68.10077pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time mpiexec -n 2 ./ex15 -ksp_type cg -n 512 -m 512 -pc_type
+ gamg -ksp_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (111.32579pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time mpiexec -n 2 ./ex15 -ksp_type cg -n 1024 -m 1024 -
+pc_type none -ksp_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (80.45078pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time mpiexec -n 2 ./ex15 -ksp_type cg -n 1024 -m 1024 -pc_ty
+pe none -ksp_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (123.6758pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time mpiexec -n 2 ./ex15 -ksp_type cg -n 1024 -m 1024 -
+pc_type jacobi -ksp_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (92.80078pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time mpiexec -n 2 ./ex15 -ksp_type cg -n 1024 -m 1024 -pc_ty
+pe jacobi -ksp_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (105.15079pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time mpiexec -n 2 ./ex15 -ksp_type cg -n 1024 -m 1024 -
+pc_type sor -ksp_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (74.27577pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time mpiexec -n 2 ./ex15 -ksp_type cg -n 1024 -m 1024 -pc_ty
+pe sor -ksp_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (24.87575pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time ./ex15 -ksp_type cg -n 1024 -m 1024 -pc_type ilu -
+ksp_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (24.87575pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time ./ex15 -ksp_type cg -n 1024 -m 1024 -pc_type icc -
+ksp_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (111.32579pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time mpiexec -n 2 ./ex15 -ksp_type cg -n 1024 -m 1024 -
+pc_type gamg -ksp_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (80.45078pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time mpiexec -n 2 ./ex15 -ksp_type cg -n 1024 -m 1024 -pc_ty
+pe gamg -ksp_monitor_singular_value[] 
+ []
+
+
+Overfull \hbox (228.65085pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time mpiexec -n 2 ./ex15 -ksp_type gmres -n 8 -m 8 -pc_
+type none -ksp_monitor_singular_value  -ksp_gmres_restart 8[] 
+ []
+
+
+Overfull \hbox (197.77583pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time mpiexec -n 2 ./ex15 -ksp_type gmres -n 8 -m 8 -pc_type 
+none -ksp_monitor_singular_value  -ksp_gmres_restart 8[] 
+ []
+
+[23]
+Overfull \hbox (241.00085pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time mpiexec -n 2 ./ex15 -ksp_type gmres -n 8 -m 8 -pc_
+type jacobi -ksp_monitor_singular_value  -ksp_gmres_restart 8[] 
+ []
+
+
+Overfull \hbox (210.12584pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time mpiexec -n 2 ./ex15 -ksp_type gmres -n 8 -m 8 -pc_type 
+jacobi -ksp_monitor_singular_value  -ksp_gmres_restart 8[] 
+ []
+
+
+Overfull \hbox (222.47585pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time mpiexec -n 2 ./ex15 -ksp_type gmres -n 8 -m 8 -pc_
+type sor -ksp_monitor_singular_value  -ksp_gmres_restart 8[] 
+ []
+
+
+Overfull \hbox (191.60083pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time mpiexec -n 2 ./ex15 -ksp_type gmres -n 8 -m 8 -pc_type 
+sor -ksp_monitor_singular_value  -ksp_gmres_restart 8[] 
+ []
+
+
+Overfull \hbox (142.2008pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time ./ex15 -ksp_type gmres -n 8 -m 8 -pc_type ilu -ksp
+_monitor_singular_value  -ksp_gmres_restart 8[] 
+ []
+
+
+Overfull \hbox (111.32579pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time ./ex15 -ksp_type gmres -n 8 -m 8 -pc_type ilu -ksp_moni
+tor_singular_value  -ksp_gmres_restart 8[] 
+ []
+
+
+Overfull \hbox (142.2008pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time ./ex15 -ksp_type gmres -n 8 -m 8 -pc_type icc -ksp
+_monitor_singular_value  -ksp_gmres_restart 8[] 
+ []
+
+
+Overfull \hbox (111.32579pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time ./ex15 -ksp_type gmres -n 8 -m 8 -pc_type icc -ksp_moni
+tor_singular_value  -ksp_gmres_restart 8[] 
+ []
+
+
+Overfull \hbox (228.65085pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time mpiexec -n 2 ./ex15 -ksp_type gmres -n 8 -m 8 -pc_
+type gamg -ksp_monitor_singular_value  -ksp_gmres_restart 8[] 
+ []
+
+
+Overfull \hbox (197.77583pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time mpiexec -n 2 ./ex15 -ksp_type gmres -n 8 -m 8 -pc_type 
+gamg -ksp_monitor_singular_value  -ksp_gmres_restart 8[] 
+ []
+
+
+Overfull \hbox (247.17586pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time mpiexec -n 2 ./ex15 -ksp_type gmres -n 32 -m 32 -p
+c_type none -ksp_monitor_singular_value  -ksp_gmres_restart 32[] 
+ []
+
+
+Overfull \hbox (216.30084pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time mpiexec -n 2 ./ex15 -ksp_type gmres -n 32 -m 32 -pc_typ
+e none -ksp_monitor_singular_value  -ksp_gmres_restart 32[] 
+ []
+
+
+Overfull \hbox (259.52586pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time mpiexec -n 2 ./ex15 -ksp_type gmres -n 32 -m 32 -p
+c_type jacobi -ksp_monitor_singular_value  -ksp_gmres_restart 32[] 
+ []
+
+
+Overfull \hbox (228.65085pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time mpiexec -n 2 ./ex15 -ksp_type gmres -n 32 -m 32 -pc_typ
+e jacobi -ksp_monitor_singular_value  -ksp_gmres_restart 32[] 
+ []
+
+
+Overfull \hbox (241.00085pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time mpiexec -n 2 ./ex15 -ksp_type gmres -n 32 -m 32 -p
+c_type sor -ksp_monitor_singular_value  -ksp_gmres_restart 32[] 
+ []
+
+
+Overfull \hbox (210.12584pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time mpiexec -n 2 ./ex15 -ksp_type gmres -n 32 -m 32 -pc_typ
+e sor -ksp_monitor_singular_value  -ksp_gmres_restart 32[] 
+ []
+
+
+Overfull \hbox (160.72581pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time ./ex15 -ksp_type gmres -n 32 -m 32 -pc_type ilu -k
+sp_monitor_singular_value  -ksp_gmres_restart 32[] 
+ []
+
+
+Overfull \hbox (129.8508pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time ./ex15 -ksp_type gmres -n 32 -m 32 -pc_type ilu -ksp_mo
+nitor_singular_value  -ksp_gmres_restart 32[] 
+ []
+
+
+Overfull \hbox (160.72581pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time ./ex15 -ksp_type gmres -n 32 -m 32 -pc_type icc -k
+sp_monitor_singular_value  -ksp_gmres_restart 32[] 
+ []
+
+
+Overfull \hbox (129.8508pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time ./ex15 -ksp_type gmres -n 32 -m 32 -pc_type icc -ksp_mo
+nitor_singular_value  -ksp_gmres_restart 32[] 
+ []
+
+[24]
+Overfull \hbox (247.17586pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time mpiexec -n 2 ./ex15 -ksp_type gmres -n 32 -m 32 -p
+c_type gamg -ksp_monitor_singular_value  -ksp_gmres_restart 32[] 
+ []
+
+
+Overfull \hbox (216.30084pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time mpiexec -n 2 ./ex15 -ksp_type gmres -n 32 -m 32 -pc_typ
+e gamg -ksp_monitor_singular_value  -ksp_gmres_restart 32[] 
+ []
+
+
+Overfull \hbox (265.70087pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time mpiexec -n 2 ./ex15 -ksp_type gmres -n 128 -m 128 
+-pc_type none -ksp_monitor_singular_value  -ksp_gmres_restart 128[] 
+ []
+
+
+Overfull \hbox (234.82585pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time mpiexec -n 2 ./ex15 -ksp_type gmres -n 128 -m 128 -pc_t
+ype none -ksp_monitor_singular_value  -ksp_gmres_restart 128[] 
+ []
+
+
+Overfull \hbox (278.05087pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time mpiexec -n 2 ./ex15 -ksp_type gmres -n 128 -m 128 
+-pc_type jacobi -ksp_monitor_singular_value  -ksp_gmres_restart 128[] 
+ []
+
+
+Overfull \hbox (247.17586pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time mpiexec -n 2 ./ex15 -ksp_type gmres -n 128 -m 128 -pc_t
+ype jacobi -ksp_monitor_singular_value  -ksp_gmres_restart 128[] 
+ []
+
+
+Overfull \hbox (259.52586pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time mpiexec -n 2 ./ex15 -ksp_type gmres -n 128 -m 128 
+-pc_type sor -ksp_monitor_singular_value  -ksp_gmres_restart 128[] 
+ []
+
+
+Overfull \hbox (228.65085pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time mpiexec -n 2 ./ex15 -ksp_type gmres -n 128 -m 128 -pc_t
+ype sor -ksp_monitor_singular_value  -ksp_gmres_restart 128[] 
+ []
+
+
+Overfull \hbox (179.25082pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time ./ex15 -ksp_type gmres -n 128 -m 128 -pc_type ilu 
+-ksp_monitor_singular_value  -ksp_gmres_restart 128[] 
+ []
+
+
+Overfull \hbox (148.37581pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time ./ex15 -ksp_type gmres -n 128 -m 128 -pc_type ilu -ksp_
+monitor_singular_value  -ksp_gmres_restart 128[] 
+ []
+
+
+Overfull \hbox (179.25082pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time ./ex15 -ksp_type gmres -n 128 -m 128 -pc_type icc 
+-ksp_monitor_singular_value  -ksp_gmres_restart 128[] 
+ []
+
+
+Overfull \hbox (148.37581pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time ./ex15 -ksp_type gmres -n 128 -m 128 -pc_type icc -ksp_
+monitor_singular_value  -ksp_gmres_restart 128[] 
+ []
+
+
+Overfull \hbox (265.70087pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time mpiexec -n 2 ./ex15 -ksp_type gmres -n 128 -m 128 
+-pc_type gamg -ksp_monitor_singular_value  -ksp_gmres_restart 128[] 
+ []
+
+
+Overfull \hbox (234.82585pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time mpiexec -n 2 ./ex15 -ksp_type gmres -n 128 -m 128 -pc_t
+ype gamg -ksp_monitor_singular_value  -ksp_gmres_restart 128[] 
+ []
+
+
+Overfull \hbox (265.70087pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time mpiexec -n 2 ./ex15 -ksp_type gmres -n 256 -m 256 
+-pc_type none -ksp_monitor_singular_value  -ksp_gmres_restart 256[] 
+ []
+
+
+Overfull \hbox (234.82585pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time mpiexec -n 2 ./ex15 -ksp_type gmres -n 256 -m 256 -pc_t
+ype none -ksp_monitor_singular_value  -ksp_gmres_restart 256[] 
+ []
+
+
+Overfull \hbox (278.05087pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time mpiexec -n 2 ./ex15 -ksp_type gmres -n 256 -m 256 
+-pc_type jacobi -ksp_monitor_singular_value  -ksp_gmres_restart 256[] 
+ []
+
+
+Overfull \hbox (247.17586pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time mpiexec -n 2 ./ex15 -ksp_type gmres -n 256 -m 256 -pc_t
+ype jacobi -ksp_monitor_singular_value  -ksp_gmres_restart 256[] 
+ []
+
+[25]
+Overfull \hbox (259.52586pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time mpiexec -n 2 ./ex15 -ksp_type gmres -n 256 -m 256 
+-pc_type sor -ksp_monitor_singular_value  -ksp_gmres_restart 256[] 
+ []
+
+
+Overfull \hbox (228.65085pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time mpiexec -n 2 ./ex15 -ksp_type gmres -n 256 -m 256 -pc_t
+ype sor -ksp_monitor_singular_value  -ksp_gmres_restart 256[] 
+ []
+
+
+Overfull \hbox (179.25082pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time ./ex15 -ksp_type gmres -n 256 -m 256 -pc_type ilu 
+-ksp_monitor_singular_value  -ksp_gmres_restart 256[] 
+ []
+
+
+Overfull \hbox (148.37581pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time ./ex15 -ksp_type gmres -n 256 -m 256 -pc_type ilu -ksp_
+monitor_singular_value  -ksp_gmres_restart 256[] 
+ []
+
+
+Overfull \hbox (179.25082pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time ./ex15 -ksp_type gmres -n 256 -m 256 -pc_type icc 
+-ksp_monitor_singular_value  -ksp_gmres_restart 256[] 
+ []
+
+
+Overfull \hbox (148.37581pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time ./ex15 -ksp_type gmres -n 256 -m 256 -pc_type icc -ksp_
+monitor_singular_value  -ksp_gmres_restart 256[] 
+ []
+
+
+Overfull \hbox (265.70087pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time mpiexec -n 2 ./ex15 -ksp_type gmres -n 256 -m 256 
+-pc_type gamg -ksp_monitor_singular_value  -ksp_gmres_restart 256[] 
+ []
+
+
+Overfull \hbox (234.82585pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time mpiexec -n 2 ./ex15 -ksp_type gmres -n 256 -m 256 -pc_t
+ype gamg -ksp_monitor_singular_value  -ksp_gmres_restart 256[] 
+ []
+
+
+Overfull \hbox (265.70087pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time mpiexec -n 2 ./ex15 -ksp_type gmres -n 512 -m 512 
+-pc_type none -ksp_monitor_singular_value  -ksp_gmres_restart 512[] 
+ []
+
+
+Overfull \hbox (234.82585pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time mpiexec -n 2 ./ex15 -ksp_type gmres -n 512 -m 512 -pc_t
+ype none -ksp_monitor_singular_value  -ksp_gmres_restart 512[] 
+ []
+
+
+Overfull \hbox (278.05087pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time mpiexec -n 2 ./ex15 -ksp_type gmres -n 512 -m 512 
+-pc_type jacobi -ksp_monitor_singular_value  -ksp_gmres_restart 512[] 
+ []
+
+
+Overfull \hbox (247.17586pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time mpiexec -n 2 ./ex15 -ksp_type gmres -n 512 -m 512 -pc_t
+ype jacobi -ksp_monitor_singular_value  -ksp_gmres_restart 512[] 
+ []
+
+
+Overfull \hbox (259.52586pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time mpiexec -n 2 ./ex15 -ksp_type gmres -n 512 -m 512 
+-pc_type sor -ksp_monitor_singular_value  -ksp_gmres_restart 512[] 
+ []
+
+
+Overfull \hbox (228.65085pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time mpiexec -n 2 ./ex15 -ksp_type gmres -n 512 -m 512 -pc_t
+ype sor -ksp_monitor_singular_value  -ksp_gmres_restart 512[] 
+ []
+
+
+Overfull \hbox (179.25082pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time ./ex15 -ksp_type gmres -n 512 -m 512 -pc_type ilu 
+-ksp_monitor_singular_value  -ksp_gmres_restart 512[] 
+ []
+
+
+Overfull \hbox (148.37581pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time ./ex15 -ksp_type gmres -n 512 -m 512 -pc_type ilu -ksp_
+monitor_singular_value  -ksp_gmres_restart 512[] 
+ []
+
+
+Overfull \hbox (179.25082pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time ./ex15 -ksp_type gmres -n 512 -m 512 -pc_type icc 
+-ksp_monitor_singular_value  -ksp_gmres_restart 512[] 
+ []
+
+
+Overfull \hbox (148.37581pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time ./ex15 -ksp_type gmres -n 512 -m 512 -pc_type icc -ksp_
+monitor_singular_value  -ksp_gmres_restart 512[] 
+ []
+
+
+Overfull \hbox (265.70087pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time mpiexec -n 2 ./ex15 -ksp_type gmres -n 512 -m 512 
+-pc_type gamg -ksp_monitor_singular_value  -ksp_gmres_restart 512[] 
+ []
+
+[26]
+Overfull \hbox (234.82585pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time mpiexec -n 2 ./ex15 -ksp_type gmres -n 512 -m 512 -pc_t
+ype gamg -ksp_monitor_singular_value  -ksp_gmres_restart 512[] 
+ []
+
+
+Overfull \hbox (284.22588pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time mpiexec -n 2 ./ex15 -ksp_type gmres -n 1024 -m 102
+4 -pc_type none -ksp_monitor_singular_value  -ksp_gmres_restart 1024[] 
+ []
+
+
+Overfull \hbox (253.35086pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time mpiexec -n 2 ./ex15 -ksp_type gmres -n 1024 -m 1024 -pc
+_type none -ksp_monitor_singular_value  -ksp_gmres_restart 1024[] 
+ []
+
+
+Overfull \hbox (296.57588pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time mpiexec -n 2 ./ex15 -ksp_type gmres -n 1024 -m 102
+4 -pc_type jacobi -ksp_monitor_singular_value  -ksp_gmres_restart 1024[] 
+ []
+
+
+Overfull \hbox (265.70087pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time mpiexec -n 2 ./ex15 -ksp_type gmres -n 1024 -m 1024 -pc
+_type jacobi -ksp_monitor_singular_value  -ksp_gmres_restart 1024[] 
+ []
+
+
+Overfull \hbox (278.05087pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time mpiexec -n 2 ./ex15 -ksp_type gmres -n 1024 -m 102
+4 -pc_type sor -ksp_monitor_singular_value  -ksp_gmres_restart 1024[] 
+ []
+
+
+Overfull \hbox (247.17586pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time mpiexec -n 2 ./ex15 -ksp_type gmres -n 1024 -m 1024 -pc
+_type sor -ksp_monitor_singular_value  -ksp_gmres_restart 1024[] 
+ []
+
+
+Overfull \hbox (197.77583pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time ./ex15 -ksp_type gmres -n 1024 -m 1024 -pc_type il
+u -ksp_monitor_singular_value  -ksp_gmres_restart 1024[] 
+ []
+
+
+Overfull \hbox (166.90082pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time ./ex15 -ksp_type gmres -n 1024 -m 1024 -pc_type ilu -ks
+p_monitor_singular_value  -ksp_gmres_restart 1024[] 
+ []
+
+
+Overfull \hbox (197.77583pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time ./ex15 -ksp_type gmres -n 1024 -m 1024 -pc_type ic
+c -ksp_monitor_singular_value  -ksp_gmres_restart 1024[] 
+ []
+
+
+Overfull \hbox (166.90082pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time ./ex15 -ksp_type gmres -n 1024 -m 1024 -pc_type icc -ks
+p_monitor_singular_value  -ksp_gmres_restart 1024[] 
+ []
+
+
+Overfull \hbox (284.22588pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 echo time mpiexec -n 2 ./ex15 -ksp_type gmres -n 1024 -m 102
+4 -pc_type gamg -ksp_monitor_singular_value  -ksp_gmres_restart 1024[] 
+ []
+
+
+Overfull \hbox (253.35086pt too wide) in paragraph at lines 361--361
+[]\OT1/cmtt/m/n/12 time mpiexec -n 2 ./ex15 -ksp_type gmres -n 1024 -m 1024 -pc
+_type gamg -ksp_monitor_singular_value  -ksp_gmres_restart 1024[] 
+ []
+
+[27] (./mduschen_Lab5.aux)
+
+LaTeX Warning: There were undefined references.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 5045 strings out of 479916
+ 67858 string characters out of 5882695
+ 379302 words of memory out of 5000000
+ 21526 multiletter control sequences out of 15000+600000
+ 544486 words of font info for 62 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 72i,11n,78p,1014b,444s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
+}</usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
+</usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb
+></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb>
+</usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><
+/usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></u
+sr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr
+/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/lo
+cal/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/loc
+al/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/loca
+l/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local
+/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/t
+exlive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/tex
+live/2020/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb>
+Output written on mduschen_Lab5.pdf (27 pages, 250212 bytes).
+PDF statistics:
+ 366 PDF objects out of 1000 (max. 8388607)
+ 133 compressed objects within 2 object streams
+ 0 named destinations out of 1000 (max. 500000)
+ 45 words of extra memory for PDF output out of 10000 (max. 10000000)
+

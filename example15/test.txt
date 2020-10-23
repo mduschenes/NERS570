@@ -1,6 +1,0 @@
-Hello world 1 -m 10 -type 12
-Hello wld 2 -m 10 -type 1
-Hlo world 9 -m 14 -type 11
-o world 1 -m 10 -type 17
-Helo world 6 -m 13 -type 12
-Hello  1 -m 20 -type 12
