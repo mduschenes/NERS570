@@ -1,3 +1,6 @@
-[submodule "NERS570_project"]
-	path = NERS570_project
+[submodule "Project"]
+	path = Project
 	url = git@github.com:mduschenes/NERS570_project.git
+[submodule "SpMV"]
+	path = SpMV
+	url = git@github.com:bkochuna/ners570f20-Lab06.git
