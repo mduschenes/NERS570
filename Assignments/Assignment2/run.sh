@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-file={Ex1.py}
+file=Ex1.py
 
 
 ./${file}
