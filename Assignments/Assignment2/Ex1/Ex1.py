@@ -195,7 +195,7 @@ with open(path,'wb') as fobj:
 	pickle.dump(results,fobj)
 
 # Plot
-plots = ['residual','error']
+plots = ['residual']
 Nplots = len(plots)
 fig,axes = plt.subplots(Nmethods,Nplots)
 fig.set_size_inches(**{'h':20,'w':20})
