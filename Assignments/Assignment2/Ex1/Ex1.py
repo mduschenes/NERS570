@@ -34,8 +34,10 @@ def plot(x,y,fig,ax,props):
 	return
 
 
+def conditionnumber(A):
+	return sp.sparse.linalg.norm(A)*sp.sparse.linalg.norm(sp.sparse.linalg.inv(A))
 
-def eigenvalues(A,key,whichs=['LM','SM']):
+def eigenvalues(A,key,whichs=['LM']):
 
 	n = A.shape[0]
 
@@ -82,7 +84,8 @@ def DLU(A):
 
 path = 'Ex1.pickle'
 
-N = [int(i) for i in [1e1,1e2,1e3,1e4]]# [1e2,1e3,1e4]]
+# N = [int(i) for i in [1e1,1e2,1e3,1e4]]# [1e2,1e3,1e4]]
+N = [int(i) for i in [10,20,30]]# [1e2,1e3,1e4]]
 methods = ['Jac','GS']
 setups = {'Jac':lambda n,m,A,x0: nelin.solutionvector(m,x0),
 		  'GS':lambda n,m,A,x0: nelin.solutionvector(m,x0)
@@ -173,16 +176,12 @@ for i in range(Nsizes):
 
 		_keys = ['spectral_numerical','spectral_analytical','condition_number']
 		if any([results[k][method][n] is None for k in _keys]):
-			print('Updating: ',_keys)
 		
 			results['spectral_numerical'][method][n] = (results['residual'][method][n][-1]/results['residual'][method][n][0])**(1/(len(results['residual'][method][n])+1))
-			eigs = eigenvalues(A,method,['LM','SM'])
-			results['spectral_analytical'][method][n] = eigs['LM']
-			results['condition_number'][method][n] = eigs['LM']/eigs['SM'] if all([eigs[e] is not None for e in eigs]) else None
+			results['spectral_analytical'][method][n] = eigenvalues(A,method,['LM'])['LM']
+			results['condition_number'][method][n] = conditionnumber(A)
 	
-		print('EigMax: %0.4e, EigMin: %0.4e, Kappa: %0.4e'%(results['spectral_analytical'][method][n],
-						results['spectral_analytical'][method][n]/results['condition_number'][method][n] if all([r is not None for r in [results['spectral_analytical'][method][n],results['condition_number'][method][n]]]) else None,
-						results['condition_number'][method][n]))
+		print('rho: %0.4e, kappa: %0.4e'%(results['spectral_analytical'][method][n],results['condition_number'][method][n]))
 
 		# Save
 		with open(path,'wb') as fobj:
