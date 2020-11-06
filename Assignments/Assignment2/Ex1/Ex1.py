@@ -156,23 +156,23 @@ for i in range(Nsizes):
 		_keys = ['error','residual']
 		if any([results[k][method][n] is None for k in _keys]):
 			print('Updating: ',_keys)
-			results['error'][method][n],results['residual'][method][n] = results['x'][method][n].getres(A,b) 
-
+			error,results['residual'][method][n] = results['x'][method][n].getres(A,b) 
+			results['error'][method][n] = error[-1]
 		# Save
 		with open(path,'wb') as fobj:
 			pickle.dump(results,fobj)
 
 
-		_keys = ['iterations','solution']
-		if any([results[k][method][n] is None for k in _keys]):
-			print('Updating: ',_keys)
-			results['iterations'][method][n],results['solution'][method][n] = results['x'][method][n].getsol() 
-
-		print('Iterations: %d'%(results['iterations'][method][n]))
-
-		# Save
-		with open(path,'wb') as fobj:
-			pickle.dump(results,fobj)
+#		_keys = ['iterations','solution']
+#		if any([results[k][method][n] is None for k in _keys]):
+#			print('Updating: ',_keys)
+#			results['iterations'][method][n],results['solution'][method][n] = results['x'][method][n].getsol() 
+#
+#		print('Iterations: %d'%(results['iterations'][method][n]))
+#
+#		# Save
+#		with open(path,'wb') as fobj:
+#			pickle.dump(results,fobj)
 
 		_keys = ['spectral_numerical','spectral_analytical','condition_number']
 		if any([results[k][method][n] is None for k in _keys]):
