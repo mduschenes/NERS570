@@ -5,7 +5,7 @@ import os,sys,copy,time,pickle
 import numpy as np
 import scipy as sp
 import matplotlib as mpl
-mpl.use('tkAgg')
+mpl.use('agg')
 from matplotlib import pyplot as plt
 
 # Linear Solver Modules
@@ -74,10 +74,10 @@ def eigenvalues(A,key,whichs=['LM']):
 
 
 def DLU(A):
-	A = A.tocsc()
-	D = sp.sparse.diags(A.diagonal()).tocsc()
-	U = sp.sparse.triu(A,1).tocsc()
-	L = sp.sparse.tril(A,-1).tocsc()
+	options = {'format':'csc'}
+	D = sp.sparse.diags(A.diagonal(),**options)
+	U = sp.sparse.triu(A,1,**options)
+	L = sp.sparse.tril(A,-1,**options)
 
 	return D,L,U
 
@@ -99,7 +99,7 @@ Nsizes = len(N)
 Nmethods = len(methods)
 
 # Data
-matrix = lambda n: pyamg.gallery.poisson((n,), format='csr')
+matrix = lambda n: pyamg.gallery.poisson((n,), format='csc')
 dims = lambda A: A.shape[0]
 initial = lambda n: np.sin(np.arange(0,n)/100.0*np.pi*1.0) + np.sin(np.arange(0,n)/100.0*np.pi*6.0)
 solution = lambda A,x0: np.zeros(A.shape[0]) 
