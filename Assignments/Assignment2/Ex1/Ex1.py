@@ -84,8 +84,8 @@ def DLU(A):
 
 path = 'Ex1.pickle'
 
-# N = [int(i) for i in [1e1,1e2,1e3,1e4]]# [1e2,1e3,1e4]]
-N = [int(i) for i in [10,20,30]]# [1e2,1e3,1e4]]
+N = [int(i) for i in [1e1,1e2,1e3,1e4]]# [1e2,1e3,1e4]]
+#N = [int(i) for i in [10,20,30]]# [1e2,1e3,1e4]]
 methods = ['Jac','GS']
 setups = {'Jac':lambda n,m,A,x0: nelin.solutionvector(m,x0),
 		  'GS':lambda n,m,A,x0: nelin.solutionvector(m,x0)

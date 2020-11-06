@@ -1,0 +1,60 @@
+
+
+Method: Jac, Size: 10
+Updating:  ['x']
+Updating:  ['error', 'residual']
+Eigs Found with -- maxiter: 100, ncv: 20
+rho: 8.4125e-01, kappa: 9.8122e+01
+
+Method: GS, Size: 10
+Updating:  ['x']
+Updating:  ['error', 'residual']
+Eigs Found with -- maxiter: 100, ncv: 20
+rho: 9.2063e-01, kappa: 9.8122e+01
+
+
+
+
+Method: Jac, Size: 100
+Updating:  ['x']
+Updating:  ['error', 'residual']
+Eigs Found with -- maxiter: 100, ncv: 20
+rho: 9.0667e-01, kappa: 2.6298e+04
+
+Method: GS, Size: 100
+Updating:  ['x']
+Updating:  ['error', 'residual']
+Eigs Found with -- maxiter: 100, ncv: 20
+rho: 9.0633e-01, kappa: 2.6298e+04
+
+
+
+
+Method: Jac, Size: 1000
+Updating:  ['x']
+Updating:  ['error', 'residual']
+Eigs Found with -- maxiter: 100, ncv: 20
+rho: 8.9960e-01, kappa: 8.1800e+06
+
+Method: GS, Size: 1000
+Updating:  ['x']
+Updating:  ['error', 'residual']
+Eigs Found with -- maxiter: 100, ncv: 20
+rho: 9.0000e-01, kappa: 8.1800e+06
+
+
+
+
+Method: Jac, Size: 10000
+Updating:  ['x']
+Updating:  ['error', 'residual']
+Eigs Found with -- maxiter: 100, ncv: 20
+rho: 8.9997e-01, kappa: 2.5825e+09
+
+Method: GS, Size: 10000
+Updating:  ['x']
+Updating:  ['error', 'residual']
+Eigs Found with -- maxiter: 100, ncv: 20
+rho: 9.0000e-01, kappa: 2.5825e+09
+
+
