@@ -1,0 +1,68 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nv}{CC} 		\PYG{o}{:=} g++
+\PYG{n+nv}{CC\PYGZus{}STATIC}	\PYG{o}{:=} ar
+\PYG{n+nv}{MKDIR} 	\PYG{o}{:=} mkdir \PYGZhy{}p
+\PYG{n+nv}{RMDIR} 	\PYG{o}{:=} rm \PYGZhy{}rf
+\PYG{n+nv}{ROOT} 	\PYG{o}{:=} .
+\PYG{n+nv}{FILESRC}	\PYG{o}{:=} 
+\PYG{n+nv}{FILESTATIC}	\PYG{o}{:=} libstatic
+\PYG{n+nv}{FILESHARED}	\PYG{o}{:=} libshared
+\PYG{n+nv}{SRC} 	\PYG{o}{:=} \PYG{k}{\PYGZdl{}(}ROOT\PYG{k}{)}
+\PYG{n+nv}{OBJ} 	\PYG{o}{:=} \PYG{k}{\PYGZdl{}(}ROOT\PYG{k}{)}
+\PYG{n+nv}{BIN}		\PYG{o}{:=} \PYG{k}{\PYGZdl{}(}ROOT\PYG{k}{)}
+\PYG{n+nv}{INCLUDE} \PYG{o}{:=} \PYG{k}{\PYGZdl{}(}ROOT\PYG{k}{)}
+\PYG{n+nv}{EXT}		\PYG{o}{:=} cpp
+\PYG{n+nv}{EXTDEP}	\PYG{o}{:=} cpp
+\PYG{n+nv}{EXTOBJ}	\PYG{o}{:=} o
+\PYG{n+nv}{EXTEXE}	\PYG{o}{:=} out
+\PYG{n+nv}{EXTSTATIC}	\PYG{o}{:=}ar
+\PYG{n+nv}{EXTSHARED}	\PYG{o}{:=}so
+
+
+\PYG{n+nv}{SRCS}    \PYG{o}{:=} \PYG{k}{\PYGZdl{}(}wildcard \PYG{k}{\PYGZdl{}(}SRC\PYG{k}{)}/\PYG{k}{\PYGZdl{}(}FILESRC\PYG{k}{)}*.\PYG{k}{\PYGZdl{}(}EXT\PYG{k}{))} 
+\PYG{n+nv}{DEPS} 	\PYG{o}{:=} tensor matrix QR
+\PYG{n+nv}{EXES}	\PYG{o}{:=} pde
+\PYG{n+nv}{DEPS}    \PYG{o}{:=} \PYG{k}{\PYGZdl{}(}patsubst \PYGZpc{},\PYG{k}{\PYGZdl{}(}SRC\PYG{k}{)}/\PYGZpc{}.\PYG{k}{\PYGZdl{}(}EXTDEP\PYG{k}{)},\PYG{k}{\PYGZdl{}(}DEPS\PYG{k}{))}
+\PYG{n+nv}{OBJS}    \PYG{o}{:=} \PYG{k}{\PYGZdl{}(}patsubst \PYG{k}{\PYGZdl{}(}SRC\PYG{k}{)}/\PYGZpc{}.\PYG{k}{\PYGZdl{}(}EXT\PYG{k}{)},\PYG{k}{\PYGZdl{}(}OBJ\PYG{k}{)}/\PYGZpc{}.\PYG{k}{\PYGZdl{}(}EXTOBJ\PYG{k}{)},\PYG{k}{\PYGZdl{}(}SRCS\PYG{k}{))}
+\PYG{n+nv}{EXES}    \PYG{o}{:=} \PYG{k}{\PYGZdl{}(}patsubst \PYGZpc{},\PYG{k}{\PYGZdl{}(}OBJ\PYG{k}{)}/\PYGZpc{}.\PYG{k}{\PYGZdl{}(}EXTEXE\PYG{k}{)},\PYG{k}{\PYGZdl{}(}EXES\PYG{k}{))}
+
+\PYG{n+nv}{CFLAGS}  	\PYG{o}{:=}
+\PYG{n+nv}{CLIBFLAGS}	\PYG{o}{:=} \PYGZhy{}fPIC
+\PYG{n+nv}{STATICFLAGS}		\PYG{o}{:=} \PYGZhy{}rcs
+
+\PYG{c}{\PYGZsh{} If the first argument is \PYGZdq{}run\PYGZdq{}...}
+\PYG{c+cp}{ifeq (run,\PYGZdl{}(firstword \PYGZdl{}(MAKECMDGOALS)))}
+\PYG{c}{  \PYGZsh{} use the rest as arguments for \PYGZdq{}run\PYGZdq{}}
+  RUN\PYGZus{}ARGS :\PYG{o}{=} \PYG{k}{\PYGZdl{}(}wordlist \PYG{l+m}{2},\PYG{k}{\PYGZdl{}(}words \PYG{k}{\PYGZdl{}(}MAKECMDGOALS\PYG{k}{))},\PYG{k}{\PYGZdl{}(}MAKECMDGOALS\PYG{k}{))}
+\PYG{c}{  \PYGZsh{} ...and turn them into do\PYGZhy{}nothing targets}
+  \PYG{k}{\PYGZdl{}(}\PYG{n+nb}{eval} \PYG{k}{\PYGZdl{}(}RUN\PYGZus{}ARGS\PYG{k}{)}:\PYG{p}{;}@:\PYG{k}{)}
+\PYG{c+cp}{endif}
+
+
+\PYG{n+nf}{.PHONY}\PYG{o}{:} \PYG{n}{all} \PYG{n}{run} \PYG{n}{clean}
+
+\PYG{n+nf}{\PYGZdl{}(BIN)/\PYGZpc{}.\PYGZdl{}(EXTEXE) }\PYG{o}{:} \PYG{k}{\PYGZdl{}(}\PYG{n+nv}{OBJ}\PYG{k}{)}/\PYGZpc{}.\PYG{k}{\PYGZdl{}(}\PYG{n+nv}{EXTOBJ}\PYG{k}{)} \PYG{k}{\PYGZdl{}(}\PYG{n+nv}{DEPS}\PYG{k}{)} \PYG{p}{|} \PYG{k}{\PYGZdl{}(}\PYG{n+nv}{BIN}\PYG{k}{)} 
+	@echo \PYG{k}{\PYGZdl{}(}DEPS\PYG{k}{)}
+	\PYG{k}{\PYGZdl{}(}CC\PYG{k}{)} \PYGZhy{}o \PYG{n+nv}{\PYGZdl{}@} \PYGZdl{}\PYGZca{} \PYG{k}{\PYGZdl{}(}CFLAGS\PYG{k}{)}
+
+\PYG{n+nf}{\PYGZdl{}(OBJ)/\PYGZpc{}.\PYGZdl{}(EXTOBJ)}\PYG{o}{:} \PYG{k}{\PYGZdl{}(}\PYG{n+nv}{SRC}\PYG{k}{)}/\PYGZpc{}.\PYG{k}{\PYGZdl{}(}\PYG{n+nv}{EXT}\PYG{k}{)} \PYG{p}{|} \PYG{k}{\PYGZdl{}(}\PYG{n+nv}{OBJ}\PYG{k}{)}
+
+	\PYG{k}{\PYGZdl{}(}CC\PYG{k}{)} \PYGZhy{}c \PYGZhy{}o \PYG{n+nv}{\PYGZdl{}@} \PYGZdl{}\PYGZca{} \PYG{k}{\PYGZdl{}(}CFLAGS\PYG{k}{)}
+
+\PYG{n+nf}{\PYGZdl{}(ROOT) }\PYG{o}{:}
+	\PYG{k}{\PYGZdl{}(}MKDIR\PYG{k}{)} \PYG{n+nv}{\PYGZdl{}@}
+
+\PYG{n+nf}{all }\PYG{o}{:} \PYG{k}{\PYGZdl{}(}\PYG{n+nv}{EXES}\PYG{k}{)}
+	@echo \PYG{k}{\PYGZdl{}(}OBJS\PYG{k}{)}
+
+\PYG{n+nf}{run }\PYG{o}{:} \PYG{k}{\PYGZdl{}(}\PYG{n+nv}{EXES}\PYG{k}{)}
+	./\PYGZdl{}\PYGZlt{} \PYG{k}{\PYGZdl{}(}RUN\PYGZus{}ARGS\PYG{k}{)}
+
+
+\PYG{c}{\PYGZsh{} run : main.\PYGZdl{}(EXTEXE)}
+\PYG{c}{\PYGZsh{} 	./\PYGZdl{}\PYGZlt{} \PYGZdl{}(RUN\PYGZus{}ARGS)}
+
+\PYG{n+nf}{clean }\PYG{o}{:}
+\PYG{c}{\PYGZsh{}	\PYGZdl{}(RMDIR) \PYGZdl{}(OBJS)}
+\PYG{c}{\PYGZsh{}	\PYGZdl{}(RMDIR) \PYGZdl{}(EXES)}
+\end{Verbatim}

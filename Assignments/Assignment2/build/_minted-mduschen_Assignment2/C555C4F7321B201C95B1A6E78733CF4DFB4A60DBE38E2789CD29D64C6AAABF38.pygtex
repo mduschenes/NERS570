@@ -1,0 +1,276 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+ch}{\PYGZsh{}!/usr/bin/env python}
+
+\PYG{c+c1}{\PYGZsh{} Python Modules}
+\PYG{k+kn}{import} \PYG{n+nn}{os}\PYG{o}{,}\PYG{n+nn}{sys}\PYG{o}{,}\PYG{n+nn}{copy}\PYG{o}{,}\PYG{n+nn}{time}\PYG{o}{,}\PYG{n+nn}{pickle}
+\PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
+\PYG{k+kn}{import} \PYG{n+nn}{scipy} \PYG{k}{as} \PYG{n+nn}{sp}
+\PYG{k+kn}{import} \PYG{n+nn}{matplotlib} \PYG{k}{as} \PYG{n+nn}{mpl}
+\PYG{n}{mpl}\PYG{o}{.}\PYG{n}{use}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}agg\PYGZsq{}}\PYG{p}{)}
+\PYG{k+kn}{from} \PYG{n+nn}{matplotlib} \PYG{k+kn}{import} \PYG{n}{pyplot} \PYG{k}{as} \PYG{n}{plt}
+
+\PYG{c+c1}{\PYGZsh{} Linear Solver Modules}
+\PYG{k+kn}{import} \PYG{n+nn}{nelin}
+\PYG{k+kn}{import} \PYG{n+nn}{pyamg}
+\PYG{k+kn}{from} \PYG{n+nn}{pyamg.aggregation} \PYG{k+kn}{import} \PYG{n}{smoothed\PYGZus{}aggregation\PYGZus{}solver}
+
+
+\PYG{k}{def} \PYG{n+nf}{sci}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,}\PYG{n}{decimals}\PYG{o}{=}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{n}{texify}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{):}
+	\PYG{k}{if} \PYG{n}{x} \PYG{o+ow}{in} \PYG{p}{[}\PYG{k+kc}{None}\PYG{p}{]:}
+		\PYG{k}{return} \PYG{n+nb}{str}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}
+	\PYG{n}{s} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZpc{}.*e}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{\PYGZpc{}}\PYG{p}{(}\PYG{n}{decimals}\PYG{p}{,}\PYG{n}{x}\PYG{p}{)}
+	\PYG{n}{s} \PYG{o}{=} \PYG{n}{s}\PYG{o}{.}\PYG{n}{split}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}e\PYGZsq{}}\PYG{p}{)}
+	\PYG{n}{s} \PYG{o}{=} \PYG{p}{[}\PYG{n}{s}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{],}\PYG{n+nb}{int}\PYG{p}{(}\PYG{n}{s}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{replace}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}\PYGZhy{}0\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}\PYGZhy{}\PYGZsq{}}\PYG{p}{)}\PYG{o}{.}\PYG{n}{replace}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}+0\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}\PYGZsq{}}\PYG{p}{)}\PYG{o}{.}\PYG{n}{replace}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}+\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}\PYGZsq{}}\PYG{p}{))]}
+	\PYG{n}{s} \PYG{o}{=} \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZpc{}s\PYGZpc{}s}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{\PYGZpc{}}\PYG{p}{(}\PYG{n}{s}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{],(}\PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZbs{}cdot10\PYGZca{}\PYGZob{}}\PYG{l+s+si}{\PYGZpc{}d}\PYG{l+s+s1}{\PYGZcb{}\PYGZsq{}}\PYG{o}{\PYGZpc{}}\PYG{n}{s}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{k}{if} \PYG{p}{(}\PYG{n}{s}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{!=} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{k}{else} \PYG{l+s+s1}{\PYGZsq{}\PYGZsq{}}\PYG{p}{))}
+	\PYG{k}{if} \PYG{n}{texify}\PYG{p}{:}
+		\PYG{n}{s} \PYG{o}{=} \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}r\PYGZdl{}}\PYG{l+s+si}{\PYGZpc{}s}\PYG{l+s+s1}{\PYGZdl{}\PYGZsq{}}\PYG{o}{\PYGZpc{}}\PYG{p}{(}\PYG{n}{s}\PYG{p}{)}
+	\PYG{k}{return} \PYG{n}{s}
+
+\PYG{k}{def} \PYG{n+nf}{plot}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,}\PYG{n}{y}\PYG{p}{,}\PYG{n}{fig}\PYG{p}{,}\PYG{n}{ax}\PYG{p}{,}\PYG{n}{props}\PYG{p}{):}
+	\PYG{k}{if} \PYG{n}{x} \PYG{o+ow}{is} \PYG{k+kc}{None}\PYG{p}{:}
+		\PYG{n}{x} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{arange}\PYG{p}{(}\PYG{n}{y}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{])}
+	\PYG{n}{ax}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,}\PYG{n}{y}\PYG{p}{,}\PYG{o}{**}\PYG{n}{props}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}plot\PYGZsq{}}\PYG{p}{])}
+	\PYG{k}{for} \PYG{n}{prop} \PYG{o+ow}{in} \PYG{n}{props}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}set\PYGZsq{}}\PYG{p}{]:}
+		\PYG{n+nb}{getattr}\PYG{p}{(}\PYG{n}{ax}\PYG{p}{,}\PYG{n}{prop}\PYG{p}{)(}\PYG{o}{**}\PYG{n}{props}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}set\PYGZsq{}}\PYG{p}{][}\PYG{n}{prop}\PYG{p}{])}
+	\PYG{n}{ax}\PYG{o}{.}\PYG{n}{tick\PYGZus{}params}\PYG{p}{(}\PYG{n}{axis}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}both\PYGZsq{}}\PYG{p}{,} \PYG{n}{which}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}major\PYGZsq{}}\PYG{p}{,} \PYG{n}{labelsize}\PYG{o}{=}\PYG{l+m+mi}{30}\PYG{p}{)}
+	\PYG{k}{return}
+
+
+\PYG{k}{def} \PYG{n+nf}{conditionnumber}\PYG{p}{(}\PYG{n}{A}\PYG{p}{):}
+	\PYG{k}{return} \PYG{n}{sp}\PYG{o}{.}\PYG{n}{sparse}\PYG{o}{.}\PYG{n}{linalg}\PYG{o}{.}\PYG{n}{norm}\PYG{p}{(}\PYG{n}{A}\PYG{p}{)}\PYG{o}{*}\PYG{n}{sp}\PYG{o}{.}\PYG{n}{sparse}\PYG{o}{.}\PYG{n}{linalg}\PYG{o}{.}\PYG{n}{norm}\PYG{p}{(}\PYG{n}{sp}\PYG{o}{.}\PYG{n}{sparse}\PYG{o}{.}\PYG{n}{linalg}\PYG{o}{.}\PYG{n}{inv}\PYG{p}{(}\PYG{n}{A}\PYG{p}{))}
+
+\PYG{k}{def} \PYG{n+nf}{eigenvalues}\PYG{p}{(}\PYG{n}{A}\PYG{p}{,}\PYG{n}{key}\PYG{p}{,}\PYG{n}{whichs}\PYG{o}{=}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}LM\PYGZsq{}}\PYG{p}{]):}
+
+	\PYG{n}{n} \PYG{o}{=} \PYG{n}{A}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}
+
+	\PYG{n}{eigsolver} \PYG{o}{=} \PYG{k}{lambda} \PYG{n}{A}\PYG{p}{,}\PYG{o}{**}\PYG{n}{kwargs}\PYG{p}{:} \PYG{n}{sp}\PYG{o}{.}\PYG{n}{sparse}\PYG{o}{.}\PYG{n}{linalg}\PYG{o}{.}\PYG{n}{eigs}\PYG{p}{(}\PYG{n}{A}\PYG{p}{,}\PYG{n}{k}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{n}{return\PYGZus{}eigenvectors}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{,}\PYG{o}{**}\PYG{n}{kwargs}\PYG{p}{)}
+	
+	\PYG{n}{D}\PYG{p}{,}\PYG{n}{L}\PYG{p}{,}\PYG{n}{U} \PYG{o}{=} \PYG{n}{DLU}\PYG{p}{(}\PYG{n}{A}\PYG{p}{)}
+
+	\PYG{k}{if} \PYG{n}{key} \PYG{o}{==} \PYG{l+s+s1}{\PYGZsq{}Jac\PYGZsq{}}\PYG{p}{:}
+		\PYG{n}{B} \PYG{o}{=} \PYG{n}{sp}\PYG{o}{.}\PYG{n}{sparse}\PYG{o}{.}\PYG{n}{linalg}\PYG{o}{.}\PYG{n}{spsolve}\PYG{p}{(}\PYG{n}{D}\PYG{p}{,}\PYG{o}{\PYGZhy{}}\PYG{p}{(}\PYG{n}{L}\PYG{o}{+}\PYG{n}{U}\PYG{p}{))}
+	\PYG{k}{elif} \PYG{n}{key} \PYG{o}{==} \PYG{l+s+s1}{\PYGZsq{}GS\PYGZsq{}}\PYG{p}{:}
+		\PYG{n}{B} \PYG{o}{=} \PYG{n}{sp}\PYG{o}{.}\PYG{n}{sparse}\PYG{o}{.}\PYG{n}{linalg}\PYG{o}{.}\PYG{n}{spsolve}\PYG{p}{(}\PYG{n}{D}\PYG{o}{+}\PYG{n}{L}\PYG{p}{,}\PYG{o}{\PYGZhy{}}\PYG{n}{U}\PYG{p}{)}
+
+	\PYG{n}{sigmas} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}LM\PYGZsq{}}\PYG{p}{:}\PYG{l+m+mf}{0.9}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}SM\PYGZsq{}}\PYG{p}{:}\PYG{l+m+mf}{0.1}\PYG{p}{\PYGZcb{}}
+	\PYG{n}{stop} \PYG{o}{=} \PYG{k+kc}{False}
+	\PYG{n}{eigs} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{n}{which}\PYG{p}{:}\PYG{k+kc}{None} \PYG{k}{for} \PYG{n}{which} \PYG{o+ow}{in} \PYG{n}{whichs}\PYG{p}{\PYGZcb{}}
+	\PYG{k}{for} \PYG{n}{ncv} \PYG{o+ow}{in} \PYG{p}{[}\PYG{l+m+mi}{20}\PYG{p}{,}\PYG{l+m+mi}{50}\PYG{p}{,}\PYG{l+m+mi}{100}\PYG{p}{,}\PYG{l+m+mi}{1000}\PYG{p}{]:}
+		\PYG{k}{for} \PYG{n}{maxiter} \PYG{o+ow}{in} \PYG{p}{[}\PYG{l+m+mi}{100}\PYG{p}{,}\PYG{l+m+mi}{1000}\PYG{p}{]:}
+			\PYG{k}{try}\PYG{p}{:}		
+				\PYG{n}{eigs} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{n}{which}\PYG{p}{:} \PYG{n}{np}\PYG{o}{.}\PYG{n}{abs}\PYG{p}{(}\PYG{n}{eigsolver}\PYG{p}{(}\PYG{n}{B}\PYG{p}{,}\PYG{n}{which}\PYG{o}{=}\PYG{n}{which}\PYG{p}{,}\PYG{n}{maxiter}\PYG{o}{=}\PYG{n}{maxiter}\PYG{o}{*}\PYG{n}{n}\PYG{p}{,}\PYG{n}{ncv}\PYG{o}{=}\PYG{n}{ncv}\PYG{p}{,}\PYG{n}{sigma}\PYG{o}{=}\PYG{n}{sigmas}\PYG{p}{[}\PYG{n}{which}\PYG{p}{]))} \PYG{k}{for} \PYG{n}{which} \PYG{o+ow}{in} \PYG{n}{whichs}\PYG{p}{\PYGZcb{}}
+				\PYG{n}{stop} \PYG{o}{=} \PYG{k+kc}{True}
+			\PYG{k}{except}\PYG{p}{:}
+				\PYG{n}{stop} \PYG{o}{=} \PYG{k+kc}{False}
+			\PYG{k}{if} \PYG{n}{stop}\PYG{p}{:}
+				\PYG{k}{break}
+		\PYG{k}{if} \PYG{n}{stop}\PYG{p}{:}
+			\PYG{k}{break}
+
+	\PYG{k}{if} \PYG{n}{stop}\PYG{p}{:}
+		\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Eigs Found with \PYGZhy{}\PYGZhy{} maxiter: }\PYG{l+s+si}{\PYGZpc{}d}\PYG{l+s+s1}{, ncv: }\PYG{l+s+si}{\PYGZpc{}d}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{\PYGZpc{}}\PYG{p}{(}\PYG{n}{maxiter}\PYG{p}{,}\PYG{n}{ncv}\PYG{p}{))}
+	\PYG{k}{else}\PYG{p}{:}
+		\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Eigs Not Found with \PYGZhy{}\PYGZhy{} maxiter: }\PYG{l+s+si}{\PYGZpc{}d}\PYG{l+s+s1}{, ncv: }\PYG{l+s+si}{\PYGZpc{}d}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{\PYGZpc{}}\PYG{p}{(}\PYG{n}{maxiter}\PYG{p}{,}\PYG{n}{ncv}\PYG{p}{))}
+
+	\PYG{k}{return} \PYG{n}{eigs}
+
+
+\PYG{k}{def} \PYG{n+nf}{DLU}\PYG{p}{(}\PYG{n}{A}\PYG{p}{):}
+	\PYG{n}{options} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}format\PYGZsq{}}\PYG{p}{:}\PYG{l+s+s1}{\PYGZsq{}csc\PYGZsq{}}\PYG{p}{\PYGZcb{}}
+	\PYG{n}{D} \PYG{o}{=} \PYG{n}{sp}\PYG{o}{.}\PYG{n}{sparse}\PYG{o}{.}\PYG{n}{diags}\PYG{p}{(}\PYG{n}{A}\PYG{o}{.}\PYG{n}{diagonal}\PYG{p}{(),}\PYG{o}{**}\PYG{n}{options}\PYG{p}{)}
+	\PYG{n}{U} \PYG{o}{=} \PYG{n}{sp}\PYG{o}{.}\PYG{n}{sparse}\PYG{o}{.}\PYG{n}{triu}\PYG{p}{(}\PYG{n}{A}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{o}{**}\PYG{n}{options}\PYG{p}{)}
+	\PYG{n}{L} \PYG{o}{=} \PYG{n}{sp}\PYG{o}{.}\PYG{n}{sparse}\PYG{o}{.}\PYG{n}{tril}\PYG{p}{(}\PYG{n}{A}\PYG{p}{,}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{o}{**}\PYG{n}{options}\PYG{p}{)}
+
+	\PYG{k}{return} \PYG{n}{D}\PYG{p}{,}\PYG{n}{L}\PYG{p}{,}\PYG{n}{U}
+
+
+\PYG{n}{path} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}Ex1.pickle\PYGZsq{}}
+\PYG{n}{resave} \PYG{o}{=} \PYG{k+kc}{False}
+\PYG{n}{N} \PYG{o}{=} \PYG{p}{[}\PYG{n+nb}{int}\PYG{p}{(}\PYG{n}{i}\PYG{p}{)} \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{p}{[}\PYG{l+m+mf}{1e1}\PYG{p}{,}\PYG{l+m+mf}{1e2}\PYG{p}{,}\PYG{l+m+mf}{1e3}\PYG{p}{,}\PYG{l+m+mf}{1e4}\PYG{p}{]]}\PYG{c+c1}{\PYGZsh{} [1e2,1e3,1e4]]}
+\PYG{c+c1}{\PYGZsh{}N = [int(i) for i in [10,20,30]]\PYGZsh{} [1e2,1e3,1e4]]}
+\PYG{n}{methods} \PYG{o}{=} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}Jac\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}GS\PYGZsq{}}\PYG{p}{]}
+\PYG{n}{setups} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}Jac\PYGZsq{}}\PYG{p}{:}\PYG{k}{lambda} \PYG{n}{n}\PYG{p}{,}\PYG{n}{m}\PYG{p}{,}\PYG{n}{A}\PYG{p}{,}\PYG{n}{x0}\PYG{p}{:} \PYG{n}{nelin}\PYG{o}{.}\PYG{n}{solutionvector}\PYG{p}{(}\PYG{n}{m}\PYG{p}{,}\PYG{n}{x0}\PYG{p}{),}
+		  \PYG{l+s+s1}{\PYGZsq{}GS\PYGZsq{}}\PYG{p}{:}\PYG{k}{lambda} \PYG{n}{n}\PYG{p}{,}\PYG{n}{m}\PYG{p}{,}\PYG{n}{A}\PYG{p}{,}\PYG{n}{x0}\PYG{p}{:} \PYG{n}{nelin}\PYG{o}{.}\PYG{n}{solutionvector}\PYG{p}{(}\PYG{n}{m}\PYG{p}{,}\PYG{n}{x0}\PYG{p}{)}
+		  \PYG{p}{\PYGZcb{}}
+
+\PYG{n}{schemes} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{n}{k}\PYG{p}{:} \PYG{n+nb}{getattr}\PYG{p}{(}\PYG{n}{nelin}\PYG{p}{,}\PYG{n}{k}\PYG{p}{)} \PYG{k}{for} \PYG{n}{k} \PYG{o+ow}{in} \PYG{n}{methods}\PYG{p}{\PYGZcb{}}
+\PYG{n}{kwargs} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}Jac\PYGZsq{}}\PYG{p}{:\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}tol\PYGZsq{}}\PYG{p}{:}\PYG{l+m+mf}{1e\PYGZhy{}9}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}maxiter\PYGZsq{}}\PYG{p}{:}\PYG{l+m+mi}{1000}\PYG{p}{\PYGZcb{},}
+		\PYG{l+s+s1}{\PYGZsq{}GS\PYGZsq{}}\PYG{p}{:\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}tol\PYGZsq{}}\PYG{p}{:}\PYG{l+m+mf}{1e\PYGZhy{}9}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}maxiter\PYGZsq{}}\PYG{p}{:}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}w\PYGZsq{}}\PYG{p}{:}\PYG{l+m+mi}{1}\PYG{p}{\PYGZcb{}}
+		\PYG{p}{\PYGZcb{}}
+\PYG{n}{Nsizes} \PYG{o}{=} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{N}\PYG{p}{)}
+\PYG{n}{Nmethods} \PYG{o}{=} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{methods}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} Data}
+\PYG{n}{matrix} \PYG{o}{=} \PYG{k}{lambda} \PYG{n}{n}\PYG{p}{:} \PYG{n}{pyamg}\PYG{o}{.}\PYG{n}{gallery}\PYG{o}{.}\PYG{n}{poisson}\PYG{p}{((}\PYG{n}{n}\PYG{p}{,),} \PYG{n+nb}{format}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}csc\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{dims} \PYG{o}{=} \PYG{k}{lambda} \PYG{n}{A}\PYG{p}{:} \PYG{n}{A}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}
+\PYG{n}{initial} \PYG{o}{=} \PYG{k}{lambda} \PYG{n}{n}\PYG{p}{:} \PYG{n}{np}\PYG{o}{.}\PYG{n}{sin}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{arange}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{n}{n}\PYG{p}{)}\PYG{o}{/}\PYG{l+m+mf}{100.0}\PYG{o}{*}\PYG{n}{np}\PYG{o}{.}\PYG{n}{pi}\PYG{o}{*}\PYG{l+m+mf}{1.0}\PYG{p}{)} \PYG{o}{+} \PYG{n}{np}\PYG{o}{.}\PYG{n}{sin}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{arange}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{n}{n}\PYG{p}{)}\PYG{o}{/}\PYG{l+m+mf}{100.0}\PYG{o}{*}\PYG{n}{np}\PYG{o}{.}\PYG{n}{pi}\PYG{o}{*}\PYG{l+m+mf}{6.0}\PYG{p}{)}
+\PYG{n}{solution} \PYG{o}{=} \PYG{k}{lambda} \PYG{n}{A}\PYG{p}{,}\PYG{n}{x0}\PYG{p}{:} \PYG{n}{np}\PYG{o}{.}\PYG{n}{zeros}\PYG{p}{(}\PYG{n}{A}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{])} 
+\PYG{n}{function} \PYG{o}{=} \PYG{k}{lambda} \PYG{n}{A}\PYG{p}{,}\PYG{n}{x\PYGZus{}true}\PYG{p}{:} \PYG{n}{A}\PYG{o}{.}\PYG{n}{dot}\PYG{p}{(}\PYG{n}{x\PYGZus{}true}\PYG{p}{)}
+
+
+\PYG{n}{keys} \PYG{o}{=} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}x\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}solution\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}error\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}residual\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}iterations\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}spectral\PYGZus{}numerical\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}spectral\PYGZus{}analytical\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}condition\PYGZus{}number\PYGZsq{}}\PYG{p}{]}
+
+
+\PYG{c+c1}{\PYGZsh{} Data}
+\PYG{n}{results} \PYG{o}{=} \PYG{p}{\PYGZob{}\PYGZcb{}}
+\PYG{k}{try}\PYG{p}{:}
+	\PYG{k}{with} \PYG{n+nb}{open}\PYG{p}{(}\PYG{n}{path}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}rb\PYGZsq{}}\PYG{p}{)} \PYG{k}{as} \PYG{n}{fobj}\PYG{p}{:}
+		\PYG{n}{results} \PYG{o}{=} \PYG{n}{pickle}\PYG{o}{.}\PYG{n}{load}\PYG{p}{(}\PYG{n}{fobj}\PYG{p}{)}
+\PYG{k}{except}\PYG{p}{:}
+	\PYG{k}{pass}
+	\PYG{n}{results} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{n}{k}\PYG{p}{:} \PYG{p}{\PYGZob{}}\PYG{n}{m}\PYG{p}{:} \PYG{p}{\PYGZob{}}\PYG{n}{n}\PYG{p}{:} \PYG{k+kc}{None} \PYG{k}{for} \PYG{n}{n} \PYG{o+ow}{in} \PYG{n}{N}\PYG{p}{\PYGZcb{}} \PYG{k}{for} \PYG{n}{m} \PYG{o+ow}{in} \PYG{n}{methods}\PYG{p}{\PYGZcb{}} \PYG{k}{for} \PYG{n}{k} \PYG{o+ow}{in} \PYG{n}{keys}\PYG{p}{\PYGZcb{}}
+
+\PYG{k}{for} \PYG{n}{k} \PYG{o+ow}{in} \PYG{n}{keys}\PYG{p}{:}
+	\PYG{k}{if} \PYG{n}{results}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{n}{k}\PYG{p}{)} \PYG{o+ow}{is} \PYG{k+kc}{None}\PYG{p}{:}
+		\PYG{n}{results}\PYG{p}{[}\PYG{n}{k}\PYG{p}{]} \PYG{o}{=} \PYG{p}{\PYGZob{}\PYGZcb{}}
+	\PYG{k}{for} \PYG{n}{m} \PYG{o+ow}{in} \PYG{n}{methods}\PYG{p}{:}
+		\PYG{k}{if} \PYG{n}{results}\PYG{p}{[}\PYG{n}{k}\PYG{p}{]}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{n}{m}\PYG{p}{)} \PYG{o+ow}{is} \PYG{k+kc}{None}\PYG{p}{:}
+			\PYG{n}{results}\PYG{p}{[}\PYG{n}{k}\PYG{p}{][}\PYG{n}{m}\PYG{p}{]} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{n}{n}\PYG{p}{:} \PYG{k+kc}{None} \PYG{k}{for} \PYG{n}{n} \PYG{o+ow}{in} \PYG{n}{N}\PYG{p}{\PYGZcb{}}
+		\PYG{n}{results}\PYG{p}{[}\PYG{n}{k}\PYG{p}{][}\PYG{n}{m}\PYG{p}{]}\PYG{o}{.}\PYG{n}{update}\PYG{p}{(\PYGZob{}}\PYG{n}{n}\PYG{p}{:}\PYG{k+kc}{None} \PYG{k}{for} \PYG{n}{n} \PYG{o+ow}{in} \PYG{n}{N} \PYG{k}{if} \PYG{n}{n} \PYG{o+ow}{not} \PYG{o+ow}{in} \PYG{n}{results}\PYG{p}{[}\PYG{n}{k}\PYG{p}{][}\PYG{n}{m}\PYG{p}{]\PYGZcb{})}
+
+\PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{Nsizes}\PYG{p}{):}
+	\PYG{n}{n} \PYG{o}{=} \PYG{n}{N}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}
+
+	\PYG{n}{A} \PYG{o}{=} \PYG{n}{matrix}\PYG{p}{(}\PYG{n}{n}\PYG{p}{)} 
+	\PYG{n}{m} \PYG{o}{=} \PYG{n}{dims}\PYG{p}{(}\PYG{n}{A}\PYG{p}{)}
+	\PYG{n}{x0} \PYG{o}{=} \PYG{n}{initial}\PYG{p}{(}\PYG{n}{n}\PYG{p}{)}
+	\PYG{n}{x\PYGZus{}true} \PYG{o}{=} \PYG{n}{solution}\PYG{p}{(}\PYG{n}{A}\PYG{p}{,}\PYG{n}{x0}\PYG{p}{)}
+	\PYG{n}{b} \PYG{o}{=} \PYG{n}{function}\PYG{p}{(}\PYG{n}{A}\PYG{p}{,}\PYG{n}{x\PYGZus{}true}\PYG{p}{)}
+
+	\PYG{n+nb}{print}\PYG{p}{()}
+	\PYG{n+nb}{print}\PYG{p}{()}
+
+	\PYG{k}{for} \PYG{n}{method} \PYG{o+ow}{in} \PYG{n}{methods}\PYG{p}{:}
+
+		\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Method: }\PYG{l+s+si}{\PYGZpc{}s}\PYG{l+s+s1}{, Size: }\PYG{l+s+si}{\PYGZpc{}d}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{\PYGZpc{}}\PYG{p}{(}\PYG{n}{method}\PYG{p}{,}\PYG{n}{n}\PYG{p}{))}
+
+
+		\PYG{n}{\PYGZus{}keys} \PYG{o}{=} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}x\PYGZsq{}}\PYG{p}{]}
+		\PYG{k}{if} \PYG{n+nb}{any}\PYG{p}{([}\PYG{n}{results}\PYG{p}{[}\PYG{n}{k}\PYG{p}{][}\PYG{n}{method}\PYG{p}{][}\PYG{n}{n}\PYG{p}{]} \PYG{o+ow}{is} \PYG{k+kc}{None} \PYG{k}{for} \PYG{n}{k} \PYG{o+ow}{in} \PYG{n}{\PYGZus{}keys}\PYG{p}{]):}
+			\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Updating: \PYGZsq{}}\PYG{p}{,}\PYG{n}{\PYGZus{}keys}\PYG{p}{)}
+			\PYG{n}{results}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}x\PYGZsq{}}\PYG{p}{][}\PYG{n}{method}\PYG{p}{][}\PYG{n}{n}\PYG{p}{]} \PYG{o}{=} \PYG{n}{setups}\PYG{p}{[}\PYG{n}{method}\PYG{p}{](}\PYG{n}{n}\PYG{p}{,}\PYG{n}{m}\PYG{p}{,}\PYG{n}{A}\PYG{p}{,}\PYG{n}{x0}\PYG{p}{)}
+			\PYG{n}{schemes}\PYG{p}{[}\PYG{n}{method}\PYG{p}{](}\PYG{n}{A}\PYG{p}{,}\PYG{n}{b}\PYG{p}{,}\PYG{n}{x0}\PYG{o}{=}\PYG{n}{x0}\PYG{p}{,}\PYG{n}{callback}\PYG{o}{=}\PYG{n}{results}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}x\PYGZsq{}}\PYG{p}{][}\PYG{n}{method}\PYG{p}{][}\PYG{n}{n}\PYG{p}{]}\PYG{o}{.}\PYG{n}{store}\PYG{p}{,}\PYG{o}{**}\PYG{n}{kwargs}\PYG{p}{[}\PYG{n}{method}\PYG{p}{]);}
+
+		\PYG{c+c1}{\PYGZsh{} Save}
+		\PYG{k}{if} \PYG{n}{resave}\PYG{p}{:}
+			\PYG{k}{with} \PYG{n+nb}{open}\PYG{p}{(}\PYG{n}{path}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}wb\PYGZsq{}}\PYG{p}{)} \PYG{k}{as} \PYG{n}{fobj}\PYG{p}{:}
+				\PYG{n}{pickle}\PYG{o}{.}\PYG{n}{dump}\PYG{p}{(}\PYG{n}{results}\PYG{p}{,}\PYG{n}{fobj}\PYG{p}{)}
+
+		\PYG{n}{\PYGZus{}keys} \PYG{o}{=} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}error\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}residual\PYGZsq{}}\PYG{p}{]}
+		\PYG{k}{if} \PYG{n+nb}{any}\PYG{p}{([}\PYG{n}{results}\PYG{p}{[}\PYG{n}{k}\PYG{p}{][}\PYG{n}{method}\PYG{p}{][}\PYG{n}{n}\PYG{p}{]} \PYG{o+ow}{is} \PYG{k+kc}{None} \PYG{k}{for} \PYG{n}{k} \PYG{o+ow}{in} \PYG{n}{\PYGZus{}keys}\PYG{p}{]):}
+			\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Updating: \PYGZsq{}}\PYG{p}{,}\PYG{n}{\PYGZus{}keys}\PYG{p}{)}
+			\PYG{n}{error}\PYG{p}{,}\PYG{n}{results}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}residual\PYGZsq{}}\PYG{p}{][}\PYG{n}{method}\PYG{p}{][}\PYG{n}{n}\PYG{p}{]} \PYG{o}{=} \PYG{n}{results}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}x\PYGZsq{}}\PYG{p}{][}\PYG{n}{method}\PYG{p}{][}\PYG{n}{n}\PYG{p}{]}\PYG{o}{.}\PYG{n}{getres}\PYG{p}{(}\PYG{n}{A}\PYG{p}{,}\PYG{n}{b}\PYG{p}{)} 
+			\PYG{n}{results}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}error\PYGZsq{}}\PYG{p}{][}\PYG{n}{method}\PYG{p}{][}\PYG{n}{n}\PYG{p}{]} \PYG{o}{=} \PYG{n}{error}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}
+		
+		\PYG{c+c1}{\PYGZsh{} Save}
+		\PYG{k}{if} \PYG{n}{resave}\PYG{p}{:}
+			\PYG{k}{with} \PYG{n+nb}{open}\PYG{p}{(}\PYG{n}{path}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}wb\PYGZsq{}}\PYG{p}{)} \PYG{k}{as} \PYG{n}{fobj}\PYG{p}{:}
+				\PYG{n}{pickle}\PYG{o}{.}\PYG{n}{dump}\PYG{p}{(}\PYG{n}{results}\PYG{p}{,}\PYG{n}{fobj}\PYG{p}{)}
+
+
+\PYG{c+c1}{\PYGZsh{}		\PYGZus{}keys = [\PYGZsq{}iterations\PYGZsq{},\PYGZsq{}solution\PYGZsq{}]}
+\PYG{c+c1}{\PYGZsh{}		if any([results[k][method][n] is None for k in \PYGZus{}keys]):}
+\PYG{c+c1}{\PYGZsh{}			print(\PYGZsq{}Updating: \PYGZsq{},\PYGZus{}keys)}
+\PYG{c+c1}{\PYGZsh{}			results[\PYGZsq{}iterations\PYGZsq{}][method][n],results[\PYGZsq{}solution\PYGZsq{}][method][n] = results[\PYGZsq{}x\PYGZsq{}][method][n].getsol() }
+\PYG{c+c1}{\PYGZsh{}}
+\PYG{c+c1}{\PYGZsh{}		print(\PYGZsq{}Iterations: \PYGZpc{}d\PYGZsq{}\PYGZpc{}(results[\PYGZsq{}iterations\PYGZsq{}][method][n]))}
+\PYG{c+c1}{\PYGZsh{}}
+\PYG{c+c1}{\PYGZsh{}		\PYGZsh{} Save}
+\PYG{c+c1}{\PYGZsh{}		with open(path,\PYGZsq{}wb\PYGZsq{}) as fobj:}
+\PYG{c+c1}{\PYGZsh{}			pickle.dump(results,fobj)}
+
+		\PYG{n}{\PYGZus{}keys} \PYG{o}{=} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}spectral\PYGZus{}numerical\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}spectral\PYGZus{}analytical\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}condition\PYGZus{}number\PYGZsq{}}\PYG{p}{]}
+		\PYG{k}{if} \PYG{n+nb}{any}\PYG{p}{([}\PYG{n}{results}\PYG{p}{[}\PYG{n}{k}\PYG{p}{][}\PYG{n}{method}\PYG{p}{][}\PYG{n}{n}\PYG{p}{]} \PYG{o+ow}{is} \PYG{k+kc}{None} \PYG{k}{for} \PYG{n}{k} \PYG{o+ow}{in} \PYG{n}{\PYGZus{}keys}\PYG{p}{]):}
+		
+			\PYG{n}{results}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}spectral\PYGZus{}numerical\PYGZsq{}}\PYG{p}{][}\PYG{n}{method}\PYG{p}{][}\PYG{n}{n}\PYG{p}{]} \PYG{o}{=} \PYG{p}{(}\PYG{n}{results}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}residual\PYGZsq{}}\PYG{p}{][}\PYG{n}{method}\PYG{p}{][}\PYG{n}{n}\PYG{p}{][}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{/}\PYG{n}{results}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}residual\PYGZsq{}}\PYG{p}{][}\PYG{n}{method}\PYG{p}{][}\PYG{n}{n}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{])}\PYG{o}{**}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{o}{/}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{results}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}residual\PYGZsq{}}\PYG{p}{][}\PYG{n}{method}\PYG{p}{][}\PYG{n}{n}\PYG{p}{])}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{))}
+			\PYG{n}{results}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}spectral\PYGZus{}analytical\PYGZsq{}}\PYG{p}{][}\PYG{n}{method}\PYG{p}{][}\PYG{n}{n}\PYG{p}{]} \PYG{o}{=} \PYG{n}{eigenvalues}\PYG{p}{(}\PYG{n}{A}\PYG{p}{,}\PYG{n}{method}\PYG{p}{,[}\PYG{l+s+s1}{\PYGZsq{}LM\PYGZsq{}}\PYG{p}{])[}\PYG{l+s+s1}{\PYGZsq{}LM\PYGZsq{}}\PYG{p}{]}
+			\PYG{n}{results}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}condition\PYGZus{}number\PYGZsq{}}\PYG{p}{][}\PYG{n}{method}\PYG{p}{][}\PYG{n}{n}\PYG{p}{]} \PYG{o}{=} \PYG{n}{conditionnumber}\PYG{p}{(}\PYG{n}{A}\PYG{p}{)}
+	
+		\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}rho: }\PYG{l+s+si}{\PYGZpc{}0.4e}\PYG{l+s+s1}{, kappa: }\PYG{l+s+si}{\PYGZpc{}0.4e}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{\PYGZpc{}}\PYG{p}{(}\PYG{n}{results}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}spectral\PYGZus{}analytical\PYGZsq{}}\PYG{p}{][}\PYG{n}{method}\PYG{p}{][}\PYG{n}{n}\PYG{p}{],}\PYG{n}{results}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}condition\PYGZus{}number\PYGZsq{}}\PYG{p}{][}\PYG{n}{method}\PYG{p}{][}\PYG{n}{n}\PYG{p}{]))}
+
+		\PYG{c+c1}{\PYGZsh{} Save}
+		\PYG{k}{if} \PYG{n}{resave}\PYG{p}{:}
+			\PYG{k}{with} \PYG{n+nb}{open}\PYG{p}{(}\PYG{n}{path}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}wb\PYGZsq{}}\PYG{p}{)} \PYG{k}{as} \PYG{n}{fobj}\PYG{p}{:}
+				\PYG{n}{pickle}\PYG{o}{.}\PYG{n}{dump}\PYG{p}{(}\PYG{n}{results}\PYG{p}{,}\PYG{n}{fobj}\PYG{p}{)}
+
+		\PYG{n+nb}{print}\PYG{p}{()}
+	\PYG{n+nb}{print}\PYG{p}{()}
+
+\PYG{c+c1}{\PYGZsh{} Save}
+\PYG{k}{with} \PYG{n+nb}{open}\PYG{p}{(}\PYG{n}{path}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}wb\PYGZsq{}}\PYG{p}{)} \PYG{k}{as} \PYG{n}{fobj}\PYG{p}{:}
+	\PYG{n}{pickle}\PYG{o}{.}\PYG{n}{dump}\PYG{p}{(}\PYG{n}{results}\PYG{p}{,}\PYG{n}{fobj}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} Plot}
+\PYG{n}{options} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}fontsize\PYGZsq{}}\PYG{p}{:}\PYG{l+m+mi}{28}\PYG{p}{\PYGZcb{}}
+\PYG{n}{plots} \PYG{o}{=} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}residual\PYGZsq{}}\PYG{p}{]}
+\PYG{n}{Nplots} \PYG{o}{=} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{plots}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} fig,axes = plt.subplots(Nmethods,Nplots)}
+\PYG{n}{fig}\PYG{p}{,}\PYG{n}{axes} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{()}
+\PYG{n}{fig}\PYG{o}{.}\PYG{n}{set\PYGZus{}size\PYGZus{}inches}\PYG{p}{(}\PYG{o}{**}\PYG{p}{\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}h\PYGZsq{}}\PYG{p}{:}\PYG{l+m+mi}{20}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}w\PYGZsq{}}\PYG{p}{:}\PYG{l+m+mi}{20}\PYG{p}{\PYGZcb{})}
+\PYG{c+c1}{\PYGZsh{} axes = np.array(axes)}
+\PYG{c+c1}{\PYGZsh{} axes = np.atleast\PYGZus{}2d(axes)}
+\PYG{c+c1}{\PYGZsh{} if axes.shape[0] != Nmethods:}
+\PYG{c+c1}{\PYGZsh{} 	axes = axes.T}
+\PYG{n}{\PYGZus{}properties} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}set\PYGZsq{}}\PYG{p}{:\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}set\PYGZus{}xlabel\PYGZsq{}}\PYG{p}{:\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}xlabel\PYGZsq{}}\PYG{p}{:}\PYG{l+s+s1}{\PYGZsq{}Iteration\PYGZsq{}}\PYG{p}{,}\PYG{o}{**}\PYG{n}{options}\PYG{p}{\PYGZcb{},}
+ 			   		  \PYG{l+s+s1}{\PYGZsq{}set\PYGZus{}yscale\PYGZsq{}}\PYG{p}{:\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}value\PYGZsq{}}\PYG{p}{:}\PYG{l+s+s1}{\PYGZsq{}log\PYGZsq{}}\PYG{p}{\PYGZcb{},}
+ 			   		  \PYG{l+s+s1}{\PYGZsq{}set\PYGZus{}xscale\PYGZsq{}}\PYG{p}{:\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}value\PYGZsq{}}\PYG{p}{:}\PYG{l+s+s1}{\PYGZsq{}log\PYGZsq{}}\PYG{p}{\PYGZcb{}\PYGZcb{}\PYGZcb{}}
+\PYG{n}{properties} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{n}{N}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]:\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}plot\PYGZsq{}}\PYG{p}{:\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}color\PYGZsq{}}\PYG{p}{:}\PYG{l+s+s1}{\PYGZsq{}salmon\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}marker\PYGZsq{}}\PYG{p}{:}\PYG{l+s+s1}{\PYGZsq{}o\PYGZsq{}}\PYG{p}{\PYGZcb{},}
+ 			   \PYG{o}{**}\PYG{n}{\PYGZus{}properties}\PYG{p}{,}
+ 			   \PYG{p}{\PYGZcb{},}
+			 \PYG{n}{N}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]:\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}plot\PYGZsq{}}\PYG{p}{:\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}color\PYGZsq{}}\PYG{p}{:}\PYG{l+s+s1}{\PYGZsq{}khaki\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}marker\PYGZsq{}}\PYG{p}{:}\PYG{l+s+s1}{\PYGZsq{}s\PYGZsq{}}\PYG{p}{\PYGZcb{},}
+ 		  	  \PYG{o}{**}\PYG{n}{\PYGZus{}properties}\PYG{p}{,}
+ 		  	  \PYG{p}{\PYGZcb{},}
+			 \PYG{n}{N}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]:\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}plot\PYGZsq{}}\PYG{p}{:\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}color\PYGZsq{}}\PYG{p}{:}\PYG{l+s+s1}{\PYGZsq{}turquoise\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}marker\PYGZsq{}}\PYG{p}{:}\PYG{l+s+s1}{\PYGZsq{}\PYGZca{}\PYGZsq{}}\PYG{p}{\PYGZcb{},}
+ 		  	  \PYG{o}{**}\PYG{n}{\PYGZus{}properties}\PYG{p}{,}
+	 		  \PYG{p}{\PYGZcb{},}
+	 		 \PYG{o}{**}\PYG{p}{\PYGZob{}}\PYG{n}{n}\PYG{p}{:\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}plot\PYGZsq{}}\PYG{p}{:\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}color\PYGZsq{}}\PYG{p}{:}\PYG{l+s+s1}{\PYGZsq{}violet\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}marker\PYGZsq{}}\PYG{p}{:}\PYG{l+s+s1}{\PYGZsq{}+\PYGZsq{}}\PYG{p}{\PYGZcb{},}
+ 		  	  \PYG{o}{**}\PYG{n}{\PYGZus{}properties}\PYG{p}{,}
+	 		  \PYG{p}{\PYGZcb{}} \PYG{k}{for} \PYG{n}{n} \PYG{o+ow}{in} \PYG{n}{N}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{:]\PYGZcb{}}
+		\PYG{p}{\PYGZcb{}}
+
+\PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{Nmethods}\PYG{p}{):}
+	\PYG{n}{method} \PYG{o}{=} \PYG{n}{methods}\PYG{p}{[}\PYG{n}{i}\PYG{p}{];}
+	\PYG{k}{for} \PYG{n}{j} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{Nplots}\PYG{p}{):}
+		\PYG{n}{key} \PYG{o}{=} \PYG{n}{plots}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]}
+		\PYG{c+c1}{\PYGZsh{} ax = axes[i][j]}
+		\PYG{n}{ax} \PYG{o}{=} \PYG{n}{axes}
+		\PYG{k}{for} \PYG{n}{k} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{Nsizes}\PYG{p}{):}
+			\PYG{n}{n} \PYG{o}{=} \PYG{n}{N}\PYG{p}{[}\PYG{n}{k}\PYG{p}{]}
+			\PYG{n}{props} \PYG{o}{=} \PYG{n}{copy}\PYG{o}{.}\PYG{n}{deepcopy}\PYG{p}{(}\PYG{n}{properties}\PYG{p}{[}\PYG{n}{n}\PYG{p}{])}
+			\PYG{k}{if} \PYG{n}{key} \PYG{o}{==} \PYG{l+s+s1}{\PYGZsq{}error\PYGZsq{}}\PYG{p}{:}
+				\PYG{n}{props}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}set\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}set\PYGZus{}xlabel\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}xlabel\PYGZsq{}}\PYG{p}{:}\PYG{l+s+s1}{\PYGZsq{}Grid Index\PYGZsq{}}\PYG{p}{,}\PYG{o}{**}\PYG{n}{options}\PYG{p}{\PYGZcb{}}
+				\PYG{n}{props}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}set\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}set\PYGZus{}ylabel\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}ylabel\PYGZsq{}}\PYG{p}{:}\PYG{l+s+s1}{\PYGZsq{}Error (Last Iteration)\PYGZsq{}}\PYG{p}{,}\PYG{o}{**}\PYG{n}{options}\PYG{p}{\PYGZcb{}}
+				\PYG{n}{props}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}set\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}set\PYGZus{}yscale\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}value\PYGZsq{}}\PYG{p}{:}\PYG{l+s+s1}{\PYGZsq{}log\PYGZsq{}}\PYG{p}{\PYGZcb{}}
+				\PYG{n}{props}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}set\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}set\PYGZus{}xscale\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}value\PYGZsq{}}\PYG{p}{:}\PYG{l+s+s1}{\PYGZsq{}linear\PYGZsq{}}\PYG{p}{\PYGZcb{}}
+				\PYG{n}{props}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}plot\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}linestyle\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}\PYGZsq{}}
+				\PYG{n}{y} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{abs}\PYG{p}{(}\PYG{n}{results}\PYG{p}{[}\PYG{n}{key}\PYG{p}{][}\PYG{n}{method}\PYG{p}{][}\PYG{n}{n}\PYG{p}{][}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{])}
+
+			\PYG{k}{elif} \PYG{n}{key} \PYG{o}{==} \PYG{l+s+s1}{\PYGZsq{}residual\PYGZsq{}}\PYG{p}{:}
+				\PYG{n}{props}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}set\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}set\PYGZus{}xlabel\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}xlabel\PYGZsq{}}\PYG{p}{:}\PYG{l+s+s1}{\PYGZsq{}Iteration\PYGZsq{}}\PYG{p}{,}\PYG{o}{**}\PYG{n}{options}\PYG{p}{\PYGZcb{}}
+				\PYG{n}{props}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}set\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}set\PYGZus{}ylabel\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}ylabel\PYGZsq{}}\PYG{p}{:}\PYG{l+s+s1}{\PYGZsq{}Residual Norm\PYGZsq{}}\PYG{p}{,}\PYG{o}{**}\PYG{n}{options}\PYG{p}{\PYGZcb{}}
+				\PYG{n}{props}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}set\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}set\PYGZus{}yscale\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}value\PYGZsq{}}\PYG{p}{:}\PYG{l+s+s1}{\PYGZsq{}log\PYGZsq{}}\PYG{p}{\PYGZcb{}}
+				\PYG{n}{props}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}set\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}set\PYGZus{}xscale\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}value\PYGZsq{}}\PYG{p}{:}\PYG{l+s+s1}{\PYGZsq{}log\PYGZsq{}}\PYG{p}{\PYGZcb{}}
+				\PYG{c+c1}{\PYGZsh{} props[\PYGZsq{}plot\PYGZsq{}][\PYGZsq{}color\PYGZsq{}] = None}
+				\PYG{k}{if} \PYG{n}{method} \PYG{o}{==}\PYG{l+s+s1}{\PYGZsq{}Jac\PYGZsq{}}\PYG{p}{:}
+					\PYG{n}{props}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}plot\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}linestyle\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}\PYGZhy{}\PYGZhy{}\PYGZsq{}}
+				\PYG{k}{elif} \PYG{n}{method} \PYG{o}{==} \PYG{l+s+s1}{\PYGZsq{}GS\PYGZsq{}}\PYG{p}{:}
+					\PYG{n}{props}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}plot\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}color\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}dark}\PYG{l+s+si}{\PYGZpc{}s}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{\PYGZpc{}}\PYG{n}{props}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}plot\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}color\PYGZsq{}}\PYG{p}{]}
+					\PYG{n}{props}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}plot\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}linestyle\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}\PYGZhy{}\PYGZsq{}}
+					\PYG{n}{props}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}plot\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}alpha\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mf}{0.7}
+				\PYG{n}{y} \PYG{o}{=} \PYG{n}{results}\PYG{p}{[}\PYG{n}{key}\PYG{p}{][}\PYG{n}{method}\PYG{p}{][}\PYG{n}{n}\PYG{p}{]}
+
+			\PYG{c+c1}{\PYGZsh{} props[\PYGZsq{}set\PYGZsq{}][\PYGZsq{}set\PYGZus{}title\PYGZsq{}] = \PYGZob{}\PYGZsq{}label\PYGZsq{}:method,**options\PYGZcb{}}
+			\PYG{n}{props}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}plot\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}label\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZdl{}}\PYG{l+s+si}{\PYGZpc{}s}\PYG{l+s+s1}{ \PYGZhy{} }\PYG{l+s+si}{\PYGZpc{}d}\PYG{l+s+s1}{ \PYGZti{}\PYGZti{}\PYGZti{} }\PYG{l+s+si}{\PYGZpc{}s}\PYG{l+s+s1}{ \PYGZti{}\PYGZti{}\PYGZti{} }\PYG{l+s+si}{\PYGZpc{}s}\PYG{l+s+s1}{ \PYGZti{}\PYGZti{}\PYGZti{} }\PYG{l+s+si}{\PYGZpc{}s}\PYG{l+s+s1}{\PYGZdl{}\PYGZsq{}}\PYG{o}{\PYGZpc{}}\PYG{p}{(}\PYG{n}{method}\PYG{p}{,}\PYG{n}{n}\PYG{p}{,}\PYG{n}{sci}\PYG{p}{(}\PYG{n}{results}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}spectral\PYGZus{}numerical\PYGZsq{}}\PYG{p}{][}\PYG{n}{method}\PYG{p}{][}\PYG{n}{n}\PYG{p}{],}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{k+kc}{False}\PYG{p}{),}
+														  \PYG{n}{sci}\PYG{p}{(}\PYG{n}{results}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}spectral\PYGZus{}analytical\PYGZsq{}}\PYG{p}{][}\PYG{n}{method}\PYG{p}{][}\PYG{n}{n}\PYG{p}{],}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{k+kc}{False}\PYG{p}{),}
+														  \PYG{n}{sci}\PYG{p}{(}\PYG{n}{results}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}condition\PYGZus{}number\PYGZsq{}}\PYG{p}{][}\PYG{n}{method}\PYG{p}{][}\PYG{n}{n}\PYG{p}{],}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{k+kc}{False}\PYG{p}{))}
+			\PYG{n}{x} \PYG{o}{=} \PYG{k+kc}{None}
+			\PYG{c+c1}{\PYGZsh{} print(\PYGZsq{}Key: \PYGZpc{}s, Size: \PYGZpc{}d, Iterations: \PYGZpc{}d\PYGZsq{}\PYGZpc{}(key,N[k],len(y)))}
+			\PYG{n}{plot}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,}\PYG{n}{y}\PYG{p}{,}\PYG{n}{fig}\PYG{p}{,}\PYG{n}{ax}\PYG{p}{,}\PYG{n}{props}\PYG{p}{)}
+
+			\PYG{n}{ax}\PYG{o}{.}\PYG{n}{legend}\PYG{p}{(}\PYG{o}{**}\PYG{p}{\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}title\PYGZsq{}}\PYG{p}{:}\PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZdl{}\PYGZti{}\PYGZti{}\PYGZti{}N \PYGZti{}\PYGZti{}\PYGZti{}\PYGZti{}\PYGZti{}\PYGZti{}\PYGZti{}\PYGZti{} \PYGZbs{}rho\PYGZus{}}\PYG{l+s+si}{\PYGZob{}num\PYGZcb{}}\PYG{l+s+s1}{ \PYGZti{}\PYGZti{}\PYGZti{}\PYGZti{}\PYGZti{}\PYGZti{}\PYGZti{}\PYGZti{} \PYGZbs{}rho\PYGZus{}}\PYG{l+s+si}{\PYGZob{}anl\PYGZcb{}}\PYG{l+s+s1}{\PYGZti{}\PYGZti{}\PYGZti{}\PYGZti{}\PYGZti{}\PYGZti{}\PYGZti{}\PYGZti{} \PYGZbs{}kappa\PYGZdl{}\PYGZsq{}}\PYG{p}{,}
+						 \PYG{l+s+s1}{\PYGZsq{}fontsize\PYGZsq{}}\PYG{p}{:}\PYG{l+m+mi}{20}\PYG{p}{,}
+						 \PYG{l+s+s1}{\PYGZsq{}title\PYGZus{}fontsize\PYGZsq{}}\PYG{p}{:}\PYG{l+m+mi}{20}\PYG{p}{,}
+						 \PYG{l+s+s1}{\PYGZsq{}ncol\PYGZsq{}}\PYG{p}{:}\PYG{l+m+mi}{2}\PYG{p}{\PYGZcb{})}
+\PYG{n}{fig}\PYG{o}{.}\PYG{n}{subplots\PYGZus{}adjust}\PYG{p}{(}\PYG{o}{**}\PYG{p}{\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}wspace\PYGZsq{}}\PYG{p}{:}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}hspace\PYGZsq{}}\PYG{p}{:}\PYG{l+m+mi}{1}\PYG{p}{\PYGZcb{})}
+\PYG{n}{fig}\PYG{o}{.}\PYG{n}{savefig}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Ex1.pdf\PYGZsq{}}\PYG{p}{)}
+\end{Verbatim}
