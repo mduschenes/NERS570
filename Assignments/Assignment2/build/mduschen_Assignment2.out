@@ -1,0 +1,10 @@
+\BOOKMARK [1][-]{section.1}{Spectral Radius of Fixed Point Methods}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{Jacobi Method}{section.1}% 2
+\BOOKMARK [2][-]{subsection.1.2}{Gauss-Seidel Method}{section.1}% 3
+\BOOKMARK [2][-]{subsection.1.3}{Fixed Point Iteration Results}{section.1}% 4
+\BOOKMARK [1][-]{section.2}{QR Factorization}{}% 5
+\BOOKMARK [1][-]{section.3}{UML Diagrams}{}% 6
+\BOOKMARK [2][-]{subsection.3.1}{Sequence Diagram for PETSc Ex15}{section.3}% 7
+\BOOKMARK [2][-]{subsection.3.2}{Class Diagram for Abstract Linear Solver Factory}{section.3}% 8
+\BOOKMARK [2][-]{subsection.3.3}{Composite Class Diagram for Block Matrix}{section.3}% 9
+\BOOKMARK [1][-]{section.4}{Sparse Matrix - Vector Multiplication Deliverables}{}% 10
