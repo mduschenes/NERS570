@@ -2,7 +2,9 @@
 
 file=membench
 
-exts=("" ".out" ".png")
+#exts=("" ".out" ".png")
+exts=(".png")
+
 for ext in "${exts[@]}"
 do
 	make ${file}${ext}

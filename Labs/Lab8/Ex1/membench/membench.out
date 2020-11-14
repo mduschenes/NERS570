@@ -1,0 +1,23 @@
+Size:    4096 Stride:       4 read+write:           0.41 ns
+Size:    4096 Stride:       8 read+write:           0.40 ns
+Size:    4096 Stride:      16 read+write:           0.41 ns
+Size:    4096 Stride:      32 read+write:           0.42 ns
+Size:    4096 Stride:      64 read+write:           0.35 ns
+Size:    4096 Stride:     128 read+write:           0.34 ns
+Size:    4096 Stride:     256 read+write:           0.34 ns
+Size:    4096 Stride:     512 read+write:           0.29 ns
+Size:    4096 Stride:    1024 read+write:           0.01 ns
+Size:    4096 Stride:    2048 read+write:          -0.40 ns
+
+Size:    8192 Stride:       4 read+write:           0.40 ns
+Size:    8192 Stride:       8 read+write:           0.40 ns
+Size:    8192 Stride:      16 read+write:           0.40 ns
+Size:    8192 Stride:      32 read+write:           0.41 ns
+Size:    8192 Stride:      64 read+write:           0.41 ns
+Size:    8192 Stride:     128 read+write:           0.35 ns
+Size:    8192 Stride:     256 read+write:           0.34 ns
+Size:    8192 Stride:     512 read+write:           0.34 ns
+Size:    8192 Stride:    1024 read+write:           0.29 ns
+Size:    8192 Stride:    2048 read+write:           0.02 ns
+Size:    8192 Stride:    4096 read+write:          -0.22 ns
+
