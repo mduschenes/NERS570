@@ -56,5 +56,5 @@ for L in lengths:
 
 plt.legend(bbox_to_anchor=(1.04,0.5),loc='center left')
 plt.subplots_adjust(right=0.7,bottom=0.15)
-plt.savefig("membench.png")
+plt.savefig("membench.pdf")
 

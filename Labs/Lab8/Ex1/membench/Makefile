@@ -10,9 +10,9 @@ CFLAGS := -O0
 
 .PHONY: default clean
 
-default: $(PROG).png
+default: $(PROG).pdf
 
-$(PROG).png: $(PROG).py $(PROG).out
+$(PROG).pdf: $(PROG).py $(PROG).out
 	./$(PROG).py
 
 $(PROG).out: $(PROG).exe
@@ -22,7 +22,7 @@ $(PROG).exe: $(PROG).c
 	$(CC) $(CFLAGS) -o $(PROG).exe $(PROG).c 
 
 clean:
-	rm -f $(PROG).exe $(PROG).png $(PROG).out
+	rm -f $(PROG).exe $(PROG).pdf $(PROG).out
 
 ######################################################################
 ## $Log: Makefile,v $

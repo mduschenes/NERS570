@@ -2,8 +2,8 @@
 
 file=membench
 
-#exts=("" ".out" ".png")
-exts=(".png")
+#exts=("" ".out" ".pdf")
+exts=(".pdf")
 
 for ext in "${exts[@]}"
 do
