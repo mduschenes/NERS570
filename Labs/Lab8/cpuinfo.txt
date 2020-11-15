@@ -1,0 +1,19 @@
+Cache Info
+Cache L1 Size: 32 kB
+Cache L1 Line Size: 64 B
+
+Cache L2 Size: 1024 kB
+Cache L2 Line Size: 64 B
+
+Cache L3 Size: 25344 kB
+Cache L3 Line Size: 64 B
+
+Cache L4 Size: 0 kB
+Cache L4 Line Size: 0 B
+
+
+
+
+CPU Info
+CPU Cores: 36
+CPU Speed: 2999.687 MHz
