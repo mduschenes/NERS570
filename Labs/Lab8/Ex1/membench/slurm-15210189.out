@@ -1,0 +1,2 @@
+cc -O0 -o membench.exe membench.c 
+./membench.exe > membench.out
