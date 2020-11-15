@@ -1,0 +1,112 @@
+\documentclass[letterpaper]{article}
+
+\newcommand{\doctitle}{Lab 8: Microbenchmarks and SIMD Instructions}
+\newcommand{\docauthor}{Matthew Duschenes}
+\newcommand{\docaffil}{Department of Applied Physics, University of Michigan}
+
+\newcommand{\docheader}{NERS 570 - Lab 8 - \docauthor}
+\newcommand{\docfooter}{\docaffil}
+
+\usepackage{xparse}
+\newcommand{\newcommandx}{\NewDocumentCommand}
+% Geometry
+
+\usepackage[toc,page,title,titletoc]{appendix}
+\let\appendixpagenameorig\appendixpagename
+\renewcommand\appendixpagename{\Large\bfseries\appendixpagenameorig}
+
+\usepackage{geometry}
+\usepackage{dirtytalk}
+
+
+
+% Headers
+\usepackage{fancyhdr}
+% \geometry{headheight=15pt}
+\renewcommand{\headrulewidth}{0.4pt}% default is 0.4pt
+\renewcommand{\footrulewidth}{0.4pt}% default is 0pt
+\geometry{headheight=15pt}
+\geometry{headsep=10pt}
+\setlength{\skip\footins}{10pt} % gap between text and footer
+\fancyhf{}
+\fancyhead[R]{\docheader}
+\fancyfoot[LE,RO]{\thepage}
+\fancyfoot[LO,RE]{\docfooter}
+
+
+% Title
+% \singlespacing
+
+\usepackage{titling}
+\usepackage[affil-it]{authblk}
+\usepackage[compact]{titlesec}
+
+% \newcommandx{\docauthorINFO}[5][1=\relax, 2=\docauthor, 3=\docaffil, 4=\docaddress, 5=\docemail]{
+% \author[#1]{#2} \affil[#1]{#3, #4, #5}} %% {Author #}{Author}{University}{Dept.}{Adress}{email@email}
+% \makeatletter
+% \patchcmd{\@maketitle}{\LARGE \@title}{\fontsize{30}{19.2}\selectfont\@title}{}{}
+% \makeatother
+\pagestyle{fancy}
+\renewcommand*{\Authfont}{\bfseries}
+\renewcommand*{\Affilfont}{\normalfont\itshape}
+\pretitle{\begin{center}\vskip -80pt}%
+\title{\Large\doctitle}
+\posttitle{\end{center}}
+\preauthor{\begin{center} \vskip -10pt}
+% \docauthorINFO
+\author{\docauthor}
+\affil{\docaffil}
+\postauthor{\end{center} \vskip -20pt}
+\predate{\begin{center} \vskip -0pt}
+\date{\today}%\small{\today}}
+\postdate{\end{center} \vskip -10pt}%
+
+\makeatletter
+\newcommand{\ps@obstract}{%
+  \renewcommand{\@oddhead}{}%
+  \renewcommand{\@evenhead}{\@oddhead}%
+  \renewcommand{\@oddfoot}{}%
+  \renewcommand{\@evenfoot}{\@oddfoot}%
+}
+\makeatother
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\maketitle
+\pagestyle{fancy}
+% \singlespacing
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\section{Membench}
+The \texit{membench} programs are run to obtain the following plot for the effect of array length and stride length on type of memory access, and time to access. The following command was used to obtain an average sense
+
+
+\section{SIMD Instructions}
+
+\subsection{AVX Support}
+\begin{itemize}
+	\item The commands used to verify if the current machine/processor supports AVX are:
+	$$ \textrm{grep -E \say{avx[\^{}0-9]} /proc/cpuinfo}$$
+	and if the current machine/processor supports AVX2 are:
+	$$ \textrm{grep -E \say{avx2} /proc/cpuinfo}$$
+	These searches will show whether the supported AVX fields are in the flags section of the processor info from /proc/cpuinfo. This command will show all processors (36 $\times$ Intel(R) Xeon(R) Gold 6140 CPU @ 2.30GHz, for GreatLakes compute nodes).
+)
+
+
+\end{itemize}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}

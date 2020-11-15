@@ -1,0 +1,54 @@
+1. Make the MPI interfaces and variables available in our program scope 
+2. Initialize MPI 
+3. FInalize MPI 
+4. get the number of processors and process ID from MPI 
+
+# Header
+include "mpif.h"
+
+
+# Modules
+load gcc openmpi
+which mpif90
+
+mpiexec -np n  ./exe
+
+# MPI Commands
+
+# Preprocessor Conditioning
+#ifdef _HAVE_MPI_
+	include "mpif.h"
+#endif
+
+
+mpierr=0
+bool=.False.
+int np=0
+int rank=0
+write(*,*) "MPI_COMM_WORLD = ", MPI_COMM_WORLD
+
+
+#ifdef _HAVE_MPI_
+CALL MPI_Init(mpierr)
+Call MPI_Initialized(bool,mpierr)
+
+# Get Number of Processors
+call MPI_Comm_size(MPI_COMM_WORLD,np) # number of processors within communicator
+
+# Get Processor ID (rank)
+call MPI_Comm_rank(MPI_COMM_WORLD,rank,mpierr)
+
+#endif
+
+
+
+Call MPI_Finalize(mpierr)
+
+
+
+
+
+
+# Notes
+C MPI functions return int ierror: int MPI_CMD(args)
+Fortran MPI functions pass ierror as last argument MPI_CMD(args,ierror)
