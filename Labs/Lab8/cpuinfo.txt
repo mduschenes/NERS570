@@ -16,4 +16,4 @@ Cache L4 Line Size: 0 B
 
 CPU Info
 CPU Cores: 36
-CPU Speed: 2999.687 MHz
+CPU Speed: 2999.531 MHz
