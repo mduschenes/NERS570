@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.10.6)  18 NOV 2020 05:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.10.6)  18 NOV 2020 05:45
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -883,26 +883,26 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 189.
 
-<figures/membench_all.pdf, id=74, 462.52798pt x 346.89601pt>
+<figures/membench_all.pdf, id=82, 462.52798pt x 346.89601pt>
 File: figures/membench_all.pdf Graphic file (type pdf)
 <use figures/membench_all.pdf>
 Package pdftex.def Info: figures/membench_all.pdf  used on input line 212.
 (pdftex.def)             Requested size: 506.17451pt x 379.64948pt.
 [3]
-<figures/membench_lowerleft.pdf, id=81, 462.52798pt x 346.89601pt>
+<figures/membench_lowerleft.pdf, id=89, 462.52798pt x 346.89601pt>
 File: figures/membench_lowerleft.pdf Graphic file (type pdf)
 <use figures/membench_lowerleft.pdf>
 Package pdftex.def Info: figures/membench_lowerleft.pdf  used on input line 222
 .
 (pdftex.def)             Requested size: 506.17451pt x 379.64948pt.
  [4 <./figures/membench_all.pdf>]
-<figures/membench_middle.pdf, id=141, 462.52798pt x 346.89601pt>
+<figures/membench_middle.pdf, id=149, 462.52798pt x 346.89601pt>
 File: figures/membench_middle.pdf Graphic file (type pdf)
 <use figures/membench_middle.pdf>
 Package pdftex.def Info: figures/membench_middle.pdf  used on input line 233.
 (pdftex.def)             Requested size: 506.17451pt x 379.64948pt.
  [5 <./figures/membench_lowerleft.pdf>]
-<figures/membench_middleupper.pdf, id=186, 462.52798pt x 346.89601pt>
+<figures/membench_middleupper.pdf, id=195, 462.52798pt x 346.89601pt>
 File: figures/membench_middleupper.pdf Graphic file (type pdf)
 <use figures/membench_middleupper.pdf>
 Package pdftex.def Info: figures/membench_middleupper.pdf  used on input line 2
@@ -925,8 +925,20 @@ Underfull \hbox (badness 10000) in paragraph at lines 283--284
  []
 
 
-(./_minted-mduschen_Lab8/1CB84E34A007740A54C20DE201D1BB508090832AE9E1E8D3AC750D
-C9BF3F743E.pygtex [8] [9] [10] [11]) [12]
+Underfull \hbox (badness 10000) in paragraph at lines 284--285
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 287--288
+
+ []
+
+
+(./_minted-mduschen_Lab8/6F213E435A1AC68AB28431FB897EE5142573FCA67BE69E744FFA42
+082B4A0AD1.pygtex [8])
+(./_minted-mduschen_Lab8/6F213E435A1AC68AB28431FB897EE5148090832AE9E1E8D3AC750D
+C9BF3F743E.pygtex [9] [10] [11]) [12]
 (./_minted-mduschen_Lab8/137AFE481950BFFB52FF583E67CB961920B14FDB8A42087B9871D3
 9E4797C4F1.pygtex
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10> not available
@@ -949,17 +961,17 @@ o-get-human-readable-version-of-file-size[]|
 (./_minted-mduschen_Lab8/56E92438FA6C196B02C7D9BEE0595BDC4EFB0EB9EA2FADBF2CC0D0
 1ACDBD78A0.pygtex) [22] (./mduschen_Lab8.aux)
 Package rerunfilecheck Info: File `mduschen_Lab8.out' has not changed.
-(rerunfilecheck)             Checksum: 253D4C0EE8AE0D21F4F19F4711FB09A9;555.
+(rerunfilecheck)             Checksum: F3AE47B504BD3BE1FBFC582901563C9E;599.
 
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 15894 strings out of 479916
- 270990 string characters out of 5882695
- 676388 words of memory out of 5000000
- 32112 multiletter control sequences out of 15000+600000
+ 15906 strings out of 479916
+ 271532 string characters out of 5882695
+ 676576 words of memory out of 5000000
+ 32119 multiletter control sequences out of 15000+600000
  551910 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  72i,12n,111p,1570b,820s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -985,10 +997,10 @@ dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2020/texmf-di
 st/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2020/texmf-dist
 /fonts/type1/public/cm-super/sfti1000.pfb></usr/local/texlive/2020/texmf-dist/f
 onts/type1/public/cm-super/sftt1000.pfb>
-Output written on mduschen_Lab8.pdf (22 pages, 522085 bytes).
+Output written on mduschen_Lab8.pdf (22 pages, 526228 bytes).
 PDF statistics:
- 416 PDF objects out of 1000 (max. 8388607)
- 297 compressed objects within 3 object streams
- 42 named destinations out of 1000 (max. 500000)
- 93 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 425 PDF objects out of 1000 (max. 8388607)
+ 305 compressed objects within 4 object streams
+ 44 named destinations out of 1000 (max. 500000)
+ 101 words of extra memory for PDF output out of 10000 (max. 10000000)
 

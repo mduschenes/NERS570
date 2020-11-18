@@ -16,11 +16,12 @@
 submit=${1:-1}
 file=matmul
 ext=out
-lib=mkl_intel_ilp64  #openblas
-#lib=openblas
-LFLAGS="-L${MKLROOT}/lib/intel64 -Wl,--no-as-needed -lmkl_intel_ilp64 -lmkl_sequential -lmkl_core -lm"
-#LFLAGS=""
-CCFLAGS="-O2 -I${MKLROOT}/include"
+#lib=mkl_intel_ilp64  #openblas
+lib=blas
+#LFLAGS="-L${MKLROOT}/lib/intel64 -Wl,--no-as-needed -lmkl_intel_ilp64 -lmkl_sequential -lmkl_core -lm"
+LFLAGS=""
+#CCFLAGS="-O2 -I${MKLROOT}/include"
+CCFLAGS="-Ofast -mavx2 -mfma"
 #CCFLAGS="-O2"
 if [[ "${ext}" == "out" ]]
 then
@@ -34,7 +35,7 @@ else
 fi
 
 
-for n in 20 100 500 1000 2000 4000;
+for n in 20 100 500 1000 ;
 do
 	echo Running $n
 	if [ "${submit}" == 1 ]

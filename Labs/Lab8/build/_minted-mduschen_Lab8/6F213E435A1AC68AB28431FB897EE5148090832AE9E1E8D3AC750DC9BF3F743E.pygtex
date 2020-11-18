@@ -1,0 +1,167 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+	\PYG{p}{.}\PYG{n}{file}	\PYG{l+s}{\PYGZdq{}dgemm.cpp\PYGZdq{}}
+	\PYG{p}{.}\PYG{n}{text}
+	\PYG{p}{.}\PYG{n}{p2align} \PYG{l+m+mi}{4}\PYG{p}{,,}\PYG{l+m+mi}{15}
+	\PYG{p}{.}\PYG{n}{globl}	\PYG{n}{\PYGZus{}Z5dgemmccjjjdPKPKdS2\PYGZus{}dPPd}
+	\PYG{p}{.}\PYG{n}{type}	\PYG{n}{\PYGZus{}Z5dgemmccjjjdPKPKdS2\PYGZus{}dPPd}\PYG{p}{,} \PYG{err}{@}\PYG{n}{function}
+\PYG{n+nl}{\PYGZus{}Z5dgemmccjjjdPKPKdS2\PYGZus{}dPPd}\PYG{p}{:}
+\PYG{p}{.}\PYG{n+nl}{LFB1538}\PYG{p}{:}
+	\PYG{p}{.}\PYG{n}{cfi\PYGZus{}startproc}
+	\PYG{n}{pushq}	\PYG{o}{\PYGZpc{}}\PYG{n}{rbp}
+	\PYG{p}{.}\PYG{n}{cfi\PYGZus{}def\PYGZus{}cfa\PYGZus{}offset} \PYG{l+m+mi}{16}
+	\PYG{p}{.}\PYG{n}{cfi\PYGZus{}offset} \PYG{l+m+mi}{6}\PYG{p}{,} \PYG{l+m+mi}{\PYGZhy{}16}
+	\PYG{n}{movq}	\PYG{o}{\PYGZpc{}}\PYG{n}{rsp}\PYG{p}{,} \PYG{o}{\PYGZpc{}}\PYG{n}{rbp}
+	\PYG{p}{.}\PYG{n}{cfi\PYGZus{}def\PYGZus{}cfa\PYGZus{}register} \PYG{l+m+mi}{6}
+	\PYG{n}{pushq}	\PYG{o}{\PYGZpc{}}\PYG{n}{r14}
+	\PYG{n}{movq}	\PYG{l+m+mi}{24}\PYG{p}{(}\PYG{o}{\PYGZpc{}}\PYG{n}{rbp}\PYG{p}{),} \PYG{o}{\PYGZpc{}}\PYG{n}{r11}
+	\PYG{n}{pushq}	\PYG{o}{\PYGZpc{}}\PYG{n}{r13}
+	\PYG{n}{pushq}	\PYG{o}{\PYGZpc{}}\PYG{n}{r12}
+	\PYG{n}{pushq}	\PYG{o}{\PYGZpc{}}\PYG{n}{rbx}
+	\PYG{p}{.}\PYG{n}{cfi\PYGZus{}offset} \PYG{l+m+mi}{14}\PYG{p}{,} \PYG{l+m+mi}{\PYGZhy{}24}
+	\PYG{p}{.}\PYG{n}{cfi\PYGZus{}offset} \PYG{l+m+mi}{13}\PYG{p}{,} \PYG{l+m+mi}{\PYGZhy{}32}
+	\PYG{p}{.}\PYG{n}{cfi\PYGZus{}offset} \PYG{l+m+mi}{12}\PYG{p}{,} \PYG{l+m+mi}{\PYGZhy{}40}
+	\PYG{p}{.}\PYG{n}{cfi\PYGZus{}offset} \PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{\PYGZhy{}48}
+	\PYG{n}{testl}	\PYG{o}{\PYGZpc{}}\PYG{n}{ecx}\PYG{p}{,} \PYG{o}{\PYGZpc{}}\PYG{n}{ecx}
+	\PYG{n}{je}	\PYG{p}{.}\PYG{n}{L27}
+	\PYG{n}{testl}	\PYG{o}{\PYGZpc{}}\PYG{n}{edx}\PYG{p}{,} \PYG{o}{\PYGZpc{}}\PYG{n}{edx}
+	\PYG{n}{je}	\PYG{p}{.}\PYG{n}{L27}
+	\PYG{n}{movl}	\PYG{o}{\PYGZpc{}}\PYG{n}{edx}\PYG{p}{,} \PYG{o}{\PYGZpc{}}\PYG{n}{r12d}
+	\PYG{n}{leal}	\PYG{l+m+mi}{\PYGZhy{}1}\PYG{p}{(}\PYG{o}{\PYGZpc{}}\PYG{n}{rcx}\PYG{p}{),} \PYG{o}{\PYGZpc{}}\PYG{n}{eax}
+	\PYG{n}{movl}	\PYG{o}{\PYGZpc{}}\PYG{n}{edx}\PYG{p}{,} \PYG{o}{\PYGZpc{}}\PYG{n}{ebx}
+	\PYG{n}{movq}	\PYG{o}{\PYGZpc{}}\PYG{n}{r11}\PYG{p}{,} \PYG{o}{\PYGZpc{}}\PYG{n}{rdi}
+	\PYG{n}{shrl}	\PYG{n}{\PYGZdl{}2}\PYG{p}{,} \PYG{o}{\PYGZpc{}}\PYG{n}{r12d}
+	\PYG{n}{movq}	\PYG{o}{\PYGZpc{}}\PYG{n}{rax}\PYG{p}{,} \PYG{o}{\PYGZpc{}}\PYG{n}{r10}
+	\PYG{n}{leaq}	\PYG{l+m+mi}{8}\PYG{p}{(}\PYG{o}{\PYGZpc{}}\PYG{n}{r11}\PYG{p}{,}\PYG{o}{\PYGZpc{}}\PYG{n}{rax}\PYG{p}{,}\PYG{l+m+mi}{8}\PYG{p}{),} \PYG{o}{\PYGZpc{}}\PYG{n}{r13}
+	\PYG{n}{andl}	\PYG{n}{\PYGZdl{}}\PYG{l+m+mi}{\PYGZhy{}4}\PYG{p}{,} \PYG{o}{\PYGZpc{}}\PYG{n}{ebx}
+	\PYG{n}{leal}	\PYG{l+m+mi}{\PYGZhy{}1}\PYG{p}{(}\PYG{o}{\PYGZpc{}}\PYG{n}{rdx}\PYG{p}{),} \PYG{o}{\PYGZpc{}}\PYG{n}{r14d}
+	\PYG{n}{salq}	\PYG{n}{\PYGZdl{}5}\PYG{p}{,} \PYG{o}{\PYGZpc{}}\PYG{n}{r12}
+	\PYG{n}{vbroadcastsd}	\PYG{o}{\PYGZpc{}}\PYG{n}{xmm1}\PYG{p}{,} \PYG{o}{\PYGZpc{}}\PYG{n}{ymm3}
+	\PYG{p}{.}\PYG{n}{p2align} \PYG{l+m+mi}{4}\PYG{p}{,,}\PYG{l+m+mi}{10}
+	\PYG{p}{.}\PYG{n}{p2align} \PYG{l+m+mi}{3}
+\PYG{p}{.}\PYG{n+nl}{L7}\PYG{p}{:}
+	\PYG{n}{movq}	\PYG{p}{(}\PYG{o}{\PYGZpc{}}\PYG{n}{rdi}\PYG{p}{),} \PYG{o}{\PYGZpc{}}\PYG{n}{rsi}
+	\PYG{n}{cmpl}	\PYG{n}{\PYGZdl{}2}\PYG{p}{,} \PYG{o}{\PYGZpc{}}\PYG{n}{r14d}
+	\PYG{n}{jbe}	\PYG{p}{.}\PYG{n}{L12}
+	\PYG{n}{movq}	\PYG{o}{\PYGZpc{}}\PYG{n}{rsi}\PYG{p}{,} \PYG{o}{\PYGZpc{}}\PYG{n}{rax}
+	\PYG{n}{leaq}	\PYG{p}{(}\PYG{o}{\PYGZpc{}}\PYG{n}{r12}\PYG{p}{,}\PYG{o}{\PYGZpc{}}\PYG{n}{rsi}\PYG{p}{),} \PYG{o}{\PYGZpc{}}\PYG{n}{rcx}
+	\PYG{p}{.}\PYG{n}{p2align} \PYG{l+m+mi}{4}\PYG{p}{,,}\PYG{l+m+mi}{10}
+	\PYG{p}{.}\PYG{n}{p2align} \PYG{l+m+mi}{3}
+\PYG{p}{.}\PYG{n+nl}{L4}\PYG{p}{:}
+	\PYG{n}{vmovupd}	\PYG{p}{(}\PYG{o}{\PYGZpc{}}\PYG{n}{rax}\PYG{p}{),} \PYG{o}{\PYGZpc{}}\PYG{n}{xmm5}
+	\PYG{n}{vinsertf128}	\PYG{n}{\PYGZdl{}0x1}\PYG{p}{,} \PYG{l+m+mi}{16}\PYG{p}{(}\PYG{o}{\PYGZpc{}}\PYG{n}{rax}\PYG{p}{),} \PYG{o}{\PYGZpc{}}\PYG{n}{ymm5}\PYG{p}{,} \PYG{o}{\PYGZpc{}}\PYG{n}{ymm2}
+	\PYG{n}{addq}	\PYG{n}{\PYGZdl{}32}\PYG{p}{,} \PYG{o}{\PYGZpc{}}\PYG{n}{rax}
+	\PYG{n}{vmulpd}	\PYG{o}{\PYGZpc{}}\PYG{n}{ymm3}\PYG{p}{,} \PYG{o}{\PYGZpc{}}\PYG{n}{ymm2}\PYG{p}{,} \PYG{o}{\PYGZpc{}}\PYG{n}{ymm2}
+	\PYG{n}{vmovups}	\PYG{o}{\PYGZpc{}}\PYG{n}{xmm2}\PYG{p}{,} \PYG{l+m+mi}{\PYGZhy{}32}\PYG{p}{(}\PYG{o}{\PYGZpc{}}\PYG{n}{rax}\PYG{p}{)}
+	\PYG{n}{vextractf128}	\PYG{n}{\PYGZdl{}0x1}\PYG{p}{,} \PYG{o}{\PYGZpc{}}\PYG{n}{ymm2}\PYG{p}{,} \PYG{l+m+mi}{\PYGZhy{}16}\PYG{p}{(}\PYG{o}{\PYGZpc{}}\PYG{n}{rax}\PYG{p}{)}
+	\PYG{n}{cmpq}	\PYG{o}{\PYGZpc{}}\PYG{n}{rax}\PYG{p}{,} \PYG{o}{\PYGZpc{}}\PYG{n}{rcx}
+	\PYG{n}{jne}	\PYG{p}{.}\PYG{n}{L4}
+	\PYG{n}{movl}	\PYG{o}{\PYGZpc{}}\PYG{n}{ebx}\PYG{p}{,} \PYG{o}{\PYGZpc{}}\PYG{n}{eax}
+	\PYG{n}{cmpl}	\PYG{o}{\PYGZpc{}}\PYG{n}{ebx}\PYG{p}{,} \PYG{o}{\PYGZpc{}}\PYG{n}{edx}
+	\PYG{n}{je}	\PYG{p}{.}\PYG{n}{L5}
+\PYG{p}{.}\PYG{n+nl}{L3}\PYG{p}{:}
+	\PYG{n}{movl}	\PYG{o}{\PYGZpc{}}\PYG{n}{eax}\PYG{p}{,} \PYG{o}{\PYGZpc{}}\PYG{n}{ecx}
+	\PYG{n}{leaq}	\PYG{p}{(}\PYG{o}{\PYGZpc{}}\PYG{n}{rsi}\PYG{p}{,}\PYG{o}{\PYGZpc{}}\PYG{n}{rcx}\PYG{p}{,}\PYG{l+m+mi}{8}\PYG{p}{),} \PYG{o}{\PYGZpc{}}\PYG{n}{rcx}
+	\PYG{n}{vmulsd}	\PYG{p}{(}\PYG{o}{\PYGZpc{}}\PYG{n}{rcx}\PYG{p}{),} \PYG{o}{\PYGZpc{}}\PYG{n}{xmm1}\PYG{p}{,} \PYG{o}{\PYGZpc{}}\PYG{n}{xmm2}
+	\PYG{n}{vmovsd}	\PYG{o}{\PYGZpc{}}\PYG{n}{xmm2}\PYG{p}{,} \PYG{p}{(}\PYG{o}{\PYGZpc{}}\PYG{n}{rcx}\PYG{p}{)}
+	\PYG{n}{leal}	\PYG{l+m+mi}{1}\PYG{p}{(}\PYG{o}{\PYGZpc{}}\PYG{n}{rax}\PYG{p}{),} \PYG{o}{\PYGZpc{}}\PYG{n}{ecx}
+	\PYG{n}{cmpl}	\PYG{o}{\PYGZpc{}}\PYG{n}{ecx}\PYG{p}{,} \PYG{o}{\PYGZpc{}}\PYG{n}{edx}
+	\PYG{n}{jbe}	\PYG{p}{.}\PYG{n}{L5}
+	\PYG{n}{leaq}	\PYG{p}{(}\PYG{o}{\PYGZpc{}}\PYG{n}{rsi}\PYG{p}{,}\PYG{o}{\PYGZpc{}}\PYG{n}{rcx}\PYG{p}{,}\PYG{l+m+mi}{8}\PYG{p}{),} \PYG{o}{\PYGZpc{}}\PYG{n}{rcx}
+	\PYG{n}{addl}	\PYG{n}{\PYGZdl{}2}\PYG{p}{,} \PYG{o}{\PYGZpc{}}\PYG{n}{eax}
+	\PYG{n}{vmulsd}	\PYG{p}{(}\PYG{o}{\PYGZpc{}}\PYG{n}{rcx}\PYG{p}{),} \PYG{o}{\PYGZpc{}}\PYG{n}{xmm1}\PYG{p}{,} \PYG{o}{\PYGZpc{}}\PYG{n}{xmm2}
+	\PYG{n}{vmovsd}	\PYG{o}{\PYGZpc{}}\PYG{n}{xmm2}\PYG{p}{,} \PYG{p}{(}\PYG{o}{\PYGZpc{}}\PYG{n}{rcx}\PYG{p}{)}
+	\PYG{n}{cmpl}	\PYG{o}{\PYGZpc{}}\PYG{n}{eax}\PYG{p}{,} \PYG{o}{\PYGZpc{}}\PYG{n}{edx}
+	\PYG{n}{jbe}	\PYG{p}{.}\PYG{n}{L5}
+	\PYG{n}{leaq}	\PYG{p}{(}\PYG{o}{\PYGZpc{}}\PYG{n}{rsi}\PYG{p}{,}\PYG{o}{\PYGZpc{}}\PYG{n}{rax}\PYG{p}{,}\PYG{l+m+mi}{8}\PYG{p}{),} \PYG{o}{\PYGZpc{}}\PYG{n}{rax}
+	\PYG{n}{vmulsd}	\PYG{p}{(}\PYG{o}{\PYGZpc{}}\PYG{n}{rax}\PYG{p}{),} \PYG{o}{\PYGZpc{}}\PYG{n}{xmm1}\PYG{p}{,} \PYG{o}{\PYGZpc{}}\PYG{n}{xmm2}
+	\PYG{n}{vmovsd}	\PYG{o}{\PYGZpc{}}\PYG{n}{xmm2}\PYG{p}{,} \PYG{p}{(}\PYG{o}{\PYGZpc{}}\PYG{n}{rax}\PYG{p}{)}
+\PYG{p}{.}\PYG{n+nl}{L5}\PYG{p}{:}
+	\PYG{n}{addq}	\PYG{n}{\PYGZdl{}8}\PYG{p}{,} \PYG{o}{\PYGZpc{}}\PYG{n}{rdi}
+	\PYG{n}{cmpq}	\PYG{o}{\PYGZpc{}}\PYG{n}{r13}\PYG{p}{,} \PYG{o}{\PYGZpc{}}\PYG{n}{rdi}
+	\PYG{n}{jne}	\PYG{p}{.}\PYG{n}{L7}
+	\PYG{n}{testl}	\PYG{o}{\PYGZpc{}}\PYG{n}{r8d}\PYG{p}{,} \PYG{o}{\PYGZpc{}}\PYG{n}{r8d}
+	\PYG{n}{je}	\PYG{p}{.}\PYG{n}{L29}
+	\PYG{n}{movq}	\PYG{l+m+mi}{16}\PYG{p}{(}\PYG{o}{\PYGZpc{}}\PYG{n}{rbp}\PYG{p}{),} \PYG{o}{\PYGZpc{}}\PYG{n}{r12}
+	\PYG{n}{leal}	\PYG{l+m+mi}{\PYGZhy{}1}\PYG{p}{(}\PYG{o}{\PYGZpc{}}\PYG{n}{r8}\PYG{p}{),} \PYG{o}{\PYGZpc{}}\PYG{n}{eax}
+	\PYG{n}{leaq}	\PYG{l+m+mi}{8}\PYG{p}{(,}\PYG{o}{\PYGZpc{}}\PYG{n}{r14}\PYG{p}{,}\PYG{l+m+mi}{8}\PYG{p}{),} \PYG{o}{\PYGZpc{}}\PYG{n}{rbx}
+	\PYG{n}{xorl}	\PYG{o}{\PYGZpc{}}\PYG{n}{r8d}\PYG{p}{,} \PYG{o}{\PYGZpc{}}\PYG{n}{r8d}
+	\PYG{n}{leaq}	\PYG{l+m+mi}{8}\PYG{p}{(}\PYG{o}{\PYGZpc{}}\PYG{n}{r12}\PYG{p}{,}\PYG{o}{\PYGZpc{}}\PYG{n}{rax}\PYG{p}{,}\PYG{l+m+mi}{8}\PYG{p}{),} \PYG{o}{\PYGZpc{}}\PYG{n}{r13}
+	\PYG{p}{.}\PYG{n}{p2align} \PYG{l+m+mi}{4}\PYG{p}{,,}\PYG{l+m+mi}{10}
+	\PYG{p}{.}\PYG{n}{p2align} \PYG{l+m+mi}{3}
+\PYG{p}{.}\PYG{n+nl}{L10}\PYG{p}{:}
+	\PYG{n}{movq}	\PYG{p}{(}\PYG{o}{\PYGZpc{}}\PYG{n}{r12}\PYG{p}{),} \PYG{o}{\PYGZpc{}}\PYG{n}{r14}
+	\PYG{n}{xorl}	\PYG{o}{\PYGZpc{}}\PYG{n}{esi}\PYG{p}{,} \PYG{o}{\PYGZpc{}}\PYG{n}{esi}
+	\PYG{p}{.}\PYG{n}{p2align} \PYG{l+m+mi}{4}\PYG{p}{,,}\PYG{l+m+mi}{10}
+	\PYG{p}{.}\PYG{n}{p2align} \PYG{l+m+mi}{3}
+\PYG{p}{.}\PYG{n+nl}{L9}\PYG{p}{:}
+	\PYG{n}{leaq}	\PYG{p}{(}\PYG{o}{\PYGZpc{}}\PYG{n}{r14}\PYG{p}{,}\PYG{o}{\PYGZpc{}}\PYG{n}{rsi}\PYG{p}{),} \PYG{o}{\PYGZpc{}}\PYG{n}{rdi}
+	\PYG{n}{xorl}	\PYG{o}{\PYGZpc{}}\PYG{n}{eax}\PYG{p}{,} \PYG{o}{\PYGZpc{}}\PYG{n}{eax}
+	\PYG{n}{jmp}	\PYG{p}{.}\PYG{n}{L8}
+	\PYG{p}{.}\PYG{n}{p2align} \PYG{l+m+mi}{4}\PYG{p}{,,}\PYG{l+m+mi}{10}
+	\PYG{p}{.}\PYG{n}{p2align} \PYG{l+m+mi}{3}
+\PYG{p}{.}\PYG{n+nl}{L13}\PYG{p}{:}
+	\PYG{n}{movq}	\PYG{o}{\PYGZpc{}}\PYG{n}{rdx}\PYG{p}{,} \PYG{o}{\PYGZpc{}}\PYG{n}{rax}
+\PYG{p}{.}\PYG{n+nl}{L8}\PYG{p}{:}
+	\PYG{n}{movq}	\PYG{p}{(}\PYG{o}{\PYGZpc{}}\PYG{n}{r11}\PYG{p}{,}\PYG{o}{\PYGZpc{}}\PYG{n}{rax}\PYG{p}{,}\PYG{l+m+mi}{8}\PYG{p}{),} \PYG{o}{\PYGZpc{}}\PYG{n}{rdx}
+	\PYG{n}{movq}	\PYG{p}{(}\PYG{o}{\PYGZpc{}}\PYG{n}{r9}\PYG{p}{,}\PYG{o}{\PYGZpc{}}\PYG{n}{rax}\PYG{p}{,}\PYG{l+m+mi}{8}\PYG{p}{),} \PYG{o}{\PYGZpc{}}\PYG{n}{rcx}
+	\PYG{n}{vmulsd}	\PYG{p}{(}\PYG{o}{\PYGZpc{}}\PYG{n}{rdi}\PYG{p}{),} \PYG{o}{\PYGZpc{}}\PYG{n}{xmm0}\PYG{p}{,} \PYG{o}{\PYGZpc{}}\PYG{n}{xmm1}
+	\PYG{n}{addq}	\PYG{o}{\PYGZpc{}}\PYG{n}{rsi}\PYG{p}{,} \PYG{o}{\PYGZpc{}}\PYG{n}{rdx}
+	\PYG{n}{vmovsd}	\PYG{p}{(}\PYG{o}{\PYGZpc{}}\PYG{n}{rdx}\PYG{p}{),} \PYG{o}{\PYGZpc{}}\PYG{n}{xmm4}
+	\PYG{n}{vfmadd132sd}	\PYG{p}{(}\PYG{o}{\PYGZpc{}}\PYG{n}{rcx}\PYG{p}{,}\PYG{o}{\PYGZpc{}}\PYG{n}{r8}\PYG{p}{),} \PYG{o}{\PYGZpc{}}\PYG{n}{xmm4}\PYG{p}{,} \PYG{o}{\PYGZpc{}}\PYG{n}{xmm1}
+	\PYG{n}{vmovsd}	\PYG{o}{\PYGZpc{}}\PYG{n}{xmm1}\PYG{p}{,} \PYG{p}{(}\PYG{o}{\PYGZpc{}}\PYG{n}{rdx}\PYG{p}{)}
+	\PYG{n}{leaq}	\PYG{l+m+mi}{1}\PYG{p}{(}\PYG{o}{\PYGZpc{}}\PYG{n}{rax}\PYG{p}{),} \PYG{o}{\PYGZpc{}}\PYG{n}{rdx}
+	\PYG{n}{cmpq}	\PYG{o}{\PYGZpc{}}\PYG{n}{rax}\PYG{p}{,} \PYG{o}{\PYGZpc{}}\PYG{n}{r10}
+	\PYG{n}{jne}	\PYG{p}{.}\PYG{n}{L13}
+	\PYG{n}{addq}	\PYG{n}{\PYGZdl{}8}\PYG{p}{,} \PYG{o}{\PYGZpc{}}\PYG{n}{rsi}
+	\PYG{n}{cmpq}	\PYG{o}{\PYGZpc{}}\PYG{n}{rsi}\PYG{p}{,} \PYG{o}{\PYGZpc{}}\PYG{n}{rbx}
+	\PYG{n}{jne}	\PYG{p}{.}\PYG{n}{L9}
+	\PYG{n}{addq}	\PYG{n}{\PYGZdl{}8}\PYG{p}{,} \PYG{o}{\PYGZpc{}}\PYG{n}{r12}
+	\PYG{n}{addq}	\PYG{n}{\PYGZdl{}8}\PYG{p}{,} \PYG{o}{\PYGZpc{}}\PYG{n}{r8}
+	\PYG{n}{cmpq}	\PYG{o}{\PYGZpc{}}\PYG{n}{r12}\PYG{p}{,} \PYG{o}{\PYGZpc{}}\PYG{n}{r13}
+	\PYG{n}{jne}	\PYG{p}{.}\PYG{n}{L10}
+\PYG{p}{.}\PYG{n+nl}{L29}\PYG{p}{:}
+	\PYG{n}{vzeroupper}
+\PYG{p}{.}\PYG{n+nl}{L27}\PYG{p}{:}
+	\PYG{n}{popq}	\PYG{o}{\PYGZpc{}}\PYG{n}{rbx}
+	\PYG{n}{popq}	\PYG{o}{\PYGZpc{}}\PYG{n}{r12}
+	\PYG{n}{popq}	\PYG{o}{\PYGZpc{}}\PYG{n}{r13}
+	\PYG{n}{popq}	\PYG{o}{\PYGZpc{}}\PYG{n}{r14}
+	\PYG{n}{popq}	\PYG{o}{\PYGZpc{}}\PYG{n}{rbp}
+	\PYG{p}{.}\PYG{n}{cfi\PYGZus{}remember\PYGZus{}state}
+	\PYG{p}{.}\PYG{n}{cfi\PYGZus{}def\PYGZus{}cfa} \PYG{l+m+mi}{7}\PYG{p}{,} \PYG{l+m+mi}{8}
+	\PYG{n}{ret}
+\PYG{p}{.}\PYG{n+nl}{L12}\PYG{p}{:}
+	\PYG{p}{.}\PYG{n}{cfi\PYGZus{}restore\PYGZus{}state}
+	\PYG{n}{xorl}	\PYG{o}{\PYGZpc{}}\PYG{n}{eax}\PYG{p}{,} \PYG{o}{\PYGZpc{}}\PYG{n}{eax}
+	\PYG{n}{jmp}	\PYG{p}{.}\PYG{n}{L3}
+	\PYG{p}{.}\PYG{n}{cfi\PYGZus{}endproc}
+\PYG{p}{.}\PYG{n+nl}{LFE1538}\PYG{p}{:}
+	\PYG{p}{.}\PYG{n}{size}	\PYG{n}{\PYGZus{}Z5dgemmccjjjdPKPKdS2\PYGZus{}dPPd}\PYG{p}{,} \PYG{p}{.}\PYG{o}{\PYGZhy{}}\PYG{n}{\PYGZus{}Z5dgemmccjjjdPKPKdS2\PYGZus{}dPPd}
+	\PYG{p}{.}\PYG{n}{section}	\PYG{p}{.}\PYG{n}{text}\PYG{p}{.}\PYG{n}{startup}\PYG{p}{,}\PYG{l+s}{\PYGZdq{}ax\PYGZdq{}}\PYG{p}{,}\PYG{err}{@}\PYG{n}{progbits}
+	\PYG{p}{.}\PYG{n}{p2align} \PYG{l+m+mi}{4}\PYG{p}{,,}\PYG{l+m+mi}{15}
+	\PYG{p}{.}\PYG{n}{type}	\PYG{n}{\PYGZus{}GLOBAL\PYGZus{}\PYGZus{}sub\PYGZus{}I\PYGZus{}\PYGZus{}Z5dgemmccjjjdPKPKdS2\PYGZus{}dPPd}\PYG{p}{,} \PYG{err}{@}\PYG{n}{function}
+\PYG{n+nl}{\PYGZus{}GLOBAL\PYGZus{}\PYGZus{}sub\PYGZus{}I\PYGZus{}\PYGZus{}Z5dgemmccjjjdPKPKdS2\PYGZus{}dPPd}\PYG{p}{:}
+\PYG{p}{.}\PYG{n+nl}{LFB2019}\PYG{p}{:}
+	\PYG{p}{.}\PYG{n}{cfi\PYGZus{}startproc}
+	\PYG{n}{subq}	\PYG{n}{\PYGZdl{}8}\PYG{p}{,} \PYG{o}{\PYGZpc{}}\PYG{n}{rsp}
+	\PYG{p}{.}\PYG{n}{cfi\PYGZus{}def\PYGZus{}cfa\PYGZus{}offset} \PYG{l+m+mi}{16}
+	\PYG{n}{movl}	\PYG{n}{\PYGZdl{}\PYGZus{}ZStL8\PYGZus{}\PYGZus{}ioinit}\PYG{p}{,} \PYG{o}{\PYGZpc{}}\PYG{n}{edi}
+	\PYG{n}{call}	\PYG{n}{\PYGZus{}ZNSt8ios\PYGZus{}base4InitC1Ev}
+	\PYG{n}{movl}	\PYG{n}{\PYGZdl{}\PYGZus{}\PYGZus{}dso\PYGZus{}handle}\PYG{p}{,} \PYG{o}{\PYGZpc{}}\PYG{n}{edx}
+	\PYG{n}{movl}	\PYG{n}{\PYGZdl{}\PYGZus{}ZStL8\PYGZus{}\PYGZus{}ioinit}\PYG{p}{,} \PYG{o}{\PYGZpc{}}\PYG{n}{esi}
+	\PYG{n}{movl}	\PYG{n}{\PYGZdl{}\PYGZus{}ZNSt8ios\PYGZus{}base4InitD1Ev}\PYG{p}{,} \PYG{o}{\PYGZpc{}}\PYG{n}{edi}
+	\PYG{n}{addq}	\PYG{n}{\PYGZdl{}8}\PYG{p}{,} \PYG{o}{\PYGZpc{}}\PYG{n}{rsp}
+	\PYG{p}{.}\PYG{n}{cfi\PYGZus{}def\PYGZus{}cfa\PYGZus{}offset} \PYG{l+m+mi}{8}
+	\PYG{n}{jmp}	\PYG{n}{\PYGZus{}\PYGZus{}cxa\PYGZus{}atexit}
+	\PYG{p}{.}\PYG{n}{cfi\PYGZus{}endproc}
+\PYG{p}{.}\PYG{n+nl}{LFE2019}\PYG{p}{:}
+	\PYG{p}{.}\PYG{n}{size}	\PYG{n}{\PYGZus{}GLOBAL\PYGZus{}\PYGZus{}sub\PYGZus{}I\PYGZus{}\PYGZus{}Z5dgemmccjjjdPKPKdS2\PYGZus{}dPPd}\PYG{p}{,} \PYG{p}{.}\PYG{o}{\PYGZhy{}}\PYG{n}{\PYGZus{}GLOBAL\PYGZus{}\PYGZus{}sub\PYGZus{}I\PYGZus{}\PYGZus{}Z5dgemmccjjjdPKPKdS2\PYGZus{}dPPd}
+	\PYG{p}{.}\PYG{n}{section}	\PYG{p}{.}\PYG{n}{init\PYGZus{}array}\PYG{p}{,}\PYG{l+s}{\PYGZdq{}aw\PYGZdq{}}
+	\PYG{p}{.}\PYG{n}{align} \PYG{l+m+mi}{8}
+	\PYG{p}{.}\PYG{n}{quad}	\PYG{n}{\PYGZus{}GLOBAL\PYGZus{}\PYGZus{}sub\PYGZus{}I\PYGZus{}\PYGZus{}Z5dgemmccjjjdPKPKdS2\PYGZus{}dPPd}
+	\PYG{p}{.}\PYG{n}{local}	\PYG{n}{\PYGZus{}ZStL8\PYGZus{}\PYGZus{}ioinit}
+	\PYG{p}{.}\PYG{n}{comm}	\PYG{n}{\PYGZus{}ZStL8\PYGZus{}\PYGZus{}ioinit}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}
+	\PYG{p}{.}\PYG{n}{hidden}	\PYG{n}{\PYGZus{}\PYGZus{}dso\PYGZus{}handle}
+	\PYG{p}{.}\PYG{n}{ident}	\PYG{l+s}{\PYGZdq{}GCC: (GNU) 8.2.0\PYGZdq{}}
+	\PYG{p}{.}\PYG{n}{section}	\PYG{p}{.}\PYG{n}{note}\PYG{p}{.}\PYG{n}{GNU}\PYG{o}{\PYGZhy{}}\PYG{n}{stack}\PYG{p}{,}\PYG{l+s}{\PYGZdq{}\PYGZdq{}}\PYG{p}{,}\PYG{err}{@}\PYG{n}{progbits}
+\end{Verbatim}

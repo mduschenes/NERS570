@@ -1,0 +1,167 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+	.file	\PYG{l+s+s2}{\PYGZdq{}dgemm.cpp\PYGZdq{}}
+	.text
+	.p2align \PYG{l+m}{4},,15
+	.globl	\PYGZus{}Z5dgemmccjjjdPKPKdS2\PYGZus{}dPPd
+	.type	\PYGZus{}Z5dgemmccjjjdPKPKdS2\PYGZus{}dPPd, @function
+\PYGZus{}Z5dgemmccjjjdPKPKdS2\PYGZus{}dPPd:
+.LFB1538:
+	.cfi\PYGZus{}startproc
+	pushq	\PYGZpc{}rbp
+	.cfi\PYGZus{}def\PYGZus{}cfa\PYGZus{}offset \PYG{l+m}{16}
+	.cfi\PYGZus{}offset \PYG{l+m}{6}, \PYGZhy{}16
+	movq	\PYGZpc{}rsp, \PYGZpc{}rbp
+	.cfi\PYGZus{}def\PYGZus{}cfa\PYGZus{}register \PYG{l+m}{6}
+	pushq	\PYGZpc{}r14
+	movq	\PYG{l+m}{24}\PYG{o}{(}\PYGZpc{}rbp\PYG{o}{)}, \PYGZpc{}r11
+	pushq	\PYGZpc{}r13
+	pushq	\PYGZpc{}r12
+	pushq	\PYGZpc{}rbx
+	.cfi\PYGZus{}offset \PYG{l+m}{14}, \PYGZhy{}24
+	.cfi\PYGZus{}offset \PYG{l+m}{13}, \PYGZhy{}32
+	.cfi\PYGZus{}offset \PYG{l+m}{12}, \PYGZhy{}40
+	.cfi\PYGZus{}offset \PYG{l+m}{3}, \PYGZhy{}48
+	testl	\PYGZpc{}ecx, \PYGZpc{}ecx
+	je	.L27
+	testl	\PYGZpc{}edx, \PYGZpc{}edx
+	je	.L27
+	movl	\PYGZpc{}edx, \PYGZpc{}r12d
+	leal	\PYGZhy{}1\PYG{o}{(}\PYGZpc{}rcx\PYG{o}{)}, \PYGZpc{}eax
+	movl	\PYGZpc{}edx, \PYGZpc{}ebx
+	movq	\PYGZpc{}r11, \PYGZpc{}rdi
+	shrl	\PYG{n+nv}{\PYGZdl{}2}, \PYGZpc{}r12d
+	movq	\PYGZpc{}rax, \PYGZpc{}r10
+	leaq	\PYG{l+m}{8}\PYG{o}{(}\PYGZpc{}r11,\PYGZpc{}rax,8\PYG{o}{)}, \PYGZpc{}r13
+	andl	\PYG{n+nv}{\PYGZdl{}\PYGZhy{}}\PYG{l+m}{4}, \PYGZpc{}ebx
+	leal	\PYGZhy{}1\PYG{o}{(}\PYGZpc{}rdx\PYG{o}{)}, \PYGZpc{}r14d
+	salq	\PYG{n+nv}{\PYGZdl{}5}, \PYGZpc{}r12
+	vbroadcastsd	\PYGZpc{}xmm1, \PYGZpc{}ymm3
+	.p2align \PYG{l+m}{4},,10
+	.p2align \PYG{l+m}{3}
+.L7:
+	movq	\PYG{o}{(}\PYGZpc{}rdi\PYG{o}{)}, \PYGZpc{}rsi
+	cmpl	\PYG{n+nv}{\PYGZdl{}2}, \PYGZpc{}r14d
+	jbe	.L12
+	movq	\PYGZpc{}rsi, \PYGZpc{}rax
+	leaq	\PYG{o}{(}\PYGZpc{}r12,\PYGZpc{}rsi\PYG{o}{)}, \PYGZpc{}rcx
+	.p2align \PYG{l+m}{4},,10
+	.p2align \PYG{l+m}{3}
+.L4:
+	vmovupd	\PYG{o}{(}\PYGZpc{}rax\PYG{o}{)}, \PYGZpc{}xmm5
+	vinsertf128	\PYG{n+nv}{\PYGZdl{}0}x1, \PYG{l+m}{16}\PYG{o}{(}\PYGZpc{}rax\PYG{o}{)}, \PYGZpc{}ymm5, \PYGZpc{}ymm2
+	addq	\PYG{n+nv}{\PYGZdl{}32}, \PYGZpc{}rax
+	vmulpd	\PYGZpc{}ymm3, \PYGZpc{}ymm2, \PYGZpc{}ymm2
+	vmovups	\PYGZpc{}xmm2, \PYGZhy{}32\PYG{o}{(}\PYGZpc{}rax\PYG{o}{)}
+	vextractf128	\PYG{n+nv}{\PYGZdl{}0}x1, \PYGZpc{}ymm2, \PYGZhy{}16\PYG{o}{(}\PYGZpc{}rax\PYG{o}{)}
+	cmpq	\PYGZpc{}rax, \PYGZpc{}rcx
+	jne	.L4
+	movl	\PYGZpc{}ebx, \PYGZpc{}eax
+	cmpl	\PYGZpc{}ebx, \PYGZpc{}edx
+	je	.L5
+.L3:
+	movl	\PYGZpc{}eax, \PYGZpc{}ecx
+	leaq	\PYG{o}{(}\PYGZpc{}rsi,\PYGZpc{}rcx,8\PYG{o}{)}, \PYGZpc{}rcx
+	vmulsd	\PYG{o}{(}\PYGZpc{}rcx\PYG{o}{)}, \PYGZpc{}xmm1, \PYGZpc{}xmm2
+	vmovsd	\PYGZpc{}xmm2, \PYG{o}{(}\PYGZpc{}rcx\PYG{o}{)}
+	leal	\PYG{l+m}{1}\PYG{o}{(}\PYGZpc{}rax\PYG{o}{)}, \PYGZpc{}ecx
+	cmpl	\PYGZpc{}ecx, \PYGZpc{}edx
+	jbe	.L5
+	leaq	\PYG{o}{(}\PYGZpc{}rsi,\PYGZpc{}rcx,8\PYG{o}{)}, \PYGZpc{}rcx
+	addl	\PYG{n+nv}{\PYGZdl{}2}, \PYGZpc{}eax
+	vmulsd	\PYG{o}{(}\PYGZpc{}rcx\PYG{o}{)}, \PYGZpc{}xmm1, \PYGZpc{}xmm2
+	vmovsd	\PYGZpc{}xmm2, \PYG{o}{(}\PYGZpc{}rcx\PYG{o}{)}
+	cmpl	\PYGZpc{}eax, \PYGZpc{}edx
+	jbe	.L5
+	leaq	\PYG{o}{(}\PYGZpc{}rsi,\PYGZpc{}rax,8\PYG{o}{)}, \PYGZpc{}rax
+	vmulsd	\PYG{o}{(}\PYGZpc{}rax\PYG{o}{)}, \PYGZpc{}xmm1, \PYGZpc{}xmm2
+	vmovsd	\PYGZpc{}xmm2, \PYG{o}{(}\PYGZpc{}rax\PYG{o}{)}
+.L5:
+	addq	\PYG{n+nv}{\PYGZdl{}8}, \PYGZpc{}rdi
+	cmpq	\PYGZpc{}r13, \PYGZpc{}rdi
+	jne	.L7
+	testl	\PYGZpc{}r8d, \PYGZpc{}r8d
+	je	.L29
+	movq	\PYG{l+m}{16}\PYG{o}{(}\PYGZpc{}rbp\PYG{o}{)}, \PYGZpc{}r12
+	leal	\PYGZhy{}1\PYG{o}{(}\PYGZpc{}r8\PYG{o}{)}, \PYGZpc{}eax
+	leaq	\PYG{l+m}{8}\PYG{o}{(},\PYGZpc{}r14,8\PYG{o}{)}, \PYGZpc{}rbx
+	xorl	\PYGZpc{}r8d, \PYGZpc{}r8d
+	leaq	\PYG{l+m}{8}\PYG{o}{(}\PYGZpc{}r12,\PYGZpc{}rax,8\PYG{o}{)}, \PYGZpc{}r13
+	.p2align \PYG{l+m}{4},,10
+	.p2align \PYG{l+m}{3}
+.L10:
+	movq	\PYG{o}{(}\PYGZpc{}r12\PYG{o}{)}, \PYGZpc{}r14
+	xorl	\PYGZpc{}esi, \PYGZpc{}esi
+	.p2align \PYG{l+m}{4},,10
+	.p2align \PYG{l+m}{3}
+.L9:
+	leaq	\PYG{o}{(}\PYGZpc{}r14,\PYGZpc{}rsi\PYG{o}{)}, \PYGZpc{}rdi
+	xorl	\PYGZpc{}eax, \PYGZpc{}eax
+	jmp	.L8
+	.p2align \PYG{l+m}{4},,10
+	.p2align \PYG{l+m}{3}
+.L13:
+	movq	\PYGZpc{}rdx, \PYGZpc{}rax
+.L8:
+	movq	\PYG{o}{(}\PYGZpc{}r11,\PYGZpc{}rax,8\PYG{o}{)}, \PYGZpc{}rdx
+	movq	\PYG{o}{(}\PYGZpc{}r9,\PYGZpc{}rax,8\PYG{o}{)}, \PYGZpc{}rcx
+	vmulsd	\PYG{o}{(}\PYGZpc{}rdi\PYG{o}{)}, \PYGZpc{}xmm0, \PYGZpc{}xmm1
+	addq	\PYGZpc{}rsi, \PYGZpc{}rdx
+	vmovsd	\PYG{o}{(}\PYGZpc{}rdx\PYG{o}{)}, \PYGZpc{}xmm4
+	vfmadd132sd	\PYG{o}{(}\PYGZpc{}rcx,\PYGZpc{}r8\PYG{o}{)}, \PYGZpc{}xmm4, \PYGZpc{}xmm1
+	vmovsd	\PYGZpc{}xmm1, \PYG{o}{(}\PYGZpc{}rdx\PYG{o}{)}
+	leaq	\PYG{l+m}{1}\PYG{o}{(}\PYGZpc{}rax\PYG{o}{)}, \PYGZpc{}rdx
+	cmpq	\PYGZpc{}rax, \PYGZpc{}r10
+	jne	.L13
+	addq	\PYG{n+nv}{\PYGZdl{}8}, \PYGZpc{}rsi
+	cmpq	\PYGZpc{}rsi, \PYGZpc{}rbx
+	jne	.L9
+	addq	\PYG{n+nv}{\PYGZdl{}8}, \PYGZpc{}r12
+	addq	\PYG{n+nv}{\PYGZdl{}8}, \PYGZpc{}r8
+	cmpq	\PYGZpc{}r12, \PYGZpc{}r13
+	jne	.L10
+.L29:
+	vzeroupper
+.L27:
+	popq	\PYGZpc{}rbx
+	popq	\PYGZpc{}r12
+	popq	\PYGZpc{}r13
+	popq	\PYGZpc{}r14
+	popq	\PYGZpc{}rbp
+	.cfi\PYGZus{}remember\PYGZus{}state
+	.cfi\PYGZus{}def\PYGZus{}cfa \PYG{l+m}{7}, \PYG{l+m}{8}
+	ret
+.L12:
+	.cfi\PYGZus{}restore\PYGZus{}state
+	xorl	\PYGZpc{}eax, \PYGZpc{}eax
+	jmp	.L3
+	.cfi\PYGZus{}endproc
+.LFE1538:
+	.size	\PYGZus{}Z5dgemmccjjjdPKPKdS2\PYGZus{}dPPd, .\PYGZhy{}\PYGZus{}Z5dgemmccjjjdPKPKdS2\PYGZus{}dPPd
+	.section	.text.startup,\PYG{l+s+s2}{\PYGZdq{}ax\PYGZdq{}},@progbits
+	.p2align \PYG{l+m}{4},,15
+	.type	\PYGZus{}GLOBAL\PYGZus{}\PYGZus{}sub\PYGZus{}I\PYGZus{}\PYGZus{}Z5dgemmccjjjdPKPKdS2\PYGZus{}dPPd, @function
+\PYGZus{}GLOBAL\PYGZus{}\PYGZus{}sub\PYGZus{}I\PYGZus{}\PYGZus{}Z5dgemmccjjjdPKPKdS2\PYGZus{}dPPd:
+.LFB2019:
+	.cfi\PYGZus{}startproc
+	subq	\PYG{n+nv}{\PYGZdl{}8}, \PYGZpc{}rsp
+	.cfi\PYGZus{}def\PYGZus{}cfa\PYGZus{}offset \PYG{l+m}{16}
+	movl	\PYG{n+nv}{\PYGZdl{}\PYGZus{}ZStL8\PYGZus{}\PYGZus{}ioinit}, \PYGZpc{}edi
+	call	\PYGZus{}ZNSt8ios\PYGZus{}base4InitC1Ev
+	movl	\PYG{n+nv}{\PYGZdl{}\PYGZus{}\PYGZus{}dso\PYGZus{}handle}, \PYGZpc{}edx
+	movl	\PYG{n+nv}{\PYGZdl{}\PYGZus{}ZStL8\PYGZus{}\PYGZus{}ioinit}, \PYGZpc{}esi
+	movl	\PYG{n+nv}{\PYGZdl{}\PYGZus{}ZNSt8ios\PYGZus{}base4InitD1Ev}, \PYGZpc{}edi
+	addq	\PYG{n+nv}{\PYGZdl{}8}, \PYGZpc{}rsp
+	.cfi\PYGZus{}def\PYGZus{}cfa\PYGZus{}offset \PYG{l+m}{8}
+	jmp	\PYGZus{}\PYGZus{}cxa\PYGZus{}atexit
+	.cfi\PYGZus{}endproc
+.LFE2019:
+	.size	\PYGZus{}GLOBAL\PYGZus{}\PYGZus{}sub\PYGZus{}I\PYGZus{}\PYGZus{}Z5dgemmccjjjdPKPKdS2\PYGZus{}dPPd, .\PYGZhy{}\PYGZus{}GLOBAL\PYGZus{}\PYGZus{}sub\PYGZus{}I\PYGZus{}\PYGZus{}Z5dgemmccjjjdPKPKdS2\PYGZus{}dPPd
+	.section	.init\PYGZus{}array,\PYG{l+s+s2}{\PYGZdq{}aw\PYGZdq{}}
+	.align \PYG{l+m}{8}
+	.quad	\PYGZus{}GLOBAL\PYGZus{}\PYGZus{}sub\PYGZus{}I\PYGZus{}\PYGZus{}Z5dgemmccjjjdPKPKdS2\PYGZus{}dPPd
+	.local	\PYGZus{}ZStL8\PYGZus{}\PYGZus{}ioinit
+	.comm	\PYGZus{}ZStL8\PYGZus{}\PYGZus{}ioinit,1,1
+	.hidden	\PYGZus{}\PYGZus{}dso\PYGZus{}handle
+	.ident	\PYG{l+s+s2}{\PYGZdq{}GCC: (GNU) 8.2.0\PYGZdq{}}
+	.section	.note.GNU\PYGZhy{}stack,\PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}},@progbits
+\end{Verbatim}

@@ -139,7 +139,7 @@
 
 
 \section{Membench}
-The \textit{membench} programs are run to obtain the following plots in \cref{fig:membench} to \cref{fig:membench_middle} for the effect of array length and stride length on type of memory access, and time to access. \\ 
+The \textit{membench} programs are run to obtain the following plots, from \cref{code:membench}, in \cref{fig:membench} to \cref{fig:membench_middle} for the effect of array length and stride length on type of memory access, and time to access. \\ 
 
 In this plot, the solid vertical lines indicate the estimated memory sizes, and dashed vertical lines indicate the true memory sizes, with black lines indicating the cache line sizes, and blue lines indicating the total cache sizes. The green solid horizontal lines indicate the approximate cache access times. \\
 
@@ -151,7 +151,7 @@ So for larger arrays, the number of iterations through the array is obviously gr
 
 The access times will be measured where there are significant plateaus in the access times, and the \textit{maximum} of these plateaus will be used as an estimate for the access times. The reason there are not sharp increases between plateaus is that as the stride increases, there are less cache hits and more misses as the indexing goes beyond the cache line size, however there are also less indexing calls with greater stride. So the increase up to the next plateau, which corresponds to the memory access time of the next greater memory level, is gradual, as there is a mix of hits in different memory levels. \\
 
-The following script \textit{calc.sh} in the appendix was used to get the cpu and memory statistics in \cref{code:cpuinfo}. The average processor core speed for the $36$ processors on GreatLakes to be 3000 MHz, and the cache line sizes appear to be constant at 64 Bytes. The cpu core speed will be used to calculate the number of processor clock cycles required to access the various types of memory, 
+The following script \textit{calc.sh} in the \cref{code:calc} in the appendix was used to get the cpu and memory statistics in \cref{code:cpuinfo}. The average processor core speed for the $36$ processors on GreatLakes to be 3000 MHz, and the cache line sizes appear to be constant at 64 Bytes. The cpu core speed will be used to calculate the number of processor clock cycles required to access the various types of memory, 
 $$\textrm{\# cycles per memory access} = \textrm{clock speed}~\times~\textrm{memory access time}.$$
 
 \code{text}{figures/cpuinfo.txt}{CPU and Memory values.}{cpuinfo}
@@ -280,14 +280,20 @@ $$ T_{\textrm{mem}} \geq 13.69 \textrm{ns} = 42~\textrm{cycles}.$$
 
 \subsection{dgemm Assembly Instructions}
 The command to get the assembly instructions is as follows, where the function for the naive \textit{dgemm.cpp} in \cref{code:dgemm} in the appendix is translated into assembly code, with the avx2 and fast optimizations using the commands for gnu and intel compilers:
-$$\textrm{g++ -S -Ofast -mavx2 -mafm dgemm.cpp} $$ \\
+$$\textrm{g++ -S -Ofast -mavx2 -mfma dgemm.cpp} $$ \\
 $$\textrm{icc -S -Ofast -march=core-avx2 dgemm.cpp} $$ \\
 
 
-This command (with the gnu compiler) produces the following assembly code in \cref{code:asb}. Here it can be seen in lines 
+This command (with the gnu compiler) produces the following assembly code in \cref{code:asb}. Here it can be seen in lines 81-120, there is the assembly code for the three loops (add, \textit{add},compute, \textit{cmp}, jump, \text{jne}, as well as the vectorized multiply \textit{vmulsd}, add \textit{add}, and vectorized move \textit{vmovsd}. The specific SIMD fused multiply-add commands are \textit{vfmadd132sd}. \\
+
+The assembly instructions are known to contain AVX2 instructions because they are writing to the AVX specific register keywords \textit{ymm}, and AVX2 is confirmed, because fused-multiply-add commands (such as \textit{vfmadd132sd}) are in the assembly instructions.\\
+
+Considering the correct compiler options and hardware compatibility for AVX2 instructions has appeared to be verified, no modifications of the original matrix-matrix multiplication source code were necessary. The mydgemm, compiled with the above avx2 and 
+
+
 \begin{longlisting}
     \caption{Matrix-matrix multiplication loop assembly code}
-    \inputminted[linenos,firstline=3,lastline=5]{#1}{#2}
+    \inputminted[linenos,firstline=81,lastline=120]{bash}{figures/dgemm.s}
     \label{code:asb_}
 \end{longlisting}
 
@@ -299,6 +305,7 @@ This command (with the gnu compiler) produces the following assembly code in \cr
 
 
 \newpage
+\section{Appendix}
 \appendix
 \begin{appendix}
 \code{python}{figures/membench.py}{membench plotting script.}{membench}
