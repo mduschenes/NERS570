@@ -4,204 +4,156 @@
 	.globl	_Z5dgemmccjjjdPKPKdS2_dPPd
 	.type	_Z5dgemmccjjjdPKPKdS2_dPPd, @function
 _Z5dgemmccjjjdPKPKdS2_dPPd:
-.LFB1564:
+.LFB1538:
 	.cfi_startproc
-	leaq	8(%rsp), %r10
-	.cfi_def_cfa 10, 0
-	andq	$-32, %rsp
-	testl	%ecx, %ecx
-	pushq	-8(%r10)
 	pushq	%rbp
-	.cfi_escape 0x10,0x6,0x2,0x76,0
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
 	movq	%rsp, %rbp
-	pushq	%r15
+	.cfi_def_cfa_register 6
 	pushq	%r14
+	movq	24(%rbp), %r11
 	pushq	%r13
 	pushq	%r12
-	pushq	%r10
-	.cfi_escape 0xf,0x3,0x76,0x58,0x6
-	.cfi_escape 0x10,0xf,0x2,0x76,0x78
-	.cfi_escape 0x10,0xe,0x2,0x76,0x70
-	.cfi_escape 0x10,0xd,0x2,0x76,0x68
-	.cfi_escape 0x10,0xc,0x2,0x76,0x60
 	pushq	%rbx
-	.cfi_escape 0x10,0x3,0x2,0x76,0x50
-	movl	%r8d, -52(%rbp)
-	movq	(%r10), %r14
-	movq	8(%r10), %rax
-	je	.L35
-	testl	%edx, %edx
-	je	.L35
-	subl	$1, %ecx
-	leal	-1(%rdx), %r13d
-	vbroadcastsd	%xmm1, %ymm3
-	leaq	8(%rax,%rcx,8), %r15
-	movq	%rax, %rbx
-	movl	%ecx, -56(%rbp)
-	.p2align 4,,10
-	.p2align 3
-.L9:
-	movq	(%rbx), %r10
-	xorl	%r8d, %r8d
-	movq	%r10, %rcx
-	shrq	$3, %rcx
-	negq	%rcx
-	andl	$3, %ecx
-	leal	3(%rcx), %esi
-	cmpl	%r13d, %esi
-	ja	.L3
+	.cfi_offset 14, -24
+	.cfi_offset 13, -32
+	.cfi_offset 12, -40
+	.cfi_offset 3, -48
 	testl	%ecx, %ecx
-	je	.L4
-	vmulsd	(%r10), %xmm1, %xmm2
-	cmpl	$1, %ecx
-	movl	$1, %r8d
-	vmovsd	%xmm2, (%r10)
-	je	.L4
-	vmulsd	8(%r10), %xmm1, %xmm2
-	cmpl	$2, %ecx
-	movl	$2, %r8d
-	vmovsd	%xmm2, 8(%r10)
-	je	.L4
-	vmulsd	16(%r10), %xmm1, %xmm2
-	movl	$3, %r8d
-	vmovsd	%xmm2, 16(%r10)
-.L4:
-	movl	%edx, %r12d
-	leaq	(%r10,%rcx,8), %rdi
-	xorl	%esi, %esi
-	subl	%ecx, %r12d
-	xorl	%ecx, %ecx
-	movl	%r12d, %r11d
-	shrl	$2, %r11d
-	.p2align 4,,10
-	.p2align 3
-.L6:
-	vmulpd	(%rdi,%rcx), %ymm3, %ymm2
-	addl	$1, %esi
-	vmovapd	%ymm2, (%rdi,%rcx)
-	addq	$32, %rcx
-	cmpl	%esi, %r11d
-	ja	.L6
-	movl	%r12d, %ecx
-	andl	$-4, %ecx
-	addl	%ecx, %r8d
-	cmpl	%r12d, %ecx
-	je	.L7
-.L3:
-	movl	%r8d, %ecx
-	leaq	(%r10,%rcx,8), %rcx
-	vmulsd	(%rcx), %xmm1, %xmm2
-	vmovsd	%xmm2, (%rcx)
-	leal	1(%r8), %ecx
-	cmpl	%ecx, %edx
-	jbe	.L7
-	leaq	(%r10,%rcx,8), %rcx
-	vmulsd	(%rcx), %xmm1, %xmm2
-	vmovsd	%xmm2, (%rcx)
-	leal	2(%r8), %ecx
-	cmpl	%edx, %ecx
-	jnb	.L7
-	leaq	(%r10,%rcx,8), %rcx
-	vmulsd	(%rcx), %xmm1, %xmm2
-	vmovsd	%xmm2, (%rcx)
-	leal	3(%r8), %ecx
-	cmpl	%ecx, %edx
-	jbe	.L7
-	leaq	(%r10,%rcx,8), %rcx
-	vmulsd	(%rcx), %xmm1, %xmm2
-	vmovsd	%xmm2, (%rcx)
-	leal	4(%r8), %ecx
-	cmpl	%ecx, %edx
-	jbe	.L7
-	leaq	(%r10,%rcx,8), %rcx
-	addl	$5, %r8d
-	cmpl	%r8d, %edx
-	vmulsd	(%rcx), %xmm1, %xmm2
-	vmovsd	%xmm2, (%rcx)
-	jbe	.L7
-	leaq	(%r10,%r8,8), %rcx
-	vmulsd	(%rcx), %xmm1, %xmm2
-	vmovsd	%xmm2, (%rcx)
-.L7:
-	addq	$8, %rbx
-	cmpq	%r15, %rbx
-	jne	.L9
-	movl	-52(%rbp), %edx
+	je	.L27
 	testl	%edx, %edx
-	je	.L37
-	movl	-52(%rbp), %ebx
-	leaq	8(,%r13,8), %r13
-	movq	%r14, %r15
-	leal	-1(%rbx), %edx
-	leaq	8(%r14,%rdx,8), %r12
-	movl	-56(%rbp), %edx
-	leaq	8(,%rdx,8), %r11
+	je	.L27
+	movl	%edx, %r12d
+	leal	-1(%rcx), %eax
+	movl	%edx, %ebx
+	movq	%r11, %rdi
+	shrl	$2, %r12d
+	movq	%rax, %r10
+	leaq	8(%r11,%rax,8), %r13
+	andl	$-4, %ebx
+	leal	-1(%rdx), %r14d
+	salq	$5, %r12
+	vbroadcastsd	%xmm1, %ymm3
 	.p2align 4,,10
 	.p2align 3
-.L12:
-	movq	(%r15), %rbx
-	movq	%r15, %r10
-	xorl	%edi, %edi
-	subq	%r14, %r10
+.L7:
+	movq	(%rdi), %rsi
+	cmpl	$2, %r14d
+	jbe	.L12
+	movq	%rsi, %rax
+	leaq	(%r12,%rsi), %rcx
 	.p2align 4,,10
 	.p2align 3
-.L11:
-	leaq	(%rbx,%rdi), %r8
-	xorl	%edx, %edx
+.L4:
+	vmovupd	(%rax), %xmm5
+	vinsertf128	$0x1, 16(%rax), %ymm5, %ymm2
+	addq	$32, %rax
+	vmulpd	%ymm3, %ymm2, %ymm2
+	vmovups	%xmm2, -32(%rax)
+	vextractf128	$0x1, %ymm2, -16(%rax)
+	cmpq	%rax, %rcx
+	jne	.L4
+	movl	%ebx, %eax
+	cmpl	%ebx, %edx
+	je	.L5
+.L3:
+	movl	%eax, %ecx
+	leaq	(%rsi,%rcx,8), %rcx
+	vmulsd	(%rcx), %xmm1, %xmm2
+	vmovsd	%xmm2, (%rcx)
+	leal	1(%rax), %ecx
+	cmpl	%ecx, %edx
+	jbe	.L5
+	leaq	(%rsi,%rcx,8), %rcx
+	addl	$2, %eax
+	vmulsd	(%rcx), %xmm1, %xmm2
+	vmovsd	%xmm2, (%rcx)
+	cmpl	%eax, %edx
+	jbe	.L5
+	leaq	(%rsi,%rax,8), %rax
+	vmulsd	(%rax), %xmm1, %xmm2
+	vmovsd	%xmm2, (%rax)
+.L5:
+	addq	$8, %rdi
+	cmpq	%r13, %rdi
+	jne	.L7
+	testl	%r8d, %r8d
+	je	.L29
+	movq	16(%rbp), %r12
+	leal	-1(%r8), %eax
+	leaq	8(,%r14,8), %rbx
+	xorl	%r8d, %r8d
+	leaq	8(%r12,%rax,8), %r13
 	.p2align 4,,10
 	.p2align 3
 .L10:
-	vmulsd	(%r8), %xmm0, %xmm1
-	movq	(%r9,%rdx), %rsi
-	movq	(%rax,%rdx), %rcx
-	addq	$8, %rdx
-	addq	%rdi, %rcx
-	cmpq	%rdx, %r11
-	vmulsd	(%rsi,%r10), %xmm1, %xmm1
-	vaddsd	(%rcx), %xmm1, %xmm1
-	vmovsd	%xmm1, (%rcx)
+	movq	(%r12), %r14
+	xorl	%esi, %esi
+	.p2align 4,,10
+	.p2align 3
+.L9:
+	leaq	(%r14,%rsi), %rdi
+	xorl	%eax, %eax
+	jmp	.L8
+	.p2align 4,,10
+	.p2align 3
+.L13:
+	movq	%rdx, %rax
+.L8:
+	movq	(%r11,%rax,8), %rdx
+	movq	(%r9,%rax,8), %rcx
+	vmulsd	(%rdi), %xmm0, %xmm1
+	addq	%rsi, %rdx
+	vmovsd	(%rdx), %xmm4
+	vfmadd132sd	(%rcx,%r8), %xmm4, %xmm1
+	vmovsd	%xmm1, (%rdx)
+	leaq	1(%rax), %rdx
+	cmpq	%rax, %r10
+	jne	.L13
+	addq	$8, %rsi
+	cmpq	%rsi, %rbx
+	jne	.L9
+	addq	$8, %r12
+	addq	$8, %r8
+	cmpq	%r12, %r13
 	jne	.L10
-	addq	$8, %rdi
-	cmpq	%r13, %rdi
-	jne	.L11
-	addq	$8, %r15
-	cmpq	%r12, %r15
-	jne	.L12
-.L37:
+.L29:
 	vzeroupper
-.L35:
+.L27:
 	popq	%rbx
-	popq	%r10
-	.cfi_def_cfa 10, 0
 	popq	%r12
 	popq	%r13
 	popq	%r14
-	popq	%r15
 	popq	%rbp
-	leaq	-8(%r10), %rsp
+	.cfi_remember_state
 	.cfi_def_cfa 7, 8
 	ret
+.L12:
+	.cfi_restore_state
+	xorl	%eax, %eax
+	jmp	.L3
 	.cfi_endproc
-.LFE1564:
+.LFE1538:
 	.size	_Z5dgemmccjjjdPKPKdS2_dPPd, .-_Z5dgemmccjjjdPKPKdS2_dPPd
 	.section	.text.startup,"ax",@progbits
 	.p2align 4,,15
 	.type	_GLOBAL__sub_I__Z5dgemmccjjjdPKPKdS2_dPPd, @function
 _GLOBAL__sub_I__Z5dgemmccjjjdPKPKdS2_dPPd:
-.LFB2045:
+.LFB2019:
 	.cfi_startproc
-	leaq	_ZStL8__ioinit(%rip), %rdi
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
-	call	_ZNSt8ios_base4InitC1Ev@PLT
-	movq	_ZNSt8ios_base4InitD1Ev@GOTPCREL(%rip), %rdi
-	leaq	__dso_handle(%rip), %rdx
-	leaq	_ZStL8__ioinit(%rip), %rsi
+	movl	$_ZStL8__ioinit, %edi
+	call	_ZNSt8ios_base4InitC1Ev
+	movl	$__dso_handle, %edx
+	movl	$_ZStL8__ioinit, %esi
+	movl	$_ZNSt8ios_base4InitD1Ev, %edi
 	addq	$8, %rsp
 	.cfi_def_cfa_offset 8
-	jmp	__cxa_atexit@PLT
+	jmp	__cxa_atexit
 	.cfi_endproc
-.LFE2045:
+.LFE2019:
 	.size	_GLOBAL__sub_I__Z5dgemmccjjjdPKPKdS2_dPPd, .-_GLOBAL__sub_I__Z5dgemmccjjjdPKPKdS2_dPPd
 	.section	.init_array,"aw"
 	.align 8
@@ -209,5 +161,5 @@ _GLOBAL__sub_I__Z5dgemmccjjjdPKPKdS2_dPPd:
 	.local	_ZStL8__ioinit
 	.comm	_ZStL8__ioinit,1,1
 	.hidden	__dso_handle
-	.ident	"GCC: (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0"
+	.ident	"GCC: (GNU) 8.2.0"
 	.section	.note.GNU-stack,"",@progbits
