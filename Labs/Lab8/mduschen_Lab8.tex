@@ -248,6 +248,7 @@ $$ T_{\textrm{mem}} \geq 13.69 \textrm{ns} = 42~\textrm{cycles}.$$
 \end{figure}
 
 
+\newpage
 \section{SIMD Instructions}
 
 \subsection{AVX Support}
@@ -288,7 +289,7 @@ This command (with the gnu compiler) produces the following assembly code in \cr
 
 The assembly instructions are known to contain AVX2 instructions because they are writing to the AVX specific register keywords \textit{ymm}, and AVX2 is confirmed, because fused-multiply-add commands (such as \textit{vfmadd132sd}) are in the assembly instructions.\\
 
-Considering the correct compiler options and hardware compatibility for AVX2 instructions has appeared to be verified, no modifications of the original matrix-matrix multiplication source code were necessary. The mydgemm, compiled with the above avx2 and 
+Considering the correct compiler options and hardware compatibility for AVX2 instructions has appeared to be verified, no modifications of the original matrix-matrix multiplication source code were necessary. The mydgemm, compiled with the above avx2 and fma options, as well as the fast optimizations, does not appear on GreatLakes to run faster, at least for matrix sizes up to 2000.
 
 
 \begin{longlisting}
@@ -299,6 +300,19 @@ Considering the correct compiler options and hardware compatibility for AVX2 ins
 
 
 \code{cpp}{figures/dgemm.s}{Matrix-Matrix multiply assembly with avx2 and fast optimization}{asb}
+
+
+
+
+
+
+\newpage
+\section{In-line Assembly}
+With help from the internet, the following matrix-vector multiplication in-line assembly,as well as conventional c code, is shown in \cref{code:matvec}
+\code{c}{figures/matvec.c}{Matrix-Matrix multiply}{dgemm}
+
+
+
 
 
 
