@@ -1,0 +1,27 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+ch}{\PYGZsh{}!/bin/bash}
+
+\PYG{n+nv}{prog}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}/proc/cpuinfo\PYGZdq{}}
+\PYG{n+nv}{field}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}cpu MHz\PYGZdq{}}
+\PYG{n+nv}{pattern}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}s\PYGZpc{}.*: \PYGZbs{}([\PYGZca{} ]*\PYGZbs{}).*}\PYGZdl{}\PYG{l+s+s2}{\PYGZpc{}\PYGZbs{}1\PYGZpc{}\PYGZdq{}} 
+\PYG{n+nv}{trials}\PYG{o}{=}\PYG{l+m}{5000}
+
+\PYG{n+nv}{file}\PYG{o}{=}tmp1234.tmp
+rm \PYGZhy{}f \PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{file}\PYG{l+s+si}{\PYGZcb{}}
+
+
+\PYG{k}{for} i in \PYG{k}{\PYGZdl{}(}seq \PYG{l+m}{1} \PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{trials}\PYG{l+s+si}{\PYGZcb{}}\PYG{k}{)}
+\PYG{k}{do}
+	\PYG{c+c1}{\PYGZsh{}echo Trial: \PYGZdl{}i}
+	grep \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{field}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}} \PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{prog}\PYG{l+s+si}{\PYGZcb{}} \PYG{p}{|} sed \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{pattern}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}} \PYGZgt{}\PYGZgt{} \PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{file}\PYG{l+s+si}{\PYGZcb{}}
+	sleep \PYG{l+m}{0}.00000001
+\PYG{k}{done}
+
+\PYG{n+nv}{N}\PYG{o}{=}\PYG{k}{\PYGZdl{}(}wc \PYGZhy{}l \PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{file}\PYG{l+s+si}{\PYGZcb{}} \PYG{p}{|} sed \PYG{l+s+s2}{\PYGZdq{}s:\PYGZbs{}([\PYGZca{} ]*\PYGZbs{}).*:\PYGZbs{}1:\PYGZdq{}}\PYG{k}{)}
+\PYG{n+nv}{avg}\PYG{o}{=}\PYG{k}{\PYGZdl{}(}paste \PYGZhy{}sd+ \PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{file}\PYG{l+s+si}{\PYGZcb{}} \PYG{p}{|} bc\PYG{k}{)}
+\PYG{n+nv}{avg}\PYG{o}{=}\PYG{k}{\PYGZdl{}(}\PYG{n+nb}{echo} \PYG{l+s+s2}{\PYGZdq{}scale=3 ; }\PYG{n+nv}{\PYGZdl{}avg}\PYG{l+s+s2}{ / }\PYG{n+nv}{\PYGZdl{}N}\PYG{l+s+s2}{\PYGZdq{}} \PYG{p}{|} bc\PYG{k}{)}
+
+\PYG{n+nb}{echo} Avg\PYG{l+s+se}{\PYGZbs{}(}\PYG{n+nv}{N}\PYG{o}{=}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{N}\PYG{l+s+si}{\PYGZcb{}},Trials\PYG{o}{=}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{trials}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+se}{\PYGZbs{})}  :  \PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{avg}\PYG{l+s+si}{\PYGZcb{}}
+
+rm \PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{file}\PYG{l+s+si}{\PYGZcb{}}
+\end{Verbatim}

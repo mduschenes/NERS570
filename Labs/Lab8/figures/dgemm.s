@@ -151,14 +151,14 @@ _Z5dgemmccjjjdPKPKdS2_dPPd:
 	.p2align 4,,10
 	.p2align 3
 .L10:
-	movq	(%rax,%rdx), %rcx
 	vmulsd	(%r8), %xmm0, %xmm1
 	movq	(%r9,%rdx), %rsi
+	movq	(%rax,%rdx), %rcx
 	addq	$8, %rdx
 	addq	%rdi, %rcx
 	cmpq	%rdx, %r11
-	vmovsd	(%rcx), %xmm4
-	vfmadd132sd	(%rsi,%r10), %xmm4, %xmm1
+	vmulsd	(%rsi,%r10), %xmm1, %xmm1
+	vaddsd	(%rcx), %xmm1, %xmm1
 	vmovsd	%xmm1, (%rcx)
 	jne	.L10
 	addq	$8, %rdi

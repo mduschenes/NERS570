@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.10.6)  15 NOV 2020 03:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.10.6)  18 NOV 2020 05:04
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -148,6 +148,9 @@ LaTeX Info: Redefining \today on input line 736.
 )
 (/usr/local/texlive/2020/texmf-dist/tex/generic/nth/nth.sty
 Package: nth 2002/02/27
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2020/08/10 v2.0s Standard LaTeX package
 )
 (/usr/local/texlive/2020/texmf-dist/tex/latex/setspace/setspace.sty
 Package: setspace 2011/12/19 v6.7a set line spacing
@@ -535,7 +538,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip80
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 89.
+Package hyperref Info: Option `colorlinks' set `true' on input line 90.
  (/usr/local/texlive/2020/texmf-dist/tex/latex/cleveref/cleveref.sty
 Package: cleveref 2018/03/27 v0.21.4 Intelligent cross-referencing
 Package cleveref Info: `hyperref' support loaded on input line 2370.
@@ -572,7 +575,10 @@ Package: fancyvrb 2020/05/03 v3.6 verbatim text (tvz,hv)
 (/usr/local/texlive/2020/texmf-dist/tex/latex/upquote/upquote.sty
 Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
 tim
-)
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/base/textcomp.sty
+Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
+))
 (/usr/local/texlive/2020/texmf-dist/tex/latex/lineno/lineno.sty
 Package: lineno 2005/11/02 line numbers on paragraphs v4.41
 \linenopenalty=\count327
@@ -679,22 +685,22 @@ runsystem(rm mduschen_Lab8.aex)...executed.
 (./mduschen_Lab8.aux)
 \openout1 = `mduschen_Lab8.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 129.
-LaTeX Font Info:    ... okay on input line 129.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 129.
-LaTeX Font Info:    ... okay on input line 129.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 129.
-LaTeX Font Info:    ... okay on input line 129.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 129.
-LaTeX Font Info:    ... okay on input line 129.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 129.
-LaTeX Font Info:    ... okay on input line 129.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 129.
-LaTeX Font Info:    ... okay on input line 129.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 129.
-LaTeX Font Info:    ... okay on input line 129.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 129.
-LaTeX Font Info:    ... okay on input line 129.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -760,7 +766,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Package hyperref Info: Link coloring ON on input line 129.
+Package hyperref Info: Link coloring ON on input line 130.
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
@@ -774,57 +780,215 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count359
 )
-LaTeX Info: Redefining \ref on input line 129.
-LaTeX Info: Redefining \pageref on input line 129.
-LaTeX Info: Redefining \nameref on input line 129.
+LaTeX Info: Redefining \ref on input line 130.
+LaTeX Info: Redefining \pageref on input line 130.
+LaTeX Info: Redefining \nameref on input line 130.
  (./mduschen_Lab8.out) (./mduschen_Lab8.out)
 \@outlinefile=\write5
 \openout5 = `mduschen_Lab8.out'.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 141
-.
 
+
+LaTeX Warning: Reference `fig:membench' on page 1 undefined on input line 142.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 142--143
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 144--145
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 146--147
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 148--149
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 150--151
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 152--153
+
+ []
+
+LaTeX Font Info:    Trying to load font information for U+msa on input line 154
+.
 (/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 141
+LaTeX Font Info:    Trying to load font information for U+msb on input line 154
 .
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<figures/membench.pdf, id=17, 462.52798pt x 346.89601pt>
-File: figures/membench.pdf Graphic file (type pdf)
-<use figures/membench.pdf>
-Package pdftex.def Info: figures/membench.pdf  used on input line 152.
-(pdftex.def)             Requested size: 506.17451pt x 379.64948pt.
- [1
+Package hyperref Info: bookmark level for unknown listing defaults to 0 on inpu
+t line 157.
 
-{/usr/local/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./figur
-es/membench.pdf>] [2] (./mduschen_Lab8.aux)
+(./_minted-mduschen_Lab8/default-pyg-prefix.pygstyle)
+(./_minted-mduschen_Lab8/default.pygstyle)
+(./_minted-mduschen_Lab8/6F208774B5FAC8B6AAE0C8E01929E88BE25F27898765B81F2DB104
+B8478543C3.pygtex
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 1
+.
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/base/t1cmtt.fd
+File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+) [1
+
+{/usr/local/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}])
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 162.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `subscript' on input line 162.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 162.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 176.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `subscript' on input line 176.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 176.
+
+[2]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 189.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `subscript' on input line 189.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 189.
+
+<figures/membench_all.pdf, id=74, 462.52798pt x 346.89601pt>
+File: figures/membench_all.pdf Graphic file (type pdf)
+<use figures/membench_all.pdf>
+Package pdftex.def Info: figures/membench_all.pdf  used on input line 212.
+(pdftex.def)             Requested size: 506.17451pt x 379.64948pt.
+[3]
+<figures/membench_lowerleft.pdf, id=81, 462.52798pt x 346.89601pt>
+File: figures/membench_lowerleft.pdf Graphic file (type pdf)
+<use figures/membench_lowerleft.pdf>
+Package pdftex.def Info: figures/membench_lowerleft.pdf  used on input line 222
+.
+(pdftex.def)             Requested size: 506.17451pt x 379.64948pt.
+ [4 <./figures/membench_all.pdf>]
+<figures/membench_middle.pdf, id=141, 462.52798pt x 346.89601pt>
+File: figures/membench_middle.pdf Graphic file (type pdf)
+<use figures/membench_middle.pdf>
+Package pdftex.def Info: figures/membench_middle.pdf  used on input line 233.
+(pdftex.def)             Requested size: 506.17451pt x 379.64948pt.
+ [5 <./figures/membench_lowerleft.pdf>]
+<figures/membench_middleupper.pdf, id=186, 462.52798pt x 346.89601pt>
+File: figures/membench_middleupper.pdf Graphic file (type pdf)
+<use figures/membench_middleupper.pdf>
+Package pdftex.def Info: figures/membench_middleupper.pdf  used on input line 2
+44.
+(pdftex.def)             Requested size: 506.17451pt x 379.64948pt.
+
+[6 <./figures/membench_middle.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 263--267
+
+ []
+
+[7 <./figures/membench_middleupper.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 269--279
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 283--284
+
+ []
+
+
+(./_minted-mduschen_Lab8/1CB84E34A007740A54C20DE201D1BB508090832AE9E1E8D3AC750D
+C9BF3F743E.pygtex [8] [9] [10] [11]) [12]
+(./_minted-mduschen_Lab8/137AFE481950BFFB52FF583E67CB961920B14FDB8A42087B9871D3
+9E4797C4F1.pygtex
+LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10> not available
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 3.
+LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 
+7.
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/base/ts1cmtt.fd
+File: ts1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
+Overfull \hbox (50.97914pt too wide) in paragraph at lines 10--10
+\T1/cmtt/m/it/10 https://stackoverflow.com/questions/1094841/reusable-library-t
+o-get-human-readable-version-of-file-size[]|  
+ []
+
+[13] [14] [15] [16] [17] [18]) [19]
+(./_minted-mduschen_Lab8/C37DECC44F9A8CF8841827B4FADEDD83A5019C9F2A65E3BD3F3E70
+52932AB968.pygtex) [20]
+(./_minted-mduschen_Lab8/FBF2BE4804C9C49214C843ECEEE026D0C29B63D6CA669F78AB4BBC
+672D5AD47E.pygtex) [21]
+(./_minted-mduschen_Lab8/56E92438FA6C196B02C7D9BEE0595BDC4EFB0EB9EA2FADBF2CC0D0
+1ACDBD78A0.pygtex) [22] (./mduschen_Lab8.aux)
 Package rerunfilecheck Info: File `mduschen_Lab8.out' has not changed.
-(rerunfilecheck)             Checksum: 7EC1A37A661F0DBE03B53B2269F6444D;155.
+(rerunfilecheck)             Checksum: 253D4C0EE8AE0D21F4F19F4711FB09A9;555.
+
+
+LaTeX Warning: There were undefined references.
+
  ) 
 Here is how much of TeX's memory you used:
- 15290 strings out of 479916
- 260300 string characters out of 5882695
- 634266 words of memory out of 5000000
- 31608 multiletter control sequences out of 15000+600000
- 538678 words of font info for 43 fonts, out of 8000000 for 9000
+ 15894 strings out of 479916
+ 270990 string characters out of 5882695
+ 676388 words of memory out of 5000000
+ 32112 multiletter control sequences out of 15000+600000
+ 551910 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 72i,11n,111p,1014b,437s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 72i,12n,111p,1570b,820s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
-}</usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
-</usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
-/usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></u
-sr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr
-/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/
-local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/l
-ocal/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on mduschen_Lab8.pdf (2 pages, 99307 bytes).
+}{/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}<
+/usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></
+usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></u
+sr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr
+/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/l
+ocal/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/loca
+l/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/t
+exlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/te
+xlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texl
+ive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texli
+ve/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive
+/2020/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/local/texlive/2
+020/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/202
+0/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2020/
+texmf-dist/fonts/type1/public/cm-super/sfit1000.pfb></usr/local/texlive/2020/te
+xmf-dist/fonts/type1/public/cm-super/sfrm0500.pfb></usr/local/texlive/2020/texm
+f-dist/fonts/type1/public/cm-super/sfrm0700.pfb></usr/local/texlive/2020/texmf-
+dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2020/texmf-di
+st/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2020/texmf-dist
+/fonts/type1/public/cm-super/sfti1000.pfb></usr/local/texlive/2020/texmf-dist/f
+onts/type1/public/cm-super/sftt1000.pfb>
+Output written on mduschen_Lab8.pdf (22 pages, 522085 bytes).
 PDF statistics:
- 117 PDF objects out of 1000 (max. 8388607)
- 57 compressed objects within 1 object stream
- 7 named destinations out of 1000 (max. 500000)
- 30 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 416 PDF objects out of 1000 (max. 8388607)
+ 297 compressed objects within 3 object streams
+ 42 named destinations out of 1000 (max. 500000)
+ 93 words of extra memory for PDF output out of 10000 (max. 10000000)
 

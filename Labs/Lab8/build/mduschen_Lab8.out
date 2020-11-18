@@ -1,3 +1,9 @@
 \BOOKMARK [1][-]{section.1}{Membench}{}% 1
-\BOOKMARK [1][-]{section.2}{SIMD Instructions}{}% 2
-\BOOKMARK [2][-]{subsection.2.1}{AVX Support}{section.2}% 3
+\BOOKMARK [2][-]{subsection.1.1}{Processor Values}{section.1}% 2
+\BOOKMARK [2][-]{subsection.1.2}{L1 Cache Values}{section.1}% 3
+\BOOKMARK [2][-]{subsection.1.3}{L2 Cache Values}{section.1}% 4
+\BOOKMARK [2][-]{subsection.1.4}{L3 Cache Values}{section.1}% 5
+\BOOKMARK [2][-]{subsection.1.5}{Main Memory Values}{section.1}% 6
+\BOOKMARK [1][-]{section.2}{SIMD Instructions}{}% 7
+\BOOKMARK [2][-]{subsection.2.1}{AVX Support}{section.2}% 8
+\BOOKMARK [2][-]{subsection.2.2}{dgemm Assembly Instructions}{section.2}% 9

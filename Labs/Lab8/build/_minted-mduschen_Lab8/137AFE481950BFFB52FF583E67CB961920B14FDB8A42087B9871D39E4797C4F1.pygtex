@@ -1,0 +1,242 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+ch}{\PYGZsh{}!/usr/bin/env python}
+\PYG{k+kn}{import} \PYG{n+nn}{matplotlib}
+\PYG{k+kn}{import} \PYG{n+nn}{matplotlib.pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
+\PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
+
+\PYG{n}{matplotlib}\PYG{o}{.}\PYG{n}{rcParams}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}text.usetex\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{k+kc}{True}
+\PYG{c+c1}{\PYGZsh{} matplotlib.rcParams[\PYGZsq{}text.latex.preamble\PYGZsq{}] = [r\PYGZsq{}\PYGZbs{}usepackage\PYGZob{}ragged2e\PYGZsq{}]}
+
+\PYG{c+c1}{\PYGZsh{} Routine modified from: https://stackoverflow.com/questions/1094841/reusable\PYGZhy{}library\PYGZhy{}to\PYGZhy{}get\PYGZhy{}human\PYGZhy{}readable\PYGZhy{}version\PYGZhy{}of\PYGZhy{}file\PYGZhy{}size}
+\PYG{k}{def} \PYG{n+nf}{sizeof\PYGZus{}fmt}\PYG{p}{(}\PYG{n}{num}\PYG{p}{,} \PYG{n}{suffix}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}B\PYGZsq{}}\PYG{p}{):}
+    \PYG{k}{for} \PYG{n}{unit} \PYG{o+ow}{in} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}K\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}M\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}G\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}T\PYGZsq{}}\PYG{p}{]:}
+        \PYG{k}{if} \PYG{n+nb}{abs}\PYG{p}{(}\PYG{n}{num}\PYG{p}{)} \PYG{o}{\PYGZlt{}} \PYG{l+m+mf}{1024.0}\PYG{p}{:}
+            \PYG{k}{return} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZpc{}3.0f\PYGZpc{}s\PYGZpc{}s}\PYG{l+s+s1}{\PYGZsq{}} \PYG{o}{\PYGZpc{}} \PYG{p}{(}\PYG{n}{num}\PYG{p}{,} \PYG{n}{unit}\PYG{p}{,} \PYG{n}{suffix}\PYG{p}{)}
+        \PYG{n}{num} \PYG{o}{/=} \PYG{l+m+mf}{1024.0}
+    \PYG{k}{return} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZpc{}.1f\PYGZpc{}s\PYGZpc{}s}\PYG{l+s+s1}{\PYGZsq{}} \PYG{o}{\PYGZpc{}} \PYG{p}{(}\PYG{n}{num}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}T\PYGZsq{}}\PYG{p}{,} \PYG{n}{suffix}\PYG{p}{)}
+
+\PYG{k}{def} \PYG{n+nf}{fmt\PYGZus{}sizeof}\PYG{p}{(}\PYG{n}{fmt}\PYG{p}{):}
+    \PYG{n}{bases}\PYG{o}{=}\PYG{p}{\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}B\PYGZsq{}}\PYG{p}{:}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}\PYGZsq{}}\PYG{p}{:}\PYG{l+m+mi}{10}\PYG{p}{\PYGZcb{}}
+    \PYG{n}{units}\PYG{o}{=}\PYG{p}{\PYGZob{}}\PYG{n}{k}\PYG{p}{:}\PYG{n}{v} \PYG{k}{for} \PYG{n}{k}\PYG{p}{,}\PYG{n}{v} \PYG{o+ow}{in} \PYG{n+nb}{zip}\PYG{p}{([}\PYG{l+s+s1}{\PYGZsq{}\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}K\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}M\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}G\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}T\PYGZsq{}}\PYG{p}{],[}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{10}\PYG{p}{,}\PYG{l+m+mi}{20}\PYG{p}{,}\PYG{l+m+mi}{30}\PYG{p}{,}\PYG{l+m+mi}{40}\PYG{p}{])\PYGZcb{}}
+    \PYG{k}{try}\PYG{p}{:}
+      \PYG{n}{base}\PYG{o}{=}\PYG{n}{fmt}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}
+      \PYG{n}{unit}\PYG{o}{=}\PYG{n}{fmt}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{2}\PYG{p}{]}
+      \PYG{n}{num} \PYG{o}{=} \PYG{n+nb}{float}\PYG{p}{(}\PYG{n}{fmt}\PYG{p}{[:}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{2}\PYG{p}{])}
+    \PYG{k}{except} \PYG{n+ne}{ValueError}\PYG{p}{:}
+      \PYG{k}{try}\PYG{p}{:}
+        \PYG{n}{base}\PYG{o}{=}\PYG{n}{fmt}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}
+        \PYG{n}{unit}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}\PYGZsq{}}
+        \PYG{n}{num} \PYG{o}{=} \PYG{n+nb}{float}\PYG{p}{(}\PYG{n}{fmt}\PYG{p}{[:}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{])}
+      \PYG{k}{except}\PYG{p}{:}
+        \PYG{k}{try}\PYG{p}{:}
+          \PYG{n}{base}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}\PYGZsq{}}
+          \PYG{n}{unit}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}\PYGZsq{}}
+          \PYG{n}{num} \PYG{o}{=} \PYG{n+nb}{float}\PYG{p}{(}\PYG{n}{fmt}\PYG{p}{)}
+        \PYG{k}{except}\PYG{p}{:}
+          \PYG{k}{return} \PYG{n}{fmt}
+    \PYG{c+c1}{\PYGZsh{} print(num,(bases.get(base,10)**units.get(unit,1)))}
+    \PYG{c+c1}{\PYGZsh{} print(num)}
+    \PYG{n}{num} \PYG{o}{*=} \PYG{p}{(}\PYG{n}{bases}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{n}{base}\PYG{p}{,}\PYG{l+m+mi}{10}\PYG{p}{)}\PYG{o}{**}\PYG{n}{units}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{n}{unit}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{))}
+    \PYG{k}{if} \PYG{n+nb}{int}\PYG{p}{(}\PYG{n}{num}\PYG{p}{)} \PYG{o}{==} \PYG{n}{num}\PYG{p}{:}
+      \PYG{n}{num} \PYG{o}{=} \PYG{n+nb}{int}\PYG{p}{(}\PYG{n}{num}\PYG{p}{)}
+    \PYG{k}{return} \PYG{n}{num}
+
+\PYG{k}{def} \PYG{n+nf}{indexer}\PYG{p}{(}\PYG{n}{array}\PYG{p}{,}\PYG{n}{sorter}\PYG{p}{,}\PYG{n}{value}\PYG{p}{):}
+  \PYG{n}{i} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{where}\PYG{p}{(}\PYG{n}{sorter}\PYG{o}{==}\PYG{n}{value}\PYG{p}{)[}\PYG{l+m+mi}{0}\PYG{p}{]}
+  \PYG{k}{return} \PYG{n}{array}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}
+
+
+\PYG{n}{file}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}membench\PYGZus{}4\PYGZsq{}}
+\PYG{n}{cpuspeed}\PYG{o}{=}\PYG{l+m+mf}{3e9}
+
+\PYG{n}{mbdata} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{genfromtxt}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZpc{}s}\PYG{l+s+s1}{.out\PYGZsq{}}\PYG{o}{\PYGZpc{}}\PYG{n}{file}\PYG{p}{,}\PYG{n}{usecols}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{l+m+mi}{5}\PYG{p}{))}
+
+
+\PYG{n}{maxunit}\PYG{o}{=}\PYG{l+m+mi}{10}
+\PYG{n}{units}\PYG{o}{=}\PYG{n+nb}{dict}\PYG{p}{(}\PYG{n+nb}{zip}\PYG{p}{(}\PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{n}{maxunit}\PYG{o}{*}\PYG{l+m+mi}{4}\PYG{p}{,}\PYG{n}{maxunit}\PYG{p}{),[}\PYG{l+s+s1}{\PYGZsq{}\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}K\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}M\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}G\PYGZsq{}}\PYG{p}{]))}
+\PYG{n}{sizes} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZpc{}d\PYGZpc{}s\PYGZpc{}s}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{\PYGZpc{}}\PYG{p}{(}\PYG{n}{b}\PYG{o}{**}\PYG{p}{(}\PYG{n}{i}\PYG{p}{),}\PYG{n}{units}\PYG{p}{[}\PYG{n}{d}\PYG{p}{],}\PYG{n}{u}\PYG{p}{):}\PYG{n}{b}\PYG{o}{**}\PYG{p}{(}\PYG{n}{i}\PYG{o}{+}\PYG{n}{d}\PYG{p}{)} \PYG{k}{for} \PYG{n}{b}\PYG{p}{,}\PYG{n}{u} \PYG{o+ow}{in} \PYG{n+nb}{zip}\PYG{p}{([}\PYG{l+m+mi}{2}\PYG{p}{],[}\PYG{l+s+s1}{\PYGZsq{}B\PYGZsq{}}\PYG{p}{])} \PYG{k}{for} \PYG{n}{d} \PYG{o+ow}{in} \PYG{n}{units} \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{maxunit}\PYG{p}{)\PYGZcb{}}
+
+
+\PYG{n}{xtlabels}\PYG{o}{=}\PYG{p}{[}\PYG{o}{*}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}4B\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}16B\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}64B\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}256B\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}1KB\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}4KB\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}16KB\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}64KB\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}256KB\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}1MB\PYGZsq{}}\PYG{p}{],}
+          \PYG{o}{*}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}2MB\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}4MB\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}8MB\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}16MB\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}32MB\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}64MB\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}128MB\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}256MB\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}512MB\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}2GB\PYGZsq{}}\PYG{p}{]]}
+\PYG{n}{xtvals} \PYG{o}{=} \PYG{p}{[}\PYG{n}{sizes}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{n}{l}\PYG{p}{,}\PYG{n}{fmt\PYGZus{}sizeof}\PYG{p}{(}\PYG{n}{l}\PYG{p}{))} \PYG{k}{for} \PYG{n}{l} \PYG{o+ow}{in} \PYG{n}{xtlabels}\PYG{p}{]}
+
+
+
+
+
+\PYG{c+c1}{\PYGZsh{} k,l,m = \PYGZsq{}1GB\PYGZsq{},\PYGZsq{}1MB\PYGZsq{},\PYGZsq{}512B\PYGZsq{}}
+\PYG{c+c1}{\PYGZsh{} print((sizes.get(k,fmt\PYGZus{}sizeof(k)),indexer(indexer(mbdata[:,2],mbdata[:,0],sizes.get(l,fmt\PYGZus{}sizeof(l))),indexer(mbdata[:,1],mbdata[:,0],sizes.get(l,fmt\PYGZus{}sizeof(l))),sizes.get(m,fmt\PYGZus{}sizeof(m)))[0]))}
+
+\PYG{n}{lims}\PYG{o}{=}\PYG{p}{\PYGZob{}}
+       \PYG{l+s+s1}{\PYGZsq{}all\PYGZsq{}}\PYG{p}{:[(}\PYG{n}{xtlabels}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{],}\PYG{n}{xtlabels}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]),(}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{16}\PYG{p}{)],}
+       \PYG{l+s+s1}{\PYGZsq{}lowerleft\PYGZsq{}}\PYG{p}{:[(}\PYG{l+s+s1}{\PYGZsq{}4B\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}8KB\PYGZsq{}}\PYG{p}{),(}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)],}
+       \PYG{l+s+s1}{\PYGZsq{}middleupper\PYGZsq{}}\PYG{p}{:[(}\PYG{l+s+s1}{\PYGZsq{}16B\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}64KB\PYGZsq{}}\PYG{p}{),(}\PYG{l+m+mi}{6}\PYG{p}{,}\PYG{l+m+mi}{12}\PYG{p}{)],}
+       \PYG{l+s+s1}{\PYGZsq{}middle\PYGZsq{}}\PYG{p}{:[(}\PYG{l+s+s1}{\PYGZsq{}64B\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}64MB\PYGZsq{}}\PYG{p}{),(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{4}\PYG{p}{)],}
+       \PYG{p}{\PYGZcb{}}
+
+\PYG{n}{heights}\PYG{o}{=}\PYG{p}{\PYGZob{}}\PYG{n}{k}\PYG{p}{:\PYGZob{}}\PYG{n}{l}\PYG{p}{:}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1} \PYG{k}{for} \PYG{n}{l} \PYG{o+ow}{in} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}h\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}v\PYGZsq{}}\PYG{p}{]\PYGZcb{}} \PYG{k}{for} \PYG{n}{k} \PYG{o+ow}{in} \PYG{n}{lims}\PYG{p}{\PYGZcb{}}
+\PYG{n}{heights}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}all\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}v\PYGZsq{}}\PYG{p}{]} \PYG{o}{=}\PYG{l+m+mi}{15}
+\PYG{n}{heights}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}lowerleft\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}v\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}
+\PYG{n}{heights}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}middle\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}v\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mf}{2.5}
+\PYG{n}{heights}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}middleupper\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}v\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{11}
+\PYG{n}{lines}\PYG{o}{=}\PYG{p}{\PYGZob{}}
+        \PYG{l+s+s1}{\PYGZsq{}all\PYGZsq{}}\PYG{p}{:\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}v\PYGZsq{}}\PYG{p}{:} \PYG{p}{\PYGZob{}}
+                     \PYG{c+c1}{\PYGZsh{} **\PYGZob{}(sizes.get(k,fmt\PYGZus{}sizeof(k))/2,height):r\PYGZsq{}\PYGZdl{}\PYGZbs{}tilde\PYGZob{}L\PYGZcb{}\PYGZus{}\PYGZob{}1,2,3\PYGZcb{}\PYGZbs{}\PYGZbs{}\PYGZbs{}textrm\PYGZob{}\PYGZpc{}s\PYGZcb{}\PYGZdl{}\PYGZsq{}\PYGZpc{}k for i,k in enumerate([\PYGZsq{}64B\PYGZsq{}])\PYGZcb{},}
+                     \PYG{c+c1}{\PYGZsh{} **\PYGZob{}(sizes.get(k,fmt\PYGZus{}sizeof(k)),height):r\PYGZsq{}\PYGZdl{}\PYGZob{}L\PYGZcb{}\PYGZus{}\PYGZob{}\PYGZpc{}d\PYGZcb{}\PYGZbs{}\PYGZbs{}\PYGZbs{}textrm\PYGZob{}\PYGZpc{}s\PYGZcb{}\PYGZdl{}\PYGZsq{}\PYGZpc{}(i+1,k) for i,k in enumerate([\PYGZsq{}128B\PYGZsq{}])\PYGZcb{},}
+                     \PYG{c+c1}{\PYGZsh{} \PYGZsh{} **\PYGZob{}(sizes.get(k,fmt\PYGZus{}sizeof(k)),height):r\PYGZsq{}\PYGZdl{}\PYGZbs{}tilde\PYGZob{}L\PYGZcb{}\PYGZus{}\PYGZob{}\PYGZpc{}d\PYGZcb{}\PYGZdl{}\PYGZsq{}\PYGZpc{}(i+1) for i,k in enumerate([\PYGZsq{}128B\PYGZsq{},\PYGZsq{}4KB\PYGZsq{},\PYGZsq{}16KB\PYGZsq{}])\PYGZcb{},}
+                     \PYG{c+c1}{\PYGZsh{} **\PYGZob{}(sizes.get(k,fmt\PYGZus{}sizeof(k)),height):r\PYGZsq{}\PYGZdl{}\PYGZbs{}tilde\PYGZob{}L\PYGZcb{}\PYGZus{}\PYGZob{}\PYGZpc{}d\PYGZcb{}\PYGZbs{}\PYGZbs{}\PYGZbs{}textrm\PYGZob{}\PYGZpc{}s\PYGZcb{}\PYGZdl{}\PYGZsq{}\PYGZpc{}(i+1,k) for i,k in enumerate([\PYGZsq{}32KB\PYGZsq{},\PYGZsq{}1MB\PYGZsq{},\PYGZsq{}24.75MB\PYGZsq{}])\PYGZcb{},}
+
+                     \PYG{o}{**}\PYG{p}{\PYGZob{}(}\PYG{n}{sizes}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{n}{k}\PYG{p}{,}\PYG{n}{fmt\PYGZus{}sizeof}\PYG{p}{(}\PYG{n}{k}\PYG{p}{)),}\PYG{n}{heights}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}all\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}v\PYGZsq{}}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{):}\PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZdl{}\PYGZbs{}tilde}\PYG{l+s+si}{\PYGZob{}L\PYGZcb{}}\PYG{l+s+s1}{\PYGZus{}\PYGZob{}1,2,3\PYGZcb{}\PYGZdl{}\PYGZsq{}} \PYG{k}{for} \PYG{n}{i}\PYG{p}{,}\PYG{n}{k} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{([}\PYG{l+s+s1}{\PYGZsq{}64B\PYGZsq{}}\PYG{p}{])\PYGZcb{},}
+                     \PYG{o}{**}\PYG{p}{\PYGZob{}(}\PYG{n}{sizes}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{n}{k}\PYG{p}{,}\PYG{n}{fmt\PYGZus{}sizeof}\PYG{p}{(}\PYG{n}{k}\PYG{p}{)),}\PYG{n}{heights}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}all\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}v\PYGZsq{}}\PYG{p}{]):}\PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZdl{}}\PYG{l+s+si}{\PYGZob{}L\PYGZcb{}}\PYG{l+s+s1}{\PYGZus{}\PYGZob{}}\PYG{l+s+si}{\PYGZpc{}d}\PYG{l+s+s1}{\PYGZcb{}\PYGZdl{}\PYGZsq{}}\PYG{o}{\PYGZpc{}}\PYG{p}{(}\PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{k}{for} \PYG{n}{i}\PYG{p}{,}\PYG{n}{k} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{([}\PYG{l+s+s1}{\PYGZsq{}64B\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}512B\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}4KB\PYGZsq{}}\PYG{p}{])\PYGZcb{},}
+                     \PYG{c+c1}{\PYGZsh{} **\PYGZob{}(sizes.get(k,fmt\PYGZus{}sizeof(k)),heights[\PYGZsq{}all\PYGZsq{}][\PYGZsq{}v\PYGZsq{}]):r\PYGZsq{}\PYGZdl{}\PYGZbs{}tilde\PYGZob{}L\PYGZcb{}\PYGZus{}\PYGZob{}\PYGZpc{}d\PYGZcb{}\PYGZdl{}\PYGZsq{}\PYGZpc{}(i+1) for i,k in enumerate([\PYGZsq{}128B\PYGZsq{},\PYGZsq{}4KB\PYGZsq{},\PYGZsq{}16KB\PYGZsq{}])\PYGZcb{},}
+                     \PYG{o}{**}\PYG{p}{\PYGZob{}(}\PYG{n}{sizes}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{n}{k}\PYG{p}{,}\PYG{n}{fmt\PYGZus{}sizeof}\PYG{p}{(}\PYG{n}{k}\PYG{p}{)),}\PYG{n}{heights}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}all\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}v\PYGZsq{}}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{):}\PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZdl{}\PYGZbs{}tilde}\PYG{l+s+si}{\PYGZob{}L\PYGZcb{}}\PYG{l+s+s1}{\PYGZus{}\PYGZob{}}\PYG{l+s+si}{\PYGZpc{}d}\PYG{l+s+s1}{\PYGZcb{}\PYGZdl{}\PYGZsq{}}\PYG{o}{\PYGZpc{}}\PYG{p}{(}\PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{k}{for} \PYG{n}{i}\PYG{p}{,}\PYG{n}{k} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{([}\PYG{l+s+s1}{\PYGZsq{}32KB\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}1MB\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}25MB\PYGZsq{}}\PYG{p}{])\PYGZcb{},}                     
+                     \PYG{o}{**}\PYG{p}{\PYGZob{}(}\PYG{n}{sizes}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{n}{k}\PYG{p}{,}\PYG{n}{fmt\PYGZus{}sizeof}\PYG{p}{(}\PYG{n}{k}\PYG{p}{)),}\PYG{n}{heights}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}all\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}v\PYGZsq{}}\PYG{p}{]):}\PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZdl{}L\PYGZus{}\PYGZob{}}\PYG{l+s+si}{\PYGZpc{}d}\PYG{l+s+s1}{\PYGZcb{}\PYGZdl{}\PYGZsq{}}\PYG{o}{\PYGZpc{}}\PYG{p}{(}\PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{k}{for} \PYG{n}{i}\PYG{p}{,}\PYG{n}{k} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{([}\PYG{l+s+s1}{\PYGZsq{}16KB\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}256KB\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}8MB\PYGZsq{}}\PYG{p}{])\PYGZcb{},}                     
+                     \PYG{p}{\PYGZcb{},}
+
+              \PYG{l+s+s1}{\PYGZsq{}h\PYGZsq{}}\PYG{p}{:} \PYG{p}{\PYGZob{}}
+                    \PYG{c+c1}{\PYGZsh{} **\PYGZob{}(sizes.get(k,fmt\PYGZus{}sizeof(k)),np.max(indexer(mbdata[:,2],mbdata[:,0],sizes.get(l,fmt\PYGZus{}sizeof(l))))):r\PYGZsq{}\PYGZdl{}T\PYGZus{}\PYGZob{}\PYGZpc{}d\PYGZcb{}\PYGZdl{}\PYGZsq{}\PYGZpc{}(i+1) for i,(k,l) in enumerate(zip([\PYGZsq{}1GB\PYGZsq{}],[\PYGZsq{}32KB\PYGZsq{}]))\PYGZcb{},}
+                    \PYG{o}{**}\PYG{p}{\PYGZob{}(}\PYG{n}{sizes}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{n}{k}\PYG{p}{,}\PYG{n}{fmt\PYGZus{}sizeof}\PYG{p}{(}\PYG{n}{k}\PYG{p}{)),}\PYG{n}{np}\PYG{o}{.}\PYG{n}{max}\PYG{p}{(}\PYG{n}{indexer}\PYG{p}{(}\PYG{n}{mbdata}\PYG{p}{[:,}\PYG{l+m+mi}{2}\PYG{p}{],}\PYG{n}{mbdata}\PYG{p}{[:,}\PYG{l+m+mi}{0}\PYG{p}{],}\PYG{n}{sizes}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{n}{l}\PYG{p}{,}\PYG{n}{fmt\PYGZus{}sizeof}\PYG{p}{(}\PYG{n}{l}\PYG{p}{))))):}\PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZdl{}T\PYGZus{}\PYGZob{}}\PYG{l+s+si}{\PYGZpc{}d}\PYG{l+s+s1}{\PYGZcb{}\PYGZdl{}\PYGZsq{}}\PYG{o}{\PYGZpc{}}\PYG{p}{(}\PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{k}{if} \PYG{n}{i}\PYG{o}{\PYGZlt{}}\PYG{l+m+mi}{3} \PYG{k}{else} \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZdl{}T\PYGZus{}\PYGZob{}\PYGZbs{}textrm}\PYG{l+s+si}{\PYGZob{}mem\PYGZcb{}}\PYG{l+s+s1}{\PYGZcb{}\PYGZdl{}\PYGZsq{}} \PYG{k}{for} \PYG{n}{i}\PYG{p}{,(}\PYG{n}{k}\PYG{p}{,}\PYG{n}{l}\PYG{p}{)} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{(}\PYG{n+nb}{zip}\PYG{p}{([}\PYG{l+s+s1}{\PYGZsq{}1GB\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}1GB\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}1GB\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}1GB\PYGZsq{}}\PYG{p}{],[}\PYG{l+s+s1}{\PYGZsq{}32KB\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}1MB\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}256MB\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}1GB\PYGZsq{}}\PYG{p}{]))\PYGZcb{},}
+                    \PYG{c+c1}{\PYGZsh{} **\PYGZob{}(sizes.get(k,fmt\PYGZus{}sizeof(k)),indexer(indexer(mbdata[:,2],mbdata[:,0],sizes.get(l,fmt\PYGZus{}sizeof(l))),indexer(mbdata[:,1],mbdata[:,0],sizes.get(l,fmt\PYGZus{}sizeof(l))),sizes.get(m,fmt\PYGZus{}sizeof(m)))[0]):r\PYGZsq{}\PYGZdl{}T\PYGZus{}\PYGZob{}\PYGZpc{}d\PYGZcb{}\PYGZdl{}\PYGZsq{}\PYGZpc{}(i+2) for i,(k,l,m) in enumerate(zip([\PYGZsq{}1GB\PYGZsq{}],[\PYGZsq{}1MB\PYGZsq{}],[\PYGZsq{}512B\PYGZsq{}]))\PYGZcb{},}
+                    \PYG{p}{\PYGZcb{},}
+
+
+                        
+              \PYG{p}{\PYGZcb{},}
+        \PYG{l+s+s1}{\PYGZsq{}lowerleft\PYGZsq{}}\PYG{p}{:\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}v\PYGZsq{}}\PYG{p}{:} \PYG{p}{\PYGZob{}}
+                            \PYG{c+c1}{\PYGZsh{} **\PYGZob{}(sizes.get(k,fmt\PYGZus{}sizeof(k)),height):r\PYGZsq{}\PYGZdl{}\PYGZbs{}tilde\PYGZob{}L\PYGZcb{}\PYGZus{}\PYGZob{}1,2,3\PYGZcb{}\PYGZbs{}\PYGZbs{}\PYGZbs{}textrm\PYGZob{}\PYGZpc{}s\PYGZcb{}\PYGZdl{}\PYGZsq{}\PYGZpc{}k for i,k in enumerate([\PYGZsq{}64B\PYGZsq{}])\PYGZcb{},}
+                            \PYG{c+c1}{\PYGZsh{} **\PYGZob{}(sizes.get(k,fmt\PYGZus{}sizeof(k)),height):r\PYGZsq{}\PYGZdl{}\PYGZob{}L\PYGZcb{}\PYGZus{}\PYGZob{}\PYGZpc{}d\PYGZcb{}\PYGZbs{}\PYGZbs{}\PYGZbs{}textrm\PYGZob{}\PYGZpc{}s\PYGZcb{}\PYGZdl{}\PYGZsq{}\PYGZpc{}(i+1,k) for i,k in enumerate([\PYGZsq{}128B\PYGZsq{}])\PYGZcb{},}
+
+                            \PYG{o}{**}\PYG{p}{\PYGZob{}(}\PYG{n}{sizes}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{n}{k}\PYG{p}{,}\PYG{n}{fmt\PYGZus{}sizeof}\PYG{p}{(}\PYG{n}{k}\PYG{p}{)),}\PYG{n}{heights}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}lowerleft\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}v\PYGZsq{}}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.5}\PYG{p}{):}\PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZdl{}\PYGZbs{}tilde}\PYG{l+s+si}{\PYGZob{}L\PYGZcb{}}\PYG{l+s+s1}{\PYGZus{}\PYGZob{}1,2,3\PYGZcb{}\PYGZdl{}\PYGZsq{}} \PYG{k}{for} \PYG{n}{i}\PYG{p}{,}\PYG{n}{k} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{([}\PYG{l+s+s1}{\PYGZsq{}64B\PYGZsq{}}\PYG{p}{])\PYGZcb{},}
+                            \PYG{o}{**}\PYG{p}{\PYGZob{}(}\PYG{n}{sizes}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{n}{k}\PYG{p}{,}\PYG{n}{fmt\PYGZus{}sizeof}\PYG{p}{(}\PYG{n}{k}\PYG{p}{)),}\PYG{n}{heights}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}lowerleft\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}v\PYGZsq{}}\PYG{p}{]):}\PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZdl{}}\PYG{l+s+si}{\PYGZob{}L\PYGZcb{}}\PYG{l+s+s1}{\PYGZus{}\PYGZob{}}\PYG{l+s+si}{\PYGZpc{}d}\PYG{l+s+s1}{\PYGZcb{}\PYGZdl{}\PYGZsq{}}\PYG{o}{\PYGZpc{}}\PYG{p}{(}\PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{k}{for} \PYG{n}{i}\PYG{p}{,}\PYG{n}{k} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{([}\PYG{l+s+s1}{\PYGZsq{}64B\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}512B\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}4KB\PYGZsq{}}\PYG{p}{])\PYGZcb{},}
+                          
+
+                          \PYG{p}{\PYGZcb{},}
+                    \PYG{l+s+s1}{\PYGZsq{}h\PYGZsq{}}\PYG{p}{:} \PYG{p}{\PYGZob{}}
+                          \PYG{c+c1}{\PYGZsh{} **\PYGZob{}(sizes.get(k,fmt\PYGZus{}sizeof(k)),np.max(indexer(mbdata[:,2],mbdata[:,0],sizes.get(l,fmt\PYGZus{}sizeof(l))))):r\PYGZsq{}\PYGZdl{}T\PYGZus{}\PYGZob{}\PYGZpc{}d\PYGZcb{}\PYGZdl{}\PYGZsq{}\PYGZpc{}(i+1) for i,(k,l) in enumerate(zip([\PYGZsq{}256B\PYGZsq{}],[\PYGZsq{}32KB\PYGZsq{}]))\PYGZcb{},}
+                    \PYG{o}{**}\PYG{p}{\PYGZob{}(}\PYG{n}{sizes}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{n}{k}\PYG{p}{,}\PYG{n}{fmt\PYGZus{}sizeof}\PYG{p}{(}\PYG{n}{k}\PYG{p}{)),}\PYG{n}{np}\PYG{o}{.}\PYG{n}{max}\PYG{p}{(}\PYG{n}{indexer}\PYG{p}{(}\PYG{n}{mbdata}\PYG{p}{[:,}\PYG{l+m+mi}{2}\PYG{p}{],}\PYG{n}{mbdata}\PYG{p}{[:,}\PYG{l+m+mi}{0}\PYG{p}{],}\PYG{n}{sizes}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{n}{l}\PYG{p}{,}\PYG{n}{fmt\PYGZus{}sizeof}\PYG{p}{(}\PYG{n}{l}\PYG{p}{))))):}\PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZdl{}T\PYGZus{}\PYGZob{}}\PYG{l+s+si}{\PYGZpc{}d}\PYG{l+s+s1}{\PYGZcb{}\PYGZdl{}\PYGZsq{}}\PYG{o}{\PYGZpc{}}\PYG{p}{(}\PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{k}{for} \PYG{n}{i}\PYG{p}{,(}\PYG{n}{k}\PYG{p}{,}\PYG{n}{l}\PYG{p}{)} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{(}\PYG{n+nb}{zip}\PYG{p}{([}\PYG{l+s+s1}{\PYGZsq{}4KB\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}4KB\PYGZsq{}}\PYG{p}{],[}\PYG{l+s+s1}{\PYGZsq{}32KB\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}1MB\PYGZsq{}}\PYG{p}{]))\PYGZcb{},}
+                          \PYG{p}{\PYGZcb{},}
+                    \PYG{p}{\PYGZcb{},}
+        \PYG{l+s+s1}{\PYGZsq{}middle\PYGZsq{}}\PYG{p}{:\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}v\PYGZsq{}}\PYG{p}{:} \PYG{p}{\PYGZob{}}
+                            \PYG{c+c1}{\PYGZsh{} **\PYGZob{}(sizes.get(k,fmt\PYGZus{}sizeof(k)),height):r\PYGZsq{}\PYGZdl{}\PYGZbs{}tilde\PYGZob{}L\PYGZcb{}\PYGZus{}\PYGZob{}1,2,3\PYGZcb{}\PYGZbs{}\PYGZbs{}\PYGZbs{}textrm\PYGZob{}\PYGZpc{}s\PYGZcb{}\PYGZdl{}\PYGZsq{}\PYGZpc{}k for i,k in enumerate([\PYGZsq{}64B\PYGZsq{}])\PYGZcb{},}
+                            \PYG{c+c1}{\PYGZsh{} **\PYGZob{}(sizes.get(k,fmt\PYGZus{}sizeof(k)),height):r\PYGZsq{}\PYGZdl{}\PYGZob{}L\PYGZcb{}\PYGZus{}\PYGZob{}\PYGZpc{}d\PYGZcb{}\PYGZbs{}\PYGZbs{}\PYGZbs{}textrm\PYGZob{}\PYGZpc{}s\PYGZcb{}\PYGZdl{}\PYGZsq{}\PYGZpc{}(i+1,k) for i,k in enumerate([\PYGZsq{}128B\PYGZsq{}])\PYGZcb{},}
+
+                            \PYG{o}{**}\PYG{p}{\PYGZob{}(}\PYG{n}{sizes}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{n}{k}\PYG{p}{,}\PYG{n}{fmt\PYGZus{}sizeof}\PYG{p}{(}\PYG{n}{k}\PYG{p}{)),}\PYG{n}{heights}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}middle\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}v\PYGZsq{}}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.5}\PYG{p}{):}\PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZdl{}\PYGZbs{}tilde}\PYG{l+s+si}{\PYGZob{}L\PYGZcb{}}\PYG{l+s+s1}{\PYGZus{}\PYGZob{}1,2,3\PYGZcb{}\PYGZdl{}\PYGZsq{}} \PYG{k}{for} \PYG{n}{i}\PYG{p}{,}\PYG{n}{k} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{([}\PYG{l+s+s1}{\PYGZsq{}64B\PYGZsq{}}\PYG{p}{])\PYGZcb{},}
+                            \PYG{o}{**}\PYG{p}{\PYGZob{}(}\PYG{n}{sizes}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{n}{k}\PYG{p}{,}\PYG{n}{fmt\PYGZus{}sizeof}\PYG{p}{(}\PYG{n}{k}\PYG{p}{)),}\PYG{n}{heights}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}middle\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}v\PYGZsq{}}\PYG{p}{]):}\PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZdl{}}\PYG{l+s+si}{\PYGZob{}L\PYGZcb{}}\PYG{l+s+s1}{\PYGZus{}\PYGZob{}}\PYG{l+s+si}{\PYGZpc{}d}\PYG{l+s+s1}{\PYGZcb{}\PYGZdl{}\PYGZsq{}}\PYG{o}{\PYGZpc{}}\PYG{p}{(}\PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{k}{for} \PYG{n}{i}\PYG{p}{,}\PYG{n}{k} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{([}\PYG{l+s+s1}{\PYGZsq{}64B\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}512B\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}4KB\PYGZsq{}}\PYG{p}{])\PYGZcb{},}
+                            \PYG{o}{**}\PYG{p}{\PYGZob{}(}\PYG{n}{sizes}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{n}{k}\PYG{p}{,}\PYG{n}{fmt\PYGZus{}sizeof}\PYG{p}{(}\PYG{n}{k}\PYG{p}{)),}\PYG{n}{heights}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}middle\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}v\PYGZsq{}}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{):}\PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZdl{}\PYGZbs{}tilde}\PYG{l+s+si}{\PYGZob{}L\PYGZcb{}}\PYG{l+s+s1}{\PYGZus{}\PYGZob{}}\PYG{l+s+si}{\PYGZpc{}d}\PYG{l+s+s1}{\PYGZcb{}\PYGZdl{}\PYGZsq{}}\PYG{o}{\PYGZpc{}}\PYG{p}{(}\PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{k}{for} \PYG{n}{i}\PYG{p}{,}\PYG{n}{k} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{([}\PYG{l+s+s1}{\PYGZsq{}32KB\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}1MB\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}25MB\PYGZsq{}}\PYG{p}{])\PYGZcb{},}                     
+                             \PYG{o}{**}\PYG{p}{\PYGZob{}(}\PYG{n}{sizes}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{n}{k}\PYG{p}{,}\PYG{n}{fmt\PYGZus{}sizeof}\PYG{p}{(}\PYG{n}{k}\PYG{p}{)),}\PYG{n}{heights}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}middle\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}v\PYGZsq{}}\PYG{p}{]):}\PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZdl{}L\PYGZus{}\PYGZob{}}\PYG{l+s+si}{\PYGZpc{}d}\PYG{l+s+s1}{\PYGZcb{}\PYGZdl{}\PYGZsq{}}\PYG{o}{\PYGZpc{}}\PYG{p}{(}\PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{k}{for} \PYG{n}{i}\PYG{p}{,}\PYG{n}{k} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{([}\PYG{l+s+s1}{\PYGZsq{}16KB\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}256KB\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}8MB\PYGZsq{}}\PYG{p}{])\PYGZcb{},}                     
+                          \PYG{p}{\PYGZcb{},}
+                    \PYG{l+s+s1}{\PYGZsq{}h\PYGZsq{}}\PYG{p}{:} \PYG{p}{\PYGZob{}}
+                          \PYG{c+c1}{\PYGZsh{} **\PYGZob{}(sizes.get(k,fmt\PYGZus{}sizeof(k)),np.max(indexer(mbdata[:,2],mbdata[:,0],sizes.get(l,fmt\PYGZus{}sizeof(l))))):r\PYGZsq{}\PYGZdl{}T\PYGZus{}\PYGZob{}\PYGZpc{}d\PYGZcb{}\PYGZdl{}\PYGZsq{}\PYGZpc{}(i+1) for i,(k,l) in enumerate(zip([\PYGZsq{}256B\PYGZsq{}],[\PYGZsq{}32KB\PYGZsq{}]))\PYGZcb{},}
+                    \PYG{o}{**}\PYG{p}{\PYGZob{}(}\PYG{n}{sizes}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{n}{k}\PYG{p}{,}\PYG{n}{fmt\PYGZus{}sizeof}\PYG{p}{(}\PYG{n}{k}\PYG{p}{)),}\PYG{n}{np}\PYG{o}{.}\PYG{n}{max}\PYG{p}{(}\PYG{n}{indexer}\PYG{p}{(}\PYG{n}{mbdata}\PYG{p}{[:,}\PYG{l+m+mi}{2}\PYG{p}{],}\PYG{n}{mbdata}\PYG{p}{[:,}\PYG{l+m+mi}{0}\PYG{p}{],}\PYG{n}{sizes}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{n}{l}\PYG{p}{,}\PYG{n}{fmt\PYGZus{}sizeof}\PYG{p}{(}\PYG{n}{l}\PYG{p}{))))):}\PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZdl{}T\PYGZus{}\PYGZob{}}\PYG{l+s+si}{\PYGZpc{}d}\PYG{l+s+s1}{\PYGZcb{}\PYGZdl{}\PYGZsq{}}\PYG{o}{\PYGZpc{}}\PYG{p}{(}\PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{k}{for} \PYG{n}{i}\PYG{p}{,(}\PYG{n}{k}\PYG{p}{,}\PYG{n}{l}\PYG{p}{)} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{(}\PYG{n+nb}{zip}\PYG{p}{([}\PYG{l+s+s1}{\PYGZsq{}16MB\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}16MB\PYGZsq{}}\PYG{p}{],[}\PYG{l+s+s1}{\PYGZsq{}32KB\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}1MB\PYGZsq{}}\PYG{p}{]))\PYGZcb{},}
+                          \PYG{p}{\PYGZcb{},}
+                    \PYG{p}{\PYGZcb{},}  
+        \PYG{l+s+s1}{\PYGZsq{}middleupper\PYGZsq{}}\PYG{p}{:\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}v\PYGZsq{}}\PYG{p}{:} \PYG{p}{\PYGZob{}}
+                            \PYG{c+c1}{\PYGZsh{} **\PYGZob{}(sizes.get(k,fmt\PYGZus{}sizeof(k)),height):r\PYGZsq{}\PYGZdl{}\PYGZbs{}tilde\PYGZob{}L\PYGZcb{}\PYGZus{}\PYGZob{}1,2,3\PYGZcb{}\PYGZbs{}\PYGZbs{}\PYGZbs{}textrm\PYGZob{}\PYGZpc{}s\PYGZcb{}\PYGZdl{}\PYGZsq{}\PYGZpc{}k for i,k in enumerate([\PYGZsq{}64B\PYGZsq{}])\PYGZcb{},}
+                            \PYG{c+c1}{\PYGZsh{} **\PYGZob{}(sizes.get(k,fmt\PYGZus{}sizeof(k)),height):r\PYGZsq{}\PYGZdl{}\PYGZob{}L\PYGZcb{}\PYGZus{}\PYGZob{}\PYGZpc{}d\PYGZcb{}\PYGZbs{}\PYGZbs{}\PYGZbs{}textrm\PYGZob{}\PYGZpc{}s\PYGZcb{}\PYGZdl{}\PYGZsq{}\PYGZpc{}(i+1,k) for i,k in enumerate([\PYGZsq{}128B\PYGZsq{}])\PYGZcb{},}
+
+                            \PYG{o}{**}\PYG{p}{\PYGZob{}(}\PYG{n}{sizes}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{n}{k}\PYG{p}{,}\PYG{n}{fmt\PYGZus{}sizeof}\PYG{p}{(}\PYG{n}{k}\PYG{p}{)),}\PYG{n}{heights}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}middleupper\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}v\PYGZsq{}}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.5}\PYG{p}{):}\PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZdl{}\PYGZbs{}tilde}\PYG{l+s+si}{\PYGZob{}L\PYGZcb{}}\PYG{l+s+s1}{\PYGZus{}\PYGZob{}1,2,3\PYGZcb{}\PYGZdl{}\PYGZsq{}} \PYG{k}{for} \PYG{n}{i}\PYG{p}{,}\PYG{n}{k} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{([}\PYG{l+s+s1}{\PYGZsq{}64B\PYGZsq{}}\PYG{p}{])\PYGZcb{},}
+                            \PYG{o}{**}\PYG{p}{\PYGZob{}(}\PYG{n}{sizes}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{n}{k}\PYG{p}{,}\PYG{n}{fmt\PYGZus{}sizeof}\PYG{p}{(}\PYG{n}{k}\PYG{p}{)),}\PYG{n}{heights}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}middleupper\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}v\PYGZsq{}}\PYG{p}{]):}\PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZdl{}}\PYG{l+s+si}{\PYGZob{}L\PYGZcb{}}\PYG{l+s+s1}{\PYGZus{}\PYGZob{}}\PYG{l+s+si}{\PYGZpc{}d}\PYG{l+s+s1}{\PYGZcb{}\PYGZdl{}\PYGZsq{}}\PYG{o}{\PYGZpc{}}\PYG{p}{(}\PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{k}{for} \PYG{n}{i}\PYG{p}{,}\PYG{n}{k} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{([}\PYG{l+s+s1}{\PYGZsq{}64B\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}512B\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}4KB\PYGZsq{}}\PYG{p}{])\PYGZcb{},}
+                            \PYG{o}{**}\PYG{p}{\PYGZob{}(}\PYG{n}{sizes}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{n}{k}\PYG{p}{,}\PYG{n}{fmt\PYGZus{}sizeof}\PYG{p}{(}\PYG{n}{k}\PYG{p}{)),}\PYG{n}{heights}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}middleupper\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}v\PYGZsq{}}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{):}\PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZdl{}\PYGZbs{}tilde}\PYG{l+s+si}{\PYGZob{}L\PYGZcb{}}\PYG{l+s+s1}{\PYGZus{}\PYGZob{}}\PYG{l+s+si}{\PYGZpc{}d}\PYG{l+s+s1}{\PYGZcb{}\PYGZdl{}\PYGZsq{}}\PYG{o}{\PYGZpc{}}\PYG{p}{(}\PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{k}{for} \PYG{n}{i}\PYG{p}{,}\PYG{n}{k} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{([}\PYG{l+s+s1}{\PYGZsq{}32KB\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}1MB\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}25MB\PYGZsq{}}\PYG{p}{])\PYGZcb{},}                     
+                             \PYG{o}{**}\PYG{p}{\PYGZob{}(}\PYG{n}{sizes}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{n}{k}\PYG{p}{,}\PYG{n}{fmt\PYGZus{}sizeof}\PYG{p}{(}\PYG{n}{k}\PYG{p}{)),}\PYG{n}{heights}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}middleupper\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}v\PYGZsq{}}\PYG{p}{]):}\PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZdl{}L\PYGZus{}\PYGZob{}}\PYG{l+s+si}{\PYGZpc{}d}\PYG{l+s+s1}{\PYGZcb{}\PYGZdl{}\PYGZsq{}}\PYG{o}{\PYGZpc{}}\PYG{p}{(}\PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{k}{for} \PYG{n}{i}\PYG{p}{,}\PYG{n}{k} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{([}\PYG{l+s+s1}{\PYGZsq{}16KB\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}256KB\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}8MB\PYGZsq{}}\PYG{p}{])\PYGZcb{},}                     
+                          \PYG{p}{\PYGZcb{},}
+                    \PYG{l+s+s1}{\PYGZsq{}h\PYGZsq{}}\PYG{p}{:} \PYG{p}{\PYGZob{}}
+                          \PYG{c+c1}{\PYGZsh{} **\PYGZob{}(sizes.get(k,fmt\PYGZus{}sizeof(k)),np.max(indexer(mbdata[:,2],mbdata[:,0],sizes.get(l,fmt\PYGZus{}sizeof(l))))):r\PYGZsq{}\PYGZdl{}T\PYGZus{}\PYGZob{}\PYGZpc{}d\PYGZcb{}\PYGZdl{}\PYGZsq{}\PYGZpc{}(i+1) for i,(k,l) in enumerate(zip([\PYGZsq{}256B\PYGZsq{}],[\PYGZsq{}32KB\PYGZsq{}]))\PYGZcb{},}
+                    \PYG{o}{**}\PYG{p}{\PYGZob{}(}\PYG{n}{sizes}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{n}{k}\PYG{p}{,}\PYG{n}{fmt\PYGZus{}sizeof}\PYG{p}{(}\PYG{n}{k}\PYG{p}{)),}\PYG{n}{np}\PYG{o}{.}\PYG{n}{max}\PYG{p}{(}\PYG{n}{indexer}\PYG{p}{(}\PYG{n}{mbdata}\PYG{p}{[:,}\PYG{l+m+mi}{2}\PYG{p}{],}\PYG{n}{mbdata}\PYG{p}{[:,}\PYG{l+m+mi}{0}\PYG{p}{],}\PYG{n}{sizes}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{n}{l}\PYG{p}{,}\PYG{n}{fmt\PYGZus{}sizeof}\PYG{p}{(}\PYG{n}{l}\PYG{p}{))))):}\PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZdl{}T\PYGZus{}\PYGZob{}}\PYG{l+s+si}{\PYGZpc{}d}\PYG{l+s+s1}{\PYGZcb{}\PYGZdl{}\PYGZsq{}}\PYG{o}{\PYGZpc{}}\PYG{p}{(}\PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{k}{for} \PYG{n}{i}\PYG{p}{,(}\PYG{n}{k}\PYG{p}{,}\PYG{n}{l}\PYG{p}{)} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{(}\PYG{n+nb}{zip}\PYG{p}{([}\PYG{l+s+s1}{\PYGZsq{}16MB\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}16MB\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}32KB\PYGZsq{}}\PYG{p}{],[}\PYG{l+s+s1}{\PYGZsq{}32KB\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}1MB\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}256MB\PYGZsq{}}\PYG{p}{]))\PYGZcb{},}
+                          \PYG{p}{\PYGZcb{},}
+                    \PYG{p}{\PYGZcb{},}  
+        \PYG{c+c1}{\PYGZsh{} \PYGZsq{}middle\PYGZsq{}:\PYGZob{}\PYGZsq{}v\PYGZsq{}: \PYGZob{}**\PYGZob{}(sizes.get(k,fmt\PYGZus{}sizeof(k)),\PYGZhy{}4.5):\PYGZsq{}L\PYGZpc{}d\PYGZbs{}\PYGZbs{}LineSize:\PYGZbs{}\PYGZbs{}\PYGZpc{}s\PYGZsq{}\PYGZpc{}(i+1,k) for i,k in enumerate([\PYGZsq{}4KB\PYGZsq{},\PYGZsq{}16KB\PYGZsq{}])\PYGZcb{}\PYGZcb{}\PYGZcb{}}
+      \PYG{p}{\PYGZcb{}}
+
+
+
+
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{lines}\PYG{p}{)}
+
+
+\PYG{n}{cmap} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}tab20b\PYGZsq{}}
+\PYG{n}{lengths}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{n+nb}{list}\PYG{p}{(}\PYG{n+nb}{sorted}\PYG{p}{(}\PYG{n+nb}{set}\PYG{p}{(}\PYG{n}{mbdata}\PYG{p}{[:,}\PYG{l+m+mi}{0}\PYG{p}{]))))}
+
+\PYG{n}{kwargs}\PYG{o}{=}\PYG{p}{\PYGZob{}\PYGZcb{}}
+\PYG{n}{kwargs}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}marker\PYGZsq{}}\PYG{p}{]}  \PYG{o}{=} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}.\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}*\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}\PYGZca{}\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}s\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}d\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}+\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}\PYGZsq{}}\PYG{p}{]}
+
+\PYG{n}{kwargs}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}color\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{n}{k}\PYG{p}{:}\PYG{n}{v} \PYG{k}{for} \PYG{n}{k}\PYG{p}{,}\PYG{n}{v} \PYG{o+ow}{in} \PYG{n+nb}{zip}\PYG{p}{(}\PYG{n}{lengths}\PYG{p}{,}\PYG{n}{plt}\PYG{o}{.}\PYG{n}{get\PYGZus{}cmap}\PYG{p}{(}\PYG{n}{cmap}\PYG{p}{)(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{linspace}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{lengths}\PYG{p}{)))}\PYG{o}{.}\PYG{n}{tolist}\PYG{p}{())\PYGZcb{}}
+\PYG{n}{kwargs}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}label\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{n}{k}\PYG{p}{:}\PYG{l+s+s1}{\PYGZsq{}L=}\PYG{l+s+si}{\PYGZpc{}s}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{\PYGZpc{}}\PYG{p}{(}\PYG{n}{sizeof\PYGZus{}fmt}\PYG{p}{(}\PYG{n}{k}\PYG{p}{))} \PYG{k}{for} \PYG{n}{k} \PYG{o+ow}{in} \PYG{n}{lengths} \PYG{p}{\PYGZcb{}}
+
+\PYG{n}{kwargs}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}marker\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{n}{k}\PYG{p}{:} \PYG{n}{kwargs}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}marker\PYGZsq{}}\PYG{p}{][}\PYG{n}{i}\PYG{o}{\PYGZpc{}}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{kwargs}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}marker\PYGZsq{}}\PYG{p}{])]} \PYG{k}{for} \PYG{n}{i}\PYG{p}{,}\PYG{n}{k} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{(}\PYG{n}{lengths}\PYG{p}{)\PYGZcb{}}
+\PYG{n}{kwargs}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}inds\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{n}{k}\PYG{p}{:} \PYG{n}{np}\PYG{o}{.}\PYG{n}{where}\PYG{p}{(}\PYG{n}{mbdata}\PYG{p}{[:,}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{==}\PYG{n}{k}\PYG{p}{)[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{k}{for} \PYG{n}{k} \PYG{o+ow}{in} \PYG{n}{lengths}\PYG{p}{\PYGZcb{}}
+
+
+
+\PYG{n}{kwargs}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}lines\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{n}{k}\PYG{p}{:} \PYG{p}{\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}linestyle\PYGZsq{}}\PYG{p}{:}\PYG{n}{s}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}color\PYGZsq{}}\PYG{p}{:}\PYG{n}{c}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}label\PYGZsq{}}\PYG{p}{:}\PYG{n}{l}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}alpha\PYGZsq{}}\PYG{p}{:}\PYG{n}{a}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}zorder\PYGZsq{}}\PYG{p}{:}\PYG{n}{z}\PYG{p}{\PYGZcb{}} \PYG{k}{for} \PYG{n}{k}\PYG{p}{,}\PYG{n}{l}\PYG{p}{,}\PYG{n}{c}\PYG{p}{,}\PYG{n}{s}\PYG{p}{,}\PYG{n}{a}\PYG{p}{,}\PYG{n}{z} \PYG{o+ow}{in} \PYG{n+nb}{zip}\PYG{p}{(}
+                                                                              \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}tilde}\PYG{l+s+si}{\PYGZob{}L\PYGZcb{}}\PYG{l+s+s1}{\PYGZus{}\PYGZob{}1,2,3\PYGZcb{}\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}tilde}\PYG{l+s+si}{\PYGZob{}L\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZob{}L\PYGZcb{}}\PYG{l+s+s1}{\PYGZus{}\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}L\PYGZus{}\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}T\PYGZus{}\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}Mem\PYGZsq{}}\PYG{p}{,}\PYG{k+kc}{None}\PYG{p}{],}
+                                                                              \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}True Line Size\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}True Cache Size\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}Line Size\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}Cache Size\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}Access Time\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}Access Time\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}\PYGZsq{}}\PYG{p}{],}
+                                                                              \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}k\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}b\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}k\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}b\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}g\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}g\PYGZsq{}}\PYG{p}{,}\PYG{k+kc}{None}\PYG{p}{],}
+                                                                              \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}\PYGZhy{}\PYGZhy{}\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}\PYGZhy{}\PYGZhy{}\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}\PYGZhy{}\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}\PYGZhy{}\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}\PYGZhy{}\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}\PYGZhy{}\PYGZsq{}}\PYG{p}{,}\PYG{k+kc}{None}\PYG{p}{],}
+                                                                              \PYG{p}{[}\PYG{l+m+mf}{0.6}\PYG{p}{,}\PYG{l+m+mf}{0.6}\PYG{p}{,}\PYG{l+m+mf}{0.8}\PYG{p}{,}\PYG{l+m+mf}{0.8}\PYG{p}{,}\PYG{l+m+mf}{0.8}\PYG{p}{,}\PYG{l+m+mf}{0.8}\PYG{p}{,}\PYG{k+kc}{None}\PYG{p}{],}
+                                                                              \PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{10}\PYG{p}{,}\PYG{l+m+mi}{10}\PYG{p}{,}\PYG{l+m+mi}{10}\PYG{p}{,}\PYG{l+m+mi}{10}\PYG{p}{,}\PYG{k+kc}{None}\PYG{p}{],}
+                                                                              \PYG{p}{)\PYGZcb{}}
+
+\PYG{k}{for} \PYG{n}{lim} \PYG{o+ow}{in} \PYG{n}{lims}\PYG{p}{:}
+
+
+  \PYG{n}{fig}\PYG{p}{,}\PYG{n}{ax} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{()}
+
+  \PYG{c+c1}{\PYGZsh{} Plots}
+ 
+  \PYG{c+c1}{\PYGZsh{}for i in range(9,27):}
+  \PYG{k}{for} \PYG{n}{L} \PYG{o+ow}{in} \PYG{n}{lengths}\PYG{p}{:}
+    \PYG{c+c1}{\PYGZsh{}ax.plot(mbdata[istt:istt+i,1],mbdata[istt:istt+i,2],}
+    \PYG{n}{ax}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{n}{mbdata}\PYG{p}{[}\PYG{n}{kwargs}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}inds\PYGZsq{}}\PYG{p}{][}\PYG{n}{L}\PYG{p}{],}\PYG{l+m+mi}{1}\PYG{p}{],}\PYG{n}{mbdata}\PYG{p}{[}\PYG{n}{kwargs}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}inds\PYGZsq{}}\PYG{p}{][}\PYG{n}{L}\PYG{p}{],}\PYG{l+m+mi}{2}\PYG{p}{],}\PYG{o}{**}\PYG{p}{\PYGZob{}}\PYG{n}{k}\PYG{p}{:}\PYG{n}{kwargs}\PYG{p}{[}\PYG{n}{k}\PYG{p}{][}\PYG{n}{L}\PYG{p}{]} \PYG{k}{for} \PYG{n}{k} \PYG{o+ow}{in} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}color\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}marker\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}label\PYGZsq{}}\PYG{p}{]\PYGZcb{})}
+    \PYG{c+c1}{\PYGZsh{}istt=istt+i+1}
+
+  \PYG{n}{ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Time (nsec)\PYGZsq{}}\PYG{p}{)}
+  \PYG{n}{ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Stride (bytes)\PYGZsq{}}\PYG{p}{)}
+  \PYG{n}{ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}xscale}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}log\PYGZsq{}}\PYG{p}{,}\PYG{n}{base}\PYG{o}{=}\PYG{l+m+mi}{2}\PYG{p}{)}
+  \PYG{n}{ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}xticks}\PYG{p}{(}\PYG{n}{xtvals}\PYG{p}{)}
+  \PYG{n}{ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}xticklabels}\PYG{p}{(}\PYG{n}{xtlabels}\PYG{p}{,}\PYG{n}{rotation}\PYG{o}{=}\PYG{l+m+mi}{45}\PYG{p}{)}
+  \PYG{n}{ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}ylim}\PYG{p}{(}\PYG{o}{*}\PYG{p}{[}\PYG{n}{l} \PYG{k}{for} \PYG{n}{l} \PYG{o+ow}{in} \PYG{n}{lims}\PYG{p}{[}\PYG{n}{lim}\PYG{p}{][}\PYG{l+m+mi}{1}\PYG{p}{]])}
+  \PYG{n}{ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}xlim}\PYG{p}{(}\PYG{o}{*}\PYG{p}{[}\PYG{n}{sizes}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{n}{l}\PYG{p}{,}\PYG{n}{fmt\PYGZus{}sizeof}\PYG{p}{(}\PYG{n}{l}\PYG{p}{))} \PYG{k}{for} \PYG{n}{l} \PYG{o+ow}{in} \PYG{n}{lims}\PYG{p}{[}\PYG{n}{lim}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{]])}
+
+  \PYG{c+c1}{\PYGZsh{} Lines}
+  \PYG{n}{plotlines}\PYG{o}{=}\PYG{p}{\PYGZob{}}\PYG{n}{k}\PYG{p}{:}\PYG{k}{lambda} \PYG{n}{line}\PYG{p}{,}\PYG{n}{k}\PYG{o}{=}\PYG{n}{k}\PYG{p}{,}\PYG{n}{i}\PYG{o}{=}\PYG{n}{i}\PYG{p}{,}\PYG{o}{**}\PYG{n}{kwargs}\PYG{p}{:} \PYG{n+nb}{getattr}\PYG{p}{(}\PYG{n}{ax}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}ax}\PYG{l+s+si}{\PYGZpc{}s}\PYG{l+s+s1}{line\PYGZsq{}}\PYG{o}{\PYGZpc{}}\PYG{n}{k}\PYG{p}{)(}\PYG{n}{line}\PYG{p}{[}\PYG{n}{i}\PYG{p}{],}\PYG{o}{**}\PYG{n}{kwargs}\PYG{p}{)} \PYG{k}{for} \PYG{n}{i}\PYG{p}{,}\PYG{n}{k} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{([}\PYG{l+s+s1}{\PYGZsq{}v\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}h\PYGZsq{}}\PYG{p}{])\PYGZcb{}}
+  \PYG{n}{annotatelines}\PYG{o}{=}\PYG{p}{\PYGZob{}}\PYG{n}{k}\PYG{p}{:}\PYG{k}{lambda} \PYG{n}{line}\PYG{p}{,}\PYG{n}{text}\PYG{p}{,}\PYG{n}{k}\PYG{o}{=}\PYG{n}{k}\PYG{p}{,}\PYG{n}{i}\PYG{o}{=}\PYG{n}{i}\PYG{p}{,}\PYG{o}{**}\PYG{n}{kwargs}\PYG{p}{:} \PYG{n+nb}{getattr}\PYG{p}{(}\PYG{n}{plt}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}annotate\PYGZsq{}}\PYG{p}{)(}\PYG{n}{text}\PYG{o}{=}\PYG{n}{text}\PYG{p}{,}\PYG{n}{xy}\PYG{o}{=}\PYG{n}{line}\PYG{p}{,}\PYG{o}{**}\PYG{n}{kwargs}\PYG{p}{)} \PYG{k}{for} \PYG{n}{i}\PYG{p}{,}\PYG{n}{k} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{([}\PYG{l+s+s1}{\PYGZsq{}v\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}h\PYGZsq{}}\PYG{p}{])\PYGZcb{}}
+  \PYG{k}{for} \PYG{n}{k} \PYG{o+ow}{in} \PYG{n}{lines}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{n}{lim}\PYG{p}{,[]):}
+    \PYG{n}{plotline}\PYG{o}{=}\PYG{n}{plotlines}\PYG{p}{[}\PYG{n}{k}\PYG{p}{]}
+    \PYG{n}{annotateline}\PYG{o}{=}\PYG{n}{annotatelines}\PYG{p}{[}\PYG{n}{k}\PYG{p}{]}
+    \PYG{k}{for} \PYG{n}{line} \PYG{o+ow}{in} \PYG{n}{lines}\PYG{p}{[}\PYG{n}{lim}\PYG{p}{][}\PYG{n}{k}\PYG{p}{]:}
+      \PYG{n}{text} \PYG{o}{=} \PYG{n}{lines}\PYG{p}{[}\PYG{n}{lim}\PYG{p}{][}\PYG{n}{k}\PYG{p}{][}\PYG{n}{line}\PYG{p}{]}
+      \PYG{n}{\PYGZus{}kwargs} \PYG{o}{=} \PYG{n}{kwargs}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}lines\PYGZsq{}}\PYG{p}{][}\PYG{k+kc}{None}\PYG{p}{]}      
+      \PYG{k}{for} \PYG{n}{x} \PYG{o+ow}{in} \PYG{n}{kwargs}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}lines\PYGZsq{}}\PYG{p}{]:}
+        \PYG{k}{if} \PYG{n+nb}{str}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)} \PYG{o+ow}{in} \PYG{n}{text}\PYG{p}{:}
+          \PYG{n}{\PYGZus{}kwargs} \PYG{o}{=} \PYG{n}{kwargs}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}lines\PYGZsq{}}\PYG{p}{][}\PYG{n}{x}\PYG{p}{]}
+          \PYG{k}{break}
+      \PYG{n}{textline}\PYG{o}{=}\PYG{n+nb}{list}\PYG{p}{(}\PYG{n}{line}\PYG{p}{)}
+      \PYG{k}{if} \PYG{l+m+mi}{0} \PYG{o+ow}{and} \PYG{p}{(}\PYG{n}{\PYGZus{}kwargs}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}color\PYGZsq{}}\PYG{p}{]} \PYG{o}{==} \PYG{l+s+s1}{\PYGZsq{}k\PYGZsq{}} \PYG{o+ow}{and} \PYG{n}{\PYGZus{}kwargs}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}linestyle\PYGZsq{}}\PYG{p}{]} \PYG{o}{==} \PYG{l+s+s1}{\PYGZsq{}\PYGZhy{}\PYGZsq{}}\PYG{p}{):}
+        \PYG{n}{textline}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{/=}\PYG{l+m+mi}{8}
+      \PYG{k}{elif} \PYG{p}{(}\PYG{n}{\PYGZus{}kwargs}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}color\PYGZsq{}}\PYG{p}{]} \PYG{o}{==} \PYG{l+s+s1}{\PYGZsq{}g\PYGZsq{}}\PYG{p}{)} \PYG{o+ow}{and} \PYG{p}{(}\PYG{n}{lim}\PYG{o}{==}\PYG{l+s+s1}{\PYGZsq{}all\PYGZsq{}}\PYG{p}{):}
+        \PYG{n}{textline}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{+=} \PYG{l+m+mf}{0.25}
+      \PYG{k}{elif} \PYG{p}{(}\PYG{n}{\PYGZus{}kwargs}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}color\PYGZsq{}}\PYG{p}{]} \PYG{o}{==} \PYG{l+s+s1}{\PYGZsq{}g\PYGZsq{}}\PYG{p}{)} \PYG{o+ow}{and} \PYG{p}{(}\PYG{n}{lim}\PYG{o}{==}\PYG{l+s+s1}{\PYGZsq{}lowerleft\PYGZsq{}}\PYG{p}{):}
+        \PYG{n}{textline}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{+=} \PYG{l+m+mf}{0.1}
+      \PYG{k}{elif} \PYG{p}{(}\PYG{n}{\PYGZus{}kwargs}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}color\PYGZsq{}}\PYG{p}{]} \PYG{o}{==} \PYG{l+s+s1}{\PYGZsq{}g\PYGZsq{}}\PYG{p}{)} \PYG{o+ow}{and} \PYG{p}{(}\PYG{n}{lim}\PYG{o}{==}\PYG{l+s+s1}{\PYGZsq{}middle\PYGZsq{}}\PYG{p}{):}
+        \PYG{n}{textline}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{*=} \PYG{l+m+mf}{1.5}        
+        \PYG{n}{textline}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{+=} \PYG{l+m+mf}{0.06}
+      \PYG{k}{elif} \PYG{p}{(}\PYG{n}{\PYGZus{}kwargs}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}color\PYGZsq{}}\PYG{p}{]} \PYG{o}{==} \PYG{l+s+s1}{\PYGZsq{}g\PYGZsq{}}\PYG{p}{)} \PYG{o+ow}{and} \PYG{p}{(}\PYG{n}{lim}\PYG{o}{==}\PYG{l+s+s1}{\PYGZsq{}middleupper\PYGZsq{}}\PYG{p}{):}
+        \PYG{n}{textline}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{*=} \PYG{l+m+mf}{1.2}        
+        \PYG{n}{textline}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{+=} \PYG{l+m+mf}{0.1}                
+      \PYG{k}{elif} \PYG{n}{lim} \PYG{o+ow}{not} \PYG{o+ow}{in} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}lowerleft\PYGZsq{}}\PYG{p}{]:}
+        \PYG{n}{textline}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{*=} \PYG{l+m+mf}{1.15}
+      \PYG{k}{else}\PYG{p}{:}
+        \PYG{n}{textline}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{*=} \PYG{l+m+mf}{1.15}        
+      \PYG{c+c1}{\PYGZsh{} if lim == \PYGZsq{}lowerleft\PYGZsq{}:}
+      \PYG{c+c1}{\PYGZsh{}   textline[1] = \PYGZhy{}0.5}
+
+      \PYG{n}{plotline}\PYG{p}{(}\PYG{n}{line}\PYG{p}{,}\PYG{o}{**}\PYG{n}{\PYGZus{}kwargs}\PYG{p}{)}
+      \PYG{n}{annotateline}\PYG{p}{(}\PYG{n}{textline}\PYG{p}{,}\PYG{n}{text}\PYG{p}{)}
+
+  \PYG{n}{handles}\PYG{p}{,}\PYG{n}{labels} \PYG{o}{=} \PYG{n}{ax}\PYG{o}{.}\PYG{n}{get\PYGZus{}legend\PYGZus{}handles\PYGZus{}labels}\PYG{p}{()}
+  \PYG{n}{handles}\PYG{p}{,}\PYG{n}{labels} \PYG{o}{=} \PYG{p}{[}\PYG{n}{h} \PYG{k}{for} \PYG{n}{i}\PYG{p}{,(}\PYG{n}{h}\PYG{p}{,}\PYG{n}{l}\PYG{p}{)} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{(}\PYG{n+nb}{zip}\PYG{p}{(}\PYG{n}{handles}\PYG{p}{,}\PYG{n}{labels}\PYG{p}{))} \PYG{k}{if} \PYG{n}{l} \PYG{o+ow}{not} \PYG{o+ow}{in} \PYG{n}{labels}\PYG{p}{[:}\PYG{n}{i}\PYG{p}{]],[}\PYG{n}{l} \PYG{k}{for} \PYG{n}{i}\PYG{p}{,(}\PYG{n}{h}\PYG{p}{,}\PYG{n}{l}\PYG{p}{)} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{(}\PYG{n+nb}{zip}\PYG{p}{(}\PYG{n}{handles}\PYG{p}{,}\PYG{n}{labels}\PYG{p}{))} \PYG{k}{if} \PYG{n}{l} \PYG{o+ow}{not} \PYG{o+ow}{in} \PYG{n}{labels}\PYG{p}{[:}\PYG{n}{i}\PYG{p}{]]}
+  \PYG{n}{fig}\PYG{o}{.}\PYG{n}{legend}\PYG{p}{(}\PYG{n}{handles}\PYG{o}{=}\PYG{n}{handles}\PYG{p}{,}\PYG{n}{labels}\PYG{o}{=}\PYG{n}{labels}\PYG{p}{,}\PYG{n}{bbox\PYGZus{}to\PYGZus{}anchor}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mf}{0.7}\PYG{p}{,}\PYG{l+m+mf}{0.5}\PYG{p}{),}\PYG{n}{loc}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}center left\PYGZsq{}}\PYG{p}{,}\PYG{n}{ncol}\PYG{o}{=}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{n}{prop} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}size\PYGZdq{}}\PYG{p}{:} \PYG{l+m+mi}{6}\PYG{p}{\PYGZcb{},)}
+  \PYG{n}{fig}\PYG{o}{.}\PYG{n}{subplots\PYGZus{}adjust}\PYG{p}{(}\PYG{n}{right}\PYG{o}{=}\PYG{l+m+mf}{0.7}\PYG{p}{,}\PYG{n}{bottom}\PYG{o}{=}\PYG{l+m+mf}{0.15}\PYG{p}{)}
+  \PYG{n}{fig}\PYG{o}{.}\PYG{n}{savefig}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}../../figures/}\PYG{l+s+si}{\PYGZpc{}s}\PYG{l+s+s1}{\PYGZus{}}\PYG{l+s+si}{\PYGZpc{}s}\PYG{l+s+s1}{.pdf\PYGZsq{}}\PYG{o}{\PYGZpc{}}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}\PYGZus{}\PYGZsq{}}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{file}\PYG{o}{.}\PYG{n}{split}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}\PYGZus{}\PYGZsq{}}\PYG{p}{)[:}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]),}\PYG{n}{lim}\PYG{p}{))}
+\end{Verbatim}
