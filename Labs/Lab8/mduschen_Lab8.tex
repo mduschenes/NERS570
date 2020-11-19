@@ -308,8 +308,23 @@ Considering the correct compiler options and hardware compatibility for AVX2 ins
 
 \newpage
 \section{In-line Assembly}
-With help from the internet, the following matrix-vector multiplication in-line assembly,as well as conventional c code, is shown in \cref{code:matvec}
-\code{c}{figures/matvec.c}{Matrix-Matrix multiply}{dgemm}
+With help from the internet, the following matrix-vector multiplication $y=Ax$, in-line assembly,as well as conventional c code, is shown in \cref{code:matvec} in the appendix. The fused-multiply adds assembly was not quite able to be implemented, however the procedure of writing the fused-multiply adds with avx instructions (in the assembly syntax, as opposed to the intel syntax) was attempted. There are no compiler errors, however the issue seems to be that the $y$ value is not being assigned the computed multiplied value in the set register in \textit{\_mm\_storel\_pd(y, \_mm256\_castpd256\_pd128(Ax))}.
+
+The assembly registers for multiplies and adds currently only allow for operating on $4\times4$ matrices if double precision is used. So, blocks of the matrix and vector in these sizes must be passed to the assembly function \textit{\_matvec\_avx(A,x,y)} in a loop. This loop can then be unrolled, to assign each part of $y$ separately. 
+
+The program is compiled with the following command, and assembly snippet is shown in \cref{code:matvec_asm}.
+$$\textrm{gcc -Ofast -mavx2 -mfma -funroll-all-loops matvec.c} $$ \\
+
+
+\begin{longlisting}
+    \caption{Matrix-Vector multiplication inline assembly code}
+    \inputminted[linenos,firstline=202,lastline=234]{c}{figures/matvec.c}
+    \label{code:matvec_asm}
+\end{longlisting}
+
+
+
+
 
 
 
@@ -329,6 +344,8 @@ With help from the internet, the following matrix-vector multiplication in-line 
 \code{bash}{figures/job.slurm}{membench job script.}{job}
 \newpage
 \code{cpp}{figures/dgemm.cpp}{Matrix-Matrix multiply}{dgemm}
+\newpage
+\code{c}{figures/matvec.c}{Matrix-Vector multiply}{matvec}
 \end{appendix}
 
 

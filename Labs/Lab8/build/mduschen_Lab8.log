@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.10.6)  18 NOV 2020 05:45
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.10.6)  19 NOV 2020 04:57
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -883,44 +883,39 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 189.
 
-<figures/membench_all.pdf, id=82, 462.52798pt x 346.89601pt>
+<figures/membench_all.pdf, id=86, 462.52798pt x 346.89601pt>
 File: figures/membench_all.pdf Graphic file (type pdf)
 <use figures/membench_all.pdf>
 Package pdftex.def Info: figures/membench_all.pdf  used on input line 212.
 (pdftex.def)             Requested size: 506.17451pt x 379.64948pt.
 [3]
-<figures/membench_lowerleft.pdf, id=89, 462.52798pt x 346.89601pt>
+<figures/membench_lowerleft.pdf, id=93, 462.52798pt x 346.89601pt>
 File: figures/membench_lowerleft.pdf Graphic file (type pdf)
 <use figures/membench_lowerleft.pdf>
 Package pdftex.def Info: figures/membench_lowerleft.pdf  used on input line 222
 .
 (pdftex.def)             Requested size: 506.17451pt x 379.64948pt.
  [4 <./figures/membench_all.pdf>]
-<figures/membench_middle.pdf, id=149, 462.52798pt x 346.89601pt>
+<figures/membench_middle.pdf, id=153, 462.52798pt x 346.89601pt>
 File: figures/membench_middle.pdf Graphic file (type pdf)
 <use figures/membench_middle.pdf>
 Package pdftex.def Info: figures/membench_middle.pdf  used on input line 233.
 (pdftex.def)             Requested size: 506.17451pt x 379.64948pt.
  [5 <./figures/membench_lowerleft.pdf>]
-<figures/membench_middleupper.pdf, id=195, 462.52798pt x 346.89601pt>
+<figures/membench_middleupper.pdf, id=199, 462.52798pt x 346.89601pt>
 File: figures/membench_middleupper.pdf Graphic file (type pdf)
 <use figures/membench_middleupper.pdf>
 Package pdftex.def Info: figures/membench_middleupper.pdf  used on input line 2
 44.
 (pdftex.def)             Requested size: 506.17451pt x 379.64948pt.
 
-[6 <./figures/membench_middle.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 263--267
-
- []
-
-[7 <./figures/membench_middleupper.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 269--279
+[6 <./figures/membench_middle.pdf>] [7 <./figures/membench_middleupper.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 264--268
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 283--284
+Underfull \hbox (badness 10000) in paragraph at lines 270--280
 
  []
 
@@ -930,19 +925,37 @@ Underfull \hbox (badness 10000) in paragraph at lines 284--285
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 287--288
+Underfull \hbox (badness 10000) in paragraph at lines 285--286
 
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 288--289
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 290--291
+
+ []
+
+[8]
 (./_minted-mduschen_Lab8/6F213E435A1AC68AB28431FB897EE5142573FCA67BE69E744FFA42
-082B4A0AD1.pygtex [8])
+082B4A0AD1.pygtex)
 (./_minted-mduschen_Lab8/6F213E435A1AC68AB28431FB897EE5148090832AE9E1E8D3AC750D
 C9BF3F743E.pygtex [9] [10] [11]) [12]
+Underfull \hbox (badness 10000) in paragraph at lines 316--317
+
+ []
+
+
+(./_minted-mduschen_Lab8/A3D035E4CF25EB66F0663E2D0B54B3FAAD55F5733F4E926C0ADC04
+E28C56409C.pygtex
+LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10> not available
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 203.
+) [13]
 (./_minted-mduschen_Lab8/137AFE481950BFFB52FF583E67CB961920B14FDB8A42087B9871D3
 9E4797C4F1.pygtex
-LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 3.
 LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 
 7.
  (/usr/local/texlive/2020/texmf-dist/tex/latex/base/ts1cmtt.fd
@@ -953,25 +966,27 @@ Overfull \hbox (50.97914pt too wide) in paragraph at lines 10--10
 o-get-human-readable-version-of-file-size[]|  
  []
 
-[13] [14] [15] [16] [17] [18]) [19]
+[14] [15] [16] [17] [18] [19]) [20]
 (./_minted-mduschen_Lab8/C37DECC44F9A8CF8841827B4FADEDD83A5019C9F2A65E3BD3F3E70
-52932AB968.pygtex) [20]
+52932AB968.pygtex) [21]
 (./_minted-mduschen_Lab8/FBF2BE4804C9C49214C843ECEEE026D0C29B63D6CA669F78AB4BBC
-672D5AD47E.pygtex) [21]
+672D5AD47E.pygtex) [22]
 (./_minted-mduschen_Lab8/56E92438FA6C196B02C7D9BEE0595BDC4EFB0EB9EA2FADBF2CC0D0
-1ACDBD78A0.pygtex) [22] (./mduschen_Lab8.aux)
+1ACDBD78A0.pygtex) [23]
+(./_minted-mduschen_Lab8/A3D035E4CF25EB66F0663E2D0B54B3FAAD55F5733F4E926C0ADC04
+E28C56409C.pygtex [24] [25] [26] [27] [28] [29]) [30] (./mduschen_Lab8.aux)
 Package rerunfilecheck Info: File `mduschen_Lab8.out' has not changed.
-(rerunfilecheck)             Checksum: F3AE47B504BD3BE1FBFC582901563C9E;599.
+(rerunfilecheck)             Checksum: FC3380C317AA12B2D3F0BBFBEB83346F;651.
 
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 15906 strings out of 479916
- 271532 string characters out of 5882695
- 676576 words of memory out of 5000000
- 32119 multiletter control sequences out of 15000+600000
+ 15933 strings out of 479916
+ 272424 string characters out of 5882695
+ 677085 words of memory out of 5000000
+ 32130 multiletter control sequences out of 15000+600000
  551910 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  72i,12n,111p,1570b,820s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -997,10 +1012,10 @@ dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2020/texmf-di
 st/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2020/texmf-dist
 /fonts/type1/public/cm-super/sfti1000.pfb></usr/local/texlive/2020/texmf-dist/f
 onts/type1/public/cm-super/sftt1000.pfb>
-Output written on mduschen_Lab8.pdf (22 pages, 526228 bytes).
+Output written on mduschen_Lab8.pdf (30 pages, 552351 bytes).
 PDF statistics:
- 425 PDF objects out of 1000 (max. 8388607)
- 305 compressed objects within 4 object streams
- 44 named destinations out of 1000 (max. 500000)
- 101 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 468 PDF objects out of 1000 (max. 8388607)
+ 340 compressed objects within 4 object streams
+ 55 named destinations out of 1000 (max. 500000)
+ 109 words of extra memory for PDF output out of 10000 (max. 10000000)
 
