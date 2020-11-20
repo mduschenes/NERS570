@@ -22,7 +22,7 @@ OBJSDEPS:= $(patsubst $(SRC)/%.$(EXT),$(OBJ)/%.o,$(SRCSDEPS))
 EXES    := $(patsubst $(SRC)/%.$(EXT),$(OBJ)/%.out,$(SRCS))
 EXESF   := $(patsubst $(SRC)/%.$(EXTF),$(OBJ)/%.out,$(SRCSF))
 
-CFLAGS  :=
+CFLAGS  := -fopenmp
 CFLAGSF	:=
 
 #%.o: %.$(EXT) $(DEPS)
@@ -57,7 +57,8 @@ $(ROOT) :
 	$(MKDIR) $@
 
 all : $(EXES) $(EXESF)
-
+	@echo $(EXES)
+	@echo $(OBJS)
 run : $(EXES) $(EXESF)
 	./$< $(RUN_ARGS)
 
