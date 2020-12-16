@@ -71,8 +71,9 @@ void Spin<T_sys,T_state,dim>::calculate(){
 // Perform Monte Carlo (Metropolis Algorithm)
 template <class T_sys,class T_state,const int dim>
 void Spin<T_sys,T_state,dim>::montecarlo(){
-	#pragma omp parallel for default(private) shared(state,observables,settings)
-	for (int i=0;i<this->settings.iterations;i++){
+	int i;
+	// #pragma omp parallel for default(shared) private(i) shared(state,observables,settings)
+	for (i=0;i<this->settings.iterations;i++){
 		// Stopping conditions
 		if (this->_stop() == 1){
 	//		std::cout << "Stopping at "<< i <<std::endl;
@@ -80,7 +81,7 @@ void Spin<T_sys,T_state,dim>::montecarlo(){
 		};
 
 		// Update state
-		#pragma omp critical
+		// #pragma omp critical
 		{
 		this->update();
 	
@@ -257,12 +258,12 @@ template <class T_sys,class T_state,const int dim>
 int Spin<T_sys,T_state,dim>::_stop(){
 
 	T_sys var = 0;
-	int i = this->settings.iterations/100;
+	int i = this->settings.iterations/100,j;
 	if (this->settings.iteration< 20*i){
 		return 0;
 	};
-	#pragma omp parallel for reduction(+:var) default(private) shared(var)
-	for (int j=this->settings.iteration-i;j<this->settings.iteration;j++){
+	#pragma omp parallel for reduction(+:var) shared(var,observables) private(j)
+	for (j=this->settings.iteration-i;j<this->settings.iteration;j++){
 		var += this->observables.energy_var[j];
 	};
 	var /=i;
@@ -352,7 +353,7 @@ void Spin<T_sys,T_state,dim>::_set_lattice(){
 	int indices[dim];
 	this->_neighbours.resize(this->system.size);
 
-	#pragma omp parallel for default(private)
+	// #pragma omp parallel for default(private)
 	for(int i=0;i<this->system.size;i++){
 		this->_neighbours[i].resize(this->system.coordination);
 		for(int j=0;j<this->system.coordination;j++){
@@ -438,7 +439,9 @@ T_sys Spin<T_sys,T_state,dim>::_interaction(T_state x, T_state y){
 // Calculate Energy
 template <class T_sys,class T_state,const int dim>
 T_sys Spin<T_sys,T_state,dim>::_energy(){
+	int i;
 	T_sys energy = 0;
+	#pragma omp parallel for reduction(+:energy) default(shared) private(i)
 	for (int i=0;i<this->system.size;i++){
 		energy += _energy(i);
 	};
@@ -460,8 +463,10 @@ T_sys Spin<T_sys,T_state,dim>::_energy(int index){
 // Calculate Order
 template <class T_sys,class T_state,const int dim>
 T_sys Spin<T_sys,T_state,dim>::_order(){
+	int i;
 	T_sys order = 0;
-	for (int i=0;i<this->system.size;i++){
+	#pragma omp parallel for reduction(+:order) default(shared) private(i)	
+	for (i=0;i<this->system.size;i++){
 		order += _order(i);
 	};
 	return std::abs(order/this->system.size);
