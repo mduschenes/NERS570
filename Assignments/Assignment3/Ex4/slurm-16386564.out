@@ -1,0 +1,19 @@
+g++ -c -o main.o main.cpp -fopenmp
+g++ -c -o physics.o physics.cpp -fopenmp
+g++ -c -o io.o io.cpp -fopenmp
+g++ -o main.out main.o physics.o io.o -fopenmp
+./main.out 10 2 0.5
+Monte Carlo Wall Time: 0.541473
+./plot.py "data_d2_n10_q2_T0.500000_J-1.000000.csv" plot_energy_T0-5.pdf plot.json plot.mplstyle "energy_mean" "null"
+./plot.py "data_d2_n10_q2_T0.500000_J-1.000000.csv" plot_order_T0-5.pdf plot.json plot.mplstyle "order_mean" "null"
+./plot.py "data_d2_n10_q2_T0.500000_J-1.000000.csv" plot_energy_var_T0-5.pdf plot.json plot.mplstyle "energy_var" "null"
+./plot.py "data_d2_n10_q2_T0.500000_J-1.000000.csv" plot_order_var_T0-5.pdf plot.json plot.mplstyle "order_var" "null"
+./plot.py "data_d2_n10_q2_T1.134593_J-1.000000.csv" plot_energy_T1-134593.pdf plot.json plot.mplstyle "energy_mean" "null"
+./plot.py "data_d2_n10_q2_T1.134593_J-1.000000.csv" plot_order_T1-134593.pdf plot.json plot.mplstyle "order_mean" "null"
+./plot.py "data_d2_n10_q2_T1.134593_J-1.000000.csv" plot_energy_var_T1-134593.pdf plot.json plot.mplstyle "energy_var" "null"
+./plot.py "data_d2_n10_q2_T1.134593_J-1.000000.csv" plot_order_var_T1-134593.pdf plot.json plot.mplstyle "order_var" "null"
+./plot.py "data_d2_n10_q2_T5.000000_J-1.000000.csv" plot_energy_T5.pdf plot.json plot.mplstyle "energy_mean" "null"
+./plot.py "data_d2_n10_q2_T5.000000_J-1.000000.csv" plot_order_T5.pdf plot.json plot.mplstyle "order_mean" "null"
+./plot.py "data_d2_n10_q2_T5.000000_J-1.000000.csv" plot_energy_var_T5.pdf plot.json plot.mplstyle "energy_var" "null"
+./plot.py "data_d2_n10_q2_T5.000000_J-1.000000.csv" plot_order_var_T5.pdf plot.json plot.mplstyle "order_var" "null"
+rm io.o physics.o

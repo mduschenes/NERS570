@@ -11,10 +11,10 @@ Spin<T_sys,T_state,dim>::Spin(int n, T_state q, T_sys T, T_sys * J){
 	this->set(n,q,T,J);
 
 	// Update
-	this->montecarlo();
+//	this->montecarlo();
 
 	// Write Observables
-	this->write();
+//	this->write();
 
 	// // Print Observables
 	// this->print();
@@ -71,6 +71,8 @@ void Spin<T_sys,T_state,dim>::calculate(){
 // Perform Monte Carlo (Metropolis Algorithm)
 template <class T_sys,class T_state,const int dim>
 void Spin<T_sys,T_state,dim>::montecarlo(){
+	double time = omp_get_wtime();
+
 	int i;
 	// #pragma omp parallel for default(shared) private(i) shared(state,observables,settings)
 	for (i=0;i<this->settings.iterations;i++){
@@ -95,6 +97,7 @@ void Spin<T_sys,T_state,dim>::montecarlo(){
 		};		
 		};
 	};
+	std::cout << "Monte Carlo Wall Time: "<< omp_get_wtime()-time << std::endl;
 };
 
 
@@ -170,7 +173,7 @@ void Spin<T_sys,T_state,dim>::_set_settings(){
 	this->settings.seed = time(NULL);
 	this->settings.num_threads = 16;
 	this->settings.iteration = 0;
-	this->settings.iterations = 100000;
+	this->settings.iterations = 1000;
 	this->settings.burnin = this->settings.iterations/30;
 	this->settings.stop = 1e-3;
 	this->settings.verbose = 0;
@@ -262,7 +265,7 @@ int Spin<T_sys,T_state,dim>::_stop(){
 	if (this->settings.iteration< 20*i){
 		return 0;
 	};
-	#pragma omp parallel for reduction(+:var) shared(var,observables) private(j)
+	#pragma omp parallel for reduction(+:var) shared(observables) private(j)
 	for (j=this->settings.iteration-i;j<this->settings.iteration;j++){
 		var += this->observables.energy_var[j];
 	};
@@ -347,16 +350,17 @@ template <class T_sys,class T_state,const int dim>
 void Spin<T_sys,T_state,dim>::_set_lattice(){
 
 	// Set nearest neighbours
+	int i,j;
 	int radius = 1;
 	int index,axis;
 	int shift;
 	int indices[dim];
 	this->_neighbours.resize(this->system.size);
 
-	// #pragma omp parallel for default(private)
-	for(int i=0;i<this->system.size;i++){
+	#pragma omp parallel for default(shared) private(i,j,index,axis,shift,indices,system,settings) shared(_neighbours)
+	for(i=0;i<this->system.size;i++){
 		this->_neighbours[i].resize(this->system.coordination);
-		for(int j=0;j<this->system.coordination;j++){
+		for(j=0;j<this->system.coordination;j++){
 			index = i;
 			this->_indices(index,indices);
 			axis = j/2;

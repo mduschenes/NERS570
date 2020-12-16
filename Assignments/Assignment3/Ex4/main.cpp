@@ -27,7 +27,11 @@ int main(int argc, char *argv[]){
     
 
     PHYS::Spin<float,int,dim> spin(n,q,T,J);
-
+    
+    spin.settings.num_threads = 1;
+    spin.settings.stop = 1e-6;
+    spin.montecarlo();
+    spin.write();
     // std::string path = "./testdata.csv";
     // std::vector<std::string> header = {"spin1","spin2"};
     // std::vector<std::vector<int>> data;

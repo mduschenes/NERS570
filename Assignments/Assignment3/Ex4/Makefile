@@ -64,30 +64,7 @@ run : $(EXES)
 	./$< $(RUN_ARGS)
 
 plot : run
-# 	./plot.py "data*.csv" plot_energy.pdf plot.json plot.mplstyle "energy_mean" "null"
-# 	./plot.py "data*.csv" plot_order.pdf plot.json plot.mplstyle "order_mean" "null"
-
-# 	./plot.py "data_d2_n100_q2_T1.000000_J-1.000000.csv" plot_energy.pdf plot.json plot.mplstyle "energy_mean" "null"
-# 	./plot.py "data_d2_n100_q2_T1.000000_J-1.000000.csv" plot_order.pdf plot.json plot.mplstyle "order_mean" "null"
-
-	./plot.py "data_d2_n10_q2_T0.500000_J-1.000000.csv" plot_energy_T0-5.pdf plot.json plot.mplstyle "energy_mean" "null"
-	./plot.py "data_d2_n10_q2_T0.500000_J-1.000000.csv" plot_order_T0-5.pdf plot.json plot.mplstyle "order_mean" "null"
-	./plot.py "data_d2_n10_q2_T0.500000_J-1.000000.csv" plot_energy_var_T0-5.pdf plot.json plot.mplstyle "energy_var" "null"
-	./plot.py "data_d2_n10_q2_T0.500000_J-1.000000.csv" plot_order_var_T0-5.pdf plot.json plot.mplstyle "order_var" "null"
-
-
-	./plot.py "data_d2_n10_q2_T1.134593_J-1.000000.csv" plot_energy_T1-134593.pdf plot.json plot.mplstyle "energy_mean" "null"
-	./plot.py "data_d2_n10_q2_T1.134593_J-1.000000.csv" plot_order_T1-134593.pdf plot.json plot.mplstyle "order_mean" "null"
-	./plot.py "data_d2_n10_q2_T1.134593_J-1.000000.csv" plot_energy_var_T1-134593.pdf plot.json plot.mplstyle "energy_var" "null"
-	./plot.py "data_d2_n10_q2_T1.134593_J-1.000000.csv" plot_order_var_T1-134593.pdf plot.json plot.mplstyle "order_var" "null"
-
-
-
-	./plot.py "data_d2_n10_q2_T5.000000_J-1.000000.csv" plot_energy_T5.pdf plot.json plot.mplstyle "energy_mean" "null"
-	./plot.py "data_d2_n10_q2_T5.000000_J-1.000000.csv" plot_order_T5.pdf plot.json plot.mplstyle "order_mean" "null"
-	./plot.py "data_d2_n10_q2_T5.000000_J-1.000000.csv" plot_energy_var_T5.pdf plot.json plot.mplstyle "energy_var" "null"
-	./plot.py "data_d2_n10_q2_T5.000000_J-1.000000.csv" plot_order_var_T5.pdf plot.json plot.mplstyle "order_var" "null"
-
+	./plot.sh $(RUN_ARGS)
 # 	./plot.py "data_d2_n100_q2_T1.000000_J-1.000000.csv" plot_energy_T1.pdf plot.json plot.mplstyle "energy_mean" "null"
 # 	./plot.py "data_d2_n100_q2_T1.000000_J-1.000000.csv" plot_order_T1.pdf plot.json plot.mplstyle "order_mean" "null"
 
