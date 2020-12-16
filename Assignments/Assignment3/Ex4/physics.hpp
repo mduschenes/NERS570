@@ -8,8 +8,12 @@
 #include <cmath>
 #include <time.h>
 #include <map>
+#include <omp.h>
 
 #include "io.hpp"
+
+
+#define MAX_THREADS 4
 
 namespace PHYS {
 
@@ -79,9 +83,11 @@ class Spin {
 		// Settings variables
 		struct settings {
 			int seed;
+			int num_threads;
 			int iteration;
 			int iterations;
 			int burnin;
+			float stop;
 			int verbose;
 			int read;
 			int write;
@@ -130,6 +136,9 @@ class Spin {
 
 		// Transition probability calculation
 		int _transition(T_sys delta);
+
+		// Stopping condition
+		int _stop();
 
 		//  Set observables
 		void _set_observables();

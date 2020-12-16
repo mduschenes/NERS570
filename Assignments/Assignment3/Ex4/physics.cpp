@@ -71,6 +71,7 @@ void Spin<T_sys,T_state,dim>::calculate(){
 // Perform Monte Carlo (Metropolis Algorithm)
 template <class T_sys,class T_state,const int dim>
 void Spin<T_sys,T_state,dim>::montecarlo(){
+	#pragma omp parallel for default(private) shared(this->state)
 	for (int i=0;i<this->settings.iterations;i++){
 		
 		// Update state
@@ -83,6 +84,13 @@ void Spin<T_sys,T_state,dim>::montecarlo(){
 			// printf("Correlation = %f\n",this->observables.energy_var.back());
 			// Print Observables
 			this->print();
+
+
+			// Stopping conditions
+			if (this->_stop() == 1){
+				std::cout << "Stopping at "<< i <<std::endl;
+				break;
+			};
 		};		
 	};
 };
@@ -158,16 +166,23 @@ void Spin<T_sys,T_state,dim>::_set_system(int n, T_state q, T_sys T, T_sys * J){
 template <class T_sys,class T_state,const int dim>
 void Spin<T_sys,T_state,dim>::_set_settings(){
 	this->settings.seed = time(NULL);
+	this->settings.num_threads = 4;
 	this->settings.iteration = 0;
-	this->settings.iterations = 100000;
+	this->settings.iterations = 10000;
 	this->settings.burnin = this->settings.iterations/30;
+	this->settings.stop = 1e-3;
 	this->settings.verbose = 0;
 	this->settings.read = 1;
 	this->settings.write = 1;
 	this->settings.path = "./data.csv";
 
+
 	// Set random seed
 	std::srand(this->settings.seed);
+
+	// Set number of OpenMP threads
+	omp_set_num_threads(this->settings.num_threads);
+
 	return;
 };
 
@@ -233,6 +248,25 @@ int Spin<T_sys,T_state,dim>::_transition(T_sys delta){
 	// std::cout << "transition = "<< delta/this->system.T << " exp " << std::exp(-delta/this->system.T)<< "rand " << random << " --- "<<((1.0/(1.0+std::exp(delta/this->system.T)))) << std::endl;
 	return ((delta<=0) | std::exp(-delta/this->system.T) > random);
 	// return ((1.0/(1+std::exp(delta/this->system.T))) >= 0.5);
+};
+
+
+// Stopping condition
+template <class T_sys,class T_state,const int dim>
+int Spin<T_sys,T_state,dim>::_stop(){
+
+	T_sys var = 0;
+	int i = this->settings.iterations/100;
+	if (this->settings.iteration< 20*i){
+		return 0;
+	};
+	for (int j=this->settings.iteration-i;j<this->settings.iteration;j++){
+		var += this->observables.energy_var[j];
+	};
+	var /=i;
+	var = std::abs(var);
+	// std::cout << "Rolling var ("<<i<<") : " << var << "  with tol "<< this->settings.stop <<std::endl;
+	return (var<this->settings.stop);
 };
 
 
