@@ -7,7 +7,9 @@
 #include <cstdarg>
 #include <cmath>
 #include <time.h>
+#include <map>
 
+#include "io.hpp"
 
 namespace PHYS {
 
@@ -23,7 +25,7 @@ class Spin {
 
 	
 		// Set system
-		void set();
+		void set(int n, T_state q, T_sys T, T_sys * J);
 
 		// Get system
 		void get();
@@ -34,8 +36,14 @@ class Spin {
 		// Do Monte Carlo Iterations
 		void montecarlo();
 
-		// Update System
-		void update(int index,T_state state);
+		// Update State
+		void update();
+
+		// Write  system
+		void write();
+
+		// Write read
+		void read();
 
 		// Print System
 		void print();
@@ -43,34 +51,48 @@ class Spin {
 		// System states
 		std::vector<T_state> state;
 
-		// System Variables
-		int d;
-		int n;
-		T_state q;
-		T_sys T;
-		T_sys * J;
-		T_state direction;
-		int complexity;
-		int size;
-		int coordination;
+		// System variables
+		struct system {
+			int d;
+			int n;
+			T_state q;
+			T_sys T;
+			T_sys * J;
+			T_state direction;
+			int complexity;
+			int size;
+			int coordination;			
+		} system;	
 
-
-
-		// System observables
+		// Observables variables
 		struct observables {
-			std::vector<T_sys> magnetization;
 			std::vector<T_sys> energy;
-			// std::vector<T_sys> correlation;
+			std::vector<T_sys> energy_mean;
+			std::vector<T_sys> energy_var;
+
+			std::vector<T_sys> order;
+			std::vector<T_sys> order_mean;
+			std::vector<T_sys> order_var;
 		} observables;
 
 
-		// System variables
+		// Settings variables
 		struct settings {
-			int seed = 1;
+			int seed;
+			int iteration;
+			int iterations;
+			int burnin;
+			int verbose;
+			int read;
+			int write;
+			std::string path;
 		} settings;		
 		
 	private:
 
+
+		// Update State
+		void _update(int index,T_state state);
 
 		// Set lattice
 		void _set_lattice();
@@ -87,6 +109,10 @@ class Spin {
 		// Set state
 		void _set_state(int index, T_state state);		
 
+		// Set state
+		void _set_system(int n, T_state q, T_sys T, T_sys * J);		
+
+
 		// Get state
 		T_state _get_state(int index);		
 
@@ -94,22 +120,31 @@ class Spin {
 		T_state _random_state(T_state nullstate);	
 
 		// Get Random state
-		T_state _random_state();						
+		T_state _random_state();	
 
-		// Set size
-		void _set_size();		
-
-		// Calculate change in energies
-		void _set_delta();
+		// Get Random index
+		int _random_index();								
 
 		// Transition probability calculation
-		float _transition(int index);
+		void _propose();
+
+		// Transition probability calculation
+		int _transition(T_sys delta);
 
 		//  Set observables
 		void _set_observables();
 
+		//  Set observables stats
+		void _set_observables_stats();		
+
 		//  Set settings
-		void _set_settings();		
+		void _set_settings();	
+
+		// Monte Carlo average
+		void _average(T_sys & value,std::vector<T_sys> observables,int N);
+
+		// Monte Carlo variance
+		void _variance(T_sys & value,std::vector<T_sys> observables,int N);
 
 		// State interaction calculation
 		T_sys _interaction(T_state x, T_state y);
@@ -117,24 +152,22 @@ class Spin {
 		// Energy calculation
 		T_sys _energy();
 
-		// Magnetization calculation
-		T_sys _magnetization();
+		// Order calculation
+		T_sys _order();		
 
-		// Two-pt correlation calculation
-		T_sys _correlation();
-
-		// Energy calculation
+		// Energy calculation at index
 		T_sys _energy(int index);
-
-		// Magnetization calculation
-		T_sys _magnetization(int index);
-
-		// Two-pt correlation calculation
-		T_sys _correlation(int index);		
+	
+		// Order calculation at index
+		T_sys _order(int index);
 
 
-		// Lookup table for change in energies
-		std::vector<T_sys> _deltas;
+
+		// Calculate change in energies
+		void _set_transitions();
+
+		// Lookup table for transition
+		std::map<T_sys,T_sys> _transitions;
 
 
 		// Nearest neighbours
