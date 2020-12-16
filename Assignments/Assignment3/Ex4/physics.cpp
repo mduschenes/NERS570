@@ -71,12 +71,19 @@ void Spin<T_sys,T_state,dim>::calculate(){
 // Perform Monte Carlo (Metropolis Algorithm)
 template <class T_sys,class T_state,const int dim>
 void Spin<T_sys,T_state,dim>::montecarlo(){
-	#pragma omp parallel for default(private) shared(this->state)
+	#pragma omp parallel for default(private) shared(state,observables,settings)
 	for (int i=0;i<this->settings.iterations;i++){
-		
-		// Update state
-		this->update();
+		// Stopping conditions
+		if (this->_stop() == 1){
+	//		std::cout << "Stopping at "<< i <<std::endl;
+			continue;
+		};
 
+		// Update state
+		#pragma omp critical
+		{
+		this->update();
+	
 
 		if (i>this->settings.burnin){
 			// Set observables
@@ -84,14 +91,8 @@ void Spin<T_sys,T_state,dim>::montecarlo(){
 			// printf("Correlation = %f\n",this->observables.energy_var.back());
 			// Print Observables
 			this->print();
-
-
-			// Stopping conditions
-			if (this->_stop() == 1){
-				std::cout << "Stopping at "<< i <<std::endl;
-				break;
-			};
 		};		
+		};
 	};
 };
 
@@ -166,9 +167,9 @@ void Spin<T_sys,T_state,dim>::_set_system(int n, T_state q, T_sys T, T_sys * J){
 template <class T_sys,class T_state,const int dim>
 void Spin<T_sys,T_state,dim>::_set_settings(){
 	this->settings.seed = time(NULL);
-	this->settings.num_threads = 4;
+	this->settings.num_threads = 16;
 	this->settings.iteration = 0;
-	this->settings.iterations = 10000;
+	this->settings.iterations = 100000;
 	this->settings.burnin = this->settings.iterations/30;
 	this->settings.stop = 1e-3;
 	this->settings.verbose = 0;
@@ -260,6 +261,7 @@ int Spin<T_sys,T_state,dim>::_stop(){
 	if (this->settings.iteration< 20*i){
 		return 0;
 	};
+	#pragma omp parallel for reduction(+:var) default(private) shared(var)
 	for (int j=this->settings.iteration-i;j<this->settings.iteration;j++){
 		var += this->observables.energy_var[j];
 	};
@@ -349,6 +351,8 @@ void Spin<T_sys,T_state,dim>::_set_lattice(){
 	int shift;
 	int indices[dim];
 	this->_neighbours.resize(this->system.size);
+
+	#pragma omp parallel for default(private)
 	for(int i=0;i<this->system.size;i++){
 		this->_neighbours[i].resize(this->system.coordination);
 		for(int j=0;j<this->system.coordination;j++){

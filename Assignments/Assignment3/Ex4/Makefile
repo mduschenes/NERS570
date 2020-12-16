@@ -22,7 +22,7 @@ OBJS    := $(patsubst $(SRC)/%.$(EXTSRC),$(OBJ)/%.$(EXTOBJ),$(SRCS))
 OBJSDEPS:= $(patsubst $(SRC)/%.$(EXTSRC),$(OBJ)/%.$(EXTOBJ),$(SRCSDEPS))
 EXES    := $(patsubst $(SRC)/%.$(EXTSRC),$(OBJ)/%.$(EXTEXE),$(SRCS))
 
-CFLAGS  :=
+CFLAGS  := -fopenmp
 CFLAGSF	:=
 
 #%.o: %.$(EXT) $(DEPS)
