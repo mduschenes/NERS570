@@ -1,0 +1,579 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZdq{}physics.hpp\PYGZdq{}}
+
+\PYG{k}{namespace} \PYG{n}{PHYS} \PYG{p}{\PYGZob{}}
+
+\PYG{c+c1}{// Spin constructor with system size n, temperature T, couplings J, and number of states q}
+\PYG{k}{template} \PYG{o}{\PYGZlt{}}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}sys}\PYG{p}{,}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}state}\PYG{p}{,}\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{dim}\PYG{o}{\PYGZgt{}}
+\PYG{n}{Spin}\PYG{o}{\PYGZlt{}}\PYG{n}{T\PYGZus{}sys}\PYG{p}{,}\PYG{n}{T\PYGZus{}state}\PYG{p}{,}\PYG{n}{dim}\PYG{o}{\PYGZgt{}::}\PYG{n}{Spin}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{n}\PYG{p}{,} \PYG{n}{T\PYGZus{}state} \PYG{n}{q}\PYG{p}{,} \PYG{n}{T\PYGZus{}sys} \PYG{n}{T}\PYG{p}{,} \PYG{n}{T\PYGZus{}sys} \PYG{o}{*} \PYG{n}{J}\PYG{p}{)\PYGZob{}}
+	
+
+	\PYG{c+c1}{// Set state}
+	\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{set}\PYG{p}{(}\PYG{n}{n}\PYG{p}{,}\PYG{n}{q}\PYG{p}{,}\PYG{n}{T}\PYG{p}{,}\PYG{n}{J}\PYG{p}{);}
+
+	\PYG{c+c1}{// Update}
+\PYG{c+c1}{//	this\PYGZhy{}\PYGZgt{}montecarlo();}
+
+	\PYG{c+c1}{// Write Observables}
+\PYG{c+c1}{//	this\PYGZhy{}\PYGZgt{}write();}
+
+	\PYG{c+c1}{// // Print Observables}
+	\PYG{c+c1}{// this\PYGZhy{}\PYGZgt{}print();}
+
+
+	\PYG{k}{return}\PYG{p}{;}
+\PYG{p}{\PYGZcb{};}
+
+
+
+\PYG{c+c1}{// Destructor}
+\PYG{k}{template} \PYG{o}{\PYGZlt{}}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}sys}\PYG{p}{,}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}state}\PYG{p}{,}\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{dim}\PYG{o}{\PYGZgt{}}
+\PYG{n}{Spin}\PYG{o}{\PYGZlt{}}\PYG{n}{T\PYGZus{}sys}\PYG{p}{,}\PYG{n}{T\PYGZus{}state}\PYG{p}{,}\PYG{n}{dim}\PYG{o}{\PYGZgt{}::\PYGZti{}}\PYG{n}{Spin}\PYG{p}{()\PYGZob{}}
+\PYG{p}{\PYGZcb{};}
+
+
+\PYG{c+c1}{// Set System}
+\PYG{k}{template} \PYG{o}{\PYGZlt{}}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}sys}\PYG{p}{,}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}state}\PYG{p}{,}\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{dim}\PYG{o}{\PYGZgt{}}
+\PYG{k+kt}{void} \PYG{n}{Spin}\PYG{o}{\PYGZlt{}}\PYG{n}{T\PYGZus{}sys}\PYG{p}{,}\PYG{n}{T\PYGZus{}state}\PYG{p}{,}\PYG{n}{dim}\PYG{o}{\PYGZgt{}::}\PYG{n}{set}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{n}\PYG{p}{,} \PYG{n}{T\PYGZus{}state} \PYG{n}{q}\PYG{p}{,} \PYG{n}{T\PYGZus{}sys} \PYG{n}{T}\PYG{p}{,} \PYG{n}{T\PYGZus{}sys} \PYG{o}{*} \PYG{n}{J}\PYG{p}{)\PYGZob{}}
+	
+	\PYG{c+c1}{// Set settings}
+	\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{\PYGZus{}set\PYGZus{}settings}\PYG{p}{();}
+
+	\PYG{c+c1}{// Set System}
+	\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{\PYGZus{}set\PYGZus{}system}\PYG{p}{(}\PYG{n}{n}\PYG{p}{,}\PYG{n}{q}\PYG{p}{,}\PYG{n}{T}\PYG{p}{,}\PYG{n}{J}\PYG{p}{);}
+
+	\PYG{c+c1}{//  Set lattice}
+	\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{\PYGZus{}set\PYGZus{}lattice}\PYG{p}{();}
+
+	\PYG{c+c1}{// Set State}
+	\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{\PYGZus{}set\PYGZus{}state}\PYG{p}{();}
+
+
+	\PYG{k}{return}\PYG{p}{;}
+\PYG{p}{\PYGZcb{};}
+
+
+
+\PYG{c+c1}{// Update State}
+\PYG{k}{template} \PYG{o}{\PYGZlt{}}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}sys}\PYG{p}{,}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}state}\PYG{p}{,}\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{dim}\PYG{o}{\PYGZgt{}}
+\PYG{k+kt}{void} \PYG{n}{Spin}\PYG{o}{\PYGZlt{}}\PYG{n}{T\PYGZus{}sys}\PYG{p}{,}\PYG{n}{T\PYGZus{}state}\PYG{p}{,}\PYG{n}{dim}\PYG{o}{\PYGZgt{}::}\PYG{n}{update}\PYG{p}{()\PYGZob{}}
+	\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{\PYGZus{}propose}\PYG{p}{();}	
+	\PYG{k}{return}\PYG{p}{;}
+\PYG{p}{\PYGZcb{};}
+
+\PYG{c+c1}{// Calculate MonteCarlo averages}
+\PYG{k}{template} \PYG{o}{\PYGZlt{}}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}sys}\PYG{p}{,}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}state}\PYG{p}{,}\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{dim}\PYG{o}{\PYGZgt{}}
+\PYG{k+kt}{void} \PYG{n}{Spin}\PYG{o}{\PYGZlt{}}\PYG{n}{T\PYGZus{}sys}\PYG{p}{,}\PYG{n}{T\PYGZus{}state}\PYG{p}{,}\PYG{n}{dim}\PYG{o}{\PYGZgt{}::}\PYG{n}{calculate}\PYG{p}{()\PYGZob{}}
+	\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{settings}\PYG{p}{.}\PYG{n}{iteration}\PYG{o}{++}\PYG{p}{;}
+	\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{\PYGZus{}set\PYGZus{}observables}\PYG{p}{();}
+	\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{\PYGZus{}set\PYGZus{}observables\PYGZus{}stats}\PYG{p}{();}
+\PYG{p}{\PYGZcb{};}
+
+\PYG{c+c1}{// Perform Monte Carlo (Metropolis Algorithm)}
+\PYG{k}{template} \PYG{o}{\PYGZlt{}}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}sys}\PYG{p}{,}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}state}\PYG{p}{,}\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{dim}\PYG{o}{\PYGZgt{}}
+\PYG{k+kt}{void} \PYG{n}{Spin}\PYG{o}{\PYGZlt{}}\PYG{n}{T\PYGZus{}sys}\PYG{p}{,}\PYG{n}{T\PYGZus{}state}\PYG{p}{,}\PYG{n}{dim}\PYG{o}{\PYGZgt{}::}\PYG{n}{montecarlo}\PYG{p}{()\PYGZob{}}
+	\PYG{k+kt}{double} \PYG{n}{time} \PYG{o}{=} \PYG{n}{omp\PYGZus{}get\PYGZus{}wtime}\PYG{p}{();}
+
+	\PYG{k+kt}{int} \PYG{n}{i}\PYG{p}{;}
+	\PYG{c+cp}{\PYGZsh{}pragma omp parallel for default(shared) private(i) shared(state,observables,settings)}
+	\PYG{k}{for} \PYG{p}{(}\PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{i}\PYG{o}{\PYGZlt{}}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{settings}\PYG{p}{.}\PYG{n}{iterations}\PYG{p}{;}\PYG{n}{i}\PYG{o}{++}\PYG{p}{)\PYGZob{}}
+		\PYG{c+c1}{// Stopping conditions}
+		\PYG{k}{if} \PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{\PYGZus{}stop}\PYG{p}{()} \PYG{o}{==} \PYG{l+m+mi}{1}\PYG{p}{)\PYGZob{}}
+	\PYG{c+c1}{//		std::cout \PYGZlt{}\PYGZlt{} \PYGZdq{}Stopping at \PYGZdq{}\PYGZlt{}\PYGZlt{} i \PYGZlt{}\PYGZlt{}std::endl;}
+			\PYG{k}{continue}\PYG{p}{;}
+		\PYG{p}{\PYGZcb{};}
+
+		\PYG{c+c1}{// Update state}
+		\PYG{c+cp}{\PYGZsh{}pragma omp critical}
+		\PYG{p}{\PYGZob{}}
+		\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{update}\PYG{p}{();}
+	
+
+		\PYG{k}{if} \PYG{p}{(}\PYG{n}{i}\PYG{o}{\PYGZgt{}}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{settings}\PYG{p}{.}\PYG{n}{burnin}\PYG{p}{)\PYGZob{}}
+			\PYG{c+c1}{// Set observables}
+			\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{calculate}\PYG{p}{();}
+			\PYG{c+c1}{// printf(\PYGZdq{}Correlation = \PYGZpc{}f\PYGZbs{}n\PYGZdq{},this\PYGZhy{}\PYGZgt{}observables.energy\PYGZus{}var.back());}
+			\PYG{c+c1}{// Print Observables}
+			\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{print}\PYG{p}{();}
+		\PYG{p}{\PYGZcb{};}		
+		\PYG{p}{\PYGZcb{};}
+	\PYG{p}{\PYGZcb{};}
+	\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}Monte Carlo Wall Time: \PYGZdq{}}\PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{omp\PYGZus{}get\PYGZus{}wtime}\PYG{p}{()}\PYG{o}{\PYGZhy{}}\PYG{n}{time} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{std}\PYG{o}{::}\PYG{n}{endl}\PYG{p}{;}
+\PYG{p}{\PYGZcb{};}
+
+
+\PYG{c+c1}{// Write system}
+\PYG{k}{template} \PYG{o}{\PYGZlt{}}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}sys}\PYG{p}{,}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}state}\PYG{p}{,}\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{dim}\PYG{o}{\PYGZgt{}}
+\PYG{k+kt}{void} \PYG{n}{Spin}\PYG{o}{\PYGZlt{}}\PYG{n}{T\PYGZus{}sys}\PYG{p}{,}\PYG{n}{T\PYGZus{}state}\PYG{p}{,}\PYG{n}{dim}\PYG{o}{\PYGZgt{}::}\PYG{n}{write}\PYG{p}{()\PYGZob{}}
+	\PYG{n}{std}\PYG{o}{::}\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{std}\PYG{o}{::}\PYG{n}{string}\PYG{o}{\PYGZgt{}} \PYG{n}{header}\PYG{p}{;}
+	\PYG{n}{std}\PYG{o}{::}\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{std}\PYG{o}{::}\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{T\PYGZus{}sys}\PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{data}\PYG{p}{;}
+	
+	\PYG{n}{std}\PYG{o}{::}\PYG{n}{string} \PYG{n}{path} \PYG{o}{=} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{settings}\PYG{p}{.}\PYG{n}{path}\PYG{p}{;}
+
+	\PYG{n}{std}\PYG{o}{::}\PYG{n}{string} \PYG{n}{file} \PYG{o}{=} \PYG{n}{path}\PYG{p}{.}\PYG{n}{substr}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{n}{path}\PYG{p}{.}\PYG{n}{find\PYGZus{}last\PYGZus{}of}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}.\PYGZdq{}}\PYG{p}{));}
+	\PYG{n}{std}\PYG{o}{::}\PYG{n}{string} \PYG{n}{ext} \PYG{o}{=} \PYG{n}{path}\PYG{p}{.}\PYG{n}{substr}\PYG{p}{(}\PYG{n}{path}\PYG{p}{.}\PYG{n}{find\PYGZus{}last\PYGZus{}of}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}.\PYGZdq{}}\PYG{p}{)}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{);}
+
+
+	\PYG{n}{path} \PYG{o}{=} \PYG{n}{file} \PYG{o}{+} \PYGZbs{}
+		\PYG{l+s}{\PYGZdq{}\PYGZus{}d\PYGZdq{}} \PYG{o}{+} \PYG{n}{std}\PYG{o}{::}\PYG{n}{to\PYGZus{}string}\PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{d}\PYG{p}{)} \PYG{o}{+} \PYGZbs{}
+		\PYG{l+s}{\PYGZdq{}\PYGZus{}n\PYGZdq{}} \PYG{o}{+} \PYG{n}{std}\PYG{o}{::}\PYG{n}{to\PYGZus{}string}\PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{n}\PYG{p}{)} \PYG{o}{+} \PYGZbs{}
+		\PYG{l+s}{\PYGZdq{}\PYGZus{}q\PYGZdq{}} \PYG{o}{+} \PYG{n}{std}\PYG{o}{::}\PYG{n}{to\PYGZus{}string}\PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{q}\PYG{p}{)} \PYG{o}{+} \PYGZbs{}
+		\PYG{l+s}{\PYGZdq{}\PYGZus{}T\PYGZdq{}} \PYG{o}{+} \PYG{n}{std}\PYG{o}{::}\PYG{n}{to\PYGZus{}string}\PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{T}\PYG{p}{)} \PYG{o}{+} \PYGZbs{}
+		\PYG{l+s}{\PYGZdq{}\PYGZus{}J\PYGZdq{}} \PYG{o}{+} \PYG{n}{std}\PYG{o}{::}\PYG{n}{to\PYGZus{}string}\PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{J}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{])} \PYG{o}{+} \PYGZbs{}
+		\PYG{l+s}{\PYGZdq{}.\PYGZdq{}} \PYG{o}{+} \PYG{n}{ext}\PYG{p}{;}
+
+	\PYG{n}{header}\PYG{p}{.}\PYG{n}{push\PYGZus{}back}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}energy\PYGZdq{}}\PYG{p}{);}
+	\PYG{n}{data}\PYG{p}{.}\PYG{n}{push\PYGZus{}back}\PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{observables}\PYG{p}{.}\PYG{n}{energy}\PYG{p}{);}
+
+	\PYG{n}{header}\PYG{p}{.}\PYG{n}{push\PYGZus{}back}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}energy\PYGZus{}mean\PYGZdq{}}\PYG{p}{);}
+	\PYG{n}{data}\PYG{p}{.}\PYG{n}{push\PYGZus{}back}\PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{observables}\PYG{p}{.}\PYG{n}{energy\PYGZus{}mean}\PYG{p}{);}
+
+	\PYG{n}{header}\PYG{p}{.}\PYG{n}{push\PYGZus{}back}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}energy\PYGZus{}var\PYGZdq{}}\PYG{p}{);}
+	\PYG{n}{data}\PYG{p}{.}\PYG{n}{push\PYGZus{}back}\PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{observables}\PYG{p}{.}\PYG{n}{energy\PYGZus{}var}\PYG{p}{);}
+
+	\PYG{n}{header}\PYG{p}{.}\PYG{n}{push\PYGZus{}back}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}order\PYGZdq{}}\PYG{p}{);}
+	\PYG{n}{data}\PYG{p}{.}\PYG{n}{push\PYGZus{}back}\PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{observables}\PYG{p}{.}\PYG{n}{order}\PYG{p}{);}
+
+	\PYG{n}{header}\PYG{p}{.}\PYG{n}{push\PYGZus{}back}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}order\PYGZus{}mean\PYGZdq{}}\PYG{p}{);}
+	\PYG{n}{data}\PYG{p}{.}\PYG{n}{push\PYGZus{}back}\PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{observables}\PYG{p}{.}\PYG{n}{order\PYGZus{}mean}\PYG{p}{);}
+
+	\PYG{n}{header}\PYG{p}{.}\PYG{n}{push\PYGZus{}back}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}order\PYGZus{}var\PYGZdq{}}\PYG{p}{);}
+	\PYG{n}{data}\PYG{p}{.}\PYG{n}{push\PYGZus{}back}\PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{observables}\PYG{p}{.}\PYG{n}{order\PYGZus{}var}\PYG{p}{);}
+
+	\PYG{n}{IO}\PYG{o}{::}\PYG{n}{io}\PYG{o}{\PYGZlt{}}\PYG{n}{T\PYGZus{}sys}\PYG{o}{\PYGZgt{}} \PYG{n}{obj}\PYG{p}{;}
+	\PYG{n}{obj}\PYG{p}{.}\PYG{n}{write}\PYG{p}{(}\PYG{n}{path}\PYG{p}{,}\PYG{n}{header}\PYG{p}{,}\PYG{n}{data}\PYG{p}{);}
+
+\PYG{p}{\PYGZcb{};}
+
+
+\PYG{c+c1}{// Set system}
+\PYG{k}{template} \PYG{o}{\PYGZlt{}}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}sys}\PYG{p}{,}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}state}\PYG{p}{,}\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{dim}\PYG{o}{\PYGZgt{}}
+\PYG{k+kt}{void} \PYG{n}{Spin}\PYG{o}{\PYGZlt{}}\PYG{n}{T\PYGZus{}sys}\PYG{p}{,}\PYG{n}{T\PYGZus{}state}\PYG{p}{,}\PYG{n}{dim}\PYG{o}{\PYGZgt{}::}\PYG{n}{\PYGZus{}set\PYGZus{}system}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{n}\PYG{p}{,} \PYG{n}{T\PYGZus{}state} \PYG{n}{q}\PYG{p}{,} \PYG{n}{T\PYGZus{}sys} \PYG{n}{T}\PYG{p}{,} \PYG{n}{T\PYGZus{}sys} \PYG{o}{*} \PYG{n}{J}\PYG{p}{)\PYGZob{}}
+
+
+	\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{d} \PYG{o}{=} \PYG{n}{dim}\PYG{p}{;}
+	\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{n} \PYG{o}{=} \PYG{n}{n}\PYG{p}{;}
+	\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{q} \PYG{o}{=} \PYG{n}{q}\PYG{p}{;}
+	\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{T} \PYG{o}{=} \PYG{n}{T}\PYG{p}{;}
+	\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{J} \PYG{o}{=} \PYG{n}{J}\PYG{p}{;}
+
+	\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{direction} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{complexity} \PYG{o}{=} \PYG{k}{sizeof}\PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{J}\PYG{p}{)}\PYG{o}{/}\PYG{k}{sizeof}\PYG{p}{(}\PYG{o}{*}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{J}\PYG{p}{);}
+	\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{size} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+	\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{i}\PYG{o}{\PYGZlt{}}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{d}\PYG{p}{;}\PYG{n}{i}\PYG{o}{++}\PYG{p}{)\PYGZob{}}
+		\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{size} \PYG{o}{*=} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{n}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{};}
+	\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{coordination} \PYG{o}{=} \PYG{l+m+mi}{2}\PYG{o}{*}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{d}\PYG{p}{;}	
+
+	\PYG{k}{return}\PYG{p}{;}
+\PYG{p}{\PYGZcb{};}
+
+\PYG{c+c1}{// Set settings}
+\PYG{k}{template} \PYG{o}{\PYGZlt{}}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}sys}\PYG{p}{,}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}state}\PYG{p}{,}\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{dim}\PYG{o}{\PYGZgt{}}
+\PYG{k+kt}{void} \PYG{n}{Spin}\PYG{o}{\PYGZlt{}}\PYG{n}{T\PYGZus{}sys}\PYG{p}{,}\PYG{n}{T\PYGZus{}state}\PYG{p}{,}\PYG{n}{dim}\PYG{o}{\PYGZgt{}::}\PYG{n}{\PYGZus{}set\PYGZus{}settings}\PYG{p}{()\PYGZob{}}
+	\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{settings}\PYG{p}{.}\PYG{n}{seed} \PYG{o}{=} \PYG{n}{time}\PYG{p}{(}\PYG{n+nb}{NULL}\PYG{p}{);}
+	\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{settings}\PYG{p}{.}\PYG{n}{num\PYGZus{}threads} \PYG{o}{=} \PYG{l+m+mi}{16}\PYG{p}{;}
+	\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{settings}\PYG{p}{.}\PYG{n}{iteration} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{settings}\PYG{p}{.}\PYG{n}{iterations} \PYG{o}{=} \PYG{l+m+mi}{1000}\PYG{p}{;}
+	\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{settings}\PYG{p}{.}\PYG{n}{burnin} \PYG{o}{=} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{settings}\PYG{p}{.}\PYG{n}{iterations}\PYG{o}{/}\PYG{l+m+mi}{30}\PYG{p}{;}
+	\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{settings}\PYG{p}{.}\PYG{n}{stop} \PYG{o}{=} \PYG{l+m+mf}{1e\PYGZhy{}3}\PYG{p}{;}
+	\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{settings}\PYG{p}{.}\PYG{n}{verbose} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{settings}\PYG{p}{.}\PYG{n}{read} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+	\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{settings}\PYG{p}{.}\PYG{n}{write} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+	\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{settings}\PYG{p}{.}\PYG{n}{path} \PYG{o}{=} \PYG{l+s}{\PYGZdq{}./data.csv\PYGZdq{}}\PYG{p}{;}
+
+
+	\PYG{c+c1}{// Set random seed}
+	\PYG{n}{std}\PYG{o}{::}\PYG{n}{srand}\PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{settings}\PYG{p}{.}\PYG{n}{seed}\PYG{p}{);}
+
+	\PYG{c+c1}{// Set number of OpenMP threads}
+	\PYG{n}{omp\PYGZus{}set\PYGZus{}num\PYGZus{}threads}\PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{settings}\PYG{p}{.}\PYG{n}{num\PYGZus{}threads}\PYG{p}{);}
+
+	\PYG{k}{return}\PYG{p}{;}
+\PYG{p}{\PYGZcb{};}
+
+
+\PYG{c+c1}{// Set observables}
+\PYG{k}{template} \PYG{o}{\PYGZlt{}}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}sys}\PYG{p}{,}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}state}\PYG{p}{,}\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{dim}\PYG{o}{\PYGZgt{}}
+\PYG{k+kt}{void} \PYG{n}{Spin}\PYG{o}{\PYGZlt{}}\PYG{n}{T\PYGZus{}sys}\PYG{p}{,}\PYG{n}{T\PYGZus{}state}\PYG{p}{,}\PYG{n}{dim}\PYG{o}{\PYGZgt{}::}\PYG{n}{\PYGZus{}set\PYGZus{}observables}\PYG{p}{()\PYGZob{}}
+	\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{observables}\PYG{p}{.}\PYG{n}{energy}\PYG{p}{.}\PYG{n}{push\PYGZus{}back}\PYG{p}{(}\PYG{n}{\PYGZus{}energy}\PYG{p}{());}
+	\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{observables}\PYG{p}{.}\PYG{n}{order}\PYG{p}{.}\PYG{n}{push\PYGZus{}back}\PYG{p}{(}\PYG{n}{\PYGZus{}order}\PYG{p}{());}
+	\PYG{k}{return}\PYG{p}{;}
+\PYG{p}{\PYGZcb{};}
+
+
+\PYG{c+c1}{// Set observables statistics}
+\PYG{k}{template} \PYG{o}{\PYGZlt{}}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}sys}\PYG{p}{,}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}state}\PYG{p}{,}\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{dim}\PYG{o}{\PYGZgt{}}
+\PYG{k+kt}{void} \PYG{n}{Spin}\PYG{o}{\PYGZlt{}}\PYG{n}{T\PYGZus{}sys}\PYG{p}{,}\PYG{n}{T\PYGZus{}state}\PYG{p}{,}\PYG{n}{dim}\PYG{o}{\PYGZgt{}::}\PYG{n}{\PYGZus{}set\PYGZus{}observables\PYGZus{}stats}\PYG{p}{()\PYGZob{}}
+	\PYG{n}{T\PYGZus{}sys} \PYG{n}{value}\PYG{p}{;}
+
+	\PYG{n}{\PYGZus{}average}\PYG{p}{(}\PYG{n}{value}\PYG{p}{,}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{observables}\PYG{p}{.}\PYG{n}{energy}\PYG{p}{,}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{observables}\PYG{p}{.}\PYG{n}{energy}\PYG{p}{.}\PYG{n}{size}\PYG{p}{());}
+	\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{observables}\PYG{p}{.}\PYG{n}{energy\PYGZus{}mean}\PYG{p}{.}\PYG{n}{push\PYGZus{}back}\PYG{p}{(}\PYG{n}{value}\PYG{p}{);}
+	\PYG{n}{\PYGZus{}variance}\PYG{p}{(}\PYG{n}{value}\PYG{p}{,}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{observables}\PYG{p}{.}\PYG{n}{energy\PYGZus{}mean}\PYG{p}{,}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{observables}\PYG{p}{.}\PYG{n}{energy\PYGZus{}mean}\PYG{p}{.}\PYG{n}{size}\PYG{p}{());}	
+	\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{observables}\PYG{p}{.}\PYG{n}{energy\PYGZus{}var}\PYG{p}{.}\PYG{n}{push\PYGZus{}back}\PYG{p}{(}\PYG{n}{value}\PYG{o}{/}\PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{T}\PYG{o}{*}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{T}\PYG{p}{));}
+
+
+	\PYG{n}{\PYGZus{}average}\PYG{p}{(}\PYG{n}{value}\PYG{p}{,}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{observables}\PYG{p}{.}\PYG{n}{order}\PYG{p}{,}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{observables}\PYG{p}{.}\PYG{n}{order}\PYG{p}{.}\PYG{n}{size}\PYG{p}{());}
+	\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{observables}\PYG{p}{.}\PYG{n}{order\PYGZus{}mean}\PYG{p}{.}\PYG{n}{push\PYGZus{}back}\PYG{p}{(}\PYG{n}{value}\PYG{p}{);}
+	\PYG{n}{\PYGZus{}variance}\PYG{p}{(}\PYG{n}{value}\PYG{p}{,}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{observables}\PYG{p}{.}\PYG{n}{order\PYGZus{}mean}\PYG{p}{,}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{observables}\PYG{p}{.}\PYG{n}{order\PYGZus{}mean}\PYG{p}{.}\PYG{n}{size}\PYG{p}{());}	
+	\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{observables}\PYG{p}{.}\PYG{n}{order\PYGZus{}var}\PYG{p}{.}\PYG{n}{push\PYGZus{}back}\PYG{p}{(}\PYG{n}{value}\PYG{o}{/}\PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{T}\PYG{p}{));}
+
+	\PYG{k}{return}\PYG{p}{;}
+\PYG{p}{\PYGZcb{};}
+
+
+\PYG{c+c1}{// Propose Update State}
+\PYG{k}{template} \PYG{o}{\PYGZlt{}}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}sys}\PYG{p}{,}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}state}\PYG{p}{,}\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{dim}\PYG{o}{\PYGZgt{}}
+\PYG{k+kt}{void} \PYG{n}{Spin}\PYG{o}{\PYGZlt{}}\PYG{n}{T\PYGZus{}sys}\PYG{p}{,}\PYG{n}{T\PYGZus{}state}\PYG{p}{,}\PYG{n}{dim}\PYG{o}{\PYGZgt{}::}\PYG{n}{\PYGZus{}propose}\PYG{p}{()\PYGZob{}}
+	\PYG{k+kt}{int} \PYG{n}{index} \PYG{o}{=} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{\PYGZus{}random\PYGZus{}index}\PYG{p}{();}
+	\PYG{n}{T\PYGZus{}sys} \PYG{n}{delta} \PYG{o}{=} \PYG{o}{\PYGZhy{}}\PYG{n}{\PYGZus{}energy}\PYG{p}{(}\PYG{n}{index}\PYG{p}{)}\PYG{o}{+}\PYG{l+m+mf}{0.0}\PYG{p}{;}
+	\PYG{n}{T\PYGZus{}state} \PYG{n}{state} \PYG{o}{=} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{state}\PYG{p}{[}\PYG{n}{index}\PYG{p}{];}
+
+	\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{\PYGZus{}update}\PYG{p}{(}\PYG{n}{index}\PYG{p}{,}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{\PYGZus{}random\PYGZus{}state}\PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{state}\PYG{p}{[}\PYG{n}{index}\PYG{p}{]));}
+	
+	\PYG{n}{delta} \PYG{o}{+=} \PYG{n}{\PYGZus{}energy}\PYG{p}{(}\PYG{n}{index}\PYG{p}{)}\PYG{o}{+}\PYG{l+m+mf}{0.0}\PYG{p}{;}
+
+	\PYG{c+c1}{// std::cout \PYGZlt{}\PYGZlt{} \PYGZdq{}Proposing \PYGZdq{}\PYGZlt{}\PYGZlt{} index \PYGZlt{}\PYGZlt{} \PYGZdq{}: \PYGZdq{} \PYGZlt{}\PYGZlt{} state \PYGZlt{}\PYGZlt{} \PYGZdq{} \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZgt{} \PYGZdq{} \PYGZlt{}\PYGZlt{} this\PYGZhy{}\PYGZgt{}state[index] \PYGZlt{}\PYGZlt{} std::endl;}
+
+	\PYG{k}{if} \PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{\PYGZus{}transition}\PYG{p}{(}\PYG{n}{delta}\PYG{p}{)}\PYG{o}{==}\PYG{l+m+mi}{0}\PYG{p}{)\PYGZob{}}
+		\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{\PYGZus{}update}\PYG{p}{(}\PYG{n}{index}\PYG{p}{,}\PYG{n}{state}\PYG{p}{);}
+		\PYG{c+c1}{// std::cout \PYGZlt{}\PYGZlt{} \PYGZdq{}Holding \PYGZdq{}\PYGZlt{}\PYGZlt{} index \PYGZlt{}\PYGZlt{} \PYGZdq{}: \PYGZdq{} \PYGZlt{}\PYGZlt{} state \PYGZlt{}\PYGZlt{} \PYGZdq{} \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZgt{} \PYGZdq{} \PYGZlt{}\PYGZlt{} this\PYGZhy{}\PYGZgt{}state[index] \PYGZlt{}\PYGZlt{} std::endl;}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{else}\PYG{p}{\PYGZob{}}
+
+		\PYG{c+c1}{// std::cout \PYGZlt{}\PYGZlt{} \PYGZdq{}Updating \PYGZdq{}\PYGZlt{}\PYGZlt{} index \PYGZlt{}\PYGZlt{} \PYGZdq{}: \PYGZdq{} \PYGZlt{}\PYGZlt{} state \PYGZlt{}\PYGZlt{} \PYGZdq{} \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZgt{} \PYGZdq{} \PYGZlt{}\PYGZlt{} this\PYGZhy{}\PYGZgt{}state[index] \PYGZlt{}\PYGZlt{} std::endl;}
+	\PYG{p}{\PYGZcb{};}
+
+	\PYG{k}{return}\PYG{p}{;}
+\PYG{p}{\PYGZcb{};}
+
+\PYG{c+c1}{// Transition probability}
+\PYG{k}{template} \PYG{o}{\PYGZlt{}}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}sys}\PYG{p}{,}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}state}\PYG{p}{,}\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{dim}\PYG{o}{\PYGZgt{}}
+\PYG{k+kt}{int} \PYG{n}{Spin}\PYG{o}{\PYGZlt{}}\PYG{n}{T\PYGZus{}sys}\PYG{p}{,}\PYG{n}{T\PYGZus{}state}\PYG{p}{,}\PYG{n}{dim}\PYG{o}{\PYGZgt{}::}\PYG{n}{\PYGZus{}transition}\PYG{p}{(}\PYG{n}{T\PYGZus{}sys} \PYG{n}{delta}\PYG{p}{)\PYGZob{}}
+	\PYG{n}{T\PYGZus{}sys} \PYG{n}{random} \PYG{o}{=} 	\PYG{n}{T\PYGZus{}sys}\PYG{p}{(}\PYG{n}{std}\PYG{o}{::}\PYG{n}{rand}\PYG{p}{())}\PYG{o}{/}\PYG{n}{RAND\PYGZus{}MAX}\PYG{p}{;}
+	\PYG{c+c1}{// std::cout \PYGZlt{}\PYGZlt{} \PYGZdq{}transition = \PYGZdq{}\PYGZlt{}\PYGZlt{} delta/this\PYGZhy{}\PYGZgt{}system.T \PYGZlt{}\PYGZlt{} \PYGZdq{} exp \PYGZdq{} \PYGZlt{}\PYGZlt{} std::exp(\PYGZhy{}delta/this\PYGZhy{}\PYGZgt{}system.T)\PYGZlt{}\PYGZlt{} \PYGZdq{}rand \PYGZdq{} \PYGZlt{}\PYGZlt{} random \PYGZlt{}\PYGZlt{} \PYGZdq{} \PYGZhy{}\PYGZhy{}\PYGZhy{} \PYGZdq{}\PYGZlt{}\PYGZlt{}((1.0/(1.0+std::exp(delta/this\PYGZhy{}\PYGZgt{}system.T)))) \PYGZlt{}\PYGZlt{} std::endl;}
+	\PYG{k}{return} \PYG{p}{((}\PYG{n}{delta}\PYG{o}{\PYGZlt{}=}\PYG{l+m+mi}{0}\PYG{p}{)} \PYG{o}{|} \PYG{n}{std}\PYG{o}{::}\PYG{n}{exp}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{n}{delta}\PYG{o}{/}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{T}\PYG{p}{)} \PYG{o}{\PYGZgt{}} \PYG{n}{random}\PYG{p}{);}
+	\PYG{c+c1}{// return ((1.0/(1+std::exp(delta/this\PYGZhy{}\PYGZgt{}system.T))) \PYGZgt{}= 0.5);}
+\PYG{p}{\PYGZcb{};}
+
+
+\PYG{c+c1}{// Stopping condition}
+\PYG{k}{template} \PYG{o}{\PYGZlt{}}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}sys}\PYG{p}{,}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}state}\PYG{p}{,}\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{dim}\PYG{o}{\PYGZgt{}}
+\PYG{k+kt}{int} \PYG{n}{Spin}\PYG{o}{\PYGZlt{}}\PYG{n}{T\PYGZus{}sys}\PYG{p}{,}\PYG{n}{T\PYGZus{}state}\PYG{p}{,}\PYG{n}{dim}\PYG{o}{\PYGZgt{}::}\PYG{n}{\PYGZus{}stop}\PYG{p}{()\PYGZob{}}
+
+	\PYG{n}{T\PYGZus{}sys} \PYG{n}{var\PYGZus{}energy} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{n}{T\PYGZus{}sys} \PYG{n}{var\PYGZus{}order} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{settings}\PYG{p}{.}\PYG{n}{iterations}\PYG{o}{/}\PYG{l+m+mi}{100}\PYG{p}{,}\PYG{n}{j}\PYG{p}{;}
+	\PYG{k}{if} \PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{settings}\PYG{p}{.}\PYG{n}{iteration}\PYG{o}{\PYGZlt{}} \PYG{l+m+mi}{20}\PYG{o}{*}\PYG{n}{i}\PYG{p}{)\PYGZob{}}
+		\PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{};}
+	\PYG{c+cp}{\PYGZsh{}pragma omp parallel for reduction(+:var\PYGZus{}mean) reduction(+:var\PYGZus{}order) shared(observables) private(j)}
+	\PYG{k}{for} \PYG{p}{(}\PYG{n}{j}\PYG{o}{=}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{settings}\PYG{p}{.}\PYG{n}{iteration}\PYG{o}{\PYGZhy{}}\PYG{n}{i}\PYG{p}{;}\PYG{n}{j}\PYG{o}{\PYGZlt{}}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{settings}\PYG{p}{.}\PYG{n}{iteration}\PYG{p}{;}\PYG{n}{j}\PYG{o}{++}\PYG{p}{)\PYGZob{}}
+		\PYG{n}{var\PYGZus{}energy} \PYG{o}{+=} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{observables}\PYG{p}{.}\PYG{n}{energy\PYGZus{}var}\PYG{p}{[}\PYG{n}{j}\PYG{p}{];}
+		\PYG{n}{var\PYGZus{}order} \PYG{o}{+=} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{observables}\PYG{p}{.}\PYG{n}{order\PYGZus{}var}\PYG{p}{[}\PYG{n}{j}\PYG{p}{];}
+	\PYG{p}{\PYGZcb{};}
+	\PYG{n}{var\PYGZus{}energy} \PYG{o}{/=}\PYG{n}{i}\PYG{p}{;}
+	\PYG{n}{var\PYGZus{}energy} \PYG{o}{=} \PYG{n}{std}\PYG{o}{::}\PYG{n}{abs}\PYG{p}{(}\PYG{n}{var\PYGZus{}energy}\PYG{p}{);}
+
+	\PYG{n}{var\PYGZus{}order} \PYG{o}{/=}\PYG{n}{i}\PYG{p}{;}
+	\PYG{n}{var\PYGZus{}order} \PYG{o}{=} \PYG{n}{std}\PYG{o}{::}\PYG{n}{abs}\PYG{p}{(}\PYG{n}{var\PYGZus{}order}\PYG{p}{);}
+	\PYG{c+c1}{// std::cout \PYGZlt{}\PYGZlt{} \PYGZdq{}Rolling var (\PYGZdq{}\PYGZlt{}\PYGZlt{}i\PYGZlt{}\PYGZlt{}\PYGZdq{}) : \PYGZdq{} \PYGZlt{}\PYGZlt{} var \PYGZlt{}\PYGZlt{} \PYGZdq{}  with tol \PYGZdq{}\PYGZlt{}\PYGZlt{} this\PYGZhy{}\PYGZgt{}settings.stop \PYGZlt{}\PYGZlt{}std::endl;}
+	\PYG{k}{return} \PYG{p}{((}\PYG{n}{var\PYGZus{}mean}\PYG{o}{\PYGZlt{}}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{settings}\PYG{p}{.}\PYG{n}{stop}\PYG{p}{)} \PYG{o}{\PYGZam{}} \PYG{p}{(}\PYG{n}{var\PYGZus{}order}\PYG{o}{\PYGZlt{}}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{settings}\PYG{p}{.}\PYG{n}{stop}\PYG{p}{));}
+\PYG{p}{\PYGZcb{};}
+
+
+\PYG{c+c1}{// Set State}
+\PYG{k}{template} \PYG{o}{\PYGZlt{}}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}sys}\PYG{p}{,}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}state}\PYG{p}{,}\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{dim}\PYG{o}{\PYGZgt{}}
+\PYG{k+kt}{void} \PYG{n}{Spin}\PYG{o}{\PYGZlt{}}\PYG{n}{T\PYGZus{}sys}\PYG{p}{,}\PYG{n}{T\PYGZus{}state}\PYG{p}{,}\PYG{n}{dim}\PYG{o}{\PYGZgt{}::}\PYG{n}{\PYGZus{}set\PYGZus{}state}\PYG{p}{()\PYGZob{}}
+
+	\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{state}\PYG{p}{.}\PYG{n}{resize}\PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{size}\PYG{p}{);}
+
+	\PYG{c+c1}{// Set state}
+	\PYG{n}{T\PYGZus{}state} \PYG{n}{state}\PYG{p}{;}
+	\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{unsigned} \PYG{k+kt}{int} \PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{i}\PYG{o}{\PYGZlt{}}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{size}\PYG{p}{;}\PYG{n}{i}\PYG{o}{++}\PYG{p}{)\PYGZob{}}
+		\PYG{n}{state} \PYG{o}{=} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{\PYGZus{}random\PYGZus{}state}\PYG{p}{();}
+		\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{\PYGZus{}set\PYGZus{}state}\PYG{p}{(}\PYG{n}{i}\PYG{p}{,}\PYG{n}{state}\PYG{p}{);}
+	\PYG{p}{\PYGZcb{};}
+	\PYG{k}{return}\PYG{p}{;}
+\PYG{p}{\PYGZcb{};}
+
+
+
+\PYG{c+c1}{// Set State}
+\PYG{k}{template} \PYG{o}{\PYGZlt{}}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}sys}\PYG{p}{,}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}state}\PYG{p}{,}\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{dim}\PYG{o}{\PYGZgt{}}
+\PYG{k+kt}{void} \PYG{n}{Spin}\PYG{o}{\PYGZlt{}}\PYG{n}{T\PYGZus{}sys}\PYG{p}{,}\PYG{n}{T\PYGZus{}state}\PYG{p}{,}\PYG{n}{dim}\PYG{o}{\PYGZgt{}::}\PYG{n}{\PYGZus{}set\PYGZus{}state}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{index}\PYG{p}{,} \PYG{n}{T\PYGZus{}state} \PYG{n}{state}\PYG{p}{)\PYGZob{}}
+	\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{state}\PYG{p}{[}\PYG{n}{index}\PYG{p}{]} \PYG{o}{=} \PYG{n}{state}\PYG{p}{;}
+	\PYG{k}{return}\PYG{p}{;}
+\PYG{p}{\PYGZcb{};}
+
+
+\PYG{c+c1}{// Get State}
+\PYG{k}{template} \PYG{o}{\PYGZlt{}}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}sys}\PYG{p}{,}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}state}\PYG{p}{,}\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{dim}\PYG{o}{\PYGZgt{}}
+\PYG{n}{T\PYGZus{}state} \PYG{n}{Spin}\PYG{o}{\PYGZlt{}}\PYG{n}{T\PYGZus{}sys}\PYG{p}{,}\PYG{n}{T\PYGZus{}state}\PYG{p}{,}\PYG{n}{dim}\PYG{o}{\PYGZgt{}::}\PYG{n}{\PYGZus{}get\PYGZus{}state}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{index}\PYG{p}{)\PYGZob{}}
+	\PYG{k}{return} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{state}\PYG{p}{[}\PYG{n}{index}\PYG{p}{];}
+\PYG{p}{\PYGZcb{};}
+
+
+\PYG{c+c1}{// Generate State}
+\PYG{k}{template} \PYG{o}{\PYGZlt{}}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}sys}\PYG{p}{,}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}state}\PYG{p}{,}\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{dim}\PYG{o}{\PYGZgt{}}
+\PYG{n}{T\PYGZus{}state} \PYG{n}{Spin}\PYG{o}{\PYGZlt{}}\PYG{n}{T\PYGZus{}sys}\PYG{p}{,}\PYG{n}{T\PYGZus{}state}\PYG{p}{,}\PYG{n}{dim}\PYG{o}{\PYGZgt{}::}\PYG{n}{\PYGZus{}random\PYGZus{}state}\PYG{p}{(}\PYG{n}{T\PYGZus{}state} \PYG{n}{nullstate}\PYG{p}{)\PYGZob{}}
+	\PYG{n}{T\PYGZus{}state} \PYG{n}{state} \PYG{o}{=} \PYG{n}{\PYGZus{}random\PYGZus{}state}\PYG{p}{();}
+
+	\PYG{k}{while}\PYG{p}{(}\PYG{n}{state} \PYG{o}{==} \PYG{n}{nullstate}\PYG{p}{)\PYGZob{}}
+		\PYG{n}{state} \PYG{o}{=} \PYG{n}{\PYGZus{}random\PYGZus{}state}\PYG{p}{();}
+	\PYG{p}{\PYGZcb{};}
+	\PYG{k}{return} \PYG{n}{state}\PYG{p}{;}
+\PYG{p}{\PYGZcb{};}
+
+
+\PYG{c+c1}{// Generate State}
+\PYG{k}{template} \PYG{o}{\PYGZlt{}}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}sys}\PYG{p}{,}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}state}\PYG{p}{,}\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{dim}\PYG{o}{\PYGZgt{}}
+\PYG{n}{T\PYGZus{}state} \PYG{n}{Spin}\PYG{o}{\PYGZlt{}}\PYG{n}{T\PYGZus{}sys}\PYG{p}{,}\PYG{n}{T\PYGZus{}state}\PYG{p}{,}\PYG{n}{dim}\PYG{o}{\PYGZgt{}::}\PYG{n}{\PYGZus{}random\PYGZus{}state}\PYG{p}{()\PYGZob{}}
+	\PYG{n}{T\PYGZus{}state} \PYG{n}{state} \PYG{o}{=} \PYG{k}{static\PYGZus{}cast} \PYG{o}{\PYGZlt{}}\PYG{n}{T\PYGZus{}state}\PYG{o}{\PYGZgt{}} \PYG{p}{(}\PYG{n}{std}\PYG{o}{::}\PYG{n}{rand}\PYG{p}{());}
+	\PYG{n}{state} \PYG{o}{=} \PYG{n}{fmod}\PYG{p}{(}\PYG{n}{state}\PYG{p}{,}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{q}\PYG{p}{);}
+	\PYG{k}{return} \PYG{n}{state}\PYG{p}{;}
+\PYG{p}{\PYGZcb{};}
+
+
+\PYG{c+c1}{// Generate Index}
+\PYG{k}{template} \PYG{o}{\PYGZlt{}}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}sys}\PYG{p}{,}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}state}\PYG{p}{,}\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{dim}\PYG{o}{\PYGZgt{}}
+\PYG{k+kt}{int} \PYG{n}{Spin}\PYG{o}{\PYGZlt{}}\PYG{n}{T\PYGZus{}sys}\PYG{p}{,}\PYG{n}{T\PYGZus{}state}\PYG{p}{,}\PYG{n}{dim}\PYG{o}{\PYGZgt{}::}\PYG{n}{\PYGZus{}random\PYGZus{}index}\PYG{p}{()\PYGZob{}}
+	\PYG{k+kt}{int} \PYG{n}{index} \PYG{o}{=} \PYG{n}{fmod}\PYG{p}{(}\PYG{n}{std}\PYG{o}{::}\PYG{n}{rand}\PYG{p}{(),}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{size}\PYG{p}{);}
+	\PYG{k}{return} \PYG{n}{index}\PYG{p}{;}
+\PYG{p}{\PYGZcb{};}
+
+
+\PYG{c+c1}{// Update State}
+\PYG{k}{template} \PYG{o}{\PYGZlt{}}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}sys}\PYG{p}{,}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}state}\PYG{p}{,}\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{dim}\PYG{o}{\PYGZgt{}}
+\PYG{k+kt}{void} \PYG{n}{Spin}\PYG{o}{\PYGZlt{}}\PYG{n}{T\PYGZus{}sys}\PYG{p}{,}\PYG{n}{T\PYGZus{}state}\PYG{p}{,}\PYG{n}{dim}\PYG{o}{\PYGZgt{}::}\PYG{n}{\PYGZus{}update}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{index}\PYG{p}{,}\PYG{n}{T\PYGZus{}state} \PYG{n}{state}\PYG{p}{)\PYGZob{}}
+	\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{state}\PYG{p}{[}\PYG{n}{index}\PYG{p}{]} \PYG{o}{=} \PYG{n}{state}\PYG{p}{;}
+	\PYG{k}{return}\PYG{p}{;}
+\PYG{p}{\PYGZcb{};}
+
+
+\PYG{c+c1}{// Set Lattice}
+\PYG{k}{template} \PYG{o}{\PYGZlt{}}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}sys}\PYG{p}{,}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}state}\PYG{p}{,}\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{dim}\PYG{o}{\PYGZgt{}}
+\PYG{k+kt}{void} \PYG{n}{Spin}\PYG{o}{\PYGZlt{}}\PYG{n}{T\PYGZus{}sys}\PYG{p}{,}\PYG{n}{T\PYGZus{}state}\PYG{p}{,}\PYG{n}{dim}\PYG{o}{\PYGZgt{}::}\PYG{n}{\PYGZus{}set\PYGZus{}lattice}\PYG{p}{()\PYGZob{}}
+
+	\PYG{c+c1}{// Set nearest neighbours}
+	\PYG{k+kt}{int} \PYG{n}{i}\PYG{p}{,}\PYG{n}{j}\PYG{p}{;}
+	\PYG{k+kt}{int} \PYG{n}{radius} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+	\PYG{k+kt}{int} \PYG{n}{index}\PYG{p}{,}\PYG{n}{axis}\PYG{p}{;}
+	\PYG{k+kt}{int} \PYG{n}{shift}\PYG{p}{;}
+	\PYG{k+kt}{int} \PYG{n}{indices}\PYG{p}{[}\PYG{n}{dim}\PYG{p}{];}
+	\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{\PYGZus{}neighbours}\PYG{p}{.}\PYG{n}{resize}\PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{size}\PYG{p}{);}
+
+	\PYG{c+cp}{\PYGZsh{}pragma omp parallel for default(shared) private(i,j,index,axis,shift,indices,system,settings) shared(\PYGZus{}neighbours)}
+	\PYG{k}{for}\PYG{p}{(}\PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{i}\PYG{o}{\PYGZlt{}}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{size}\PYG{p}{;}\PYG{n}{i}\PYG{o}{++}\PYG{p}{)\PYGZob{}}
+		\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{\PYGZus{}neighbours}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{resize}\PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{coordination}\PYG{p}{);}
+		\PYG{k}{for}\PYG{p}{(}\PYG{n}{j}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{j}\PYG{o}{\PYGZlt{}}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{coordination}\PYG{p}{;}\PYG{n}{j}\PYG{o}{++}\PYG{p}{)\PYGZob{}}
+			\PYG{n}{index} \PYG{o}{=} \PYG{n}{i}\PYG{p}{;}
+			\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{\PYGZus{}indices}\PYG{p}{(}\PYG{n}{index}\PYG{p}{,}\PYG{n}{indices}\PYG{p}{);}
+			\PYG{n}{axis} \PYG{o}{=} \PYG{n}{j}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{;}
+			\PYG{n}{shift} \PYG{o}{=} \PYG{n}{radius}\PYG{o}{*}\PYG{p}{((}\PYG{l+m+mi}{2}\PYG{o}{*}\PYG{p}{(}\PYG{n}{j}\PYG{o}{\PYGZpc{}}\PYG{l+m+mi}{2}\PYG{p}{))}\PYG{l+m+mi}{\PYGZhy{}1}\PYG{p}{);}
+			\PYG{n}{indices}\PYG{p}{[}\PYG{n}{axis}\PYG{p}{]} \PYG{o}{=} \PYG{p}{(((}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{n}\PYG{p}{)} \PYG{o}{+} \PYG{p}{((}\PYG{n}{indices}\PYG{p}{[}\PYG{n}{axis}\PYG{p}{]}\PYG{o}{+}\PYG{n}{shift}\PYG{p}{)}\PYG{o}{\PYGZpc{}}\PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{n}\PYG{p}{)))} \PYG{o}{\PYGZpc{}} \PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{n}\PYG{p}{));}
+			\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{\PYGZus{}index}\PYG{p}{(}\PYG{n}{index}\PYG{p}{,}\PYG{n}{indices}\PYG{p}{);}
+			\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{\PYGZus{}neighbours}\PYG{p}{[}\PYG{n}{i}\PYG{p}{][}\PYG{n}{j}\PYG{p}{]} \PYG{o}{=} \PYG{n}{index}\PYG{p}{;}
+		\PYG{p}{\PYGZcb{};}
+	\PYG{p}{\PYGZcb{};}
+	\PYG{k}{return}\PYG{p}{;}
+\PYG{p}{\PYGZcb{};}
+
+
+\PYG{c+c1}{// Indices (i\PYGZus{}\PYGZob{}0\PYGZcb{},...,i\PYGZus{}\PYGZob{}dim\PYGZhy{}1\PYGZcb{}) from linear index (Naive operations)}
+\PYG{k}{template} \PYG{o}{\PYGZlt{}}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}sys}\PYG{p}{,}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}state}\PYG{p}{,}\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{dim}\PYG{o}{\PYGZgt{}}
+\PYG{k+kt}{void} \PYG{n}{Spin}\PYG{o}{\PYGZlt{}}\PYG{n}{T\PYGZus{}sys}\PYG{p}{,}\PYG{n}{T\PYGZus{}state}\PYG{p}{,}\PYG{n}{dim}\PYG{o}{\PYGZgt{}::}\PYG{n}{\PYGZus{}indices}\PYG{p}{(}\PYG{k+kt}{int} \PYG{o}{\PYGZam{}} \PYG{n}{z}\PYG{p}{,}\PYG{k+kt}{int} \PYG{o}{*} \PYG{n}{indices}\PYG{p}{)\PYGZob{}}
+	\PYG{k+kt}{int} \PYG{n}{i}\PYG{p}{,}\PYG{n}{j}\PYG{p}{,}\PYG{n}{L}\PYG{p}{;}
+	\PYG{k}{for} \PYG{p}{(}\PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{i}\PYG{o}{\PYGZlt{}}\PYG{n}{dim}\PYG{p}{;}\PYG{n}{i}\PYG{o}{++}\PYG{p}{)\PYGZob{}}
+		\PYG{n}{L} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+		\PYG{k}{for} \PYG{p}{(}\PYG{n}{j}\PYG{o}{=}\PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{n}{j}\PYG{o}{\PYGZlt{}}\PYG{n}{dim}\PYG{p}{;}\PYG{n}{j}\PYG{o}{++}\PYG{p}{)\PYGZob{}}
+			\PYG{n}{L} \PYG{o}{*=} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{n}\PYG{p}{;}
+		\PYG{p}{\PYGZcb{};}
+		\PYG{n}{indices}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{p}{(}\PYG{n}{z}\PYG{o}{/}\PYG{n}{L}\PYG{p}{)}\PYG{o}{\PYGZpc{}}\PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{n}\PYG{p}{);}
+	\PYG{p}{\PYGZcb{};}
+
+	\PYG{k}{return}\PYG{p}{;} 
+\PYG{p}{\PYGZcb{};}
+
+\PYG{c+c1}{// Linear index from Indices (i\PYGZus{}\PYGZob{}0\PYGZcb{},...,i\PYGZus{}\PYGZob{}dim\PYGZhy{}1\PYGZcb{})}
+\PYG{k}{template} \PYG{o}{\PYGZlt{}}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}sys}\PYG{p}{,}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}state}\PYG{p}{,}\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{dim}\PYG{o}{\PYGZgt{}}
+\PYG{k+kt}{void} \PYG{n}{Spin}\PYG{o}{\PYGZlt{}}\PYG{n}{T\PYGZus{}sys}\PYG{p}{,}\PYG{n}{T\PYGZus{}state}\PYG{p}{,}\PYG{n}{dim}\PYG{o}{\PYGZgt{}::}\PYG{n}{\PYGZus{}index}\PYG{p}{(}\PYG{k+kt}{int} \PYG{o}{\PYGZam{}} \PYG{n}{z}\PYG{p}{,}\PYG{k+kt}{int} \PYG{o}{*} \PYG{n}{indices}\PYG{p}{)\PYGZob{}}
+	\PYG{n}{z} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{k+kt}{int} \PYG{n}{w} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+	\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{i}\PYG{o}{\PYGZlt{}}\PYG{n}{dim}\PYG{p}{;}\PYG{n}{i}\PYG{o}{++}\PYG{p}{)\PYGZob{}}
+		\PYG{n}{w} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+		\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{j}\PYG{o}{=}\PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{n}{j}\PYG{o}{\PYGZlt{}}\PYG{n}{dim}\PYG{p}{;}\PYG{n}{j}\PYG{o}{++}\PYG{p}{)\PYGZob{}}
+			\PYG{n}{w} \PYG{o}{*=} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{n}\PYG{p}{;}
+		\PYG{p}{\PYGZcb{}}
+		\PYG{n}{z} \PYG{o}{+=} \PYG{n}{indices}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{*}\PYG{n}{w}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{return}\PYG{p}{;}
+\PYG{p}{\PYGZcb{};}
+
+
+
+\PYG{c+c1}{// Monte Carlo Average}
+\PYG{k}{template} \PYG{o}{\PYGZlt{}}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}sys}\PYG{p}{,}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}state}\PYG{p}{,}\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{dim}\PYG{o}{\PYGZgt{}}
+\PYG{k+kt}{void} \PYG{n}{Spin}\PYG{o}{\PYGZlt{}}\PYG{n}{T\PYGZus{}sys}\PYG{p}{,}\PYG{n}{T\PYGZus{}state}\PYG{p}{,}\PYG{n}{dim}\PYG{o}{\PYGZgt{}::}\PYG{n}{\PYGZus{}average}\PYG{p}{(}\PYG{n}{T\PYGZus{}sys} \PYG{o}{\PYGZam{}} \PYG{n}{value}\PYG{p}{,} \PYG{n}{std}\PYG{o}{::}\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{T\PYGZus{}sys}\PYG{o}{\PYGZgt{}} \PYG{n}{observables}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{N}\PYG{p}{)\PYGZob{}}
+	\PYG{n}{value} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{i}\PYG{o}{\PYGZlt{}}\PYG{n}{N}\PYG{p}{;}\PYG{n}{i}\PYG{o}{++}\PYG{p}{)\PYGZob{}}
+		\PYG{n}{value} \PYG{o}{+=} \PYG{n}{observables}\PYG{p}{[}\PYG{n}{i}\PYG{p}{];}
+	\PYG{p}{\PYGZcb{};}
+	\PYG{n}{value} \PYG{o}{/=} \PYG{p}{(}\PYG{n}{N}\PYG{p}{);}
+	\PYG{k}{return}\PYG{p}{;}
+\PYG{p}{\PYGZcb{};}
+
+\PYG{c+c1}{// Monte Carlo Variance}
+\PYG{k}{template} \PYG{o}{\PYGZlt{}}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}sys}\PYG{p}{,}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}state}\PYG{p}{,}\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{dim}\PYG{o}{\PYGZgt{}}
+\PYG{k+kt}{void} \PYG{n}{Spin}\PYG{o}{\PYGZlt{}}\PYG{n}{T\PYGZus{}sys}\PYG{p}{,}\PYG{n}{T\PYGZus{}state}\PYG{p}{,}\PYG{n}{dim}\PYG{o}{\PYGZgt{}::}\PYG{n}{\PYGZus{}variance}\PYG{p}{(}\PYG{n}{T\PYGZus{}sys} \PYG{o}{\PYGZam{}} \PYG{n}{value}\PYG{p}{,} \PYG{n}{std}\PYG{o}{::}\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{T\PYGZus{}sys}\PYG{o}{\PYGZgt{}} \PYG{n}{observables}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{N}\PYG{p}{)\PYGZob{}}
+	\PYG{n}{value} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{n}{\PYGZus{}average}\PYG{p}{(}\PYG{n}{value}\PYG{p}{,}\PYG{n}{observables}\PYG{p}{,}\PYG{n}{N}\PYG{p}{);}
+	\PYG{n}{value} \PYG{o}{=} \PYG{o}{\PYGZhy{}}\PYG{n}{N}\PYG{o}{*}\PYG{p}{(}\PYG{n}{value}\PYG{o}{*}\PYG{n}{value}\PYG{p}{);}
+	\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{i}\PYG{o}{\PYGZlt{}}\PYG{n}{N}\PYG{p}{;}\PYG{n}{i}\PYG{o}{++}\PYG{p}{)\PYGZob{}}
+		\PYG{n}{value} \PYG{o}{+=} \PYG{n}{observables}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{*}\PYG{n}{observables}\PYG{p}{[}\PYG{n}{i}\PYG{p}{];}
+	\PYG{p}{\PYGZcb{};}
+	\PYG{k}{if} \PYG{p}{(}\PYG{n}{N}\PYG{o}{\PYGZgt{}}\PYG{l+m+mi}{1}\PYG{p}{)\PYGZob{}}
+		\PYG{n}{value} \PYG{o}{/=} \PYG{p}{(}\PYG{n}{N}\PYG{l+m+mi}{\PYGZhy{}1}\PYG{p}{);}
+	\PYG{p}{\PYGZcb{};}
+	\PYG{k}{return}\PYG{p}{;}
+\PYG{p}{\PYGZcb{};}
+
+
+\PYG{c+c1}{// Calculate Interaction}
+\PYG{k}{template} \PYG{o}{\PYGZlt{}}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}sys}\PYG{p}{,}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}state}\PYG{p}{,}\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{dim}\PYG{o}{\PYGZgt{}}
+\PYG{n}{T\PYGZus{}sys} \PYG{n}{Spin}\PYG{o}{\PYGZlt{}}\PYG{n}{T\PYGZus{}sys}\PYG{p}{,}\PYG{n}{T\PYGZus{}state}\PYG{p}{,}\PYG{n}{dim}\PYG{o}{\PYGZgt{}::}\PYG{n}{\PYGZus{}interaction}\PYG{p}{(}\PYG{n}{T\PYGZus{}state} \PYG{n}{x}\PYG{p}{,} \PYG{n}{T\PYGZus{}state} \PYG{n}{y}\PYG{p}{)\PYGZob{}}
+	\PYG{c+c1}{// std::cout \PYGZlt{}\PYGZlt{} \PYGZdq{}i(\PYGZdq{}\PYGZlt{}\PYGZlt{}x\PYGZlt{}\PYGZlt{}\PYGZdq{},\PYGZdq{}\PYGZlt{}\PYGZlt{}y\PYGZlt{}\PYGZlt{}\PYGZdq{}) = \PYGZdq{}\PYGZlt{}\PYGZlt{}T\PYGZus{}sys(x==y)\PYGZlt{}\PYGZlt{}std::endl;}
+	\PYG{k}{return} \PYG{n+nf}{T\PYGZus{}sys}\PYG{p}{(}\PYG{n}{x}\PYG{o}{==}\PYG{n}{y}\PYG{p}{);}
+\PYG{p}{\PYGZcb{};}
+
+\PYG{c+c1}{// Calculate Energy}
+\PYG{k}{template} \PYG{o}{\PYGZlt{}}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}sys}\PYG{p}{,}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}state}\PYG{p}{,}\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{dim}\PYG{o}{\PYGZgt{}}
+\PYG{n}{T\PYGZus{}sys} \PYG{n}{Spin}\PYG{o}{\PYGZlt{}}\PYG{n}{T\PYGZus{}sys}\PYG{p}{,}\PYG{n}{T\PYGZus{}state}\PYG{p}{,}\PYG{n}{dim}\PYG{o}{\PYGZgt{}::}\PYG{n}{\PYGZus{}energy}\PYG{p}{()\PYGZob{}}
+	\PYG{k+kt}{int} \PYG{n}{i}\PYG{p}{;}
+	\PYG{n}{T\PYGZus{}sys} \PYG{n}{energy} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{c+cp}{\PYGZsh{}pragma omp parallel for reduction(+:energy) default(shared) private(i)}
+	\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{i}\PYG{o}{\PYGZlt{}}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{size}\PYG{p}{;}\PYG{n}{i}\PYG{o}{++}\PYG{p}{)\PYGZob{}}
+		\PYG{n}{energy} \PYG{o}{+=} \PYG{n}{\PYGZus{}energy}\PYG{p}{(}\PYG{n}{i}\PYG{p}{);}
+	\PYG{p}{\PYGZcb{};}
+	\PYG{k}{return} \PYG{n}{energy}\PYG{o}{/}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{size}\PYG{p}{;}
+\PYG{p}{\PYGZcb{};}
+
+\PYG{c+c1}{// Calculate Energy at index}
+\PYG{k}{template} \PYG{o}{\PYGZlt{}}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}sys}\PYG{p}{,}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}state}\PYG{p}{,}\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{dim}\PYG{o}{\PYGZgt{}}
+\PYG{n}{T\PYGZus{}sys} \PYG{n}{Spin}\PYG{o}{\PYGZlt{}}\PYG{n}{T\PYGZus{}sys}\PYG{p}{,}\PYG{n}{T\PYGZus{}state}\PYG{p}{,}\PYG{n}{dim}\PYG{o}{\PYGZgt{}::}\PYG{n}{\PYGZus{}energy}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{index}\PYG{p}{)\PYGZob{}}
+	\PYG{n}{T\PYGZus{}sys} \PYG{n}{energy} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{n}{energy} \PYG{o}{+=} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{J}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{*}\PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{state}\PYG{p}{[}\PYG{n}{index}\PYG{p}{],}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{direction}\PYG{p}{);}
+	\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{j}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{j}\PYG{o}{\PYGZlt{}}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{coordination}\PYG{p}{;}\PYG{n}{j}\PYG{o}{++}\PYG{p}{)\PYGZob{}}
+		\PYG{c+c1}{// std::cout \PYGZlt{}\PYGZlt{} index \PYGZlt{}\PYGZlt{} \PYGZdq{} :: \PYGZdq{}\PYGZlt{}\PYGZlt{} this\PYGZhy{}\PYGZgt{}\PYGZus{}neighbours[index][j] \PYGZlt{}\PYGZlt{}\PYGZdq{} states \PYGZdq{} \PYGZlt{}\PYGZlt{} this\PYGZhy{}\PYGZgt{}state[index]\PYGZlt{}\PYGZlt{}\PYGZdq{} , \PYGZdq{}\PYGZlt{}\PYGZlt{}this\PYGZhy{}\PYGZgt{}state[this\PYGZhy{}\PYGZgt{}\PYGZus{}neighbours[index][j]] \PYGZlt{}\PYGZlt{}std::endl;}
+		\PYG{n}{energy} \PYG{o}{+=} \PYG{p}{(}\PYG{l+m+mf}{0.5}\PYG{p}{)}\PYG{o}{*}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{J}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{*}\PYG{n}{\PYGZus{}interaction}\PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{state}\PYG{p}{[}\PYG{n}{index}\PYG{p}{],}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{state}\PYG{p}{[}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{\PYGZus{}neighbours}\PYG{p}{[}\PYG{n}{index}\PYG{p}{][}\PYG{n}{j}\PYG{p}{]]);}
+	\PYG{p}{\PYGZcb{};}
+	\PYG{k}{return} \PYG{n}{energy}\PYG{p}{;}
+\PYG{p}{\PYGZcb{};}
+
+\PYG{c+c1}{// Calculate Order}
+\PYG{k}{template} \PYG{o}{\PYGZlt{}}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}sys}\PYG{p}{,}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}state}\PYG{p}{,}\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{dim}\PYG{o}{\PYGZgt{}}
+\PYG{n}{T\PYGZus{}sys} \PYG{n}{Spin}\PYG{o}{\PYGZlt{}}\PYG{n}{T\PYGZus{}sys}\PYG{p}{,}\PYG{n}{T\PYGZus{}state}\PYG{p}{,}\PYG{n}{dim}\PYG{o}{\PYGZgt{}::}\PYG{n}{\PYGZus{}order}\PYG{p}{()\PYGZob{}}
+	\PYG{k+kt}{int} \PYG{n}{i}\PYG{p}{;}
+	\PYG{n}{T\PYGZus{}sys} \PYG{n}{order} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{c+cp}{\PYGZsh{}pragma omp parallel for reduction(+:order) default(shared) private(i)	}
+	\PYG{k}{for} \PYG{p}{(}\PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{i}\PYG{o}{\PYGZlt{}}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{size}\PYG{p}{;}\PYG{n}{i}\PYG{o}{++}\PYG{p}{)\PYGZob{}}
+		\PYG{n}{order} \PYG{o}{+=} \PYG{n}{\PYGZus{}order}\PYG{p}{(}\PYG{n}{i}\PYG{p}{);}
+	\PYG{p}{\PYGZcb{};}
+	\PYG{k}{return} \PYG{n}{std}\PYG{o}{::}\PYG{n}{abs}\PYG{p}{(}\PYG{n}{order}\PYG{o}{/}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{size}\PYG{p}{);}
+\PYG{p}{\PYGZcb{};}
+
+
+\PYG{c+c1}{// Calculate Order at index}
+\PYG{k}{template} \PYG{o}{\PYGZlt{}}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}sys}\PYG{p}{,}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}state}\PYG{p}{,}\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{dim}\PYG{o}{\PYGZgt{}}
+\PYG{n}{T\PYGZus{}sys} \PYG{n}{Spin}\PYG{o}{\PYGZlt{}}\PYG{n}{T\PYGZus{}sys}\PYG{p}{,}\PYG{n}{T\PYGZus{}state}\PYG{p}{,}\PYG{n}{dim}\PYG{o}{\PYGZgt{}::}\PYG{n}{\PYGZus{}order}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{index}\PYG{p}{)\PYGZob{}}
+	\PYG{n}{T\PYGZus{}sys} \PYG{n}{order} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{n}{order} \PYG{o}{+=} \PYG{n}{\PYGZus{}interaction}\PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{state}\PYG{p}{[}\PYG{n}{index}\PYG{p}{],}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{direction}\PYG{p}{);}
+	\PYG{k}{return} \PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{q}\PYG{o}{*}\PYG{n}{order} \PYG{l+m+mi}{\PYGZhy{}1}\PYG{p}{)}\PYG{o}{/}\PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{q}\PYG{l+m+mi}{\PYGZhy{}1}\PYG{p}{);}
+\PYG{p}{\PYGZcb{};}
+
+
+
+\PYG{c+c1}{// Print State}
+\PYG{k}{template} \PYG{o}{\PYGZlt{}}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}sys}\PYG{p}{,}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}state}\PYG{p}{,}\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{dim}\PYG{o}{\PYGZgt{}}
+\PYG{k+kt}{void} \PYG{n}{Spin}\PYG{o}{\PYGZlt{}}\PYG{n}{T\PYGZus{}sys}\PYG{p}{,}\PYG{n}{T\PYGZus{}state}\PYG{p}{,}\PYG{n}{dim}\PYG{o}{\PYGZgt{}::}\PYG{n}{print}\PYG{p}{()\PYGZob{}}
+	\PYG{k}{if} \PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{settings}\PYG{p}{.}\PYG{n}{verbose} \PYG{o}{==} \PYG{l+m+mi}{0}\PYG{p}{)\PYGZob{}}
+		\PYG{k}{return}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{};}
+	\PYG{k}{if} \PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{settings}\PYG{p}{.}\PYG{n}{iteration} \PYG{o}{==} \PYG{l+m+mi}{1}\PYG{p}{)\PYGZob{}}
+		\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{std}\PYG{o}{::}\PYG{n}{endl}\PYG{p}{;}
+		\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}d = \PYGZdq{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{d} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}, \PYGZdq{}}\PYG{p}{;}
+		\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}n = \PYGZdq{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{n} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}, \PYGZdq{}}\PYG{p}{;}
+		\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}q = \PYGZdq{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{q} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}, \PYGZdq{}}\PYG{p}{;}
+		\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}T = \PYGZdq{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{T} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}, \PYGZdq{}}\PYG{p}{;}
+		\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{i}\PYG{o}{\PYGZlt{}}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{complexity}\PYG{p}{;}\PYG{n}{i}\PYG{o}{++}\PYG{p}{)\PYGZob{}}
+			\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}J\PYGZdq{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{i} \PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{l+s}{\PYGZdq{} = \PYGZdq{}}\PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{J}\PYG{p}{[}\PYG{n}{i}\PYG{p}{];}
+			\PYG{k}{if} \PYG{p}{(}\PYG{n}{i}\PYG{o}{==}\PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{system}\PYG{p}{.}\PYG{n}{complexity}\PYG{l+m+mi}{\PYGZhy{}1}\PYG{p}{))\PYGZob{}}
+				\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}\PYGZdq{}}\PYG{p}{;}
+			\PYG{p}{\PYGZcb{}}
+			\PYG{k}{else}\PYG{p}{\PYGZob{}}
+				\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}, \PYGZdq{}}\PYG{p}{;}			
+			\PYG{p}{\PYGZcb{};}
+		\PYG{p}{\PYGZcb{};}
+		\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{std}\PYG{o}{::}\PYG{n}{endl}\PYG{p}{;}
+		\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{std}\PYG{o}{::}\PYG{n}{endl}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{};}
+		
+	\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}energy = \PYGZdq{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{observables}\PYG{p}{.}\PYG{n}{energy}\PYG{p}{.}\PYG{n}{back}\PYG{p}{()} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}, \PYGZdq{}}\PYG{p}{;}
+	\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}mean   = \PYGZdq{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{observables}\PYG{p}{.}\PYG{n}{energy\PYGZus{}mean}\PYG{p}{.}\PYG{n}{back}\PYG{p}{()} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}, \PYGZdq{}}\PYG{p}{;}
+	\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}var    = \PYGZdq{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{observables}\PYG{p}{.}\PYG{n}{energy\PYGZus{}var}\PYG{p}{.}\PYG{n}{back}\PYG{p}{()} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{} \PYGZdq{}}\PYG{p}{;}
+	\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{std}\PYG{o}{::}\PYG{n}{endl}\PYG{p}{;}
+
+	\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}order = \PYGZdq{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{observables}\PYG{p}{.}\PYG{n}{order}\PYG{p}{.}\PYG{n}{back}\PYG{p}{()} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}, \PYGZdq{}}\PYG{p}{;}
+	\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}mean  = \PYGZdq{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{observables}\PYG{p}{.}\PYG{n}{order\PYGZus{}mean}\PYG{p}{.}\PYG{n}{back}\PYG{p}{()} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}, \PYGZdq{}}\PYG{p}{;}
+	\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}var   = \PYGZdq{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{observables}\PYG{p}{.}\PYG{n}{order\PYGZus{}var}\PYG{p}{.}\PYG{n}{back}\PYG{p}{()} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{} \PYGZdq{}}\PYG{p}{;}
+	\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{std}\PYG{o}{::}\PYG{n}{endl}\PYG{p}{;}
+
+	\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{std}\PYG{o}{::}\PYG{n}{endl}\PYG{p}{;}
+
+	\PYG{c+c1}{// std::cout \PYGZlt{}\PYGZlt{} \PYGZdq{}neighbours = \PYGZdq{}\PYGZlt{}\PYGZlt{} std::endl;}
+	\PYG{c+c1}{// for(int i=0;i\PYGZlt{}this\PYGZhy{}\PYGZgt{}system.size;i++)\PYGZob{}}
+	\PYG{c+c1}{// 	for(int j=0;j\PYGZlt{}this\PYGZhy{}\PYGZgt{}system.coordination;j++)\PYGZob{}}
+	\PYG{c+c1}{// 		std::cout \PYGZlt{}\PYGZlt{} this\PYGZhy{}\PYGZgt{}\PYGZus{}neighbours[i][j] \PYGZlt{}\PYGZlt{} \PYGZdq{}   \PYGZdq{};}
+	\PYG{c+c1}{// 	\PYGZcb{};}
+	\PYG{c+c1}{// 	std::cout \PYGZlt{}\PYGZlt{} std::endl;}
+	\PYG{c+c1}{// \PYGZcb{};}
+
+	\PYG{c+c1}{// std::cout \PYGZlt{}\PYGZlt{} \PYGZdq{}state = \PYGZdq{}\PYGZlt{}\PYGZlt{} std::endl;}
+	\PYG{c+c1}{// for(int i=0;i\PYGZlt{}this\PYGZhy{}\PYGZgt{}system.size;i++)\PYGZob{}}
+	\PYG{c+c1}{// 	std::cout \PYGZlt{}\PYGZlt{} this\PYGZhy{}\PYGZgt{}state[i] \PYGZlt{}\PYGZlt{} \PYGZdq{}   \PYGZdq{};}
+	
+	\PYG{c+c1}{// 	if (((i+1)\PYGZpc{}this\PYGZhy{}\PYGZgt{}system.n) == 0)\PYGZob{}}
+	\PYG{c+c1}{// 		std::cout \PYGZlt{}\PYGZlt{} std::endl;}
+	\PYG{c+c1}{// 	\PYGZcb{};}
+	\PYG{c+c1}{// \PYGZcb{};}
+	\PYG{k}{return}\PYG{p}{;}
+\PYG{p}{\PYGZcb{};}
+
+
+
+\PYG{k}{template} \PYG{k}{class} \PYG{n+nc}{Spin}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{double}\PYG{p}{,}\PYG{k+kt}{int}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{o}{\PYGZgt{}}\PYG{p}{;}
+\PYG{k}{template} \PYG{k}{class} \PYG{n+nc}{Spin}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{double}\PYG{p}{,}\PYG{k+kt}{int}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{o}{\PYGZgt{}}\PYG{p}{;}
+\PYG{k}{template} \PYG{k}{class} \PYG{n+nc}{Spin}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{double}\PYG{p}{,}\PYG{k+kt}{int}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{o}{\PYGZgt{}}\PYG{p}{;}
+\PYG{k}{template} \PYG{k}{class} \PYG{n+nc}{Spin}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{double}\PYG{p}{,}\PYG{k+kt}{int}\PYG{p}{,}\PYG{l+m+mi}{4}\PYG{o}{\PYGZgt{}}\PYG{p}{;}
+\PYG{k}{template} \PYG{k}{class} \PYG{n+nc}{Spin}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{float}\PYG{p}{,}\PYG{k+kt}{int}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{o}{\PYGZgt{}}\PYG{p}{;}
+\PYG{k}{template} \PYG{k}{class} \PYG{n+nc}{Spin}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{float}\PYG{p}{,}\PYG{k+kt}{int}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{o}{\PYGZgt{}}\PYG{p}{;}
+\PYG{k}{template} \PYG{k}{class} \PYG{n+nc}{Spin}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{float}\PYG{p}{,}\PYG{k+kt}{int}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{o}{\PYGZgt{}}\PYG{p}{;}
+\PYG{k}{template} \PYG{k}{class} \PYG{n+nc}{Spin}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{float}\PYG{p}{,}\PYG{k+kt}{int}\PYG{p}{,}\PYG{l+m+mi}{4}\PYG{o}{\PYGZgt{}}\PYG{p}{;}
+\PYG{k}{template} \PYG{k}{class} \PYG{n+nc}{Spin}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{double}\PYG{p}{,}\PYG{k+kt}{double}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{o}{\PYGZgt{}}\PYG{p}{;}
+\PYG{k}{template} \PYG{k}{class} \PYG{n+nc}{Spin}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{double}\PYG{p}{,}\PYG{k+kt}{double}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{o}{\PYGZgt{}}\PYG{p}{;}
+\PYG{k}{template} \PYG{k}{class} \PYG{n+nc}{Spin}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{double}\PYG{p}{,}\PYG{k+kt}{double}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{o}{\PYGZgt{}}\PYG{p}{;}
+\PYG{k}{template} \PYG{k}{class} \PYG{n+nc}{Spin}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{double}\PYG{p}{,}\PYG{k+kt}{double}\PYG{p}{,}\PYG{l+m+mi}{4}\PYG{o}{\PYGZgt{}}\PYG{p}{;}
+\PYG{k}{template} \PYG{k}{class} \PYG{n+nc}{Spin}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{float}\PYG{p}{,}\PYG{k+kt}{double}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{o}{\PYGZgt{}}\PYG{p}{;}
+\PYG{k}{template} \PYG{k}{class} \PYG{n+nc}{Spin}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{float}\PYG{p}{,}\PYG{k+kt}{double}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{o}{\PYGZgt{}}\PYG{p}{;}
+\PYG{k}{template} \PYG{k}{class} \PYG{n+nc}{Spin}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{float}\PYG{p}{,}\PYG{k+kt}{double}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{o}{\PYGZgt{}}\PYG{p}{;}
+\PYG{k}{template} \PYG{k}{class} \PYG{n+nc}{Spin}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{float}\PYG{p}{,}\PYG{k+kt}{double}\PYG{p}{,}\PYG{l+m+mi}{4}\PYG{o}{\PYGZgt{}}\PYG{p}{;}
+\PYG{k}{template} \PYG{k}{class} \PYG{n+nc}{Spin}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{double}\PYG{p}{,}\PYG{k+kt}{float}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{o}{\PYGZgt{}}\PYG{p}{;}
+\PYG{k}{template} \PYG{k}{class} \PYG{n+nc}{Spin}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{double}\PYG{p}{,}\PYG{k+kt}{float}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{o}{\PYGZgt{}}\PYG{p}{;}
+\PYG{k}{template} \PYG{k}{class} \PYG{n+nc}{Spin}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{double}\PYG{p}{,}\PYG{k+kt}{float}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{o}{\PYGZgt{}}\PYG{p}{;}
+\PYG{k}{template} \PYG{k}{class} \PYG{n+nc}{Spin}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{double}\PYG{p}{,}\PYG{k+kt}{float}\PYG{p}{,}\PYG{l+m+mi}{4}\PYG{o}{\PYGZgt{}}\PYG{p}{;}
+\PYG{k}{template} \PYG{k}{class} \PYG{n+nc}{Spin}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{float}\PYG{p}{,}\PYG{k+kt}{float}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{o}{\PYGZgt{}}\PYG{p}{;}
+\PYG{k}{template} \PYG{k}{class} \PYG{n+nc}{Spin}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{float}\PYG{p}{,}\PYG{k+kt}{float}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{o}{\PYGZgt{}}\PYG{p}{;}
+\PYG{k}{template} \PYG{k}{class} \PYG{n+nc}{Spin}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{float}\PYG{p}{,}\PYG{k+kt}{float}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{o}{\PYGZgt{}}\PYG{p}{;}
+\PYG{k}{template} \PYG{k}{class} \PYG{n+nc}{Spin}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{float}\PYG{p}{,}\PYG{k+kt}{float}\PYG{p}{,}\PYG{l+m+mi}{4}\PYG{o}{\PYGZgt{}}\PYG{p}{;}
+\PYG{p}{\PYGZcb{};}
+\end{Verbatim}

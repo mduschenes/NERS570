@@ -12,8 +12,7 @@
 
 #include "io.hpp"
 
-
-#define MAX_THREADS 4
+#define MAX_THREADS 8
 
 namespace PHYS {
 
@@ -27,7 +26,6 @@ class Spin {
 		//Destructor
 		~Spin();
 
-	
 		// Set system
 		void set(int n, T_state q, T_sys T, T_sys * J);
 
@@ -73,7 +71,6 @@ class Spin {
 			std::vector<T_sys> energy;
 			std::vector<T_sys> energy_mean;
 			std::vector<T_sys> energy_var;
-
 			std::vector<T_sys> order;
 			std::vector<T_sys> order_mean;
 			std::vector<T_sys> order_var;
@@ -181,9 +178,6 @@ class Spin {
 
 		// Nearest neighbours
 		std::vector<std::vector<int>> _neighbours;
-
-
-
 
 };
 

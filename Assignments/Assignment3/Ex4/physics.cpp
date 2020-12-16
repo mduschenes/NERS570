@@ -74,7 +74,7 @@ void Spin<T_sys,T_state,dim>::montecarlo(){
 	double time = omp_get_wtime();
 
 	int i;
-	// #pragma omp parallel for default(shared) private(i) shared(state,observables,settings)
+	#pragma omp parallel for default(shared) private(i) shared(state,observables,settings)
 	for (i=0;i<this->settings.iterations;i++){
 		// Stopping conditions
 		if (this->_stop() == 1){
@@ -83,7 +83,7 @@ void Spin<T_sys,T_state,dim>::montecarlo(){
 		};
 
 		// Update state
-		// #pragma omp critical
+		#pragma omp critical
 		{
 		this->update();
 	
@@ -208,13 +208,13 @@ void Spin<T_sys,T_state,dim>::_set_observables_stats(){
 
 	_average(value,this->observables.energy,this->observables.energy.size());
 	this->observables.energy_mean.push_back(value);
-	_variance(value,this->observables.energy,this->observables.energy.size());	
+	_variance(value,this->observables.energy_mean,this->observables.energy_mean.size());	
 	this->observables.energy_var.push_back(value/(this->system.T*this->system.T));
 
 
 	_average(value,this->observables.order,this->observables.order.size());
 	this->observables.order_mean.push_back(value);
-	_variance(value,this->observables.order,this->observables.order.size());	
+	_variance(value,this->observables.order_mean,this->observables.order_mean.size());	
 	this->observables.order_var.push_back(value/(this->system.T));
 
 	return;
@@ -260,19 +260,24 @@ int Spin<T_sys,T_state,dim>::_transition(T_sys delta){
 template <class T_sys,class T_state,const int dim>
 int Spin<T_sys,T_state,dim>::_stop(){
 
-	T_sys var = 0;
+	T_sys var_energy = 0;
+	T_sys var_order = 0;
 	int i = this->settings.iterations/100,j;
 	if (this->settings.iteration< 20*i){
 		return 0;
 	};
-	#pragma omp parallel for reduction(+:var) shared(observables) private(j)
+	#pragma omp parallel for reduction(+:var_mean) reduction(+:var_order) shared(observables) private(j)
 	for (j=this->settings.iteration-i;j<this->settings.iteration;j++){
-		var += this->observables.energy_var[j];
+		var_energy += this->observables.energy_var[j];
+		var_order += this->observables.order_var[j];
 	};
-	var /=i;
-	var = std::abs(var);
+	var_energy /=i;
+	var_energy = std::abs(var_energy);
+
+	var_order /=i;
+	var_order = std::abs(var_order);
 	// std::cout << "Rolling var ("<<i<<") : " << var << "  with tol "<< this->settings.stop <<std::endl;
-	return (var<this->settings.stop);
+	return ((var_mean<this->settings.stop) & (var_order<this->settings.stop));
 };
 
 

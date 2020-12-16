@@ -1,0 +1,39 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}iostream\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZdq{}physics.hpp\PYGZdq{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZdq{}io.hpp\PYGZdq{}}
+
+\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{set\PYGZus{}dim}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{d}\PYG{p}{)\PYGZob{}}
+    \PYG{k}{return} \PYG{n}{d}\PYG{p}{;}
+
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{int} \PYG{n}{main}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{argc}\PYG{p}{,} \PYG{k+kt}{char} \PYG{o}{*}\PYG{n}{argv}\PYG{p}{[])\PYGZob{}}
+    \PYG{k+kt}{int} \PYG{n}{argn} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+
+    \PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{dim} \PYG{o}{=} \PYG{l+m+mi}{2}\PYG{p}{;}
+
+    \PYG{k+kt}{int} \PYG{n}{d} \PYG{o}{=} \PYG{l+m+mi}{2}\PYG{p}{;}
+    \PYG{k+kt}{int} \PYG{n}{n} \PYG{o}{=} \PYG{l+m+mi}{5}\PYG{p}{;}
+    \PYG{k+kt}{int} \PYG{n}{q} \PYG{o}{=} \PYG{l+m+mi}{2}\PYG{p}{;}
+    \PYG{k+kt}{float} \PYG{n}{T} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+    \PYG{k+kt}{float} \PYG{n}{J}\PYG{p}{[]} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+m+mf}{0.0}\PYG{p}{,}\PYG{l+m+mf}{\PYGZhy{}1.0}\PYG{p}{\PYGZcb{};}
+
+    \PYG{c+c1}{// argn++;if (argc \PYGZgt{}= argn)\PYGZob{}d = std::atoi(argv[argn\PYGZhy{}1]);\PYGZcb{};}
+    \PYG{n}{argn}\PYG{o}{++}\PYG{p}{;}\PYG{k}{if} \PYG{p}{(}\PYG{n}{argc} \PYG{o}{\PYGZgt{}=} \PYG{n}{argn}\PYG{p}{)\PYGZob{}}\PYG{n}{n} \PYG{o}{=} \PYG{n}{std}\PYG{o}{::}\PYG{n}{atoi}\PYG{p}{(}\PYG{n}{argv}\PYG{p}{[}\PYG{n}{argn}\PYG{l+m+mi}{\PYGZhy{}1}\PYG{p}{]);\PYGZcb{};}
+    \PYG{n}{argn}\PYG{o}{++}\PYG{p}{;}\PYG{k}{if} \PYG{p}{(}\PYG{n}{argc} \PYG{o}{\PYGZgt{}=} \PYG{n}{argn}\PYG{p}{)\PYGZob{}}\PYG{n}{q} \PYG{o}{=} \PYG{n}{std}\PYG{o}{::}\PYG{n}{atoi}\PYG{p}{(}\PYG{n}{argv}\PYG{p}{[}\PYG{n}{argn}\PYG{l+m+mi}{\PYGZhy{}1}\PYG{p}{]);\PYGZcb{};}
+    \PYG{n}{argn}\PYG{o}{++}\PYG{p}{;}\PYG{k}{if} \PYG{p}{(}\PYG{n}{argc} \PYG{o}{\PYGZgt{}=} \PYG{n}{argn}\PYG{p}{)\PYGZob{}}\PYG{n}{T} \PYG{o}{=} \PYG{n}{std}\PYG{o}{::}\PYG{n}{atof}\PYG{p}{(}\PYG{n}{argv}\PYG{p}{[}\PYG{n}{argn}\PYG{l+m+mi}{\PYGZhy{}1}\PYG{p}{]);\PYGZcb{};}
+    \PYG{n}{argn}\PYG{o}{++}\PYG{p}{;}\PYG{k}{if} \PYG{p}{(}\PYG{n}{argc} \PYG{o}{\PYGZgt{}=} \PYG{n}{argn}\PYG{p}{)\PYGZob{}}\PYG{n}{J}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{=} \PYG{n}{std}\PYG{o}{::}\PYG{n}{atof}\PYG{p}{(}\PYG{n}{argv}\PYG{p}{[}\PYG{n}{argn}\PYG{l+m+mi}{\PYGZhy{}1}\PYG{p}{]);\PYGZcb{};}
+    \PYG{n}{argn}\PYG{o}{++}\PYG{p}{;}\PYG{k}{if} \PYG{p}{(}\PYG{n}{argc} \PYG{o}{\PYGZgt{}=} \PYG{n}{argn}\PYG{p}{)\PYGZob{}}\PYG{n}{J}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{=} \PYG{n}{std}\PYG{o}{::}\PYG{n}{atof}\PYG{p}{(}\PYG{n}{argv}\PYG{p}{[}\PYG{n}{argn}\PYG{l+m+mi}{\PYGZhy{}1}\PYG{p}{]);\PYGZcb{};}
+    
+
+    \PYG{n}{PHYS}\PYG{o}{::}\PYG{n}{Spin}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{float}\PYG{p}{,}\PYG{k+kt}{int}\PYG{p}{,}\PYG{n}{dim}\PYG{o}{\PYGZgt{}} \PYG{n}{spin}\PYG{p}{(}\PYG{n}{n}\PYG{p}{,}\PYG{n}{q}\PYG{p}{,}\PYG{n}{T}\PYG{p}{,}\PYG{n}{J}\PYG{p}{);}
+    
+    \PYG{n}{spin}\PYG{p}{.}\PYG{n}{settings}\PYG{p}{.}\PYG{n}{num\PYGZus{}threads} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+    \PYG{n}{spin}\PYG{p}{.}\PYG{n}{settings}\PYG{p}{.}\PYG{n}{stop} \PYG{o}{=} \PYG{l+m+mf}{1e\PYGZhy{}6}\PYG{p}{;}
+    \PYG{n}{spin}\PYG{p}{.}\PYG{n}{montecarlo}\PYG{p}{();}
+    \PYG{n}{spin}\PYG{p}{.}\PYG{n}{write}\PYG{p}{();}
+
+    \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{p}{\PYGZcb{};}  
+\end{Verbatim}

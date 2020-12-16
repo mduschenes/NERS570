@@ -1,0 +1,188 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}ifndef \PYGZus{}SPIN\PYGZus{}}
+\PYG{c+cp}{\PYGZsh{}define \PYGZus{}SPIN\PYGZus{}}
+
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}cstddef\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}iostream\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}vector\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}cstdarg\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}cmath\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}time.h\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}map\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}omp.h\PYGZgt{}}
+
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZdq{}io.hpp\PYGZdq{}}
+
+\PYG{c+cp}{\PYGZsh{}define MAX\PYGZus{}THREADS 8}
+
+\PYG{k}{namespace} \PYG{n}{PHYS} \PYG{p}{\PYGZob{}}
+
+\PYG{k}{template} \PYG{o}{\PYGZlt{}}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}sys}\PYG{p}{,}\PYG{k}{class} \PYG{n+nc}{T\PYGZus{}state}\PYG{p}{,} \PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{dim}\PYG{o}{\PYGZgt{}}
+\PYG{k}{class} \PYG{n+nc}{Spin} \PYG{p}{\PYGZob{}}
+
+	\PYG{k}{public}\PYG{o}{:}
+
+		\PYG{c+c1}{//Constructor }
+		\PYG{n}{Spin}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{n}\PYG{p}{,} \PYG{n}{T\PYGZus{}state} \PYG{n}{q}\PYG{p}{,} \PYG{n}{T\PYGZus{}sys} \PYG{n}{T}\PYG{p}{,} \PYG{n}{T\PYGZus{}sys} \PYG{o}{*} \PYG{n}{J}\PYG{p}{);}
+		\PYG{c+c1}{//Destructor}
+		\PYG{o}{\PYGZti{}}\PYG{n}{Spin}\PYG{p}{();}
+
+		\PYG{c+c1}{// Set system}
+		\PYG{k+kt}{void} \PYG{n+nf}{set}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{n}\PYG{p}{,} \PYG{n}{T\PYGZus{}state} \PYG{n}{q}\PYG{p}{,} \PYG{n}{T\PYGZus{}sys} \PYG{n}{T}\PYG{p}{,} \PYG{n}{T\PYGZus{}sys} \PYG{o}{*} \PYG{n}{J}\PYG{p}{);}
+
+		\PYG{c+c1}{// Get system}
+		\PYG{k+kt}{void} \PYG{n+nf}{get}\PYG{p}{();}
+
+		\PYG{c+c1}{// Compute observables}
+		\PYG{k+kt}{void} \PYG{n+nf}{calculate}\PYG{p}{();}
+
+		\PYG{c+c1}{// Do Monte Carlo Iterations}
+		\PYG{k+kt}{void} \PYG{n+nf}{montecarlo}\PYG{p}{();}
+
+		\PYG{c+c1}{// Update State}
+		\PYG{k+kt}{void} \PYG{n+nf}{update}\PYG{p}{();}
+
+		\PYG{c+c1}{// Write  system}
+		\PYG{k+kt}{void} \PYG{n+nf}{write}\PYG{p}{();}
+
+		\PYG{c+c1}{// Write read}
+		\PYG{k+kt}{void} \PYG{n+nf}{read}\PYG{p}{();}
+
+		\PYG{c+c1}{// Print System}
+		\PYG{k+kt}{void} \PYG{n+nf}{print}\PYG{p}{();}
+
+		\PYG{c+c1}{// System states}
+		\PYG{n}{std}\PYG{o}{::}\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{T\PYGZus{}state}\PYG{o}{\PYGZgt{}} \PYG{n}{state}\PYG{p}{;}
+
+		\PYG{c+c1}{// System variables}
+		\PYG{k}{struct} \PYG{n+nc}{system} \PYG{p}{\PYGZob{}}
+			\PYG{k+kt}{int} \PYG{n}{d}\PYG{p}{;}
+			\PYG{k+kt}{int} \PYG{n}{n}\PYG{p}{;}
+			\PYG{n}{T\PYGZus{}state} \PYG{n}{q}\PYG{p}{;}
+			\PYG{n}{T\PYGZus{}sys} \PYG{n}{T}\PYG{p}{;}
+			\PYG{n}{T\PYGZus{}sys} \PYG{o}{*} \PYG{n}{J}\PYG{p}{;}
+			\PYG{n}{T\PYGZus{}state} \PYG{n}{direction}\PYG{p}{;}
+			\PYG{k+kt}{int} \PYG{n}{complexity}\PYG{p}{;}
+			\PYG{k+kt}{int} \PYG{n}{size}\PYG{p}{;}
+			\PYG{k+kt}{int} \PYG{n}{coordination}\PYG{p}{;}			
+		\PYG{p}{\PYGZcb{}} \PYG{n}{system}\PYG{p}{;}	
+
+		\PYG{c+c1}{// Observables variables}
+		\PYG{k}{struct} \PYG{n+nc}{observables} \PYG{p}{\PYGZob{}}
+			\PYG{n}{std}\PYG{o}{::}\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{T\PYGZus{}sys}\PYG{o}{\PYGZgt{}} \PYG{n}{energy}\PYG{p}{;}
+			\PYG{n}{std}\PYG{o}{::}\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{T\PYGZus{}sys}\PYG{o}{\PYGZgt{}} \PYG{n}{energy\PYGZus{}mean}\PYG{p}{;}
+			\PYG{n}{std}\PYG{o}{::}\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{T\PYGZus{}sys}\PYG{o}{\PYGZgt{}} \PYG{n}{energy\PYGZus{}var}\PYG{p}{;}
+			\PYG{n}{std}\PYG{o}{::}\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{T\PYGZus{}sys}\PYG{o}{\PYGZgt{}} \PYG{n}{order}\PYG{p}{;}
+			\PYG{n}{std}\PYG{o}{::}\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{T\PYGZus{}sys}\PYG{o}{\PYGZgt{}} \PYG{n}{order\PYGZus{}mean}\PYG{p}{;}
+			\PYG{n}{std}\PYG{o}{::}\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{T\PYGZus{}sys}\PYG{o}{\PYGZgt{}} \PYG{n}{order\PYGZus{}var}\PYG{p}{;}
+		\PYG{p}{\PYGZcb{}} \PYG{n}{observables}\PYG{p}{;}
+
+
+		\PYG{c+c1}{// Settings variables}
+		\PYG{k}{struct} \PYG{n+nc}{settings} \PYG{p}{\PYGZob{}}
+			\PYG{k+kt}{int} \PYG{n}{seed}\PYG{p}{;}
+			\PYG{k+kt}{int} \PYG{n}{num\PYGZus{}threads}\PYG{p}{;}
+			\PYG{k+kt}{int} \PYG{n}{iteration}\PYG{p}{;}
+			\PYG{k+kt}{int} \PYG{n}{iterations}\PYG{p}{;}
+			\PYG{k+kt}{int} \PYG{n}{burnin}\PYG{p}{;}
+			\PYG{k+kt}{float} \PYG{n}{stop}\PYG{p}{;}
+			\PYG{k+kt}{int} \PYG{n}{verbose}\PYG{p}{;}
+			\PYG{k+kt}{int} \PYG{n}{read}\PYG{p}{;}
+			\PYG{k+kt}{int} \PYG{n}{write}\PYG{p}{;}
+			\PYG{n}{std}\PYG{o}{::}\PYG{n}{string} \PYG{n}{path}\PYG{p}{;}
+		\PYG{p}{\PYGZcb{}} \PYG{n}{settings}\PYG{p}{;}		
+		
+	\PYG{k}{private}\PYG{o}{:}
+
+
+		\PYG{c+c1}{// Update State}
+		\PYG{k+kt}{void} \PYG{n}{\PYGZus{}update}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{index}\PYG{p}{,}\PYG{n}{T\PYGZus{}state} \PYG{n}{state}\PYG{p}{);}
+
+		\PYG{c+c1}{// Set lattice}
+		\PYG{k+kt}{void} \PYG{n+nf}{\PYGZus{}set\PYGZus{}lattice}\PYG{p}{();}
+
+		\PYG{c+c1}{// Get Lattice Site}
+		\PYG{k+kt}{void} \PYG{n+nf}{\PYGZus{}index}\PYG{p}{(}\PYG{k+kt}{int} \PYG{o}{\PYGZam{}} \PYG{n}{z}\PYG{p}{,}\PYG{k+kt}{int} \PYG{o}{*} \PYG{n}{indices}\PYG{p}{);}
+
+		\PYG{c+c1}{// Get Lattice Position}
+		\PYG{k+kt}{void} \PYG{n+nf}{\PYGZus{}indices}\PYG{p}{(}\PYG{k+kt}{int} \PYG{o}{\PYGZam{}} \PYG{n}{z}\PYG{p}{,}\PYG{k+kt}{int} \PYG{o}{*} \PYG{n}{indices}\PYG{p}{);}
+
+		\PYG{c+c1}{// Set state}
+		\PYG{k+kt}{void} \PYG{n+nf}{\PYGZus{}set\PYGZus{}state}\PYG{p}{();}		
+
+		\PYG{c+c1}{// Set state}
+		\PYG{k+kt}{void} \PYG{n+nf}{\PYGZus{}set\PYGZus{}state}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{index}\PYG{p}{,} \PYG{n}{T\PYGZus{}state} \PYG{n}{state}\PYG{p}{);}		
+
+		\PYG{c+c1}{// Set state}
+		\PYG{k+kt}{void} \PYG{n+nf}{\PYGZus{}set\PYGZus{}system}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{n}\PYG{p}{,} \PYG{n}{T\PYGZus{}state} \PYG{n}{q}\PYG{p}{,} \PYG{n}{T\PYGZus{}sys} \PYG{n}{T}\PYG{p}{,} \PYG{n}{T\PYGZus{}sys} \PYG{o}{*} \PYG{n}{J}\PYG{p}{);}		
+
+
+		\PYG{c+c1}{// Get state}
+		\PYG{n}{T\PYGZus{}state} \PYG{n+nf}{\PYGZus{}get\PYGZus{}state}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{index}\PYG{p}{);}		
+
+		\PYG{c+c1}{// Get Random state}
+		\PYG{n}{T\PYGZus{}state} \PYG{n+nf}{\PYGZus{}random\PYGZus{}state}\PYG{p}{(}\PYG{n}{T\PYGZus{}state} \PYG{n}{nullstate}\PYG{p}{);}	
+
+		\PYG{c+c1}{// Get Random state}
+		\PYG{n}{T\PYGZus{}state} \PYG{n+nf}{\PYGZus{}random\PYGZus{}state}\PYG{p}{();}	
+
+		\PYG{c+c1}{// Get Random index}
+		\PYG{k+kt}{int} \PYG{n+nf}{\PYGZus{}random\PYGZus{}index}\PYG{p}{();}								
+
+		\PYG{c+c1}{// Transition probability calculation}
+		\PYG{k+kt}{void} \PYG{n+nf}{\PYGZus{}propose}\PYG{p}{();}
+
+		\PYG{c+c1}{// Transition probability calculation}
+		\PYG{k+kt}{int} \PYG{n+nf}{\PYGZus{}transition}\PYG{p}{(}\PYG{n}{T\PYGZus{}sys} \PYG{n}{delta}\PYG{p}{);}
+
+		\PYG{c+c1}{// Stopping condition}
+		\PYG{k+kt}{int} \PYG{n+nf}{\PYGZus{}stop}\PYG{p}{();}
+
+		\PYG{c+c1}{//  Set observables}
+		\PYG{k+kt}{void} \PYG{n+nf}{\PYGZus{}set\PYGZus{}observables}\PYG{p}{();}
+
+		\PYG{c+c1}{//  Set observables stats}
+		\PYG{k+kt}{void} \PYG{n+nf}{\PYGZus{}set\PYGZus{}observables\PYGZus{}stats}\PYG{p}{();}		
+
+		\PYG{c+c1}{//  Set settings}
+		\PYG{k+kt}{void} \PYG{n+nf}{\PYGZus{}set\PYGZus{}settings}\PYG{p}{();}	
+
+		\PYG{c+c1}{// Monte Carlo average}
+		\PYG{k+kt}{void} \PYG{n+nf}{\PYGZus{}average}\PYG{p}{(}\PYG{n}{T\PYGZus{}sys} \PYG{o}{\PYGZam{}} \PYG{n}{value}\PYG{p}{,}\PYG{n}{std}\PYG{o}{::}\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{T\PYGZus{}sys}\PYG{o}{\PYGZgt{}} \PYG{n}{observables}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{N}\PYG{p}{);}
+
+		\PYG{c+c1}{// Monte Carlo variance}
+		\PYG{k+kt}{void} \PYG{n+nf}{\PYGZus{}variance}\PYG{p}{(}\PYG{n}{T\PYGZus{}sys} \PYG{o}{\PYGZam{}} \PYG{n}{value}\PYG{p}{,}\PYG{n}{std}\PYG{o}{::}\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{T\PYGZus{}sys}\PYG{o}{\PYGZgt{}} \PYG{n}{observables}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{N}\PYG{p}{);}
+
+		\PYG{c+c1}{// State interaction calculation}
+		\PYG{n}{T\PYGZus{}sys} \PYG{n+nf}{\PYGZus{}interaction}\PYG{p}{(}\PYG{n}{T\PYGZus{}state} \PYG{n}{x}\PYG{p}{,} \PYG{n}{T\PYGZus{}state} \PYG{n}{y}\PYG{p}{);}
+
+		\PYG{c+c1}{// Energy calculation}
+		\PYG{n}{T\PYGZus{}sys} \PYG{n+nf}{\PYGZus{}energy}\PYG{p}{();}
+
+		\PYG{c+c1}{// Order calculation}
+		\PYG{n}{T\PYGZus{}sys} \PYG{n+nf}{\PYGZus{}order}\PYG{p}{();}		
+
+		\PYG{c+c1}{// Energy calculation at index}
+		\PYG{n}{T\PYGZus{}sys} \PYG{n+nf}{\PYGZus{}energy}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{index}\PYG{p}{);}
+	
+		\PYG{c+c1}{// Order calculation at index}
+		\PYG{n}{T\PYGZus{}sys} \PYG{n+nf}{\PYGZus{}order}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{index}\PYG{p}{);}
+
+
+
+		\PYG{c+c1}{// Calculate change in energies}
+		\PYG{k+kt}{void} \PYG{n+nf}{\PYGZus{}set\PYGZus{}transitions}\PYG{p}{();}
+
+		\PYG{c+c1}{// Lookup table for transition}
+		\PYG{n}{std}\PYG{o}{::}\PYG{n}{map}\PYG{o}{\PYGZlt{}}\PYG{n}{T\PYGZus{}sys}\PYG{p}{,}\PYG{n}{T\PYGZus{}sys}\PYG{o}{\PYGZgt{}} \PYG{n}{\PYGZus{}transitions}\PYG{p}{;}
+
+
+		\PYG{c+c1}{// Nearest neighbours}
+		\PYG{n}{std}\PYG{o}{::}\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{std}\PYG{o}{::}\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{int}\PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{\PYGZus{}neighbours}\PYG{p}{;}
+
+\PYG{p}{\PYGZcb{};}
+
+\PYG{p}{\PYGZcb{};}
+
+\PYG{c+cp}{\PYGZsh{}endif}
+\end{Verbatim}
